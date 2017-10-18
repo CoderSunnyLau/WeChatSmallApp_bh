@@ -1,0 +1,39 @@
+<!--pages/homePage/account/orderList/orderList.wxml-->
+<view class='order_list'>
+  <view class='tabs'>
+    <view class='tab' wx:for="{{tabs}}" wx:for-item="tab" wx:for-index="index" data-index='{{index}}' bindtap='changeTab'>
+      <text class='{{crrIndex == index ? "tab_crr" : ""}}'>{{tab}}</text>
+    </view>
+  </view>
+  <view class='blank'></view>
+  <view class='pages'>
+    <view class='page {{crrIndex == index ? "page_crr" : ""}}' wx:for="{{tabs}}" wx:for-item="page" wx:for-index="index">
+      <view class='orders orders_all'>
+        <view class='order'>
+          <view class='row_top'>
+            <text>订单号：13454654212</text>
+            <text class='orange'>已签收</text>
+          </view>
+          <view class='row_top'>
+            <text>广州白云山光华制药股份有限公司</text>
+            <text>2017-02-05</text>
+          </view>
+          <view class='row_middle'>
+            <image class='pdt_img' src='http://file.ry600.com/files/Org/af/afvnal1p3sa59q79/Product/dn/dnmmnfde3rqcy7r8/photo_m.jpg'></image>
+            <view class='pdt_info'>
+              <text>阿胶铁盒装</text>
+              <view class='pdt_count'>
+                <text>￥299</text>
+                <text>×1</text>
+              </view>
+            </view>
+          </view>
+          <view class='row_bottom'>
+            <text class='red'>线下支付</text>
+            <view><text>合计：</text><text class='orange order_amount'>￥7</text></view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

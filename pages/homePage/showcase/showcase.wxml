@@ -1,0 +1,12 @@
+<view class='nav'>
+  <view class='nav-left'>
+    <view class='nav-content'>
+      <view wx:for="{{leftNavArr}}" class="nav-item {{(isSelect==index)?'curr':''}}" bindtap='selectItem' data-idx='{{index}}'>{{item}}</view>
+    </view>
+  </view>
+  <view class='nav-right'>
+    <view class='nav-content'>
+      <view wx:for="{{rightNavArr}}" class='nav-item' bindtap='selectCase'>{{item}}</view>
+    </view>
+  </view>
+</view>

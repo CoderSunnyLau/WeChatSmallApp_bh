@@ -1,0 +1,81 @@
+/* pages/homePage/account/orderList/orderList.wxss */
+page{
+  background-color: #EEE;
+}
+.tabs{
+  width: 750rpx;
+  height: 68rpx;
+  background-color: #FFF;
+  display: flex;
+  flex-direction: row;
+  line-height: 75rpx;
+  position: fixed;
+  top: 0;
+}
+.tab{
+  flex: 1;
+  text-align: center;
+}
+.tab_crr{
+  color: #F50;
+  border-bottom: 4rpx solid #F50;
+  height: 64rpx;
+  display: inline-block;
+}
+.blank{
+  width: 750rpx;
+  height: 68rpx;
+}
+.page{
+  display: none;
+}
+.page_crr{
+  display: block;
+}
+
+/***********/
+.order{
+  width: 750rpx;
+  margin: 10rpx 0;
+  background-color: #FFF;
+}
+.row_top{
+  height: 62rpx;
+  line-height: 62rpx;
+  border-bottom:2rpx solid #DDD;
+  padding: 0 38rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.red{
+  color: #F00;
+}
+.row_middle{
+  padding: 20rpx 38rpx;
+  border-bottom: 2rpx solid #DDD;
+  display: flex;
+}
+.pdt_img{
+  width: 162rpx;
+  height: 162rpx;
+  border: 2rpx solid #DDD;
+}
+.pdt_info{
+  margin-left: 24rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.row_bottom{
+  padding: 0 38rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.orange{
+  color: #F50;
+}
+.order_amount{
+  font-size: 30rpx;
+}

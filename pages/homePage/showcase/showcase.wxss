@@ -1,0 +1,35 @@
+.nav{
+  display: flex;
+}
+.nav-left .nav-item{
+  width: 180rpx;
+  height: 110rpx;
+  line-height: 110rpx;
+  background: #efefef;
+  text-align: center;
+  margin-bottom: 4rpx;
+  font-size: 25rpx;
+  color: #3f3b3a;
+}
+.nav .nav-left .curr{
+  border-bottom: 4rpx solid #ff560a;
+  margin-bottom: 0;
+}
+
+.nav-right{
+  margin-left: 20rpx;
+}
+.nav-right .nav-content{
+  display: flex;
+  flex-wrap: wrap;
+}
+.nav-right .nav-item{
+  width: 170rpx;
+  height: 70rpx;
+  background: #efefef;
+  line-height: 70rpx;
+  text-align: center;
+  color: #a0a0a0;
+  margin-right: 8rpx;
+  margin-bottom: 6rpx;
+}

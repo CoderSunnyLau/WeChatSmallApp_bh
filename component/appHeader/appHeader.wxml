@@ -1,0 +1,23 @@
+<template name='org_message'>
+  <view class='org_message'>
+    <view class='message-left'>
+      <image class='logo_ry' src='/images/logo_ry.png'></image>
+      <text class='store_crr'>{{storeCrr}}</text>
+    </view>
+    <text class='org_crr'>当前机构：{{orgCrr}}</text>
+  </view>
+</template>
+
+<template name='search_bar'>
+  <view class='searchBar'>
+    <view class='search-scan'>
+      <image class='scan-img' src='/images/scan.png'></image>
+      <text>扫一扫</text>
+    </view>
+    <view class='search-area'>
+      <image class='search-img' src='/images/search.png'></image>
+      <input class='search-input' placeholder='{{searchTip}}'></input>
+      <text class='search-txt'>搜索</text>
+    </view>
+  </view>
+</template>
