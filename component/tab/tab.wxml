@@ -1,0 +1,8 @@
+<!--pages/template/tab/tab.wxml-->
+<template name='tab'>
+  <view class='tabs'>
+    <view class='tab' wx:for="{{tabs}}" wx:for-item="tab" wx:for-index="index" data-index='{{index}}' bindtap='changeTab'>
+      <text class='{{crrIndex == index ? "tab_crr" : ""}}'>{{tab}}</text>
+    </view>
+  </view>
+</template>

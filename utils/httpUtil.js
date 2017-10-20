@@ -18,6 +18,9 @@ function loginHttp(options, callback) {
 function saveHeader(e) {
   mHeader = {'cookie': e}
 }
+function getHeader(){
+  return mHeader;
+}
 
 function getHttp(options, callback) {
   wx.request({
@@ -54,5 +57,6 @@ module.exports = {
   saveHeader: saveHeader,
   getHttp: getHttp,
   postHttp: postHttp,
-  mHeader: mHeader
+  mHeader: mHeader,
+  getHeader: getHeader
 }

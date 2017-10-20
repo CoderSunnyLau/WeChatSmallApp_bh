@@ -29,25 +29,45 @@ Page({
       }
     });
   },
+  test: function(){
+    const _this = this;
+    http.getHttp({ action: 'VSUser.getBasicInfo' }, function (res, success) {
+      if (success) {
+        if (res.success) {
+          console.log(res)
+          let user = res.results[0];
+          _this.setData({
+            userName: user.userName,
+            fullName: user.fullName,
+            userIcon: 'http://www.ry600.com' + user.photoUrl
+          });
+        } else {
+          wx.reLaunch({
+            url: '/pages/loginPage/login/login',
+          });
+        }
+      }
+    });
+  },
   orderList: function(){
     wx.navigateTo({
       url: 'orderList/orderList',
     });
   },
   logout: function(){
-    // wx.request({
-    //   url: 'http://bh.ry600.com/userLogout.action',
-    //   method: 'GET',
-    //   header: http.mHeader,
-    //   success: function(res){
-    //     console.log(res);
-    //     console.log(2)
-    //   },
-    //   fail: function(res){
-    //     console.log(res)
-    //     console.log(1)
-    //   }
-    // })
+    wx.request({
+      url: 'http://bh.ry600.com/userLogout.action',
+      method: 'GET',
+      header: http.getHeader(),
+      success: function(res){
+        console.log(res);
+        console.log(2)
+      },
+      fail: function(res){
+        console.log(res)
+        console.log(1)
+      }
+    });
     var loginData = wx.getStorageSync('loginData');
     loginData.autoLogin = 'false';
     wx.setStorage({

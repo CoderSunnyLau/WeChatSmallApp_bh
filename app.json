@@ -13,7 +13,9 @@
     "pages/promotion/promotionList/promotionList",
     "pages/promotion/bulk/bulkItem/bulkItem",
     "pages/loginPage/forget/forget",
-    "pages/homePage/account/orderList/orderList"
+    "pages/homePage/account/orderList/orderList",
+    "pages/template/slide/slide",
+    "pages/template/shopcartTest/shopcartTest"
   ],
   "window": {
     "backgroundTextStyle": "light",

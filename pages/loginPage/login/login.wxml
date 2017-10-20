@@ -5,10 +5,10 @@
   </view>
   <view class='tip_box'><text class='tip'>{{tip}}</text></view>
   <view class="input_box">
-    <view class='input_field'>
+    <view class='input_field bg'>
       <input class='input' type='text' placeholder='用户名 / 手机号' placeholder-class='placeholder' bindinput='nameInput' value='{{userName}}'></input>
     </view>
-    <view class='input_field'>
+    <view class='input_field pwd bg'>
       <input class='input' type='password' placeholder='密码' placeholder-style='color:#AAA' bindinput='passwordInput' value='{{password}}'></input>
     </view>
     <view class='forget_box'><text class='forget' bindtap='toForget'>忘记密码</text></view>

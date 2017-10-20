@@ -6,28 +6,29 @@
   </view>
   <view class='info_block'>
     <view class='panel_box info_box'>
-      <image class='user_icon' src="{{userIcon}}"></image>
+      <image class='user_icon' src="{{userIcon}}" bindtap='test'></image>
       <view class='info_detail'>
         <text>{{userName}}</text>
-        <text>{{fullName}}</text>
+        <text class='full_name'>{{fullName}}</text>
       </view>
     </view>
   </view>
   <view class='panel_box'>
     <view class='panel_title'>
       <text class='my_orders'>我的订单</text>
-      <text class='all_orders'>全部订单</text>
+      <text bindtap='orderList'>全部订单 ></text>
     </view>
     <view class='panel_body'>
-      <view class='order_nav pending_pay'><text>待付款</text></view>
-      <view class='order_nav pending_recieve'><text>待收货</text></view>
-      <view class='order_nav recieved'><text>已收货</text></view>
-      <view class='order_nav cancel'><text>驳回/取消</text></view>
+      <view class='order_nav'><view class='bg pending_pay'></view><text>待付款</text></view>
+      <view class='order_nav'><view class='bg pending_recieve'></view><text>待收货</text></view>
+      <view class='order_nav'><view class='bg recieved'></view><text>已收货</text></view>
+      <view class='order_nav'><view class='bg canceled'></view><text>已取消</text></view>
     </view>
   </view>
   <view class='panel_box'>
-    <view class='panel_row favorite'><text>我的收藏</text></view>
-    <view class='panel_row address'><text>我的收货地址</text></view>
+    <view class='panel_row'><text class='bg favorite'>我的收藏</text></view>
+    <view class='panel_row panel_middle'><text class='bg coupon'>我的优惠券</text></view>
+    <view class='panel_row'><text class='bg address'>我的收货地址</text></view>
   </view>
-  <button class='logout_btn btn' bindtap='logout'>安全退出</button>
+  <button class='logout_btn bg btn' bindtap='logout'>安全退出</button>
 </view>

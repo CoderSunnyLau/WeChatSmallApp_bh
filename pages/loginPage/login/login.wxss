@@ -32,13 +32,18 @@ page{
   margin: 20rpx auto;
   position: relative;
   border-bottom: 2rpx solid #888;
+  background-position-x: 5rpx;
+}
+.pwd{
+  background-position: 8rpx -72rpx;
 }
 .input{
   float: left;
   width: 390rpx;
-  margin: 30rpx 0 0 70rpx;
+  margin: 15rpx 0 0 70rpx;
   border: none;
-  height: 60rpx;
+  height: 70rpx;
+  line-height: 20rpx;
   font-size: 28rpx;
 }
 .btn{

@@ -1,2 +1,64 @@
 <!--pages/shopcart/shopcart.wxml-->
-<text>pages/shopcart/shopcart.wxml</text>
+<view class='shopcart'>
+	<view class='loading_wrap' wx:if='{{loading}}'></view>
+	<view><text class='edit' bindtap='doEdit'>{{edit ? '完成' : '编辑'}}</text></view>
+	<view class='blocks' wx:for='{{blocks}}' wx:for-item="block" wx:for-index="bIdx" wx:key=''>
+		<view class='block' data-index='{{bIdx}}' wx:if='{{block.count}}'>
+			<view class='row_top'>
+			<view class='check_box bg {{block.count == block.selCount ? "selected" : ""}}'></view>
+			<text>{{block.blockName}}</text>
+			</view>
+			<view class='pdts'>
+			<view class='pdt' wx:for='{{block.items}}' wx:for-item="pdt" wx:for-index="pIdx" wx:key=''>
+				<view class='row_main {{bIdx + "," + pIdx == crrPdtIdx ? "touch_active" : ""}}' bindtouchstart="touchStart" bindtouchmove="touchMove" data-pdtidx='{{bIdx}},{{pIdx}}'>
+				<view class='sale_tag' wx:if='{{pdt.sku.addSaleTagName}}'>
+					<text class='tag_name'>{{pdt.sku.addSaleTagName}}</text>
+					<text>{{pdt.sku.saleTag}}</text>
+				</view>
+				<view class='main_info'>
+					<view class='check_box bg {{pdt.selected ? "selected" : ""}}'></view>
+					<image class='pdt_img' src='{{pdt.sku.photo.smallUrl}}'></image>
+					<view class='pdt_info'>
+					<view class='pdt_title'>
+						<text>{{pdt.sku.productCaption}}</text>
+					</view>
+					<text class='orange'>￥{{pdt.sku.price}}/{{pdt.sku.units}}</text>
+					</view>
+					<view class='count'>
+					<text class='sub'>-</text>
+					<input value='{{pdt.amount}}' type='number'></input>
+					<text class='add'>+</text>
+					</view>
+				</view>
+				</view>
+				<view class='option'>
+					<view class='favorite'><text>收藏</text></view>
+					<view class='delete'><text>删除</text></view>
+				</view>
+				<view class='rewards' wx:if='{{pdt.rewards}}'>
+				<view class='reward'></view>
+				</view>
+			</view>
+			</view>
+			<view class='row_bottom'>
+				<view class='sel_all'>
+					<view class='check_box bg {{block.count == block.selCount ? "selected" : ""}}'></view>
+					<text>全选</text>
+				</view>
+				<view class='checkout_box'>
+					<view class='checkout'>
+					<view class='amount_box'><text class='amount_text'>合计：</text><text class='orange order_amount'>￥{{block.selPayment}}</text></view>
+					<text class='freight'>不含运费</text>
+					</view>
+					<view class='btn to_buy {{block.selCount == 0 ? "btn_disabled" : ""}}'>去结算({{block.selCount}})</view>
+				</view>
+			</view>
+		</view>
+	</view>
+	<view class='bottom_wrap' wx:if='{{edit}}'>
+		<view class='row_bottom fix_bottom'>
+			<view class='btn favorite'><text>收藏所有商品</text></view>
+			<view class='btn delete'><text>清空购物车</text></view>
+		</view>
+	</view>
+</view>

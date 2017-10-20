@@ -64,37 +64,70 @@ page{
 .info_detail text{
   display: block;
 }
+.full_name{
+  font-size: 30rpx;
+}
 .panel_title{
   height: 66rpx;
   border-bottom: 2rpx solid #CCC;
   line-height: 66rpx;
   padding: 0 35rpx;
-}
-.all_orders{
-  float: right;
-  padding-right: 23rpx;
+  font-size: 26rpx;
+  display: flex;
+  justify-content: space-between;
 }
 .panel_body{
   display: flex;
   flex-direction: row;
-  padding: 36rpx 0 28rpx;
+  padding: 32rpx 0 28rpx;
 }
 .order_nav{
   flex: 1;
   display: flex;
   flex-direction: column;
   text-align: center;
-  height: 82rpx;
+  height: 90rpx;
   justify-content: flex-end;
-  color: #F50;
+  font-size: 24rpx;
+}
+.order_nav .bg{
+  height: 58rpx;
+}
+.pending_pay{
+  background-position: 50rpx -952rpx;
+}
+.pending_recieve{
+  background-position: 50rpx -1023rpx;
+}
+.recieved{
+  background-position: 54rpx -1095rpx;
+}
+.canceled{
+  background-position: 58rpx -1170rpx;
 }
 .panel_row{
   height: 105rpx;
-  line-height: 105rpx;
-  padding-left: 86rpx;
+  display: flex;
+  align-items: center;
+}
+.panel_middle{
+  border-top: 2rpx solid #CCC;
+  border-bottom: 2rpx solid #CCC;
+}
+.panel_row text{
+  display: inline-block;
+  padding-left: 55rpx;
+  line-height: 60rpx;
+  margin-left: 26rpx;
 }
 .favorite{
-  border-bottom: 2rpx solid #CCC;
+  background-position: 0 -1240rpx;
+}
+.coupon{
+  background-position: 0 -1380rpx;
+}
+.address{
+  background-position: 8rpx -1306rpx;
 }
 .logout_btn{
   width: 345rpx;
@@ -103,4 +136,5 @@ page{
   margin-top: 25rpx;
   font-size: 26rpx;
   text-indent: 56rpx;
+  background-position: 90rpx -2042rpx;
 }

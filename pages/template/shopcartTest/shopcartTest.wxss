@@ -1,17 +1,6 @@
 /* pages/shopcart/shopcart.wxss */
-@import '../account/orderList/orderList.wxss';
-page{
-  height: 100%;
-}
-.loading_wrap{
-  width: 750rpx;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 999;
-}
+@import '/pages/homePage/account/orderList/orderList.wxss';
+
 .edit{
   width: 75rpx;
   height: 75rpx;
@@ -41,33 +30,20 @@ page{
   line-height: auto;
 }
 .check_box{
-  width: 24rpx;
-  height: 24rpx;
+  width: 28rpx;
+  height: 28rpx;
   border: 1rpx solid #999;
   border-radius: 50%;
   margin-right: 18rpx;
 }
-.selected{
-  padding: 4rpx;
-  border: none;
-  background-position: 0 -288rpx; 
-}
 .sale_tag{
-  font-size: 22rpx;
-  line-height: 33rpx;
-  height: 33rpx;
-  margin: 10rpx 0 -8rpx 55rpx;
-  color: #777;
-} 
-.tag_name{
-  display: block;
   float: left;
   color: #FFF;
   font-size: 20rpx;
   background-color: #FF2D46;
   border-radius: 15rpx;
-  padding: 0 12rpx;
-  margin-right: 8rpx;
+  padding: 0 14rpx;
+  margin-right: 10rpx;
 }
 .pdt{
   width: 750rpx;
@@ -77,12 +53,10 @@ page{
 }
 .pdt_title{
   line-height: 34rpx;
-  font-size: 26rpx;
 }
 .pdt_info{
   justify-content: space-between;
   height: 162rpx;
-  width: 470rpx;
 }
 .count{
   position: absolute;
@@ -122,16 +96,15 @@ page{
   top: 0;
   right: 0;
   width: 200rpx;
-  height: 100%;
+  height: 206rpx;
   color: #FFF;
   display: flex;
-}
-.option .delete, .option .favorite{
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  text-align: center;
+  line-height: 206rpx;
   font-size: 24rpx;
+}
+.option text{
+  flex: 1;
 }
 .delete{
   background-color: #FF2D46;
@@ -149,15 +122,9 @@ page{
   transition: all 0.4s;
   position: relative;
   z-index: 2;
-  padding: 0 20rpx 18rpx;
-  display: flex;
-  flex-direction: column;
-}
-.main_info{
-  display: flex;
-  flex-direction: row;
   align-items: center;
-  margin-top: 18rpx;
+  padding: 20rpx 18rpx;
+  display: flex;
 }
 .touch_active{
   -webkit-transform: translateX(0rpx);
@@ -194,31 +161,5 @@ page{
 }
 .to_buy{
   line-height: 106rpx;
-  width: 188rpx;
-  text-align: center;
-}
-.btn_disabled{
-	background-color: #BBB;
-}
-.bottom_wrap{
-	position: relative;
-	height: 106rpx;
-}
-.fix_bottom{
-	position: fixed;
-	bottom: 0;
-	left: 0;
-	z-index: 98;
-	width: 750rpx;
-	height: 106rpx;
-	background-color: #FFF;
-	border-top: 2rpx solid #DDD;
-	box-shadow: -20rpx -20rpx 20rpx #FAFAFA inset;
-	padding: 0;
-	justify-content: flex-end;
-}
-.fix_bottom .btn{
-	width: 200rpx;
-	text-align: center;
-	line-height: 106rpx;
+  padding: 0 25rpx;
 }

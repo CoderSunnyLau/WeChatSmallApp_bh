@@ -2,44 +2,31 @@
 const http = require('../../../utils/httpUtil.js')
 Page({
   data: {
-	edit: false,
+    editStatus: '编辑',
     isTouchMove: false,
-    crrPdtIdx: '',
     startX: 0, //开始坐标
     startY: 0,
-    storeName: '样板展示平台',
-    blocks: [],
-    loading: false
+    storeName: '样板展示平台'
   },
-  onLoad: function(){
-    const _this = this;
-    const _data = this.data;
+  onLoad: function () {
     http.getHttp({
       action: 'VSShop.getShopCart',
       widthReward: true,
       orgId: '',
       bizCenterId: '',
       onlyAmount: false
-    }, function(res, success){
-      if(success && res.success){
-        let blocksTemp = [];
-        for(let i = 0; i < res.results[0].blocks.length; i++){
-          blocksTemp.push(res.results[0].blocks[i]);
-        }
-        _this.setData({
-          blocks: blocksTemp
-        });
-        console.log(_data.blocks[1])
+    }, function (res, success) {
+      if (success) {
+        console.log(res)
       }
     });
   },
-  touchStart: function(e){
-      this.setData({
-        startX: e.changedTouches[0].clientX,
-        startY: e.changedTouches[0].clientY,
-        isTouchMove: false,
-        crrPdtIdx: ''
-      });
+  touchStart: function (e) {
+    this.setData({
+      startX: e.changedTouches[0].clientX,
+      startY: e.changedTouches[0].clientY,
+      isTouchMove: false
+    })
   },
   //滑动事件处理
   touchMove: function (e) {
@@ -57,8 +44,7 @@ Page({
       })
     } else { //左滑
       this.setData({
-        isTouchMove: true,
-        crrPdtIdx: e.currentTarget.dataset.pdtidx
+        isTouchMove: true
       })
     }
   },
@@ -76,11 +62,6 @@ Page({
     this.data.items.splice(e.currentTarget.dataset.index, 1)
     this.setData({
       items: this.data.items
-    });
-  },
-  doEdit: function(){
-	this.setData({
-	  edit: !this.data.edit
-	});
+    })
   }
 })

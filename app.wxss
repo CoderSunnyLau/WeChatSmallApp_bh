@@ -1,8 +1,8 @@
 /**app.wxss**/
 page{
   font-family: "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
-  font-size: 24rpx;
-  color: #666;
+  font-size: 28rpx;
+  color: #444;
 }
 page::after{
   content: "";
@@ -30,5 +30,10 @@ page::after{
 .btn{
   background-color: #F50;
   color: #FFF;
+}
+.bg{
+  background-image: url('http://file.ry600.com/snapshot/vms/site/di/di70684438lrfavs/82ojywir5vqogktm/image//wx_icons.png');
+  background-repeat: no-repeat;
+  background-size: 115rpx auto;
 }
 
