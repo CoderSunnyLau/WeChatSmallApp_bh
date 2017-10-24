@@ -32,7 +32,7 @@
 						</view>
 					</view>
 					<view class='option'>
-						<view class='favorite'><text>收藏</text></view>
+						<view class='favorite' data-pdtidx='{{bIdx}},{{pIdx}}' catchtap='collectPdt'><text>收藏</text></view>
 						<view class='delete' data-pdtidx='{{bIdx}},{{pIdx}}' catchtap='delPdt'><text>删除</text></view>
 					</view>
 					<view class='rewards' wx:if='{{pdt.rewards}}'>
@@ -63,7 +63,7 @@
 			</view>
 			<view class='row_bottom'>
 				<view class='btn favorite'><text>收藏所有商品</text></view>
-				<view class='btn delete'><text>清空购物车</text></view>
+				<view class='btn delete' bindtap='clearShopcart'><text>清空购物车</text></view>
 			</view>
 		</view>
 	</view>

@@ -6,10 +6,8 @@ const md5 = require('../../../utils/md5.js')
 
 Page({
   data: {
-    logo: '/images/logo.png',
     userName: "",
     password: "",
-    tip: "",
     vs: app.globalData.version
   },
   onLoad: function(){

@@ -144,66 +144,36 @@ Page({
 			selected: !e.currentTarget.dataset.selected
 		});
   	},
-	// selPdt1: function(e){
-	// 	var _this = this,
-	// 		idxArr = e.currentTarget.dataset.pdtidx.split(','),
-	// 		blockId = _this.data.blocks[idxArr[0]].blockId,
-	// 		cartItemId = _this.data.blocks[idxArr[0]].items[idxArr[1]].cartItemId,
-	// 		selected = !e.currentTarget.dataset.selected;
-	// 	_this.setData({
-	// 		crrPdtIdx: '',
-	// 		loading: true
-	// 	});
-	// 	http.postHttp({
-	// 		action: 'VSShop.selectProduct',
-	// 		widthReward: true,
-	// 		blockId: blockId,
-	// 		cartItemId: cartItemId,
-	// 		selected: selected
-	// 	}, function(res, success){
-	// 		if(success){
-	// 			if(res.success){
-	// 				console.log(res)
-	// 				_this.setData({
-	// 					loading: false,
-	// 					blocks: res.results[0].blocks
-	// 				});
-	// 			}
-	// 		}
-	// 	});
-	// },
-	// delPdt: function (e) {
-	// 	var _this = this,
-	// 		_data = this.data,
-	// 		idxArr = e.currentTarget.dataset.pdtidx.split(','),
-	// 	  	blockId = _data.blocks[idxArr[0]].blockId,
-	// 		cartItemId = _data.blocks[idxArr[0]].items[idxArr[1]].cartItemId;
-	// 	_this.setData({
-	// 		crrPdtIdx: '',
-	// 		loading: true
-	// 	});
-	// 	http.postHttp({
-	// 		action: 'VSShop.delProduct',
-	// 		widthReward: true,
-	// 		blockId: blockId,
-	// 		cartItemId: cartItemId
-	// 	}, function(res, success){
-	// 		if(success){
-	// 			if(res.success){
-	// 				console.log(res)
-	// 				_this.setData({
-	// 					loading: false,
-	// 					blocks: res.results[0].blocks
-	// 				});
-	// 			}
-	// 		}
-	// 	});
-  	// },
-	doEdit: function () {
+	collectPdt: function(e){
+		var _this = this,
+			pdtidx = e.currentTarget.dataset.pdtidx,
+			shopProductId = _this.data.blocks[pdtidx.split(',')[0]].items[pdtidx.split(',')[1]].sku.shopProductId,
+			pdtTitle = _this.data.blocks[pdtidx.split(',')[0]].items[pdtidx.split(',')[1]].sku.productCaption;
 		this.setData({
-			edit: !this.data.edit
+			crrPdtIdx: '',
+			loading: true
 		});
-  	},
+		http.postHttp({
+			action: 'VSCommon.addFavorite',
+			resType: 'ProductOfShop',
+			resId: shopProductId,
+			resName: pdtTitle,
+			url: ''
+		}, function(res, success){
+			if(success){
+				if(res.success){
+					_this.setData({
+						loading: false
+					});
+					wx.showToast({
+						title: '已收藏',
+						icon: 'success',
+						duration: 800
+					});
+				}
+			}
+		});
+	},
 	countFocus: function(e){
 		var _this = this;
 		this.setData({
@@ -254,5 +224,43 @@ Page({
 				}
 			});
 		}
-  	}
+	},
+	clearShopcart: function(){
+		var _this = this;
+		wx.showModal({
+			title: '提示',
+			content: '你确定要清空购物车吗？（此操作不可逆）',
+			success: function(res){
+				if(res.confirm){
+					_this.setData({
+						loading: true
+					});
+					http.postHttp({
+						action: 'VSShop.removeAll',
+						widthReward: false,
+						orgId: '',
+						bizCenterId: ''
+					}, function(res, success){
+						if(success){
+							if(res.success){
+								_this.setData({
+									loading: false,
+									blocks: res.results[0].blocks,
+									edit: false
+								});
+								console.log(res);
+							}
+						}
+					});
+				}else{
+					return;
+				}
+			}
+		});
+	},
+	doEdit: function(){
+		this.setData({
+			edit: !this.data.edit
+		});
+	}
 })
