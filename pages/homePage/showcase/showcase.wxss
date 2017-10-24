@@ -2,22 +2,29 @@
   display: flex;
 }
 .nav-left .nav-item{
-  width: 180rpx;
-  height: 110rpx;
+  width: 185rpx;
+  height: 118rpx;
   line-height: 110rpx;
   background: #efefef;
   text-align: center;
   margin-bottom: 4rpx;
-  font-size: 25rpx;
-  color: #3f3b3a;
+  font-size: 34rpx;
+  color: #3e3a39;
 }
 .nav .nav-left .curr{
+  background-color: #fff;
   border-bottom: 4rpx solid #ff560a;
   margin-bottom: 0;
 }
 
 .nav-right{
   margin-left: 20rpx;
+}
+.nav-right .nav-title{
+  height: 118rpx;
+  line-height: 118rpx;
+  font-size: 32rpx;
+  color: #3e3a39;
 }
 .nav-right .nav-content{
   display: flex;
@@ -29,7 +36,8 @@
   background: #efefef;
   line-height: 70rpx;
   text-align: center;
-  color: #a0a0a0;
+  font-size: 28rpx;
+  color: #727272;
   margin-right: 8rpx;
   margin-bottom: 6rpx;
 }

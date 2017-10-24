@@ -9,8 +9,15 @@ page{
   position: fixed;
   top: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.3);
   z-index: 999;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.loading_wrap image{
+	width: 100rpx;
+	height: 100rpx;
 }
 .edit{
   width: 75rpx;
@@ -48,7 +55,7 @@ page{
   margin-right: 18rpx;
 }
 .selected{
-  padding: 4rpx;
+  padding: 2rpx;
   border: none;
   background-position: 0 -288rpx; 
 }
@@ -96,13 +103,13 @@ page{
   align-items: center;
 }
 .count input{
-  height: 50rpx;
-  width: 86rpx;
+  height: 60rpx;
+  width: 75rpx;
   line-height: 38rpx;
   min-height: 28rpx;
   padding: 0 5rpx;
   text-align: center;
-  font-size: 20rpx;
+  font-size: 24rpx;
 }
 .count text{
   display: block;
@@ -215,10 +222,15 @@ page{
 	border-top: 2rpx solid #DDD;
 	box-shadow: -20rpx -20rpx 20rpx #FAFAFA inset;
 	padding: 0;
-	justify-content: flex-end;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
 }
 .fix_bottom .btn{
 	width: 200rpx;
 	text-align: center;
 	line-height: 106rpx;
+}
+.sel_all_bottom{
+	margin-left: 20rpx;
 }
