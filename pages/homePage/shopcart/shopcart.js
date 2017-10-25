@@ -14,7 +14,8 @@ Page({
 		count: 0,
 		loading: false,
 		countInputTemp: 1,
-		countFocusTemp: 1
+		countFocusTemp: 1,
+		giftEditIdx: ''
 	},
 	onLoad: function(){this.loadShopcart()},
 	onShow: function(){this.loadShopcart()},
@@ -158,7 +159,7 @@ Page({
 			resType: 'ProductOfShop',
 			resId: shopProductId,
 			resName: pdtTitle,
-			url: ''
+			url: '/_shop/product-' + shopProductId + '.shtml'
 		}, function(res, success){
 			if(success){
 				if(res.success){
@@ -189,18 +190,17 @@ Page({
 	},
 	changeCount: function (e, method) {
 		var _this = this,
-			_data = this.data,
 			idxArr = e.currentTarget.dataset.pdtidx.split(','),
 			method = e.currentTarget.dataset.changemethod,
-			blockId = _data.blocks[idxArr[0]].blockId,
-			cartItemId = _data.blocks[idxArr[0]].items[idxArr[1]].cartItemId,
+			blockId = this.data.blocks[idxArr[0]].blockId,
+			cartItemId = this.data.blocks[idxArr[0]].items[idxArr[1]].cartItemId,
 			addUp, amount;
 		switch(method){
 			case 'input': addUp = false; amount = e.detail.value; break;
 			case 'sub': addUp = true; amount = -1; break;
 			case 'add': addUp = true; amount = 1; break;
 		}
-		if(!addUp && (amount == _data.countFocusTemp)){
+		if (!addUp && (amount == this.data.countFocusTemp)){
 			return;
 		}else{
 			_this.setData({
@@ -261,6 +261,11 @@ Page({
 	doEdit: function(){
 		this.setData({
 			edit: !this.data.edit
+		});
+	},
+	editGift: function(e){
+		this.setData({
+			giftEditIdx: e.currentTarget.dataset.pdtidx
 		});
 	}
 })

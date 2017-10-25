@@ -1,5 +1,5 @@
 var httpUrl = getApp().globalData.domainName + '/jsonaction/websiteaction.action'
-var mHeader = { cookie:'_clientId=07bdde2ba8ef41b789216ff0a6af1517; Domain=ry600.com; Expires=Fri, 22-Oct-2027 10:08:56 GMT; Path=/,_serviceId=96bda97339834c74812b58ae2b7fe563; Path=/'}
+var mHeader = {}
 
 function loginHttp(options, callback) {
   wx.request({
@@ -42,7 +42,7 @@ function postHttp(options, callback) {
     url: httpUrl,
     data: options,
     method: 'POST',
-		header: Object.assign(mHeader, {"content-type": "application/x-www-form-urlencoded"}),
+	header: Object.assign(mHeader, {"content-type": "application/x-www-form-urlencoded; charset=UTF-8"}),
     success: function (res) {
       callback(res.data, true)
     },

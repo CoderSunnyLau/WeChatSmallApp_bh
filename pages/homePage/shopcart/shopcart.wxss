@@ -80,7 +80,6 @@ page{
   width: 750rpx;
   overflow: hidden;
   position: relative;
-  border-bottom: 2rpx solid #DDD;
 }
 .pdt_title{
   line-height: 34rpx;
@@ -147,24 +146,83 @@ page{
   background-color: #F50;
 }
 .row_main{
-  width: 714rpx;
-  background-color: #FFF;
+  width: 750rpx;
+  position: relative;
+}
+.main_info{
+  width: 710rpx;
   margin-left: -200rpx;
+  background-color: #FFF;
+  border-bottom: 2rpx solid #DDD;
   -webkit-transform: translateX(200rpx);
   transform: translateX(200rpx);
   -webkit-transition: all 0.4s;
   transition: all 0.4s;
-  position: relative;
-  z-index: 2;
-  padding: 0 20rpx 18rpx;
-  display: flex;
-  flex-direction: column;
-}
-.main_info{
   display: flex;
   flex-direction: row;
   align-items: center;
   margin-top: 18rpx;
+  padding: 0 20rpx 18rpx;
+  position: relative;
+  z-index: 9;
+}
+.sel_gift{
+	font-size: 26rpx;
+	color: #666;
+}
+.sel_gift .red{
+	text-decoration: underline;
+}
+.rewards{
+	border-bottom: 2rpx solid #DDD;
+	padding: 10rpx 62rpx;
+}
+.reward{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	margin: 10rpx 0;
+}
+.gift_info{
+	display: flex;
+	align-items: center;
+}
+.gift_info image{
+	width: 78rpx;
+	height: 78rpx;
+	margin-right: 20rpx;
+	border: 1rpx solid #EEE;
+}
+.gift_count{
+	display: flex;
+	align-items: center;
+}
+.gift_count input{
+	width: 50rpx;
+	text-align: right;
+	height: 30rpx;
+	line-height: 30rpx;
+	font-size: 26rpx;
+}
+.gift_btn{
+	width: 200rpx;
+	height: 60rpx;
+	line-height: 60rpx;
+	font-size: 28rpx;
+	background: #F50;
+	color: #FFF;
+	margin-bottom: 20rpx;
+	display: none;
+}
+.gift_tip{
+	display: none;
+}
+.gift_edit .gift_btn, .gift_edit .gift_tip{
+	display: block;
+}
+.gift_edit input{
+	border: 1rpx solid #DDD;
 }
 .touch_active{
   -webkit-transform: translateX(0rpx);
@@ -189,6 +247,11 @@ page{
   flex-direction: column;
   text-align: right;
   margin-right: 35rpx;
+}
+.detail_info{
+	font-size: 24rpx;
+	color: #999;
+	line-height: 24rpx;
 }
 .amount_box{
   height: 40rpx;
