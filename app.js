@@ -9,6 +9,6 @@ App({
   globalData: {
     domainName: 'http://www.ry600.com',
     userInfo: null,
-    version: '0.0.15'
+    version: '0.0.17'
   }
 })

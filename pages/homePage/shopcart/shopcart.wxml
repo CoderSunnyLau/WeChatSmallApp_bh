@@ -38,32 +38,36 @@
 						</view>
 					</view>
 					<view class='rewards {{giftEditIdx == (bIdx + "," + pIdx) ? "gift_edit" : ""}}' wx:if='{{pdt.rewards.length}}'>
-						<view class='sel_gift'><text>此商品为{{pdt.rewards[0].ruleModeName}}商品，</text><text class='red' data-pdtidx='{{bIdx}},{{pIdx}}' bindtap='editGift'>请选择</text></view>
-						<view class='gift_tip'><text>您可以选择{{pdt.rewards[0].giftCount}}件商品</text></view>
-						<view class='reward' wx:for='{{pdt.rewards[0].gifts}}' wx:for-item='gift'>
+						<view class='sel_gift'>
+							<text>此商品为{{pdt.rewards[0].ruleModeName}}商品，</text>
+							<text class='red' data-pdtidx='{{bIdx}},{{pIdx}}' bindtap='editGift'>{{giftEditIdx == (bIdx + "," + pIdx) ? "点击取消编辑×" : "点击选择赠品∨"}}</text>
+						</view>
+						<view class='gift_tip'><text>您可以选择{{pdt.rewards[0].giftCount}}件赠品，选好后记得点“确定”噢！</text></view>
+						<view class='reward {{gift.amount ? "" : "gift_unsel"}}' wx:for='{{pdt.rewards[0].gifts}}' wx:for-item='gift' wx:for-index='giftIdx'>
 							<view class='gift_info'>
+								<view class='check_box bg {{gift.amount != 0 ? "selected" : ""}}' bindtap='selGift' data-pdtidx='{{bIdx}},{{pIdx}}' data-selected='{{gift.amount}}' data-giftidx='{{giftIdx}}'></view>
 								<image src='{{gift.photoUrl}}'></image>
 								<text>{{gift.caption}}</text>
 							</view>
 							<view class='gift_count'>
-								<text>×</text><input value='{{gift.amount}}' class='gift_count_input' disabled='{{giftEditIdx != bIdx + "," + pIdx}}'></input>
+								<text>×</text><input value='{{gift.amount}}' class='gift_count_input' type='number' disabled='{{giftEditIdx != bIdx + "," + pIdx}}' bindinput='giftAmountInput' data-pdtidx='{{bIdx}},{{pIdx}}' data-giftidx='{{giftIdx}}'></input>
 							</view>
 						</view>
-						<button class='gift_btn'>确定</button>
+						<button class='gift_btn' data-rewardid='{{pdt.rewards[0].rewardId}}' data-pdtidx='{{bIdx}},{{pIdx}}' bindtap='changeGift'>确定</button>
 					</view>
 				</view>
 			</view>
-			<view class='row_bottom'>
-				<view class='sel_all'>
+			<view class='row_bottom block_bottom'>
+				<!-- <view class='sel_all'>
 					<view class='check_box bg {{block.count == block.selCount ? "selected" : ""}}' bindtap='selPdt' data-blockidx='{{bIdx}}' data-selected='{{block.count == block.selCount}}'></view>
 					<text>全选</text>
-				</view>
+				</view> -->
 				<view class='checkout_box'>
 					<view class='checkout'>
 						<view class='amount_box'><text class='amount_text'>合计：</text><text class='orange order_amount'>￥{{block.selPayment}}</text></view>
 						<text class='freight'>不含运费</text>
 					</view>
-					<view class='btn to_buy {{block.selCount == 0 ? "btn_disabled" : ""}}'>去结算({{block.selCount}})</view>
+					<button class='btn to_buy {{block.selCount == 0 ? "btn_disabled" : ""}}' disabled='{{block.selCount == 0}}' bindtap='buy' data-blockid='{{block.blockId}}'>去结算({{block.selCount}})</button>
 				</view>
 			</view>
 		</view>
@@ -75,7 +79,7 @@
 				<text>全选</text>
 			</view>
 			<view class='row_bottom'>
-				<view class='btn favorite'><text>收藏所有商品</text></view>
+				<!-- <view class='btn favorite'><text>收藏所有商品</text></view> -->
 				<view class='btn delete' bindtap='clearShopcart'><text>清空购物车</text></view>
 			</view>
 		</view>

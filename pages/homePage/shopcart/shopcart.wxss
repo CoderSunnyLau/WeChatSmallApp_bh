@@ -36,16 +36,13 @@ page{
 .row_top{
   padding-left: 18rpx;
   padding-right: 18rpx;
+  justify-content: flex-start;
   align-items: center;
+  line-height: auto;
 }
 .block{
   background-color: #FFF;
   margin-bottom: 10rpx;
-}
-.row_top{
-  justify-content: flex-start;
-  align-items: center;
-  line-height: auto;
 }
 .check_box{
   width: 24rpx;
@@ -63,7 +60,7 @@ page{
   font-size: 22rpx;
   line-height: 33rpx;
   height: 33rpx;
-  margin: 10rpx 0 -8rpx 55rpx;
+  margin: 10rpx 0 -8rpx 66rpx;
   color: #777;
 } 
 .tag_name{
@@ -166,16 +163,18 @@ page{
   position: relative;
   z-index: 9;
 }
-.sel_gift{
+.sel_gift, .gift_tip{
 	font-size: 26rpx;
 	color: #666;
+	margin-left: 42rpx;
+	margin-bottom: 10rpx;
 }
 .sel_gift .red{
 	text-decoration: underline;
 }
 .rewards{
 	border-bottom: 2rpx solid #DDD;
-	padding: 10rpx 62rpx;
+	padding: 10rpx 62rpx 10rpx 20rpx;
 }
 .reward{
 	display: flex;
@@ -215,11 +214,20 @@ page{
 	margin-bottom: 20rpx;
 	display: none;
 }
-.gift_tip{
+.gift_tip, .gift_unsel{
 	display: none;
+}
+.gift_info .check_box{
+	visibility: hidden;
 }
 .gift_edit .gift_btn, .gift_edit .gift_tip{
 	display: block;
+}
+.gift_edit .gift_unsel{
+	display: flex;
+}
+.gift_edit .gift_info .check_box{
+	visibility: visible;
 }
 .gift_edit input{
 	border: 1rpx solid #DDD;
@@ -233,6 +241,9 @@ page{
 .row_bottom{
   height: 106rpx;
   padding: 0 0 0 18rpx;
+}
+.block_bottom{
+	justify-content: flex-end;
 }
 .sel_all{
   display: flex;
@@ -264,11 +275,16 @@ page{
 }
 .to_buy{
   line-height: 106rpx;
+  height: 106rpx;
+  border-radius: 0;
+  font-size: 28rpx;
   width: 188rpx;
   text-align: center;
+  border: none;
 }
 .btn_disabled{
-	background-color: #BBB;
+	background-color: #BBB !important;
+	color: #FFF !important;
 }
 .bottom_wrap{
 	position: relative;

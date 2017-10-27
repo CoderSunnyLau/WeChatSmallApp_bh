@@ -11,11 +11,12 @@ Page({
 		storeName: '样板展示平台',
 		blocks: [],
 		selCount: 0,
-		count: 0,
+		count: 1,
 		loading: false,
 		countInputTemp: 1,
 		countFocusTemp: 1,
-		giftEditIdx: ''
+		giftEditIdx: '',
+		giftsTemp: []
 	},
 	onLoad: function(){this.loadShopcart()},
 	onShow: function(){this.loadShopcart()},
@@ -44,10 +45,23 @@ Page({
 					selCount: res.results[0].selCount,
 					count: res.results[0].count
 				});
-				console.log(_data.blocks[1])
 				if(callback){
 					callback();
 				}
+			}else{
+				var msg = success ? res.message : '网络错误';
+				wx.showModal({
+					title: '提示',
+					content: msg,
+					showCancel: false,
+					success: function(res){
+						if(res.confirm){
+							wx.redirectTo({
+								url: '../../loginPage/login/login',
+							})
+						}
+					}
+				});
 			}
 		});
 	},
@@ -124,7 +138,9 @@ Page({
 					console.log(res)
 					_this.setData({
 						loading: false,
-						blocks: res.results[0].blocks
+						blocks: res.results[0].blocks,
+						selCount: res.results[0].selCount,
+						count: res.results[0].count
 					});
 					if(callback){
 						callback();
@@ -263,9 +279,95 @@ Page({
 			edit: !this.data.edit
 		});
 	},
-	editGift: function(e){
+	editGift: function (e) {
+		var _this = this;
+		var idxArr = e.currentTarget.dataset.pdtidx.split(',');
+		if(this.data.giftEditIdx == e.currentTarget.dataset.pdtidx){
+			var thisGifts = 'blocks[' + idxArr[0] + '].items[' + idxArr[1] + '].rewards[0].gifts';
+			var thisGiftsTemp = _this.data.giftsTemp;
+			this.setData({
+				[thisGifts]: thisGiftsTemp,
+				giftEditIdx: '',
+				giftsTemp: []
+			});
+		}else{
+			this.setData({
+				giftsTemp: _this.data.blocks[idxArr[0]].items[idxArr[1]].rewards[0].gifts,
+				giftEditIdx: e.currentTarget.dataset.pdtidx
+			});
+		}
+	},
+	selGift: function(e){
+		var idxArr = e.currentTarget.dataset.pdtidx.split(',');
+		var giftIdx = e.currentTarget.dataset.giftidx;
+		var giftAmountTemp = 'blocks[' + idxArr[0] + '].items[' + idxArr[1] + '].rewards[0].gifts[' + giftIdx + '].amount';
+		if(e.currentTarget.dataset.selected){
+			this.setData({
+				[giftAmountTemp]: 0
+			});
+		}else{
+			this.setData({
+				[giftAmountTemp]: 1
+			});
+		}
+	},
+	giftAmountInput: function(e){
+		var idxArr = e.currentTarget.dataset.pdtidx.split(',');
+		var giftIdx = e.currentTarget.dataset.giftidx;
+		var giftAmountTemp = 'blocks[' + idxArr[0] + '].items[' + idxArr[1] + '].rewards[0].gifts[' + giftIdx + '].amount';
 		this.setData({
-			giftEditIdx: e.currentTarget.dataset.pdtidx
+			[giftAmountTemp]: e.detail.value
+		});
+	},
+	changeGift: function(e){
+		var _this = this;
+		var idxArr = e.currentTarget.dataset.pdtidx.split(',');
+		var giftCount = 0;
+		var selGifts = [];
+		var maxGiftCount = _this.data.blocks[idxArr[0]].items[idxArr[1]].rewards[0].giftCount;
+		var gifts = _this.data.blocks[idxArr[0]].items[idxArr[1]].rewards[0].gifts;
+		var thisRewards = 'blocks[' + idxArr[0] + '].items[' + idxArr[1] + '].rewards';
+		for(var i = 0; i < gifts.length; i++){
+			var gift = gifts[i];
+			giftCount = giftCount + parseInt(gift.amount);
+			if(gift.amount != 0){
+				selGifts.push({cartItemId: gift.cartItemId, amount: String(gift.amount)});
+			}
+		}
+		if(giftCount > maxGiftCount){
+			wx.showModal({
+				title: '提示',
+				content: '最多可以选择' + maxGiftCount + '件商品',
+				showCancel: false
+			});
+		}else{
+			_this.setData({
+				loading: true
+			});
+			console.log(selGifts);
+			http.postHttp({
+				action: 'VSShop.selectRewardItems',
+				widthReward: true,
+				rewardId: e.currentTarget.dataset.rewardid,
+				rewardItemDS: '{records:' + JSON.stringify(selGifts) + '}',
+				blockId: _this.data.blocks[idxArr[0]].blockId
+			}, function(res, success){
+				if(success){
+					if(res.success){
+						console.log(res);
+						_this.setData({
+							giftEditIdx: '',
+							[thisRewards]: res.results[0].blocks[idxArr[0]].items[idxArr[1]].rewards,
+							loading: false
+						});
+					}
+				}
+			});
+		}
+	},
+	buy: function(e){
+		wx.navigateTo({
+			url: 'orderCheckout/orderCheckout?blockId=' + e.currentTarget.dataset.blockid,
 		});
 	}
 })
