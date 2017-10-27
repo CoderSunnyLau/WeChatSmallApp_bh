@@ -1,0 +1,76 @@
+<!--pages/homePage/shopcart/orderCheckout/orderCheckout.wxml-->
+<view class='order_checkout'>
+	<view class='loading_wrap {{load ? "load" : ""}}' wx:if='{{loading}}'><image src='http://file.ry600.com/snapshot//files/di/di70684438lrfavs/2017-10-24/1b2yysllburx4q9e.gif'></image></view>
+	<view class='send_info'>
+		<view class='user_info'>
+			<text class='user_name'>{{order.address.consignee}} {{order.address.mobile}}</text>
+			<text>{{order.address.canton}}{{order.address.city}}{{order.address.county}}{{order.address.address}}</text>
+			<text>{{order.address ? "" : "您还未设置收货地址，请点击设置"}}</text>
+		</view>
+		<view><text>></text></view>
+	</view>
+	<view>
+		<view class='row_top'><text>{{order.blocks[0].blockName}}</text></view>
+		<view class='pdts'>
+			<view class='pdt' wx:for='{{order.blocks[0].items}}' wx:for-item="pdt" wx:for-index="pIdx">
+				<view class='sale_tag' wx:if='{{pdt.sku.addSaleTagName}}'>
+					<text class='tag_name'>{{pdt.sku.addSaleTagName}}</text>
+					<text>{{pdt.sku.saleTag}}</text>
+				</view>
+				<view class='row_main'>
+					<view class='main_info'>
+						<image class='pdt_img' src='{{pdt.sku.photo.smallUrl}}'></image>
+						<view class='pdt_info'>
+							<view class='pdt_title'>
+								<text>{{pdt.sku.productCaption}}</text>
+							</view>
+							<text class='detail_info'>货号：{{pdt.sku.skuCode}}</text>
+							<text class='detail_info'>库存：{{(pdt.sku.stockTag.amount > 100 || pdt.sku.stockTag.amount == 0) ? pdt.sku.stockTag.stockState : pdt.sku.stockTag.amount+pdt.sku.units}}</text>
+							<text class='orange'>￥{{pdt.sku.price}}/{{pdt.sku.units}}</text>
+						</view>
+						<view class='count'><text>×{{pdt.amount}}</text></view>
+					</view>
+				</view>
+				<view class='rewards' wx:if='{{pdt.rewards.length}}'>
+					<view class='reward' wx:for='{{pdt.rewards[0].gifts}}' wx:for-item='gift' wx:for-index='giftIdx'>
+						<view class='gift_info'>
+							<text class='red'>赠品</text>
+							<image src='{{gift.photoUrl}}'></image>
+							<text>{{gift.caption}}</text>
+						</view>
+						<view class='gift_count'>
+							<text class='gift_count_input'>×{{gift.amount}}</text>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+		<view class='options'>
+			<picker range='{{order.transaction.pays}}' range-key='payModeName' bindchange='selTransaction'>
+				<view class='row_top'><text>支付方式</text><text class='red'>{{order.transaction.payModeName}}</text></view>
+			</picker>
+			<picker range='{{order.blocks[0].delivery.freights}}' range-key='freightName' bindchange='selDelivery'>
+				<view class='row_top'><text>配送方式</text><text class='grey'>{{order.blocks[0].delivery.deliveryName}}</text></view>
+			</picker>
+			<view class='row_top'><text>发票信息</text><text class='grey'>开发票（以线下ERP为准）</text></view>
+			<picker range='{{coupon.coupons}}' range-key='caption' bindchange='selCoupon' disabled='{{coupon.coupons.length == 0 ? true: false}}'>
+				<view class='row_top'><text>优惠券</text><text class='grey'>{{coupon.coupons.length ? coupon.coupons.length + "张可用" : "无可用"}}</text></view>
+			</picker>
+			<view class='row_top remark_box {{editRemarkTemp ? "remark_edit" : ""}}' bindtap='editRemark'>
+				<view class='remark_title'><text>留言</text><text>∨</text></view>
+				<input class='remark'></input>
+			</view>
+		</view>
+		<view class='order_account'>
+			<view class='row_default'><text>商品金额</text><text class='orange'>¥{{order.selPayment}}</text></view>
+			<view class='row_default'><text>折扣</text><text class='orange'>- ¥{{order.selDiscount}}</text></view>
+			<view class='row_default'><text>运费</text><text class='orange'>+ ¥{{order.blocks[0].delivery.fare}}</text></view>
+				<view class='row_default'><text>优惠券</text><text class='orange'>- ¥{{order.discount}}</text></view>
+			<view class='.row_default row_right'><text>实付金额：</text><text class='orange'>￥{{order.payAmount}}</text></view>
+		</view>
+	</view>
+	<view class='checkout_box'>
+		<view class='amount_box'><text class='amount_text'>实付金额：</text><text class='orange order_amount'>￥{{order.payAmount}}</text></view>
+		<button class='btn submit' bindtap='saveOrder'>提交订单</button>
+	</view>
+</view>
