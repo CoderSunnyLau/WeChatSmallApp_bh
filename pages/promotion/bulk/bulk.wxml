@@ -1,0 +1,73 @@
+ <!-- pages/promotion/bulk/bulk.wxml -->
+
+<view class='bulk'>
+	<view class='bulk_list'>
+		<view class='bulk_item buying'>
+			<view class='row_top'>
+				<text class='bulk_tag'>限时抢购</text>
+				<text>距结束还有：</text>
+				<text class='left_time topic_color'>0天2小时58分35秒</text>
+			</view>
+			<view class='pdt_info'>
+				<image src='http://file.ry600.com/files/Org/af/afvnal1p3sa59q79/Product/dn/dnmmnfde3rqcy7r8/photo_m.jpg'></image>
+				<view>
+					<view class='main_info'>
+						<view class='pdt_title'>
+							<text>小柴胡颗粒</text>
+						</view>
+						<text class='grey'>货号：{{pdt.skuCode}}</text>
+						<text class='grey'>原价：￥7</text>
+						<view class='pdt_price topic_color'>
+							<text class='text_small'>抢购价</text>
+							<text>￥3.80/盒</text>
+						</view>
+					</view>
+					<view class='btn buy_btn'>立即抢购</view>
+				</view>
+			</view>
+		</view>
+		<view class='bulk_item soldout'>
+			<view class='row_top'>
+				<text class='bulk_tag'>限时抢购</text>
+				<text>已抢光</text>
+			</view>
+			<view class='pdt_info'>
+				<image src='http://file.ry600.com/files/Org/af/afvnal1p3sa59q79/Product/dn/dnmmnfde3rqcy7r8/photo_m.jpg'></image>
+				<view>
+					<view class='main_info'>
+						<text class='pdt_title'>小柴胡颗粒</text>
+						<text class='text_grey'>货号：{{pdt.skuCode}}</text>
+						<text class='text_grey'>原价：￥7</text>
+						<view class='pdt_price topic_color'>
+							<text>抢购价</text>
+							<text>￥3.80/盒</text>
+						</view>
+					</view>
+					<view class='btn buy_btn'>已被抢光</view>
+				</view>
+			</view>
+		</view>
+		<view class='bulk_item waiting'>
+			<view class='row_top'>
+				<text class='bulk_tag'>限时抢购</text>
+				<text>距开始还有：</text>
+				<text class='left_time topic_color'>0天2小时58分35秒</text>
+			</view>
+			<view class='pdt_info'>
+				<image src='http://file.ry600.com/files/Org/af/afvnal1p3sa59q79/Product/dn/dnmmnfde3rqcy7r8/photo_m.jpg'></image>
+				<view>
+					<view class='main_info'>
+						<text class='pdt_title'>小柴胡颗粒</text>
+						<text class='text_grey'>货号：{{pdt.skuCode}}</text>
+						<text class='text_grey'>原价：￥7</text>
+						<view class='pdt_price topic_color'>
+							<text>抢购价</text>
+							<text>￥3.80/盒</text>
+						</view>
+					</view>
+					<view class='btn buy_btn'>即将开抢</view>
+				</view>
+			</view>
+		</view>
+	</view>
+</view> 

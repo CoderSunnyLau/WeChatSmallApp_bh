@@ -1,0 +1,26 @@
+<!--pages/homePage/account/myAddress/editAddress/editAddress.wxml-->
+<view class='address_edit'>
+	<view class='loading_wrap' wx:if='{{loading}}'><image src='http://file.ry600.com/snapshot//files/di/di70684438lrfavs/2017-10-24/1b2yysllburx4q9e.gif'></image></view>
+	<view class='edit_box'>
+		<view class='row'>
+			<text>收货人：</text>
+			<input placeholder='请输入收货人姓名' class='user_name' placeholder-class='placeholder' value='{{ad.consignee}}' bindinput='inputFn' data-field='ad.consignee'></input>
+			<view class='bg2 man_icon'></view>
+		</view>
+		<view class='row'>
+			<text>联系方式：</text>
+			<input placeholder='请输入收货人手机号码' type='number' placeholder-class='placeholder' value='{{ad.mobile}}' bindinput='inputFn' data-field='ad.mobile'></input>
+		</view>
+		<view class='row'>
+			<text>所在地区：</text>
+			<picker mode="region" bindchange="bindRegionChange" value='{{[ad.canton, ad.city, ad.county]}}' custom-item="{{customItem}}">
+				<view>{{ad.canton ? ad.canton + '-' : '请点击选择所在地区'}}{{ad.city ? ad.city + '-' : ''}}{{ad.county}}</view>
+			</picker>
+		</view>
+		<view class='row detail_block'>
+			<text>详细地址：</text>
+			<textarea class='address_detail' placeholder='请输入详细地址' placeholder-class='placeholder' value='{{ad.address}}' bindinput='inputFn' data-field='ad.address'></textarea>
+		</view>
+	</view>
+	<button class='btn' bindtap='saveAddress'>保存</button>
+</view>

@@ -6,16 +6,6 @@ Page({
       url: '../showcase/showcase'
     })
   },
-  toShopcart: function(){
-    wx.switchTab({
-      url: '../shopcart/shopcart'
-    })
-  },
-  toAccount: function(){
-    wx.switchTab({
-      url: '../account/account'
-    })
-  },
   scanBill: function(){
     wx.scanCode({
       success: function(){

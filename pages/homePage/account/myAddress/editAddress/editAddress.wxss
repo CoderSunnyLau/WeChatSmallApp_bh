@@ -1,0 +1,40 @@
+/* pages/homePage/account/myAddress/editAddress/editAddress.wxss */
+.row{
+	border-bottom: 2rpx solid #DDD;
+	padding: 0 42rpx;
+	display: flex;
+	flex-direction: row;
+	height: 80rpx;
+	align-items: center;
+}
+.row text{
+	width: 166rpx;
+	display: block;
+}
+.row input{
+	width: 430rpx;
+}
+.btn{
+	width: 660rpx;
+	height: 75rpx;
+	line-height: 75rpx;
+	margin-top: 50rpx;
+	font-size: 30rpx;
+}
+.man_icon{
+	width: 80rpx;
+	height: 55rpx;
+	background-position: 35rpx -885rpx;
+	border-left: 2rpx solid #DDD;
+}
+.detail_block{
+	height: 80rpx;
+	align-items: flex-start;
+	padding: 20rpx 42rpx;
+	overflow: hidden;
+}
+.address_detail{
+	width: 510rpx;
+	max-height: 120rpx;
+	line-height: 40rpx;
+}

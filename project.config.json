@@ -46,8 +46,20 @@
 				},
 				{
 					"id": 5,
-					"name": "shopcartTest",
-					"pathName": "pages/template/shopcartTest/shopcartTest",
+					"name": "address",
+					"pathName": "pages/homePage/account/myAddress/myAddress",
+					"query": ""
+				},
+				{
+					"id": 6,
+					"name": "editAddress",
+					"pathName": "pages/homePage/account/myAddress/editAddress/editAddress",
+					"query": "addressId=01ttdafh6wbnwrai"
+				},
+				{
+					"id": -1,
+					"name": "addAddress",
+					"pathName": "pages/homePage/account/myAddress/editAddress/editAddress",
 					"query": ""
 				}
 			]

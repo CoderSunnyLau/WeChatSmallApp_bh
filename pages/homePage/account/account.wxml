@@ -28,7 +28,7 @@
   <view class='panel_box'>
     <view class='panel_row'><text class='bg favorite'>我的收藏</text></view>
     <view class='panel_row panel_middle'><text class='bg coupon'>我的优惠券</text></view>
-    <view class='panel_row'><text class='bg address'>我的收货地址</text></view>
+    <navigator url="myAddress/myAddress" hover-class="navigator-hover"><view class='panel_row'><text class='bg address'>我的收货地址</text></view></navigator>
   </view>
   <button class='logout_btn bg btn' bindtap='logout'>安全退出</button>
 </view>

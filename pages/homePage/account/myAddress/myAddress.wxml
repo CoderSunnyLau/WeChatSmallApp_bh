@@ -1,0 +1,22 @@
+<!--pages/homePage/account/myAdress/myAddress.wxml-->
+
+<view class='address'>
+	<view class='loading_wrap' wx:if='{{loading}}'><image src='http://file.ry600.com/snapshot//files/di/di70684438lrfavs/2017-10-24/1b2yysllburx4q9e.gif'></image></view>
+	<view class='ads'>
+		<navigator class='ad' wx:for='{{ads}}' wx:for-item='ad' wx:for-index='index' url='{{"editAddress/editAddress?addressId=" + ad.addressId}}'>
+			<view>
+				<view class='row_limit user'>
+					<text>{{ad.consignee}}</text>
+					<text>{{ad.mobile}}</text>
+				</view>
+				<view class='row_limit grey'>
+					<text>{{ad.canton}}-{{ad.city}}-{{ad.county}} {{ad.address}}</text>
+				</view>
+			</view>
+			<view class='arrow'></view>
+		</navigator>
+	</view>
+	<view class='bottom_wrap'>
+		<navigator url='editAddress/editAddress'><button class='btn'>+ 新增收货地址</button></navigator>
+	</view>
+</view>

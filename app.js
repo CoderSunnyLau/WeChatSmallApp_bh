@@ -1,4 +1,6 @@
 //app.js
+
+
 App({
   onLaunch: function () {
     // 展示本地存储能力
@@ -9,6 +11,6 @@ App({
   globalData: {
     domainName: 'http://www.ry600.com',
     userInfo: null,
-    version: '0.0.17'
+    version: '0.0.20'
   }
 })

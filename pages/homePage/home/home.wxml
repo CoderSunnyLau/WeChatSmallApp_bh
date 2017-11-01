@@ -1,11 +1,31 @@
 <view class='quickEnter'>
   <view class='enterArea left'>
-    <view class='icon quickBill'>快速采购</view>
-    <view class='icon showcase' bindtap="toShopcase">商品分类</view>
+    <view class='icon quickBill'>
+      <view class='bg iconBg'></view>快速采购
+    </view>
+    <view class='icon showcase' bindtap="toShopcase">
+      <view class='bg iconBg'></view>商品分类
+    </view>
   </view>
   <view class='enterArea right'>
-    <view class='icon shopCart' bindtap='toShopcart'>购物车</view>
-    <view class='icon myAccount' bindtap='toAccount'>我的账户</view>
-    <view class='icon scanBill' bindtap='scanBill'>扫描采购</view>
+    <view class='activity up'>
+      <view class='icon bargain'>
+        <view class='bg2 iconBg'></view>特价商品
+      </view>
+      <view class='icon bulk'>
+        <view class='bg2 iconBg'></view>优惠团购
+      </view>
+    </view>
+    <view class='activity down'>
+      <view class='icon poster'>
+        <view class='bg2 iconBg'></view>专柜活动
+      </view>
+      <view class='icon promotion'>
+        <view class='bg2 iconBg'></view>促销活动
+      </view>
+    </view>
+    <view class='icon scanBill' bindtap='scanBill'>
+      <view class='bg iconBg'></view>扫描采购
+    </view>
   </view>
 </view>

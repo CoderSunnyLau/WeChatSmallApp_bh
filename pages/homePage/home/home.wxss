@@ -9,8 +9,13 @@
   width: 50%;
 }
 
+.enterArea .iconBg {
+  width: 136rpx;
+}
+
 .enterArea .icon {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   border-radius: 4%;
@@ -25,30 +30,95 @@
   height: 345rpx;
 }
 
+.quickEnter .left .iconBg {
+  margin-bottom: 15rpx;
+}
+
 .quickEnter .left .quickBill {
-  background-color: #f08300;
+  background-color: #ff5351;
+}
+
+.quickEnter .left .quickBill .iconBg {
+  height: 130rpx;
+  background-position: 20rpx -339rpx;
 }
 
 .quickEnter .left .showcase {
   margin-top: 15rpx;
-  background-color: #00a0ea;
+  background-color: #24af6c;
+}
+
+.quickEnter .left .showcase .iconBg {
+  height: 110rpx;
+  background-position: 20rpx -480rpx;
+}
+
+.quickEnter .right .activity {
+  display: flex;
 }
 
 .quickEnter .right .icon {
-  width: 345rpx;
   height: 225rpx;
 }
 
-.quickEnter .right .shopCart {
+.quickEnter .right .activity .icon {
+  width: 165rpx;
+}
+
+.quickEnter .right .down {
+  margin-top: 15rpx;
+}
+
+.quickEnter .right .bargain {
+  background-color: #3b96ff;
+}
+
+.quickEnter .right .bargain .iconBg {
+  margin-bottom: 15rpx;
+  height: 80rpx;
+  background-position: 30rpx -25rpx;
+}
+
+.quickEnter .right .bulk {
+  margin-left: 15rpx;
+  background-color: #fc366b;
+}
+
+.quickEnter .right .bulk .iconBg {
+  height: 95rpx;
+  background-position: 20rpx -112rpx;
+}
+
+.quickEnter .right .poster {
+  background-color: #ff9e13;
+}
+
+.quickEnter .right .poster .iconBg {
+  height: 88rpx;
+  background-position: 35rpx -216rpx;
+  margin-bottom: 15rpx;
+}
+
+.quickEnter .right .promotion {
+  margin-left: 15rpx;
   background-color: #28cde3;
 }
 
-.quickEnter .right .myAccount {
-  margin-top: 15rpx;
-  background-color: #8fc320;
+.quickEnter .right .promotion .iconBg {
+  height: 105rpx;
+  background-position: 35rpx -313rpx;
 }
 
 .quickEnter .right .scanBill {
+  width: 345rpx;
   margin-top: 15rpx;
-  background-color: #fe4db7;
+  background-color: #007fc6;
+  flex-direction: row;
+}
+
+.quickEnter .right .scanBill .iconBg {
+  width: 100rpx;
+  height: 100rpx;
+  background-position: 0 -735rpx;
+  margin-right: 15rpx;
 }

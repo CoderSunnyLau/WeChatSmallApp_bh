@@ -56,11 +56,7 @@ Page({
         password: md5.hexMD5(this.data.password)
       },function(res, success){
         if(success){
-          for(var i in res.header){
-            if(i == 'Set-Cookie'){
-              http.saveHeader(res.header[i]);
-            }
-          }
+		  http.saveHeader(res.header['Set-Cookie']);
           if(res.data.success){
             _this.setData({
               tip: '登录成功'

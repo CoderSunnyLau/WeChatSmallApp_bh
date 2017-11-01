@@ -1,0 +1,75 @@
+/* pages/promotion/bulk/bulk.wxss */
+page{
+	background-color: #EEE;
+}
+.bulk_item{
+	margin: 10rpx 0;
+	background-color: #FFF;
+	padding: 20rpx 35rpx;
+}
+.row_top{
+	display: flex;
+	align-items: center;
+	color: #888;
+}
+.bulk_tag{
+	background-color: #FF2D48;
+	color: #FFF;
+	padding: 0 10rpx;
+	line-height: 30rpx;
+	border-radius: 16rpx;
+	font-size: 18rpx;
+	margin-right: 20rpx;
+}
+.pdt_info{
+	display: flex;
+	align-items: center;
+	padding-top: 15rpx;
+	justify-content: space-between;
+	position: relative;
+}
+.pdt_info image{
+	width: 166rpx;
+	height: 166rpx;
+	border: 1rpx solid #EEE;
+}
+.main_info{
+	width: 495rpx;
+	display: flex;
+	flex-direction: column;
+}
+.main_info .grey, .text_small{
+	font-size: 24rpx;
+	line-height: 36rpx;
+}
+.pdt_title{
+	max-height: 72rpx;
+	line-height: 36rpx;
+	overflow: hidden;
+}
+.buy_btn{
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	padding: 0 38rpx 0 45rpx;
+	line-height: 46rpx;
+	border-radius: 10rpx;
+}
+.buying .buy_btn{
+	background-color: #FF2D48;
+}
+.soldout .buy_btn{
+	background-color: #888;
+}
+.waiting .buy_btn{
+	background-color: #64c8b4;
+}
+.buying .topic_color{
+	color: #FF2D48;
+}
+.soldout .topic_color{
+	color: #888;
+}
+.waiting .topic_color{
+	color: #64c8b4;
+}

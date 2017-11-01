@@ -7,7 +7,7 @@
 			<text>{{order.address.canton}}{{order.address.city}}{{order.address.county}}{{order.address.address}}</text>
 			<text>{{order.address ? "" : "您还未设置收货地址，请点击设置"}}</text>
 		</view>
-		<view><text>></text></view>
+		<view class='arrow arrow_white_right'></view>
 	</view>
 	<view>
 		<view class='row_top'><text>{{order.blocks[0].blockName}}</text></view>
@@ -47,17 +47,17 @@
 		</view>
 		<view class='options'>
 			<picker range='{{order.transaction.pays}}' range-key='payModeName' bindchange='selTransaction'>
-				<view class='row_top'><text>支付方式</text><text class='red'>{{order.transaction.payModeName}}</text></view>
+				<view class='row_top arrow arrow_black_right'><text>支付方式</text><text class='red'>{{order.transaction.payModeName}}</text></view>
 			</picker>
 			<picker range='{{order.blocks[0].delivery.freights}}' range-key='freightName' bindchange='selDelivery'>
-				<view class='row_top'><text>配送方式</text><text class='grey'>{{order.blocks[0].delivery.deliveryName}}</text></view>
+				<view class='row_top arrow arrow_black_right'><text>配送方式</text><text class='grey'>{{order.blocks[0].delivery.deliveryName}}</text></view>
 			</picker>
 			<view class='row_top'><text>发票信息</text><text class='grey'>开发票（以线下ERP为准）</text></view>
 			<picker range='{{coupon.coupons}}' range-key='caption' bindchange='selCoupon' disabled='{{coupon.coupons.length == 0 ? true: false}}'>
 				<view class='row_top'><text>优惠券</text><text class='grey'>{{coupon.coupons.length ? coupon.coupons.length + "张可用" : "无可用"}}</text></view>
 			</picker>
 			<view class='row_top remark_box {{editRemarkTemp ? "remark_edit" : ""}}' bindtap='editRemark'>
-				<view class='remark_title'><text>留言</text><text>∨</text></view>
+				<view class='remark_title'><text>留言</text><view class='arrow arrow_black_down'></view></view>
 				<input class='remark'></input>
 			</view>
 		</view>

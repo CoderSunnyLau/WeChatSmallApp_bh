@@ -24,7 +24,7 @@ page::after{
   box-sizing: border-box;
 } 
 .placeholder{
-  color: #969696;
+  color: #AAA;
   font-size: 28rpx;
 }
 .btn{
@@ -36,4 +36,38 @@ page::after{
   background-repeat: no-repeat;
   background-size: 115rpx auto;
 }
-
+.bg2{
+  background-image: url('http://file.ry600.com/snapshot/vms/site/di/di70684438lrfavs/82ojywir5vqogktm/image//wx-icons2.png');
+  background-repeat: no-repeat;
+  background-size: 140rpx auto;
+}
+.arrow{
+  background-image: url('http://file.ry600.com/snapshot/vms/site/di/di70684438lrfavs/82ojywir5vqogktm/image//wx_arrow.png');
+  background-repeat: no-repeat;
+  background-size: 27rpx auto;
+}
+.red{
+  color: #FF2D48;
+}
+.orange{
+  color: #F50;
+}
+.grey{
+  color: #888;
+}
+.loading_wrap{
+	width: 750rpx;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background-color: rgba(0, 0, 0, 0.3);
+	z-index: 999;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.loading_wrap image{
+	width: 100rpx;
+	height: 100rpx;
+}

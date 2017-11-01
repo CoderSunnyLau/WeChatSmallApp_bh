@@ -1,0 +1,45 @@
+/* pages/homePage/account/myAdress/myAddress.wxss */
+
+.address{
+	padding-bottom: 180rpx;
+}
+.ad{
+	border-bottom: 2rpx solid #DDD;
+	padding: 30rpx 44rpx;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+.arrow{
+	width: 20rpx;
+	height: 33rpx;
+}
+.row_limit{
+	width: 630rpx;
+}
+.user text{
+	width: 190rpx;
+	display: inline-block;
+	margin-bottom: 6rpx;
+}
+.row_limit, .user text{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.bottom_wrap{
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 750rpx;
+	height: 140rpx;
+	background-color: #FFF;
+}
+.btn{
+	width: 660rpx;
+	height: 75rpx;
+	line-height: 75rpx;
+	font-size: 30rpx;
+	margin-top: 20rpx;
+}

@@ -6,7 +6,6 @@
         "pages/homePage/home/home",
         "pages/homePage/showcase/showcase",
         "pages/homePage/shopcart/shopcart",
-        "pages/promotion/bulk/bulkList/bulkList",
         "pages/homePage/account/account",
         "pages/promotion/bargain/bargain",
         "pages/promotion/poster/poster",
@@ -16,7 +15,10 @@
         "pages/homePage/account/orderList/orderList",
         "pages/template/slide/slide",
         "pages/template/shopcartTest/shopcartTest",
-        "pages/homePage/shopcart/orderCheckout/orderCheckout"
+        "pages/homePage/shopcart/orderCheckout/orderCheckout",
+        "pages/promotion/bulk/bulk",
+        "pages/homePage/account/myAddress/myAddress",
+        "pages/homePage/account/myAddress/editAddress/editAddress"
     ],
     "window": {
         "backgroundTextStyle": "light",

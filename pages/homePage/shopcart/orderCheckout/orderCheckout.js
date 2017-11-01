@@ -11,19 +11,14 @@ Page({
 	},
 	onLoad: function(options){
 		var _this = this;
-		http.getHttp({
-			action: 'VSShop.getShopOrders'
-		}, function(res, success){
-			if(success){
-				if(res.success){
-					wx.request({
-						url: 'http://bh.ry600.com/_shop/cartsplit.shtml',
-						header: http.mHeader,
-						success: function(res){
-							_this.getOrderInfo(options);
-						}
-					});
-				}
+		wx.request({
+			url: 'http://bh.ry600.com/_shop/order.shtml',
+			data: {
+				orderId: options.blockId
+			},
+			header: http.getHeader(),
+			success: function(res){
+				_this.getOrderInfo(options);
 			}
 		});
 	},
