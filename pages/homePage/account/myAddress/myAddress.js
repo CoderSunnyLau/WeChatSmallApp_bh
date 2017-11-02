@@ -6,7 +6,13 @@ Page({
 		ads: [],
 		loading: true
 	},
-	onLoad: function(options){
+	onLoad: function(){
+		this.addressesLoad();
+	},
+	onShow: function () {
+		this.addressesLoad();
+	},
+	addressesLoad: function(){
 		var _this = this;
 		http.getHttp({
 			action: 'VSShop.getAddresses'

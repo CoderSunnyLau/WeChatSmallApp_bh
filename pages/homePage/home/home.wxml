@@ -1,3 +1,5 @@
+<import src='/component/appHeader/appHeader.wxml'/>
+<template is='org_message'/>
 <view class='quickEnter'>
   <view class='enterArea left'>
     <view class='icon quickBill'>

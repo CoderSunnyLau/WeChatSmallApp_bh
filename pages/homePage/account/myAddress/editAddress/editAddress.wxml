@@ -11,16 +11,23 @@
 			<text>联系方式：</text>
 			<input placeholder='请输入收货人手机号码' type='number' placeholder-class='placeholder' value='{{ad.mobile}}' bindinput='inputFn' data-field='ad.mobile'></input>
 		</view>
-		<view class='row'>
+		 <view class='row'>
+			<text>所在地区：</text>
+			<picker mode="multiSelector" range='{{zoneArr}}' bindcolumnchange="zoneChange" value='{{zoneIndex}}'>
+				<view>{{zoneArr[0][zoneIndex[0]] ? zoneArr[0][zoneIndex[0]] : '请选择'}}-{{zoneArr[1][zoneIndex[1]] ? zoneArr[1][zoneIndex[1]] : '请选择'}}-{{zoneArr[2][zoneIndex[2]] ? zoneArr[2][zoneIndex[2]] : '请选择'}}</view>
+			</picker>
+		</view> 
+		 <!-- <view class='row'>
 			<text>所在地区：</text>
 			<picker mode="region" bindchange="bindRegionChange" value='{{[ad.canton, ad.city, ad.county]}}' custom-item="{{customItem}}">
 				<view>{{ad.canton ? ad.canton + '-' : '请点击选择所在地区'}}{{ad.city ? ad.city + '-' : ''}}{{ad.county}}</view>
 			</picker>
-		</view>
+		</view>  -->
 		<view class='row detail_block'>
 			<text>详细地址：</text>
 			<textarea class='address_detail' placeholder='请输入详细地址' placeholder-class='placeholder' value='{{ad.address}}' bindinput='inputFn' data-field='ad.address'></textarea>
 		</view>
 	</view>
-	<button class='btn' bindtap='saveAddress'>保存</button>
+	<button class='btn btn_save' bindtap='saveAddress'>保存</button>
+	<button class='btn btn_del' wx:if='{{fix}}' bindtap='delAddress'>刪除此地址</button>
 </view>

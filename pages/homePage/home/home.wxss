@@ -1,12 +1,9 @@
+@import '/component/appHeader/appHeader.wxss';
 .quickEnter {
-  padding: 20rpx;
+  padding: 25rpx;
   display: flex;
   color: #fff;
   font-size: 35rpx;
-}
-
-.enterArea {
-  width: 50%;
 }
 
 .enterArea .iconBg {
@@ -22,12 +19,12 @@
 }
 
 .quickEnter .left {
-  margin-right: 15rpx;
+  margin-right: 10rpx;
 }
 
 .quickEnter .left .icon {
-  width: 345rpx;
-  height: 345rpx;
+  width: 350rpx;
+  height: 350rpx;
 }
 
 .quickEnter .left .iconBg {
@@ -35,7 +32,7 @@
 }
 
 .quickEnter .left .quickBill {
-  background-color: #ff5351;
+  background-color: #f85c4d;
 }
 
 .quickEnter .left .quickBill .iconBg {
@@ -44,8 +41,8 @@
 }
 
 .quickEnter .left .showcase {
-  margin-top: 15rpx;
-  background-color: #24af6c;
+  margin-top: 10rpx;
+  background-color: #f59d15;
 }
 
 .quickEnter .left .showcase .iconBg {
@@ -58,19 +55,19 @@
 }
 
 .quickEnter .right .icon {
-  height: 225rpx;
+  height: 230rpx;
 }
 
 .quickEnter .right .activity .icon {
-  width: 165rpx;
+  width: 170rpx;
 }
 
 .quickEnter .right .down {
-  margin-top: 15rpx;
+  margin-top: 10rpx;
 }
 
 .quickEnter .right .bargain {
-  background-color: #3b96ff;
+  background-color: #ff5ba7;
 }
 
 .quickEnter .right .bargain .iconBg {
@@ -80,8 +77,8 @@
 }
 
 .quickEnter .right .bulk {
-  margin-left: 15rpx;
-  background-color: #fc366b;
+  margin-left: 10rpx;
+  background-color: #1ab4fe;
 }
 
 .quickEnter .right .bulk .iconBg {
@@ -90,7 +87,7 @@
 }
 
 .quickEnter .right .poster {
-  background-color: #ff9e13;
+  background-color: #22b05c;
 }
 
 .quickEnter .right .poster .iconBg {
@@ -100,8 +97,8 @@
 }
 
 .quickEnter .right .promotion {
-  margin-left: 15rpx;
-  background-color: #28cde3;
+  margin-left: 10rpx;
+  background-color: #ac69c8;
 }
 
 .quickEnter .right .promotion .iconBg {
@@ -110,9 +107,9 @@
 }
 
 .quickEnter .right .scanBill {
-  width: 345rpx;
-  margin-top: 15rpx;
-  background-color: #007fc6;
+  width: 350rpx;
+  margin-top: 10rpx;
+  background-color: #188bc1;
   flex-direction: row;
 }
 

@@ -18,8 +18,13 @@
 	width: 660rpx;
 	height: 75rpx;
 	line-height: 75rpx;
-	margin-top: 50rpx;
 	font-size: 30rpx;
+}
+.btn_save{
+	margin: 50rpx auto 30rpx;
+}
+.btn_del{
+	background-color: #D00;
 }
 .man_icon{
 	width: 80rpx;

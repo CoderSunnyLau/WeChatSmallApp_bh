@@ -1,8 +1,7 @@
-//index.js
-//获取应用实例
 const app = getApp()
 const http = require('../../../utils/httpUtil.js')
 const md5 = require('../../../utils/md5.js')
+const base64 = require('../../../utils/base64.js')
 
 Page({
   data: {
@@ -53,11 +52,13 @@ Page({
       http.loginHttp({
         act: 'login',
         userName: this.data.userName,
-        password: md5.hexMD5(this.data.password)
+        password: md5.hexMD5(this.data.password),
+        userScope: 1
       },function(res, success){
         if(success){
 		  http.saveHeader(res.header['Set-Cookie']);
           if(res.data.success){
+            console.log(base64.decode(res.data.message))
             _this.setData({
               tip: '登录成功'
             });

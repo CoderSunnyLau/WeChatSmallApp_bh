@@ -1,12 +1,14 @@
 var httpUrl = getApp().globalData.domainName + '/jsonaction/websiteaction.action'
-var mHeader = { cookie:'_clientId=749234e88b2e46668ff99e6f80285f91; Domain=ry600.com; Expires=Sat, 30-Oct-2027 10:10:39 GMT; Path=/,_serviceId=3dc457a1c10d4c4e8a40ae5bc8e3e140; Path=/'}
+var mHeader = { cookie:'_clientId=444f4e9ce040431183f4d548bc87b46e; Domain=ry600.com; Expires=Sun, 31-Oct-2027 07:43:36 GMT; Path=/,_serviceId=acdb8c5c9b4f4b83868662553b8508ce; Path=/'}
 
 function loginHttp(options, callback) {
   wx.request({
     url: 'http://login.ry600.com/userCenterLogin.jsp',
     data: options,
-    method: 'GET',
+    method: 'POST',
+    header: {"content-type": "application/x-www-form-urlencoded; charset=UTF-8"},
     success: function (res) {
+      console.log(res)
       callback(res, true)
     },
     fail: function(res){

@@ -1,3 +1,4 @@
+var httpUtil = require('../../../utils/httpUtil.js')
 Page({
   data: {
     isSelect: 0,
@@ -5,7 +6,7 @@ Page({
     rightNavArr: ['感冒发热', '咳嗽痰喘', '抗生素', '心脑血管', '糖尿病', '消化道', '妇科', '泌尿生殖', '抗过敏',
                   '抗病毒', '耳鼻口腔', '肝胆', '维生素矿物质', '眼科', '皮肤组织', '抗肿瘤', '中枢神经', '内分泌', '其他']
   },
-  onLoad: function (options) { },
+  onLoad: function (options) {},
   selectItem: function (e) {
     //console.log(e.currentTarget.dataset.idx)
     this.setData({
