@@ -1,6 +1,8 @@
 // pages/homePage/account/myAddress/editAddress/editAddress.js
 const http = require('../../../../../utils/httpUtil.js');
-
+var index = [0,0,0];
+var tTemp = null;
+var col = 0;
 Page({
 	data: {
 		addressId: '',
@@ -8,14 +10,16 @@ Page({
 		loading: true,
 		region: [],
 		fix: false,
-		pArr: [],
-		cArr: ['请选择'],
-		dArr: ['请选择'],
-		zoneArr: [[],[],[]],
+		zoneArr: [[], [], []],
 		zoneAllArr: [[], [], []],
-		tTemp: null,
-		zoneValue: [],
-		zoneIndex: []
+		zoneIndex: [0, 0, 0],
+		showZone: true,
+		finished: false
+	},
+	clickFn: function(){
+		this.setData({
+			click: true
+		});
 	},
 	onLoad: function(options){
 		this.initZones();
@@ -44,6 +48,17 @@ Page({
 			});
 		}
 	},
+	selZone: function(){
+		this.setData({
+			showZone: true
+		});
+		var _this = this;
+		setTimeout(function(){
+			_this.setData({
+				click: true
+			})
+		}, 500);
+	},
 	getZones: function(pId, callback){
 		var _this = this;
 		http.getHttp({
@@ -53,7 +68,8 @@ Page({
 		}, function(res, success){
 			if(success){
 				if(res.success){
-					callback(res, success);
+					if(typeof(callback) == 'function')
+						callback(res, success);
 				}
 			}
 		});
@@ -65,12 +81,8 @@ Page({
 			for(var i = 0; i < res.results.length; i++){
 				pArrTemp.push(res.results[i].zoneName);
 			}
-			var zone0 = 'zoneArr[' + 0 + ']';
-			var val0 = 'zoneValue[' + 0 + ']';
 			var all0 = 'zoneAllArr[' + 0 + ']';
 			_this.setData({
-				[zone0]: pArrTemp,
-				[val0]: res.results[0].zoneName,
 				[all0]: res.results
 			});
 			console.log(_this.data)
@@ -83,12 +95,8 @@ Page({
 						for(var i = 0; i < res.results.length; i++){
 							cArrTemp.push(res.results[i].zoneName);
 						}
-						var zone1 = 'zoneArr[' + 1 + ']';
-						var val1 = 'zoneValue[' + 1 + ']';
 						var all1 = 'zoneAllArr[' + 1 + ']';
 						_this.setData({
-							[zone1]: cArrTemp,
-							[val1]: res.results[0].zoneName,
 							[all1]: res.results
 						});
 
@@ -100,13 +108,15 @@ Page({
 									for(var i = 0; i < res.results.length; i++){
 										dArrTemp.push(res.results[i].zoneName);
 									}
-									var zone2 = 'zoneArr[' + 2 + ']';
-									var val2 = 'zoneValue[' + 2 + ']';
 									var all2 = 'zoneAllArr[' + 2 + ']';
+									var p = 'ad.canton';
+									var c = 'ad.city';
+									var d = 'ad.county';
 									_this.setData({
-										[zone2]: dArrTemp,
-										[val2]: res.results[0].zoneName,
-										[all2]: res.results
+										[all2]: res.results,
+										[p]: _this.data.zoneAllArr[0][0].zoneName,
+										[c]: _this.data.zoneAllArr[1][0].zoneName,
+										[d]: res.results[0].zoneName
 									});
 								}
 							}
@@ -118,66 +128,47 @@ Page({
 	},
 	zoneChange: function(e){
 		var _this = this;
-		clearTimeout(_this.data.tTemp);
-		_this.setData({
-			tTemp: setTimeout(function(){_this.timeoutFn(e);}, 300)
-		});
+		clearTimeout(tTemp);
+		tTemp = setTimeout(function(){_this.timeoutFn(e);}, 100);
 	},
 	timeoutFn: function(e){
 		var _this = this;
-		var col = e.detail.column;
 		var val = e.detail.value;
-		var colTemp = 'zoneValue[' + col + ']';
-		var colIndex = 'zoneIndex[' + col + ']';
-		this.setData({
-			[colTemp]: _this.data.zoneArr[col][val],
-			[colIndex]: val
-		});
-		if(col == 0){
+		if(val[0] != index[0]){
+			col = 0;
+			// Province is changed
 			_this.setData({
-				zoneIndex: [val, 0, 0]
+				zoneIndex: [val[0], 0, 0]
 			});
-		}else if(col == 1){
-			var lastTemp = 'zoneIndex[' + 2 + ']';
+			_this.timeoutChangeFn(col, val[col], function(){
+				_this.timeoutChangeFn(col + 1, 0, function(){});
+			});
+		}else if(val[1] != index[1]){
+			// City is changed
 			_this.setData({
-				[lastTemp]: 0
+				zoneIndex: [val[0], val[1], 0]
+			});
+			col = 1;
+			_this.timeoutChangeFn(col, val[col], function(){});
+		}else if(val[2] != index[2]){
+			// D is changed
+			col = 2;
+			_this.setData({
+				zoneIndex: [val[0], val[1], val[2]]
 			});
 		}
-		console.log(_this.data.zoneIndex)
-		if(col == 0){
-			_this.setData({
-				zoneIndex: [val, 0, 0]
-			});
-			_this.timeoutChangeFn(0, val, function(){
-				_this.timeoutChangeFn(1, 0);
-			});
-		}else if(col == 1){
-			var lastTemp = 'zoneIndex[' + 2 + ']';
-			_this.setData({
-				[lastTemp]: 0
-			});
-			_this.timeoutChangeFn(1, val);
-		}
+		index = val;
+		console.log(val)
+		console.log(this.data)
 	},
 	timeoutChangeFn: function(col, val, callback){
 		var _this = this;
 		_this.getZones(_this.data.zoneAllArr[col][val].zoneId, function(res, success){
 			if(success){
 				if(res.success){
-					var colArrTemp = [];
-					console.log(res)
-					for(var i = 0; i < res.results.length; i++){
-						colArrTemp.push(res.results[i].zoneName);
-					}
-					var zone = 'zoneArr[' + (col + 1) + ']';
-					var val = 'zoneValue[' + (col + 1) + ']';
-					var all = 'zoneAllArr[' + (col + 1) + ']';
-					var index = 'zoneIndex[' + (col + 1) + ']';
+					var colTemp = 'zoneAllArr[' + (col + 1) + ']';
 					_this.setData({
-						[zone]: colArrTemp,
-						[val]: res.results[0].zoneName,
-						[all]: res.results,
-						[index]: 0
+						[colTemp]: res.results
 					});
 					if(typeof(callback) == 'function'){
 						callback();
@@ -287,6 +278,25 @@ Page({
 					return false;
 				}
 			}
-		})
+		});
+	},
+	cancelSelZone: function(){
+		this.setData({
+			showZone: false
+		});
+	},
+	confirmSelZone: function(){
+		clearTimeout(tTemp);
+		var _this = this;
+		var p = 'ad.canton';
+		var c = 'ad.city';
+		var d = 'ad.county';
+		_this.setData({
+			[p]: _this.data.zoneAllArr[0][_this.data.zoneIndex[0]].zoneName,
+			[c]: _this.data.zoneAllArr[1][_this.data.zoneIndex[1]].zoneName,
+			[d]: _this.data.zoneAllArr[2][_this.data.zoneIndex[2]].zoneName,
+			showZone: false
+		});
+		console.log(_this.data)
 	}
 })

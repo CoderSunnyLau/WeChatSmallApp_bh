@@ -11,12 +11,36 @@
 			<text>联系方式：</text>
 			<input placeholder='请输入收货人手机号码' type='number' placeholder-class='placeholder' value='{{ad.mobile}}' bindinput='inputFn' data-field='ad.mobile'></input>
 		</view>
-		 <view class='row'>
+		<view class='row'>
+			<text>所在地区：</text>
+			<text catchtap='selZone' class='zone_text'>{{ad.canton ? ad.canton : '请选择'}}-{{ad.city ? ad.city : '请选择'}}-{{ad.county ? ad.county : '请选择'}}</text>
+			<view class='pk_zone {{showZone ? "showZone" : ""}}'>
+				<view class='pk_bg'></view>
+				<view class='pk_wrap {{click ? "trans" : ""}}'>
+					<view class='pk_top'>
+						<text catchtap='cancelSelZone'>取消</text>
+						<text class='pk_confirm' catchtap='confirmSelZone'>确定</text>
+					</view>
+					<picker-view indicator-class='pk_col' class='pk' bindchange="zoneChange" value='{{zoneIndex}}'>
+						<picker-view-column>
+							<view class='pk_item' wx:for='{{zoneAllArr[0]}}' wx:key=''>{{item.zoneName}}</view>
+						</picker-view-column>
+						<picker-view-column>
+							<view class='pk_item' wx:for='{{zoneAllArr[1]}}' wx:key=''>{{item.zoneName}}</view>
+						</picker-view-column>
+						<picker-view-column>
+							<view class='pk_item' wx:for='{{zoneAllArr[2]}}' wx:key=''>{{item.zoneName}}</view>
+						</picker-view-column>
+					</picker-view>
+				</view>
+			</view>
+		</view>
+		 <!-- <view class='row'>
 			<text>所在地区：</text>
 			<picker mode="multiSelector" range='{{zoneArr}}' bindcolumnchange="zoneChange" value='{{zoneIndex}}'>
 				<view>{{zoneArr[0][zoneIndex[0]] ? zoneArr[0][zoneIndex[0]] : '请选择'}}-{{zoneArr[1][zoneIndex[1]] ? zoneArr[1][zoneIndex[1]] : '请选择'}}-{{zoneArr[2][zoneIndex[2]] ? zoneArr[2][zoneIndex[2]] : '请选择'}}</view>
 			</picker>
-		</view> 
+		</view>  -->
 		 <!-- <view class='row'>
 			<text>所在地区：</text>
 			<picker mode="region" bindchange="bindRegionChange" value='{{[ad.canton, ad.city, ad.county]}}' custom-item="{{customItem}}">

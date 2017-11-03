@@ -61,6 +61,12 @@
 					"name": "addAddress",
 					"pathName": "pages/homePage/account/myAddress/editAddress/editAddress",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "test",
+					"pathName": "pages/test/index/index",
+					"query": ""
 				}
 			]
 		},
