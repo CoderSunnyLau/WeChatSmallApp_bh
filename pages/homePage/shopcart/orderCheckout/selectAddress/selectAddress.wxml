@@ -1,0 +1,19 @@
+<view class='address'>
+	<view class='loading_wrap' wx:if='{{loading}}'><image src='http://file.ry600.com/snapshot//files/di/di70684438lrfavs/2017-10-24/1b2yysllburx4q9e.gif'></image></view>
+	<view class='ads'>
+		<view class='ad' wx:for='{{ads}}' wx:for-item='ad' wx:key='' bindtap='selAddress' data-addressid='{{ad.addressId}}'>
+		<view>
+			<view class='row_limit user'>
+				<text>{{ad.consignee}}</text>
+				<text class='mobile_text'>{{ad.mobile}}</text>
+			</view>
+			<view class='row_limit grey'>
+				<text>{{ad.canton}}-{{ad.city}}-{{ad.county}} {{ad.address}}</text>
+			</view>
+		</view>
+		</view>
+	</view>
+	<view class='bottom_wrap'>
+		<navigator url='../../../account/myAddress/myAddress'><button class='btn'>管理收货地址</button></navigator>
+	</view>
+</view>

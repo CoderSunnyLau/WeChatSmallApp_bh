@@ -19,9 +19,12 @@
 	width: 630rpx;
 }
 .user text{
-	width: 190rpx;
+	width: 180rpx;
 	display: inline-block;
 	margin-bottom: 6rpx;
+}
+.user .mobile_text{
+	width: 300rpx;
 }
 .row_limit, .user text{
 	overflow: hidden;

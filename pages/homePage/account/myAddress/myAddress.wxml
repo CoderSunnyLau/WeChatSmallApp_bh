@@ -3,11 +3,11 @@
 <view class='address'>
 	<view class='loading_wrap' wx:if='{{loading}}'><image src='http://file.ry600.com/snapshot//files/di/di70684438lrfavs/2017-10-24/1b2yysllburx4q9e.gif'></image></view>
 	<view class='ads'>
-		<navigator class='ad' wx:for='{{ads}}' wx:for-item='ad' wx:for-index='index' url='{{"editAddress/editAddress?addressId=" + ad.addressId}}'>
+		<navigator class='ad' wx:for='{{ads}}' wx:for-item='ad' wx:key='' url='{{"editAddress/editAddress?addressId=" + ad.addressId}}'>
 			<view>
 				<view class='row_limit user'>
 					<text>{{ad.consignee}}</text>
-					<text>{{ad.mobile}}</text>
+					<text class='mobile_text'>{{ad.mobile}}</text>
 				</view>
 				<view class='row_limit grey'>
 					<text>{{ad.canton}}-{{ad.city}}-{{ad.county}} {{ad.address}}</text>

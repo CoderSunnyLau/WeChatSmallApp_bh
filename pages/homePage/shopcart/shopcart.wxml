@@ -43,7 +43,7 @@
 							<text class='red' data-pdtidx='{{bIdx}},{{pIdx}}' bindtap='editGift'>{{giftEditIdx == (bIdx + "," + pIdx) ? "点击取消编辑×" : "点击选择赠品∨"}}</text>
 						</view>
 						<view class='gift_tip'><text>您可以选择{{pdt.rewards[0].giftCount}}件赠品，选好后记得点“确定”噢！</text></view>
-						<view class='reward {{gift.amount ? "" : "gift_unsel"}}' wx:for='{{pdt.rewards[0].gifts}}' wx:for-item='gift' wx:for-index='giftIdx'>
+						<view class='reward {{gift.amount ? "" : "gift_unsel"}}' wx:for='{{pdt.rewards[0].gifts}}' wx:for-item='gift' wx:for-index='giftIdx' wx:key=''>
 							<view class='gift_info'>
 								<view class='check_box bg {{gift.amount != 0 ? "selected" : ""}}' bindtap='selGift' data-pdtidx='{{bIdx}},{{pIdx}}' data-selected='{{gift.amount}}' data-giftidx='{{giftIdx}}'></view>
 								<image src='{{gift.photoUrl}}'></image>

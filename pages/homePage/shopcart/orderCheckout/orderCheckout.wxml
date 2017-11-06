@@ -1,18 +1,18 @@
 <!--pages/homePage/shopcart/orderCheckout/orderCheckout.wxml-->
 <view class='order_checkout'>
 	<view class='loading_wrap {{load ? "load" : ""}}' wx:if='{{loading}}'><image src='http://file.ry600.com/snapshot//files/di/di70684438lrfavs/2017-10-24/1b2yysllburx4q9e.gif'></image></view>
-	<view class='send_info'>
+	<navigator class='send_info' url='selectAddress/selectAddress?orderId={{order.orderId}}'>
 		<view class='user_info'>
 			<text class='user_name'>{{order.address.consignee}} {{order.address.mobile}}</text>
 			<text>{{order.address.canton}}{{order.address.city}}{{order.address.county}}{{order.address.address}}</text>
 			<text>{{order.address ? "" : "您还未设置收货地址，请点击设置"}}</text>
 		</view>
 		<view class='arrow arrow_white_right'></view>
-	</view>
+	</navigator>
 	<view>
 		<view class='row_top'><text>{{order.blocks[0].blockName}}</text></view>
 		<view class='pdts'>
-			<view class='pdt' wx:for='{{order.blocks[0].items}}' wx:for-item="pdt" wx:for-index="pIdx">
+			<view class='pdt' wx:for='{{order.blocks[0].items}}' wx:for-item="pdt" wx:for-index="pIdx" wx:key=''>
 				<view class='sale_tag' wx:if='{{pdt.sku.addSaleTagName}}'>
 					<text class='tag_name'>{{pdt.sku.addSaleTagName}}</text>
 					<text>{{pdt.sku.saleTag}}</text>
@@ -32,7 +32,7 @@
 					</view>
 				</view>
 				<view class='rewards' wx:if='{{pdt.rewards.length}}'>
-					<view class='reward' wx:for='{{pdt.rewards[0].gifts}}' wx:for-item='gift' wx:for-index='giftIdx'>
+					<view class='reward' wx:for='{{pdt.rewards[0].gifts}}' wx:for-item='gift' wx:for-index='giftIdx' wx:key=''>
 						<view class='gift_info'>
 							<text class='red'>赠品</text>
 							<image src='{{gift.photoUrl}}'></image>

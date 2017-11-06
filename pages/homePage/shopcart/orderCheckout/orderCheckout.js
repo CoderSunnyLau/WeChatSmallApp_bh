@@ -1,5 +1,7 @@
 // pages/homePage/shopcart/orderCheckout/orderCheckout.js
 const http = require('../../../../utils/httpUtil.js')
+var blockId = '';
+var show = false;
 
 Page({
 	data: {
@@ -10,24 +12,37 @@ Page({
 		coupon: {}
 	},
 	onLoad: function(options){
+		blockId = options.blockId;
+		this.load(blockId);
+		show = true;
+	},
+	onShow: function(){
+		if(show){
+			this.load(blockId);
+		}
+	},
+	load: function(bid){
 		var _this = this;
+		this.setData({
+			loading: true
+		});
 		wx.request({
 			url: 'http://bh.ry600.com/_shop/order.shtml',
 			data: {
-				orderId: options.blockId
+				orderId: bid
 			},
 			header: http.getHeader(),
-			success: function(res){
-				_this.getOrderInfo(options);
+			success: function (res) {
+				_this.getOrderInfo(bid);
 			}
 		});
 	},
-	getOrderInfo: function(options){
+	getOrderInfo: function(bid){
 		var _this = this;
 		http.getHttp({
 			action: 'VSShop.getShopOrderInfo',
 			withProduct: true,
-			orderId: options.blockId
+			orderId: bid
 		}, function(res, success){
 			if(success){
 				if(res.success){
@@ -41,7 +56,7 @@ Page({
 		});
 		http.getHttp({
 			action: 'VSShop.getCashAccount',
-			orderId: options.blockId,
+			orderId: bid,
 			accType: "Coupon"
 		}, function(res, success){
 			if(success){

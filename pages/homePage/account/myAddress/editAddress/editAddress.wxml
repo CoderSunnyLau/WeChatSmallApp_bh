@@ -15,11 +15,11 @@
 			<text>所在地区：</text>
 			<text catchtap='selZone' class='zone_text'>{{ad.canton ? ad.canton : '请选择'}}-{{ad.city ? ad.city : '请选择'}}-{{ad.county ? ad.county : '请选择'}}</text>
 			<view class='pk_zone {{showZone ? "showZone" : ""}}'>
-				<view class='pk_bg'></view>
-				<view class='pk_wrap {{click ? "trans" : ""}}'>
+				<view class='pk_bg' animation='{{animationBg}}'></view>
+				<view class='pk_wrap' animation='{{animationBox}}'>
 					<view class='pk_top'>
 						<text catchtap='cancelSelZone'>取消</text>
-						<text class='pk_confirm' catchtap='confirmSelZone'>确定</text>
+						<text class='pk_confirm orange' catchtap='confirmSelZone'>确定</text>
 					</view>
 					<picker-view indicator-class='pk_col' class='pk' bindchange="zoneChange" value='{{zoneIndex}}'>
 						<picker-view-column>
@@ -35,23 +35,11 @@
 				</view>
 			</view>
 		</view>
-		 <!-- <view class='row'>
-			<text>所在地区：</text>
-			<picker mode="multiSelector" range='{{zoneArr}}' bindcolumnchange="zoneChange" value='{{zoneIndex}}'>
-				<view>{{zoneArr[0][zoneIndex[0]] ? zoneArr[0][zoneIndex[0]] : '请选择'}}-{{zoneArr[1][zoneIndex[1]] ? zoneArr[1][zoneIndex[1]] : '请选择'}}-{{zoneArr[2][zoneIndex[2]] ? zoneArr[2][zoneIndex[2]] : '请选择'}}</view>
-			</picker>
-		</view>  -->
-		 <!-- <view class='row'>
-			<text>所在地区：</text>
-			<picker mode="region" bindchange="bindRegionChange" value='{{[ad.canton, ad.city, ad.county]}}' custom-item="{{customItem}}">
-				<view>{{ad.canton ? ad.canton + '-' : '请点击选择所在地区'}}{{ad.city ? ad.city + '-' : ''}}{{ad.county}}</view>
-			</picker>
-		</view>  -->
 		<view class='row detail_block'>
 			<text>详细地址：</text>
 			<textarea class='address_detail' placeholder='请输入详细地址' placeholder-class='placeholder' value='{{ad.address}}' bindinput='inputFn' data-field='ad.address'></textarea>
 		</view>
 	</view>
 	<button class='btn btn_save' bindtap='saveAddress'>保存</button>
-	<button class='btn btn_del' wx:if='{{fix}}' bindtap='delAddress'>刪除此地址</button>
+	<button class='btn btn_del' wx:if='{{fix}}' bindtap='delAddress'>刪除</button>
 </view>

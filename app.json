@@ -19,7 +19,8 @@
         "pages/promotion/bulk/bulk",
         "pages/homePage/account/myAddress/myAddress",
         "pages/homePage/account/myAddress/editAddress/editAddress",
-		"pages/test/index/index"
+        "pages/homePage/shopcart/orderCheckout/selectAddress/selectAddress",
+        "pages/homePage/account/myFavorite/myFavorite"
     ],
     "window": {
         "backgroundTextStyle": "light",

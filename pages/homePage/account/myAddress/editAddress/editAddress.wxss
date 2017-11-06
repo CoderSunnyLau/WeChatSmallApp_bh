@@ -35,8 +35,11 @@
 .detail_block{
 	height: 80rpx;
 	align-items: flex-start;
-	padding: 20rpx 42rpx;
+	padding: 8rpx 42rpx 20rpx;
 	overflow: hidden;
+}
+.detail_block text{
+	line-height: 65rpx;
 }
 .address_detail{
 	width: 510rpx;
@@ -70,7 +73,7 @@
 	width: 750rpx;
 	position: fixed;
 	left: 0;
-	bottom: 0;
+	bottom: -600rpx;
 	z-index: 999;
 	background-color: #FFF;
 }
@@ -81,10 +84,11 @@
 	position: fixed;
 	width: 750rpx;
 	height: 100%;
-	background-color: rgba(0,0,0,0.5);
+	background-color: #000;
 	z-index: 9;
 	top: 0;
 	left: 0;
+	opacity: 0;
 }
 .pk_top{
 	width: 750rpx;
@@ -96,7 +100,4 @@
 	justify-content: space-between;
 	text-align: center;
 	font-size: 32rpx;
-}
-.pk_confirm{
-	color: #F50;
 }

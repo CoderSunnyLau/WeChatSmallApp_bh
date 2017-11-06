@@ -1,0 +1,2 @@
+/* pages/homePage/shopcart/orderCheckout/selectAddress/selectAddress.wxss */
+@import '../../../account/myAddress/myAddress.wxss';

@@ -1,0 +1,23 @@
+<!--pages/homePage/account/myFavorite/myFavorite.wxml-->
+<view class='my_favorite'>
+	<view class='tabs'>
+		<view class='tab {{crrIndex == index ? "tab_crr" : ""}}' wx:for="{{tabs}}" wx:for-item="tab" wx:for-index="index" data-index='{{index}}' bindtap='changeTab' wx:key=''>
+			<text>{{tab}}({{items.length}})</text>
+		</view>
+	</view>
+	<view class='blank'></view>
+	<view class='pages'>
+		<view class='page'>
+			<view class='item' wx:for='{{items}}'>
+				<view class='item_left'>
+					<text class='item_title'>{{item.resName}}</text>
+					<view class='add_time'>
+						<text class='grey'>收藏时间：</text>
+						<text class='orange'>{{item.createTime}}</text>
+					</view>
+				</view>
+				<view class='item_right bg' data-resid='{{item.resId}}' bindtap='delItem'></view>
+			</view>
+		</view>
+	</view>
+</view>
