@@ -1,0 +1,35 @@
+<!--pages/homePage/account/myFavorite/myFavorite.wxml-->
+<view class='my_favorite'>
+	<view class='tabs'>
+		<view class='tab {{crrIndex == index ? "tab_crr" : ""}}' wx:for="{{tabs}}" wx:for-item="tab" wx:for-index="index" data-index='{{index}}' bindtap='changeTab' wx:key=''>
+			<text>{{tab}}</text>
+		</view>
+	</view>
+	<view class='blank'></view>
+	<view class='pages'>
+		<view class='page {{state}}' wx:if='{{coupons.length > 0}}'>
+			<view class='items'>
+				<view class='item' wx:for='{{coupons}}'>
+					<view class='item_left'>
+						<view class='border_right'>
+							<view class='num'><text>编号：</text><text>{{item.couponId}}</text></view>
+							<view class='main_info'>
+								<view class='money_box'>
+									<text class='money'>￥</text>
+									<text class='value'>{{item.value}}</text>
+								</view>
+								<view class='main_right'>
+									<text class='caption'>{{item.caption}}</text>
+									<text class='view'>[点击查看详情]</text>
+								</view>
+							</view>
+							<text class='time'>有效期:{{item.startTime}}~{{item.endTime}}</text>
+						</view>
+					</view>
+					<view class='item_right'><view class='bg2'></view></view>
+				</view>
+			</view>
+		</view>
+		<view class='no_res' wx:if='{{coupons.length == 0}}'><text class='orange'>没有找到相关的优惠券。</text></view>
+	</view>
+</view>

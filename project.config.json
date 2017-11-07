@@ -4,15 +4,24 @@
 		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
-		"minified": true
+		"minified": true,
+		"newFeature": true
 	},
-	"compileType": "weapp",
+	"compileType": "miniprogram",
 	"libVersion": "1.5.4",
 	"appid": "wx812f52591fe47137",
 	"projectname": "%E8%8D%A3%E8%8D%AF%E5%9C%A8%E7%BA%BF",
 	"condition": {
-		"weapp": {
-			"current": 0,
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 2,
 			"list": [
 				{
 					"id": 0,
@@ -27,9 +36,9 @@
 					"query": ""
 				},
 				{
-					"id": -1,
-					"name": "订单列表",
-					"pathName": "pages/homePage/account/orderList/orderList",
+					"id": 2,
+					"name": "myCoupon",
+					"pathName": "pages/homePage/account/myCoupon/myCoupon",
 					"query": ""
 				},
 				{
@@ -75,14 +84,6 @@
 					"query": "orderId=csjvfa5d2qsqzdsn"
 				}
 			]
-		},
-		"search": {
-			"current": -1,
-			"list": []
-		},
-		"conversation": {
-			"current": -1,
-			"list": []
 		}
 	}
 }

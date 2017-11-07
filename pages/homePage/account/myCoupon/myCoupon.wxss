@@ -1,0 +1,164 @@
+/* pages/homePage/account/myCoupon/myCoupon.wxss */
+page{
+  background-color: #EEE;
+  width: 750rpx;
+}
+.tabs{
+  width: 750rpx;
+  height: 68rpx;
+  background-color: #FFF;
+  display: flex;
+  flex-direction: row;
+  line-height: 75rpx;
+  position: fixed;
+  top: 0;
+  z-index: 9;
+}
+.tab{
+  flex: 1;
+  text-align: center;
+}
+.tab_crr{
+  color: #F50;
+  border-bottom: 4rpx solid #F50;
+  height: 64rpx;
+  display: inline-block;
+}
+.blank{
+  width: 750rpx;
+  height: 68rpx;
+}
+.items{
+	background-color: #FFF;
+	margin-top: 10rpx;
+	padding: 10rpx 30rpx;
+}
+.item{
+	margin: 22rpx 10rpx;
+	display: flex;
+	height: 220rpx;
+	color: #FFF;
+	position: relative;
+}
+.item::before, .item::after{
+	content: "";
+    background-size: 17rpx 17rpx;
+    height: 220rpx;
+	width: 20rpx;
+	position: absolute;
+	top: 0;
+}
+.item::before{
+	left: -5rpx;
+}
+.item::after{
+	background-position: 4rpx 0;
+	right: -6rpx;
+}
+.noUse .item::before{
+	background-image: radial-gradient(#F50 0, #F50 8rpx, transparent 8rpx);
+}
+.noUse .item::after{
+	background-image: radial-gradient(#FF2D48 0, #FF2D48 8rpx, transparent 8rpx);
+}
+.used .item::before, .overdue .item::before{
+	background-image: radial-gradient(#BBB 0, #BBB 8rpx, transparent 8rpx);
+}
+.used .item::after, .overdue .item::after{
+	background-image: radial-gradient(#DDD 0, #DDD 8rpx, transparent 8rpx);
+}
+.item_left{
+	width: 448rpx;
+}
+.num{
+	font-size: 24rpx;
+}
+.main_info{
+	display: flex;
+	flex-direction: row;
+}
+.money_box{
+	margin-right: 15rpx;
+	display: flex;
+	align-items: flex-end;
+}
+.money{
+	font-size: 36rpx;
+	margin-bottom: 10rpx;
+}
+.value{
+	font-size: 70rpx;
+}
+.main_right{
+	display: flex;
+	flex-direction: column;
+}
+.view{
+	font-size: 22rpx;
+	text-align: center;
+}
+.border_right{
+	width: 390rpx;
+	height: 172rpx;
+	padding: 24rpx;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	border-right: 4rpx dashed rgba(255, 255, 255, 0.8);
+}
+.time{
+	font-size: 24rpx;
+}
+.item_right{
+	width: 240rpx;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+}
+.item_right::before, .item_right::after{
+	content: "";
+	width: 24rpx;
+	height: 24rpx;
+	position: absolute;
+	background-color: #FFF;
+	left: -14rpx;
+	border-radius: 50%;
+}
+.item_right::before{
+	top: -14rpx;
+}
+.item_right::after{
+	bottom: -12rpx;
+}
+.noUse .item_right{
+	background-color: #FF2D48;
+}
+.used .item_right, .overdue .item_right{
+	background-color: #DDD;
+}
+.item_right .bg2{
+	width: 150rpx;
+	height: 155rpx;
+	background-position-x: 6rpx;
+}
+.noUse .item_right .bg2{
+	background-position-y: -410rpx;
+}
+.used .item_right .bg2{
+	background-position-y: -562rpx;
+}
+.overdue .item_right .bg2{
+	background-position-y: -714rpx;
+}
+.noUse .item_left{
+	background-color: #F50;
+}
+.used .item_left, .overdue .item_left{
+	background-color: #BBB;
+}
+.no_res{
+	text-align: center;
+	line-height: 120rpx;
+}

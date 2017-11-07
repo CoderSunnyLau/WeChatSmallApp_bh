@@ -76,6 +76,10 @@ page{
   display: flex;
   justify-content: space-between;
 }
+.all_orders{
+  padding-right: 25rpx;
+  background-position: 112rpx 21rpx;
+}
 .panel_body{
   display: flex;
   flex-direction: row;

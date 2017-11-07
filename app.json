@@ -20,7 +20,8 @@
         "pages/homePage/account/myAddress/myAddress",
         "pages/homePage/account/myAddress/editAddress/editAddress",
         "pages/homePage/shopcart/orderCheckout/selectAddress/selectAddress",
-        "pages/homePage/account/myFavorite/myFavorite"
+        "pages/homePage/account/myFavorite/myFavorite",
+        "pages/homePage/account/myCoupon/myCoupon"
     ],
     "window": {
         "backgroundTextStyle": "light",

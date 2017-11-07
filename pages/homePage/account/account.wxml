@@ -15,8 +15,8 @@
   </view>
   <view class='panel_box'>
     <view class='panel_title'>
-      <text class='my_orders'>我的订单</text>
-      <text bindtap='orderList'>全部订单 ></text>
+      <text>我的订单</text>
+      <text class='all_orders arrow' bindtap='orderList'>全部订单</text>
     </view>
     <view class='panel_body'>
       <view class='order_nav'><view class='bg pending_pay'></view><text>待付款</text></view>
