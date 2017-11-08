@@ -1,0 +1,137 @@
+.drawer_bg {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+.drawer_box {
+  width: 650rpx;
+  overflow: hidden;
+  position: fixed;
+  top: 40%;
+  left: 0;
+  z-index: 1001;
+  background-color: rgba(250, 250, 250, 0.95);
+  /* background-color: #fff; */
+  margin: -150px 50rpx 0 50rpx;
+  border-radius: 12rpx;
+}
+
+.drawer_title {
+  text-align: center;
+  padding: 20rpx 30rpx;
+  color: #fff;
+  font-size: 36rpx;
+  letter-spacing: 5rpx;
+  font-weight: 200;
+}
+
+.drawer_content {
+  height: 480rpx;
+  padding: 10rpx 20rpx;
+  overflow-y: scroll;
+}
+
+.drawer_item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10rpx;
+  font-size: 32rpx;
+  color: #3d3834;
+  border-bottom: 1px solid #ccc;
+}
+
+.drawer_item .orgImg {
+  width: 130rpx;
+  height: 130rpx;
+}
+
+.drawer_item .orgMsg {
+  width: 350rpx;
+}
+
+.radio_style {
+  /* background-color: #f0f0f0; */
+  transform: scale(0.7);
+}
+
+.drawer_btn {
+  padding: 26rpx 0;
+}
+
+.drawer_btn button {
+  width: 155rpx;
+  height: 56rpx;
+  line-height: 56rpx;
+  font-size: 32rpx;
+  color: #fff;
+}
+
+.org .drawer_box {
+  top: 30%;
+}
+
+.org .drawer_content {
+  height: 840rpx;
+}
+
+.org .drawer_item {
+  font-size: 26rpx;
+  align-items: center;
+  line-height: 38rpx;
+}
+
+.bg-color {
+  background-color: #ff5001;
+}
+
+.noCooperate .tip-title {
+  font-size: 25rpx;
+  background-color: #efefef;
+  padding: 10rpx;
+  text-align: center;
+  color: #3f3b3a;
+}
+
+.noCooperate .tip-content {
+  margin-top: 150rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.noCooperate .tip-content .tip-img {
+  width: 165rpx;
+  height: 250rpx;
+}
+
+.noCooperate .tip-content .tip-up {
+  margin-top: 20rpx;
+  text-align: center;
+  line-height: 50rpx;
+  font-size: 32rpx;
+}
+
+.noCooperate .tip-content .tip-down {
+  margin-top: 150rpx;
+}
+
+.noCooperate .tip-content .logout_txt{
+  text-align: center;
+}
+
+.noCooperate .tip-content .logout_btn{
+  width: 320rpx;
+  height: 75rpx;
+  line-height: 75rpx;
+  margin-top: 20rpx;
+  font-size: 30rpx;
+  text-indent: 56rpx;
+  background-position: 70rpx -2038rpx;
+}

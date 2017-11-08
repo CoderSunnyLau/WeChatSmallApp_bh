@@ -1,0 +1,49 @@
+<block wx:if='{{isCooperate}}'>
+  <view class="drawer_bg {{isOrg?'':'org'}}">
+    <view class='drawer_box'>
+      <view class='drawer_title bg-color'>
+        <view>{{orgName}}</view>
+      </view>
+      <radio-group class='drawer_content'>
+        <block wx:if='{{isOrg}}'>
+          <view class='drawer_item' wx:for='{{orgArr}}' bindtap='selectOrg' data-idx='{{index}}'>
+            <text class='item_name'>{{item}}</text>
+            <radio color='#ff5001' class='radio_style' checked='{{radioSelect == index ? true : false}}' />
+          </view>
+        </block>
+        <block wx:else>
+          <view class='drawer_item' wx:for='{{relOrgArr}}' bindtap='selectOrg' data-idx='{{index}}'>
+            <image src='{{item.photoUrl}}' class='orgImg'></image>
+            <view class='orgMsg'>
+              <view>企业名称：{{item.storeName}}</view>
+              <view>所在区域：{{item.city}}</view>
+              <view>联系客服：{{item.telephone}}</view>
+              <view>经营品类：{{item.productCats}}</view>
+              <view>主营品牌：{{item.brands}}</view>
+            </view>
+            <radio color='#ff5001' class='radio_style' checked='{{radioSelect == index ? true : false}}' />
+          </view>
+        </block>
+      </radio-group>
+      <view class='drawer_btn'>
+        <button data-status='close' bindtap='submitOrg' class='bg-color' data-btn='btn'>确定</button>
+      </view>
+    </view>
+  </view>
+</block>
+<block wx:else>
+  <view class='noCooperate'>
+    <view class='tip-title'>如果您是本站的合作单位，您可以在本站的PC站点成为本站商友</view>
+    <view class='tip-content'>
+      <image src='/images/tip_rabbit.png' class='tip-img'></image>
+      <view class='tip-up'>
+        <view>抱歉，您所在的机构还不是本站商友</view>
+        <view>当前页面只对商友会员用户开放</view>
+      </view>
+      <view class='tip-down'>
+        <view class='logout_txt'>如要切换用户，请先点击</view>
+        <button class='logout_btn bg btn' bindtap='logout'>安全退出</button>
+      </view>
+    </view>
+  </view>
+</block>

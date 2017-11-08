@@ -25,9 +25,6 @@ page{
   border-bottom: 2rpx solid #888;
   background-position-x: 5rpx;
 }
-.tip{
-	font-size: 24rpx;
-}
 .pwd{
   background-position: 8rpx -72rpx;
 }

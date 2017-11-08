@@ -9,27 +9,35 @@
 	<view class='pages'>
 		<view class='page {{state}}' wx:if='{{coupons.length > 0}}'>
 			<view class='items'>
-				<view class='item' wx:for='{{coupons}}'>
-					<view class='item_left'>
-						<view class='border_right'>
-							<view class='num'><text>编号：</text><text>{{item.couponId}}</text></view>
-							<view class='main_info'>
-								<view class='money_box'>
-									<text class='money'>￥</text>
-									<text class='value'>{{item.value}}</text>
-								</view>
-								<view class='main_right'>
-									<text class='caption'>{{item.caption}}</text>
-									<text class='view'>[点击查看详情]</text>
+				<view class='item' wx:for='{{coupons}}' bindtap='showDetail' wx:for-index='index' data-index='{{index}}'>
+					<view class='trans_box {{crrItem == index ? "crr_item" : ""}}'>
+						<view class='item_left'>
+							<view class='border_right'>
+								<view class='{{crrItem == index ? "hide" : "show"}}'>
+									<view class='num'><text>编号：</text><text>{{item.couponId}}</text></view>
+									<view class='main_info'>
+										<view class='money_box'>
+											<text class='money'>￥</text>
+											<text class='value'>{{item.value}}</text>
+										</view>
+										<view class='main_right'>
+											<text class='basePayment'>满{{item.basePayment}}元使用</text>
+											<text class='view'>[点击查看详情]</text>
+										</view>
+									</view>
+									<text class='time'>有效期:{{item.startTime}}~{{item.endTime}}</text>
 								</view>
 							</view>
-							<text class='time'>有效期:{{item.startTime}}~{{item.endTime}}</text>
 						</view>
+						<view class='item_right {{crrItem == index ? "trans" : ""}}'><view class='bg2'></view></view>
 					</view>
-					<view class='item_right'><view class='bg2'></view></view>
+					<view class='detail {{crrItem == index ? "show dtrans" : "hide"}}'>
+						<text>使用说明：</text>
+						<view class='des'><text>{{item.couponDesc}}</text></view>
+					</view>
 				</view>
 			</view>
 		</view>
-		<view class='no_res' wx:if='{{coupons.length == 0}}'><text class='orange'>没有找到相关的优惠券。</text></view>
+		<view class='no_res' wx:if='{{coupons.length == 0}}'><text class='orange'>没有相关的优惠券~</text></view>
 	</view>
 </view>

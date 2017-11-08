@@ -1,0 +1,38 @@
+<import src='/component/appHeader/appHeader.wxml' />
+<template is='org_message' data='{{..._headerData_}}' />
+<template is='search_bar' data='{{..._headerData_}}' />
+<view class='quickOrder'>
+  <view class='pageTab'>
+    <view class="tabItem {{isSelect==index?'curr':''}}" wx:for='{{tabArr}}' bindtap='tabSelect' data-tIdx='{{index}}'>{{item}}</view>
+  </view>
+  <block>
+    <view class='product-content'>
+      <view class='product-item'>
+        <view class='item up'>
+          <text class='saleTag'>促销</text>
+          <text class='sale-content'>全场3折起</text>
+        </view>
+
+        <view class='item down'>
+          <image class='product-img' src=''/>
+          <view class='product-msg'>
+            <text class='product-caption'>小柴胡颗粒 10g*6袋 广州白云山光华制药股份有限公司</text>
+            <text>货号：X2029</text>
+            <text>库存：有货</text>
+            <text>原价：¥7</text>
+            <text class='product-price'>¥ 3.50/盒</text>
+          </view>
+        </view>
+
+        <view class='buy-action'>
+          <view class='shopcart'>加</view>
+          <view class='action-box'>
+            <text class='reduce'>-</text>
+            <input/>
+            <text class='add'>+</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>

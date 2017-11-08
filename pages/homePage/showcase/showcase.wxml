@@ -1,3 +1,6 @@
+<import src='/component/appHeader/appHeader.wxml' />
+<template is='org_message' data='{{..._headerData_}}'/>
+<template is='search_bar'  data='{{..._headerData_}}'/>
 <view class='nav'>
   <view class='nav-left'>
     <view class='nav-content'>

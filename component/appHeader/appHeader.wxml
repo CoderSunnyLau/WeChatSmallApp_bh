@@ -4,7 +4,24 @@
       <image class='logo_ry' src='/images/logo_ry.png'></image>
       <text class='store_crr'>{{storeCrr}}</text>
     </view>
-    <text class='org_crr'>当前机构：{{orgCrr}}</text>
+    <text class='org_crr' bindtap='powerDrawer'>当前机构：<text>{{orgCrr}}</text></text>
+
+    <view class='drawer_bg' data-status='close' wx:if='{{showModalStatus}}' bindtap='powerDrawer'></view>
+    <view animation='{{animationData}}' class='drawer_box' wx:if='{{showModalStatus}}'>
+      <view class='drawer_title bg-color'>
+        <view>选择供应商</view>
+        <view data-status='close' bindtap='powerDrawer'>></view>
+      </view>
+      <radio-group class='drawer_content'>
+        <view class='drawer_item' wx:for='{{orgArr}}' bindtap='selectOrg' data-idx='{{index}}'>
+          <text class='item_name'>{{item}}</text>
+          <radio color='#2a9293' class='radio_style' checked='{{radioSelect == index ? true : false}}' />
+        </view>
+      </radio-group>
+      <view class='drawer_btn'>
+        <button data-status='close' bindtap='powerDrawer' class='bg-color' data-btn='btn'>确定</button>
+      </view>
+    </view>
   </view>
 </template>
 
@@ -16,8 +33,8 @@
     </view>
     <view class='search-area'>
       <image class='search-img' src='/images/search.png'></image>
-      <input class='search-input' placeholder='{{searchTip}}'></input>
-      <text class='search-txt'>搜索</text>
+      <input class='search-input' placeholder='{{searchTip}}' bindinput='saveContent' placeholder-class='holderTxt' value='{{inputContent}}'></input>
+      <text class='search-txt' bindtap='search'>搜 索</text>
     </view>
   </view>
 </template>

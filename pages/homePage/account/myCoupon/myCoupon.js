@@ -6,10 +6,11 @@ Page({
 		crrIndex: 0,
 		items: [],
 		coupons: [],
-		state: 'noUse'
+		state: 'noUse',
+		crrItem: -1
 	},
 	onLoad: function(){
-		this.load('noUse');
+		this.load('overdue');
 	},
 	load: function(state){
 		var _this = this;
@@ -69,5 +70,13 @@ Page({
 			state: stateTemp
 		});
 		this.load(stateTemp);
+	},
+	showDetail: function(e){
+		var idx = e.currentTarget.dataset.index;
+		idx = this.data.crrItem == idx ? -1 : idx;
+		this.setData({
+			crrItem: idx
+		});
+		console.log(idx)
 	}
 })

@@ -1,5 +1,6 @@
-<import src='/component/appHeader/appHeader.wxml'/>
-<template is='org_message'/>
+<import src='/component/appHeader/appHeader.wxml' />
+<template is='org_message' data='{{..._headerData_}}'/>
+<template is='search_bar'  data='{{..._headerData_}}'/>
 <view class='quickEnter'>
   <view class='enterArea left'>
     <view class='icon quickBill'>

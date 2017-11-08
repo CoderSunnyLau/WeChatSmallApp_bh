@@ -1,8 +1,7 @@
 {
     "pages": [
         "pages/loginPage/login/login",
-        "pages/select/allStores/allStores",
-        "pages/select/allOrgs/allOrgs",
+        "pages/select/select",
         "pages/homePage/home/home",
         "pages/homePage/showcase/showcase",
         "pages/homePage/shopcart/shopcart",
@@ -19,9 +18,8 @@
         "pages/promotion/bulk/bulk",
         "pages/homePage/account/myAddress/myAddress",
         "pages/homePage/account/myAddress/editAddress/editAddress",
-        "pages/homePage/shopcart/orderCheckout/selectAddress/selectAddress",
-        "pages/homePage/account/myFavorite/myFavorite",
-        "pages/homePage/account/myCoupon/myCoupon"
+        "pages/homePage/showcase/search/search",
+		"pages/homePage/account/myCoupon/myCoupon"
     ],
     "window": {
         "backgroundTextStyle": "light",

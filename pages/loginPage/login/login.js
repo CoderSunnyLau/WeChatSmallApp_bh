@@ -9,56 +9,65 @@ Page({
     password: "",
     vs: app.globalData.version
   },
-  onLoad: function(){
+  onLoad: function () {
     var _this = this;
     wx.getStorage({
       key: 'loginData',
-      success: function(res){
+      success: function (res) {
         _this.setData({
           userName: res.data.userName,
           password: res.data.password
         })
-        if(res.data.autoLogin == 'true'){
+        if (res.data.autoLogin == 'true') {
           _this.doLogin();
         }
       },
     });
   },
-  nameInput: function(e){
+  nameInput: function (e) {
     this.setData({
       userName: e.detail.value
     });
   },
-  passwordInput: function(e){
+  passwordInput: function (e) {
     this.setData({
       password: e.detail.value
     });
   },
-  doLogin: function(){
+  doLogin: function () {
     var _this = this;
-    if(!this.data.userName){
+    if (!this.data.userName) {
       wx.showModal({
         title: '提示',
         content: '请输入用户名',
         showCancel: false
       });
-    }else if(!this.data.password){
+    } else if (!this.data.password) {
       wx.showModal({
         title: '提示',
         content: '请输入密码',
         showCancel: false
       });
-    }else{
+    } else {
       http.loginHttp({
         act: 'login',
         userName: this.data.userName,
         password: md5.hexMD5(this.data.password),
         userScope: 1
-      },function(res, success){
-        if(success){
-		  http.saveHeader(res.header['Set-Cookie']);
-          if(res.data.success){
-            console.log(base64.decode(res.data.message))
+      }, function (res, success) {
+        if (success) {
+          var _header = res.header['Set-Cookie']
+          var headerArr = _header.split('/,')
+          headerArr = headerArr[1].split(';')
+          _header = headerArr[0]
+
+          //http.saveHeader(res.header['Set-Cookie']);
+          http.saveHeader(_header);
+          if (res.data.success) {
+            var _orgData = base64.decode(res.data.message)
+            app.globalData.msgData = new Object()
+            app.globalData.msgData.orgArr = _orgData.orgs
+
             _this.setData({
               tip: '登录成功'
             });
@@ -70,15 +79,23 @@ Page({
                 autoLogin: 'true'
               },
             });
-            wx.switchTab({
-              url: '/pages/homePage/home/home'
-            });
-          }else{
+
+            if (wx.getStorageSync('storeName') && wx.getStorageSync('orgName')) {
+              wx.switchTab({
+                url: '/pages/homePage/home/home'
+              });
+            }
+            else {
+              wx.redirectTo({
+                url: '/pages/select/select?isOrg=true'
+              })
+            }
+          } else {
             _this.setData({
               tip: res.data.message
             });
           }
-        }else{
+        } else {
           wx.showModal({
             title: '提示',
             content: '请求失败,请点击页面右上角菜单按钮，打开调试后重试',
@@ -88,7 +105,7 @@ Page({
       });
     }
   },
-  toForget: function(){
+  toForget: function () {
     wx.navigateTo({
       url: '../forget/forget',
     });

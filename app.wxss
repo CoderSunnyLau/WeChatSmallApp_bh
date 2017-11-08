@@ -1,4 +1,5 @@
-/**app.wxss**/
+@import '/component/appHeader/appHeader.wxss';
+
 page{
   font-family: "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
   font-size: 28rpx;
@@ -54,20 +55,4 @@ page::after{
 }
 .grey{
   color: #888;
-}
-.loading_wrap{
-	width: 750rpx;
-	height: 100%;
-	position: fixed;
-	top: 0;
-	left: 0;
-	background-color: rgba(0, 0, 0, 0.3);
-	z-index: 999;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-.loading_wrap image{
-	width: 100rpx;
-	height: 100rpx;
 }

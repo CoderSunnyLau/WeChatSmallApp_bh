@@ -3,7 +3,6 @@
   <view class="logo_box">
     <image class="logo" mode="widthFix" src="http://file.ry600.com/snapshot/vms/site/di/di70684438lrfavs/82ojywir5vqogktm/image//wx_rylogo.png"></image>
   </view>
-  <view class='tip orange'><text>{{tip}}</text></view>
   <view class="input_box">
     <view class='input_field bg'>
       <input class='input' type='text' placeholder='用户名 / 手机号' placeholder-class='placeholder' bindinput='nameInput' value='{{userName}}'></input>

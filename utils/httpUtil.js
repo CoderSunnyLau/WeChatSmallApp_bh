@@ -1,5 +1,5 @@
 var httpUrl = getApp().globalData.domainName + '/jsonaction/websiteaction.action'
-var mHeader = { cookie:'_clientId=3fcdb1188b3848b2af75977ef5e7e786; Domain=ry600.com; Expires=Fri, 05-Nov-2027 07:49:43 GMT; Path=/,_serviceId=cc9fd26a767f4640b098dadbc4896bf5; Path=/'}
+var mHeader = { cookie:'_serviceId=04ee86d80f0845ef86dfbc4e53ba0b04'}
 
 function loginHttp(options, callback) {
   wx.request({
@@ -8,7 +8,6 @@ function loginHttp(options, callback) {
     method: 'POST',
     header: {"content-type": "application/x-www-form-urlencoded; charset=UTF-8"},
     success: function (res) {
-      console.log(res)
       callback(res, true)
     },
     fail: function(res){
@@ -24,7 +23,10 @@ function getHeader(){
   return mHeader;
 }
 
-function getHttp(options, callback) {
+function getHttp(options, callback,relOrgId) {
+  if(relOrgId){
+    mHeader.cookie = mHeader.cookie + relOrgId
+  }
   wx.request({
     url: httpUrl,
     header: mHeader,
@@ -44,7 +46,7 @@ function postHttp(options, callback) {
     url: httpUrl,
     data: options,
     method: 'POST',
-	header: Object.assign(mHeader, {"content-type": "application/x-www-form-urlencoded; charset=UTF-8"}),
+	  header: Object.assign(mHeader, {"content-type": "application/x-www-form-urlencoded; charset=UTF-8"}),
     success: function (res) {
       callback(res.data, true)
     },

@@ -34,13 +34,19 @@ page{
 	padding: 10rpx 30rpx;
 }
 .item{
+	position: relative;
+	color: #FFF;
+}
+.trans_box{
 	margin: 22rpx 10rpx;
 	display: flex;
 	height: 220rpx;
-	color: #FFF;
-	position: relative;
+	transform:rotateX(0deg);
+	-webkit-transform:rotateX(0deg); /* Safari and Chrome */
+	-moz-transform:rotateX(0deg); /* Firefox */
+	transition: transform 1s;
 }
-.item::before, .item::after{
+.trans_box::before, .trans_box::after{
 	content: "";
     background-size: 17rpx 17rpx;
     height: 220rpx;
@@ -48,23 +54,62 @@ page{
 	position: absolute;
 	top: 0;
 }
-.item::before{
+.trans_box::before{
 	left: -5rpx;
 }
-.item::after{
+.trans_box::after{
 	background-position: 4rpx 0;
 	right: -6rpx;
 }
-.noUse .item::before{
+.crr_item{
+	transform: rotateX(180deg);
+	-webkit-transform: rotateX(180deg); /* Safari and Chrome */
+	-moz-transform: rotateX(180deg); /* Firefox */
+}
+.trans{
+	transform: rotateX(180deg);
+	-webkit-transform: rotateX(180deg); /* Safari and Chrome */
+	-moz-transform: rotateX(180deg); /* Firefox */
+}
+.detail{
+	 transform: rotateX(90deg);
+	-webkit-transform: rotateX(90deg);
+	-moz-transform: rotateX(90deg);
+	 transition: transform 1s 0s;  
+	width:390rpx;
+	height:172rpx;
+	padding:24rpx;
+	position: absolute;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+}
+.hide{
+	opacity: 0;
+	transition: opacity 0s 0.3s;
+}
+.show{
+	opacity: 1;
+	transition: opacity 0s 0.3s;
+}
+.dtrans{
+	 transform: rotateX(0deg);
+	-webkit-transform: rotateX(0deg);
+	-moz-transform: rotateX(0deg); 
+}
+.des{
+	font-size: 20rpx;
+}
+.noUse .trans_box::before{
 	background-image: radial-gradient(#F50 0, #F50 8rpx, transparent 8rpx);
 }
-.noUse .item::after{
+.noUse .trans_box::after{
 	background-image: radial-gradient(#FF2D48 0, #FF2D48 8rpx, transparent 8rpx);
 }
-.used .item::before, .overdue .item::before{
+.used .trans_box::before, .overdue .trans_box::before{
 	background-image: radial-gradient(#BBB 0, #BBB 8rpx, transparent 8rpx);
 }
-.used .item::after, .overdue .item::after{
+.used .trans_box::after, .overdue .trans_box::after{
 	background-image: radial-gradient(#DDD 0, #DDD 8rpx, transparent 8rpx);
 }
 .item_left{
@@ -87,15 +132,20 @@ page{
 	margin-bottom: 10rpx;
 }
 .value{
-	font-size: 70rpx;
+	font-size: 76rpx;
 }
 .main_right{
 	display: flex;
 	flex-direction: column;
+	white-space: nowrap;
+	justify-content: center;
+}
+.basePayment{
+	font-weight: 600;
+	font-size: 30rpx;
 }
 .view{
 	font-size: 22rpx;
-	text-align: center;
 }
 .border_right{
 	width: 390rpx;
@@ -116,6 +166,7 @@ page{
 	justify-content: center;
 	align-items: center;
 	position: relative;
+	transition: transform 0s 0.3s;
 }
 .item_right::before, .item_right::after{
 	content: "";

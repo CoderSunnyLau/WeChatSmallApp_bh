@@ -1,7 +1,7 @@
 .org_message {
   background-color: #f50;
   color: #fff;
-  height: 60rpx;
+  height: 50rpx;
   padding: 24rpx 30rpx 0;
   display: flex;
   justify-content: space-between;
@@ -32,10 +32,10 @@
 
 .searchBar {
   display: flex;
-  height: 100rpx;
+  height: 88rpx;
   background-color: #f50;
   color: #fff;
-  padding: 0 30rpx;
+  padding: 0 0 0 30rpx;
 }
 
 .searchBar .search-scan {
@@ -63,7 +63,7 @@
   padding: 8rpx 0rpx 8rpx 60rpx;
   border-radius: 5px;
   background: #fff;
-  color: #939393;
+  color: #3e3a39;
 }
 
 .searchBar .search-img{
@@ -75,6 +75,10 @@
 }
 
 .searchBar .search-txt{
-  font-size: 34rpx;
-  margin: 8rpx 0 8rpx 10rpx;
+  font-size: 32rpx;
+  margin: 10rpx 0 10rpx 12rpx;
+}
+
+.holderTxt{
+  font-size: 24rpx;
 }

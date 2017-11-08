@@ -1,0 +1,97 @@
+page {
+  background-color: #efefef;
+}
+
+.pageTab {
+  display: flex;
+  background-color: #fff;
+  height: 65rpx;
+}
+
+.pageTab .tabItem {
+  font-size: 30rpx;
+  line-height: 65rpx;
+  flex: 1;
+  text-align: center;
+}
+
+.pageTab .curr {
+  color: #ff5001;
+  border-bottom: 4rpx solid #ff5001;
+}
+
+.product-item {
+  background-color: #fff;
+  margin-top: 15rpx;
+  padding:15rpx 30rpx;
+  position: relative;
+}
+
+.product-item .up .saleTag {
+  padding: 4rpx 14rpx;
+  background-color: #fe2c45;
+  color: #fff;
+  border-radius: 20rpx;
+  font-size: 24rpx;
+  letter-spacing: 4rpx;
+  margin-right: 12rpx;
+}
+
+.product-item .down{
+  display: flex;
+}
+
+.product-item .product-img{
+  width: 200rpx;
+  height: 200rpx;
+}
+
+.product-item .product-msg{
+  display: flex;
+  flex-direction: column;
+  color: #898989;
+  line-height: 46rpx;
+}
+
+.product-item .product-msg .product-caption{
+  font-size: 30rpx;
+  color: #3e3a39;
+}
+
+.product-item .product-msg .product-price{
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #ff5001;
+}
+
+.product-item .buy-action{
+  position: absolute;
+  bottom: 15rpx;
+  right: 30rpx;
+}
+
+.product-item .buy-action .action-box{
+  display: flex;
+  border: 2rpx solid #6f6b6c;
+  width: 160rpx;
+}
+
+.product-item .buy-action text{
+  padding: 0 10rpx;
+  line-height: 50rpx;
+}
+
+.product-item .buy-action input{
+  min-height: 0;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+}
+
+.product-item .buy-action .reduce{
+  border-right: 1px solid #cacaca;
+}
+
+.product-item .buy-action .add{
+  border-left: 1px solid #cacaca;
+}
