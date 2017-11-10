@@ -7,9 +7,9 @@
 	</view>
 	<view class='blank'></view>
 	<view class='pages'>
-		<view class='page {{state}}' wx:if='{{coupons.length > 0}}'>
+		<view class='page {{state}}' wx:if='{{all[state].coupons.length > 0}}'>
 			<view class='items'>
-				<view class='item' wx:for='{{coupons}}' bindtap='showDetail' wx:for-index='index' data-index='{{index}}'>
+				<view class='item' wx:for='{{all[state].coupons}}' bindtap='showDetail' wx:for-index='index' data-index='{{index}}'>
 					<view class='trans_box {{crrItem == index ? "crr_item" : ""}}'>
 						<view class='item_left'>
 							<view class='border_right'>
@@ -25,7 +25,7 @@
 											<text class='view'>[点击查看详情]</text>
 										</view>
 									</view>
-									<text class='time'>有效期:{{item.startTime}}~{{item.endTime}}</text>
+									<text class='time'>有效期：{{item.startTime}}~{{item.endTime}}</text>
 								</view>
 							</view>
 						</view>
@@ -38,6 +38,7 @@
 				</view>
 			</view>
 		</view>
-		<view class='no_res' wx:if='{{coupons.length == 0}}'><text class='orange'>没有相关的优惠券~</text></view>
+		<view class='no_res' wx:if='{{all[state].all}}'><text class='grey'>----- 拉到底了噢 -----</text></view>
+		<view class='no_res' wx:if='{{all[state].coupons.length == 0}}'><text class='orange'>没有相关的优惠券~</text></view>
 	</view>
 </view>

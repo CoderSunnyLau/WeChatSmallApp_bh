@@ -1,4 +1,4 @@
-// pages/select/allOrgs/allOrgs.js
+// pages/loginPage/forget/forgetSet.js
 Page({
 
   /**

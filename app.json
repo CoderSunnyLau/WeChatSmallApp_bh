@@ -18,8 +18,13 @@
         "pages/promotion/bulk/bulk",
         "pages/homePage/account/myAddress/myAddress",
         "pages/homePage/account/myAddress/editAddress/editAddress",
+        "pages/homePage/account/myFavorite/myFavorite",
         "pages/homePage/showcase/search/search",
-		"pages/homePage/account/myCoupon/myCoupon"
+        "pages/homePage/account/myCoupon/myCoupon",
+        "pages/homePage/shopcart/orderCheckout/selectAddress/selectAddress",
+        "pages/homePage/account/fixInfo/fixInfo",
+        "pages/loginPage/forget/forgetCheck",
+        "pages/loginPage/forget/forgetSet"
     ],
     "window": {
         "backgroundTextStyle": "light",

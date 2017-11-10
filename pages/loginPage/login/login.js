@@ -2,6 +2,7 @@ const app = getApp()
 const http = require('../../../utils/httpUtil.js')
 const md5 = require('../../../utils/md5.js')
 const base64 = require('../../../utils/base64.js')
+import { appHeader } from '../../../component/appHeader/appHeader.js'
 
 Page({
   data: {
@@ -12,7 +13,7 @@ Page({
   onLoad: function () {
     var _this = this;
     wx.getStorage({
-      key: 'loginData',
+      key: 'userData',
       success: function (res) {
         _this.setData({
           userName: res.data.userName,
@@ -26,12 +27,14 @@ Page({
   },
   nameInput: function (e) {
     this.setData({
-      userName: e.detail.value
+      userName: e.detail.value,
+      tip: ''
     });
   },
   passwordInput: function (e) {
     this.setData({
-      password: e.detail.value
+      password: e.detail.value,
+      tip: ''
     });
   },
   doLogin: function () {
@@ -56,13 +59,7 @@ Page({
         userScope: 1
       }, function (res, success) {
         if (success) {
-          var _header = res.header['Set-Cookie']
-          var headerArr = _header.split('/,')
-          headerArr = headerArr[1].split(';')
-          _header = headerArr[0]
-
-          //http.saveHeader(res.header['Set-Cookie']);
-          http.saveHeader(_header);
+          http.saveHeader(res.header['Set-Cookie']);
           if (res.data.success) {
             var _orgData = base64.decode(res.data.message)
             app.globalData.msgData = new Object()
@@ -71,28 +68,33 @@ Page({
             _this.setData({
               tip: '登录成功'
             });
-            wx.setStorage({
-              key: 'loginData',
-              data: {
-                userName: _this.data.userName,
-                password: _this.data.password,
-                autoLogin: 'true'
-              },
-            });
 
-            if (wx.getStorageSync('storeName') && wx.getStorageSync('orgName')) {
+            let _userData = wx.getStorageSync('userData')
+						
+            if (_userData.userName == _this.data.userName && _userData.orgName && _userData.storeName) {
+							let _header = http.getHeader()
+							_header.cookie = _header.cookie + ',_relOrgId=' + _userData.orgId
+							http.saveHeader(_header.cookie)
+							_userData.autoLogin = 'true'
+              wx.setStorageSync('userData', _userData)
+							new appHeader()
               wx.switchTab({
                 url: '/pages/homePage/home/home'
               });
             }
             else {
+              _userData = {}
+              _userData.userName = _this.data.userName
+              _userData.password = _this.data.password
+							_userData.autoLogin = 'true'
+              wx.setStorageSync('userData', _userData)
               wx.redirectTo({
                 url: '/pages/select/select?isOrg=true'
               })
             }
           } else {
             _this.setData({
-              tip: res.data.message
+              tip: '用户名或密码错误'
             });
           }
         } else {

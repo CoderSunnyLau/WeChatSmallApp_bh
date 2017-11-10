@@ -1,30 +1,48 @@
 // pages/homePage/account/orderList/orderList.js
 const http = require('../../../../utils/httpUtil.js')
+
 Page({
 	data: {
 		tabs: ['未使用礼券', '已使用礼券', '过期礼券'],
 		crrIndex: 0,
 		items: [],
-		coupons: [],
 		state: 'noUse',
-		crrItem: -1
+		crrItem: -1,
+		all: {
+			noUse: {coupons: [], load: false, page: 1, all: false},
+			used: {coupons: [], load: false, page: 1, all: false},
+			overdue: {coupons: [], load: false, page: 1, all: false}
+		}
 	},
 	onLoad: function(){
-		this.load('overdue');
+		this.load('noUse', 1);
 	},
-	load: function(state){
+	load: function(state, page){
+		var all = this.data.all;
 		var _this = this;
+		if(all[state].load && page == 1){
+			return false;
+		}else{
+			_this.getCoupons(state, page, function(res){
+				var allState = 'all.' + state;
+				_this.setData({
+					[allState]: Object.assign(all[state], {coupons: res.results, load: true, page: page})
+				});
+			});
+		}
+	},
+	getCoupons: function(state, page, callback){
 		http.getHttp({
 			action: 'VSShop.getMyCoupons',
 			state: state,
-			pgNum: 0,
-			limit: 20
+			pgNum: page,
+			limit: 10
 		}, function(res, success){
 			if(success){
 				if(res.success){
-					_this.setData({
-						coupons: res.results
-					});
+					if(typeof(callback) == 'function'){
+						callback(res);
+					}
 				}
 			}
 		});
@@ -51,7 +69,7 @@ Page({
 											_this.load();
 										}, 800);
 									}
-								})
+								});
 							}
 						}
 					});
@@ -65,11 +83,11 @@ Page({
 		var curr = e.currentTarget.dataset.index;
 		var stateTemp = curr == 0 ? 'noUse' : (curr == 1 ? 'used' : 'overdue');
 		this.setData({
-			coupons: [],
 			crrIndex: e.currentTarget.dataset.index,
-			state: stateTemp
+			state: stateTemp,
+			crrItem: -1
 		});
-		this.load(stateTemp);
+		this.load(stateTemp, 1);
 	},
 	showDetail: function(e){
 		var idx = e.currentTarget.dataset.index;
@@ -77,6 +95,29 @@ Page({
 		this.setData({
 			crrItem: idx
 		});
-		console.log(idx)
+	},
+	onReachBottom: function(){
+		var _this = this;
+		var st = this.data.state;
+		var all = this.data.all;
+		if(all[st].all){
+			return false;
+		}else{
+			this.getCoupons(st, all[st].page + 1, function(res){
+				var allStatePg = 'all.' + st + '.page';
+				var allStateCoupons = 'all.' + st + '.coupons';
+				_this.setData({
+					[allStatePg]: all[st].page + 1,
+					[allStateCoupons]: _this.data.all[st].coupons.concat(res.results)
+				});
+				if(!res.results.length && res.totals){
+					// all[st].all = true;
+					var allStateAll = 'all.' + st + '.all';
+					_this.setData({
+						[allStateAll]: true
+					});
+				}
+			});
+		}
 	}
 })

@@ -10,31 +10,67 @@
 			</view>
 			<view class='pdts'>
 				<view class='pdt' wx:for='{{block.items}}' wx:for-item="pdt" wx:for-index="pIdx" wx:key=''>
-					<view class='sale_tag' wx:if='{{pdt.sku.addSaleTagName}}'>
-						<text class='tag_name'>{{pdt.sku.addSaleTagName}}</text>
-						<text>{{pdt.sku.saleTag}}</text>
-					</view>
-					<view class='row_main'>
-						<view class='main_info {{bIdx + "," + pIdx == crrPdtIdx ? "touch_active" : ""}}' bindtouchstart="touchStart" bindtouchmove="touchMove" data-pdtidx='{{bIdx}},{{pIdx}}'>
-							<view class='check_box bg {{pdt.selected ? "selected" : ""}}' bindtap='selPdt' data-selected='{{pdt.selected}}' data-pdtidx='{{bIdx}},{{pIdx}}'></view>
-							<image class='pdt_img' src='{{pdt.sku.photo.smallUrl}}'></image>
-							<view class='pdt_info'>
-								<view class='pdt_title'>
-									<text>{{pdt.sku.productCaption}}</text>
+					<view wx:if='{{pdt.itemType == "product"}}'>
+						<view class='sale_tag' wx:if='{{pdt.sku.addSaleTagName}}'>
+							<text class='tag_name'>{{pdt.sku.addSaleTagName}}</text>
+							<text>{{pdt.sku.saleTag}}</text>
+						</view>
+						<view class='row_main'>
+							<view class='main_info {{bIdx + "," + pIdx == crrPdtIdx ? "touch_active" : ""}}' bindtouchstart="touchStart" bindtouchmove="touchMove" data-pdtidx='{{bIdx}},{{pIdx}}'>
+								<view class='check_box bg {{pdt.selected ? "selected" : ""}}' bindtap='selPdt' data-selected='{{pdt.selected}}' data-pdtidx='{{bIdx}},{{pIdx}}'></view>
+								<image class='pdt_img' src='{{pdt.sku.photo.smallUrl}}'></image>
+								<view class='pdt_info'>
+									<view class='pdt_title'>
+										<text>{{pdt.sku.productCaption}}</text>
+									</view>
+									<text class='detail_info'>货号：{{pdt.sku.skuCode}}</text>
+									<text class='detail_info'>库存：{{(pdt.sku.stockTag.amount > 100 || pdt.sku.stockTag.amount == 0) ? pdt.sku.stockTag.stockState : pdt.sku.stockTag.amount+pdt.sku.units}}</text>
+									<text class='orange'>￥{{pdt.sku.price}}/{{pdt.sku.units}}</text>
 								</view>
-								<text class='detail_info'>货号：{{pdt.sku.skuCode}}</text>
-								<text class='detail_info'>库存：{{(pdt.sku.stockTag.amount > 100 || pdt.sku.stockTag.amount == 0) ? pdt.sku.stockTag.stockState : pdt.sku.stockTag.amount+pdt.sku.units}}</text>
-								<text class='orange'>￥{{pdt.sku.price}}/{{pdt.sku.units}}</text>
+								<view class='count'>
+									<text class='sub' bindtap='changeCount' data-changemethod='sub' data-pdtidx='{{bIdx}},{{pIdx}}'>-</text>
+									<input value='{{pdt.amount}}' type='number' data-changemethod='input' bindblur='changeCount' data-pdtidx='{{bIdx}},{{pIdx}}' bindinput='countInput' bindfocus='countFocus'></input>
+									<text class='add' bindtap='changeCount' data-changemethod='add' data-pdtidx='{{bIdx}},{{pIdx}}'>+</text>
+								</view>
 							</view>
-							<view class='count'>
-								<text class='sub' bindtap='changeCount' data-changemethod='sub' data-pdtidx='{{bIdx}},{{pIdx}}'>-</text>
-								<input value='{{pdt.amount}}' type='number' data-changemethod='input' bindblur='changeCount' data-pdtidx='{{bIdx}},{{pIdx}}' bindinput='countInput' bindfocus='countFocus'></input>
-								<text class='add' bindtap='changeCount' data-changemethod='add' data-pdtidx='{{bIdx}},{{pIdx}}'>+</text>
+							<view class='option'>
+								<view class='favorite' data-pdtidx='{{bIdx}},{{pIdx}}' catchtap='collectPdt'><text>收藏</text></view>
+								<view class='delete' data-pdtidx='{{bIdx}},{{pIdx}}' catchtap='delPdt'><text>删除</text></view>
 							</view>
 						</view>
-						<view class='option'>
-							<view class='favorite' data-pdtidx='{{bIdx}},{{pIdx}}' catchtap='collectPdt'><text>收藏</text></view>
-							<view class='delete' data-pdtidx='{{bIdx}},{{pIdx}}' catchtap='delPdt'><text>删除</text></view>
+					</view>
+					<view class='pkg' wx:elif='{{pdt.itemType == "package"}}'>
+						<view class='pkg_info'>
+							<view class='main_info {{bIdx + "," + pIdx == crrPdtIdx ? "touch_active" : ""}}' bindtouchstart="touchStart" bindtouchmove="touchMove" data-pdtidx='{{bIdx}},{{pIdx}}'>
+								<view class='check_box bg {{pdt.selected ? "selected" : ""}}' bindtap='selPdt' data-selected='{{pdt.selected}}' data-pdtidx='{{bIdx}},{{pIdx}}'></view>
+								<view>
+									<view class='pkg_tag'><text class='pkg_name'>套餐</text><text>{{pdt.caption}}</text></view>
+									<text class='detail_info '>库存：{{pdt.package.stockAmount}}</text>
+									<view><text class='detail_info '>套餐价：</text><text class='orange'>￥{{pdt.price}}</text></view>
+								</view>
+								<view class='count'>
+									<text class='sub' bindtap='changeCount' data-changemethod='sub' data-pdtidx='{{bIdx}},{{pIdx}}'>-</text>
+									<input value='{{pdt.amount}}' type='number' data-changemethod='input' bindblur='changeCount' data-pdtidx='{{bIdx}},{{pIdx}}' bindinput='countInput' bindfocus='countFocus'></input>
+									<text class='add' bindtap='changeCount' data-changemethod='add' data-pdtidx='{{bIdx}},{{pIdx}}'>+</text>
+								</view>
+							</view>
+							<view class='option'>
+								<view class='delete' data-pdtidx='{{bIdx}},{{pIdx}}' catchtap='delPdt'><text>删除</text></view>
+							</view>
+						</view>
+						<view wx:for='{{pdt.skus}}' wx:for-item='pkgPdt'>
+							<view class='row_main'>
+								<view class='main_info'>
+									<image class='pdt_img' src='{{pkgPdt.photo.smallUrl}}'></image>
+									<view class='pdt_info'>
+										<view class='pdt_title'>
+											<text>{{pkgPdt.productCaption}}</text>
+										</view>
+										<text class='detail_info'>货号：{{pkgPdt.skuCode}}</text>
+										<text class='orange'>￥{{pkgPdt.price}}/{{pkgPdt.units}}</text>
+									</view>
+								</view>
+							</view>
 						</view>
 					</view>
 					<view class='rewards {{giftEditIdx == (bIdx + "," + pIdx) ? "gift_edit" : ""}}' wx:if='{{pdt.rewards.length}}'>

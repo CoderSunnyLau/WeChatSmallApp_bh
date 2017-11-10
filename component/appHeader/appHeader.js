@@ -1,6 +1,6 @@
 let _tmpData = {
-  '_headerData_.storeCrr': '万邦药业',
-  '_headerData_.orgCrr': '同和药店',
+	'_headerData_.storeName': wx.getStorageSync('userData').storeName,
+	'_headerData_.orgName': wx.getStorageSync('userData').orgName,
   '_headerData_.searchTip': '输入品名(或拼音首字母)、厂商、品牌'
 }
 
@@ -44,6 +44,13 @@ let _tmpEvent = {
   saveContent: function(e){
     this.setData({
       searchContent: e.detail.value
+    })
+  },
+  scanBill: function () {
+    wx.scanCode({
+      success: function () {
+        console.log('success')
+      }
     })
   }
 }

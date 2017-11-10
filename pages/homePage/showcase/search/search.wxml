@@ -5,7 +5,7 @@
   <view class='pageTab'>
     <view class="tabItem {{isSelect==index?'curr':''}}" wx:for='{{tabArr}}' bindtap='tabSelect' data-tIdx='{{index}}'>{{item}}</view>
   </view>
-  <block>
+  <block wx:if='{{hasProduct}}'>
     <view class='product-content'>
       <view class='product-item'>
         <view class='item up'>
@@ -14,7 +14,9 @@
         </view>
 
         <view class='item down'>
-          <image class='product-img' src=''/>
+          <view>
+            <image class='product-img' src='/images/tip_rabbit.png'/>
+          </view>
           <view class='product-msg'>
             <text class='product-caption'>小柴胡颗粒 10g*6袋 广州白云山光华制药股份有限公司</text>
             <text>货号：X2029</text>
@@ -25,14 +27,21 @@
         </view>
 
         <view class='buy-action'>
-          <view class='shopcart'>加</view>
+          <view class='shopcart'></view>
           <view class='action-box'>
             <text class='reduce'>-</text>
-            <input/>
+            <input type='number'/>
             <text class='add'>+</text>
           </view>
         </view>
       </view>
+    </view>
+  </block>
+  <block wx:else>
+    <view class='noProduct_tip' style='height:{{tipHeight-305}}rpx'>
+      <image src='/images/tip_rabbit.png' class='tip_img'></image>
+      <view class='tip_up'>抱歉，没找到相关的商品信息</view>
+      <view class='tip_down'>建议您查看输入是否有误或者调整关键字</view>
     </view>
   </block>
 </view>

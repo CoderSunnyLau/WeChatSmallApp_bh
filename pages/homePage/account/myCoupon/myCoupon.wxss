@@ -117,6 +117,8 @@ page{
 }
 .num{
 	font-size: 24rpx;
+	letter-spacing: 2rpx;
+	line-height: 30rpx;
 }
 .main_info{
 	display: flex;

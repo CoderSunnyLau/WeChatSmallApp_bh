@@ -1,4 +1,4 @@
-// pages/select/allStores/allStores.js
+// pages/loginPage/forget/forgetCheck.js
 Page({
 
   /**

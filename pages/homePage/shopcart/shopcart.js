@@ -1,5 +1,7 @@
 // pages/shopcart/shopcart.js
-const http = require('../../../utils/httpUtil.js')
+const http = require('../../../utils/httpUtil.js');
+const user = wx.getStorageSync('userData');
+let load = false;
 
 Page({
 	data: {
@@ -12,14 +14,24 @@ Page({
 		blocks: [],
 		selCount: 0,
 		count: 1,
-		loading: false,
+		loading: true,
 		countInputTemp: 1,
 		countFocusTemp: 1,
 		giftEditIdx: '',
 		giftsTemp: []
 	},
-	onLoad: function(){this.loadShopcart()},
-	onShow: function(){this.loadShopcart()},
+	onLoad: function(){
+		var _this = this;
+		this.loadShopcart(function(){
+			load = true;
+			_this.setData({loading:false});
+			console.log(_this.data.blocks[0]);
+		});
+	},
+	onShow: function(){
+		if(load){this.loadShopcart()}
+		console.log(load)
+	},
 	onPullDownRefresh: function(){
 		this.loadShopcart(function(){
 			wx.stopPullDownRefresh();

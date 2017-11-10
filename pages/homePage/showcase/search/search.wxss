@@ -1,6 +1,6 @@
-page {
+ page {
   background-color: #efefef;
-}
+} 
 
 .pageTab {
   display: flex;
@@ -22,13 +22,20 @@ page {
 
 .product-item {
   background-color: #fff;
-  margin-top: 15rpx;
-  padding:15rpx 30rpx;
+  margin-top: 15rpx; 
+  padding: 15rpx 30rpx;
   position: relative;
 }
 
+.product-item .up {
+  padding-bottom: 12rpx;
+  font-size: 26rpx;
+  display: flex;
+  align-items: center;
+}
+
 .product-item .up .saleTag {
-  padding: 4rpx 14rpx;
+  padding: 2rpx 15rpx;
   background-color: #fe2c45;
   color: #fff;
   border-radius: 20rpx;
@@ -37,61 +44,98 @@ page {
   margin-right: 12rpx;
 }
 
-.product-item .down{
+.product-item .down {
   display: flex;
 }
 
-.product-item .product-img{
+.product-item .product-img {
   width: 200rpx;
   height: 200rpx;
 }
 
-.product-item .product-msg{
+.product-item .product-msg {
   display: flex;
   flex-direction: column;
   color: #898989;
-  line-height: 46rpx;
+  line-height: 45rpx;
+  font-size: 26rpx;
 }
 
-.product-item .product-msg .product-caption{
-  font-size: 30rpx;
+.product-item .product-msg .product-caption {
+  font-size: 28rpx;
   color: #3e3a39;
 }
 
-.product-item .product-msg .product-price{
+.product-item .product-msg .product-price {
   font-size: 32rpx;
   font-weight: 500;
   color: #ff5001;
 }
 
-.product-item .buy-action{
+.product-item .buy-action {
   position: absolute;
-  bottom: 15rpx;
+  bottom: 30rpx;
   right: 30rpx;
+  display: flex;
+  flex-direction: column;
 }
 
-.product-item .buy-action .action-box{
+.product-item .buy-action .shopcart {
+  width: 50rpx;
+  height: 50rpx;
+  background: #f50 url('http://file.ry600.com/snapshot/vms/site/di/di70684438lrfavs/82ojywir5vqogktm/image//shopcart_icon.png') no-repeat 12rpx 10rpx;
+  background-size: 32rpx auto;
+  border-radius: 50%;
+  align-self: flex-end;
+  margin-bottom: 20rpx;
+}
+
+.product-item .buy-action .action-box {
   display: flex;
   border: 2rpx solid #6f6b6c;
   width: 160rpx;
+  padding: 6rpx 0;
 }
 
-.product-item .buy-action text{
+.product-item .buy-action text {
   padding: 0 10rpx;
-  line-height: 50rpx;
+  line-height: 40rpx;
 }
 
-.product-item .buy-action input{
+.product-item .buy-action input {
   min-height: 0;
-  height: 50rpx;
-  line-height: 50rpx;
+  height: 40rpx;
+  line-height: 40rpx;
   text-align: center;
 }
 
-.product-item .buy-action .reduce{
+.product-item .buy-action .reduce {
   border-right: 1px solid #cacaca;
 }
 
-.product-item .buy-action .add{
+.product-item .buy-action .add {
   border-left: 1px solid #cacaca;
+}
+
+.noProduct_tip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 60rpx;
+  margin-top: 15rpx;
+  padding-top: 60rpx;
+	background-color: #fff;
+}
+
+.noProduct_tip .tip_img {
+  width: 156rpx;
+  height: 250rpx;
+}
+
+.noProduct_tip .tip_up {
+  font-size: 30rpx;
+}
+
+.noProduct_tip .tip_down {
+  color: #888;
 }

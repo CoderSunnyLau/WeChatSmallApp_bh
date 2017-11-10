@@ -2,9 +2,9 @@
   <view class='org_message'>
     <view class='message-left'>
       <image class='logo_ry' src='/images/logo_ry.png'></image>
-      <text class='store_crr'>{{storeCrr}}</text>
+      <text class='store_crr'>{{storeName}}</text>
     </view>
-    <text class='org_crr' bindtap='powerDrawer'>当前机构：<text>{{orgCrr}}</text></text>
+    <view class='org_crr' bindtap='powerDrawer'>当前机构：{{orgName}}</view>
 
     <view class='drawer_bg' data-status='close' wx:if='{{showModalStatus}}' bindtap='powerDrawer'></view>
     <view animation='{{animationData}}' class='drawer_box' wx:if='{{showModalStatus}}'>
@@ -27,7 +27,7 @@
 
 <template name='search_bar'>
   <view class='searchBar'>
-    <view class='search-scan'>
+    <view class='search-scan' bindtap='scanBill'>
       <image class='scan-img' src='/images/scan.png'></image>
       <text>扫一扫</text>
     </view>

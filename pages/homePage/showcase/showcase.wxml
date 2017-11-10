@@ -8,7 +8,7 @@
     </view>
   </view>
   <view class='nav-right'>
-    <view class='nav-title'>西药分类</view>
+    <view class='nav-title'>{{navTitle}}</view>
     <view class='nav-content'>
       <view wx:for="{{rightNavArr}}" class='nav-item' bindtap='selectCase'>{{item}}</view>
     </view>

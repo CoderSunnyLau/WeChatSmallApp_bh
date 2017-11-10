@@ -28,9 +28,13 @@ page::after{
   color: #AAA;
   font-size: 28rpx;
 }
-.btn{
+button{
   background-color: #F50;
   color: #FFF;
+  width: 666rpx;
+  height: 76rpx;
+  line-height: 76rpx;
+  font-size: 30rpx;
 }
 .bg{
   background-image: url('http://file.ry600.com/snapshot/vms/site/di/di70684438lrfavs/82ojywir5vqogktm/image//wx_icons.png');
@@ -55,4 +59,20 @@ page::after{
 }
 .grey{
   color: #888;
+}
+.loading_wrap{
+	width: 750rpx;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background-color: rgba(0, 0, 0, 0.3);
+	z-index: 999;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.loading_wrap image{
+	width: 100rpx;
+	height: 100rpx;
 }

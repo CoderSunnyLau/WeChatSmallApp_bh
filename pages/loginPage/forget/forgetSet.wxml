@@ -1,0 +1,10 @@
+<!--pages/loginPage/forget/forgetSet.wxml-->
+<view class='forget'>
+  <view class='input_field'>
+    <input placeholder='请输入新密码' placeholder-class='placeholder'></input>
+  </view>
+  <view class='input_field'>
+    <input placeholder='确认密码' placeholder-class='placeholder'></input>
+  </view>
+  <view class='btn_field'><button>重置密码</button></view>
+</view>

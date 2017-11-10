@@ -1,10 +1,18 @@
-<!--pages/template/slide/slide.wxml-->
-<text>pages/template/slide/slide.wxml</text>
-<view class="container">
-  <!-- <view class='slide_wrap'> -->
-  <view class="touch-item {{isTouchMove ? 'touch-move-active' : ''}}"  bindtouchstart="touchstart" bindtouchmove="touchmove">
-    <view class="content">8888</view>
-    <view class="del" catchtap="del">删除</view>
-    </view>
-  <!-- </view> -->
+<view>
+	<view class='drop_item'>
+		<view class='item_title'>日常用药</view>
+		<view class='item_children'>
+			<view class='children_item'>
+				<view class='item_left'>居家常备</view>
+				<view class='item_right'>
+					<text>减肥塑身</text>
+					<text>戒烟戒酒</text>
+					<text>紧急避孕</text>
+					<text>长效避孕</text>
+					<text>旅游出行</text>
+					<text>防暑降温</text>
+				</view>
+			</view>
+		</view>
+	</view>
 </view>

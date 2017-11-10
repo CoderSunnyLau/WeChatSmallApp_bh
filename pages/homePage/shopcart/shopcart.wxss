@@ -297,3 +297,36 @@ page{
 .sel_all_bottom{
 	margin-left: 20rpx;
 }
+
+/***********package**********/
+.pkg{
+	border-bottom: 2rpx solid #DDD;
+}
+.pkg_info{
+	position: relative;
+}
+.pkg .main_info{
+	border: none;
+}
+.pkg .row_main .main_info{
+	padding-left: 62rpx;
+	width: 670rpx;
+}
+.pkg_info{
+	border-bottom: 2rpx dashed #EEE;
+}
+.pkg_tag{
+	display: flex;
+	height: 34rpx;
+	align-items: center;
+	font-size: 24rpx;
+}
+.pkg_name{
+	display: inline-block;
+	font-size: 22rpx;
+	color: #FFF;
+	background-color: #F50;
+	line-height: 34rpx;
+	padding: 0 14rpx;
+	margin-right: 10rpx;
+}

@@ -58,14 +58,21 @@ page{
   margin: 0 40rpx 0 66rpx;
 }
 .info_detail{
-  padding-top: 30rpx;
   line-height: 40rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .info_detail text{
   display: block;
 }
 .full_name{
   font-size: 30rpx;
+}
+.fix_info{
+	font-size: 24rpx;
+	line-height: 34rpx;
+	margin: 8rpx 0;
 }
 .panel_title{
   height: 66rpx;

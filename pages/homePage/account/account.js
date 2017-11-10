@@ -10,6 +10,12 @@ Page({
     fullName: ''
   },
   onLoad: function(){
+	this.load();
+  },
+  onShow: function(){
+	  this.load();
+  },
+  load: function(){
     const _this = this;
     http.getHttp({action: 'VSUser.getBasicInfo'},function(res, success){
       if(success){
@@ -22,26 +28,6 @@ Page({
             userIcon: 'http://www.ry600.com' + user.photoUrl
           });
         }else{
-          wx.reLaunch({
-            url: '/pages/loginPage/login/login',
-          });
-        }
-      }
-    });
-  },
-  test: function(){
-    const _this = this;
-    http.getHttp({ action: 'VSUser.getBasicInfo' }, function (res, success) {
-      if (success) {
-        if (res.success) {
-          console.log(res)
-          let user = res.results[0];
-          _this.setData({
-            userName: user.userName,
-            fullName: user.fullName,
-            userIcon: 'http://www.ry600.com' + user.photoUrl
-          });
-        } else {
           wx.reLaunch({
             url: '/pages/loginPage/login/login',
           });
@@ -68,11 +54,11 @@ Page({
         console.log(1)
       }
     });
-    var loginData = wx.getStorageSync('loginData');
-    loginData.autoLogin = 'false';
+    var userData = wx.getStorageSync('userData');
+    userData.autoLogin = 'false';
     wx.setStorage({
-      key: 'loginData',
-      data: loginData,
+      key: 'userData',
+      data: userData,
       success: function(res){
         wx.reLaunch({
           url: '/pages/loginPage/login/login',

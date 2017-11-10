@@ -1,0 +1,22 @@
+<!--pages/homePage/account/fixInfo/fixInfo.wxml-->
+<view class='fix_info'>
+	<view>
+		<view class='row'>
+			<text>姓名</text>
+			<input class='full_name' placeholder='请输入姓名' type='text' placeholder-class='placeholder' value='{{user.fullName}}' bindinput='inputFn'></input>
+		</view>
+		<view class='row'>
+			<text>性别</text>
+			<picker mode='selector' range='{{gender}}' value='{{user.gender}}' bindchange='setGender'>
+				<text class='pk_val arrow'>{{gender[user.gender]}}</text>
+			</picker>
+		</view>
+		<view class='row'>
+			<text>生日</text>
+			<picker mode='date' value='{{user.birthday}}' bindchange='setBirthday'>
+				<text class='pk_val arrow'>{{user.birthday}}</text>
+			</picker>
+		</view>
+	</view>
+	<button class='btn confirm' bindtap='saveInfo'>确认修改</button>
+</view>

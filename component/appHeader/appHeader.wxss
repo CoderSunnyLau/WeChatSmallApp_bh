@@ -24,18 +24,28 @@
   color: #f50;
   padding: 0 10rpx;
   border-radius: 6rpx;
+  width: 136rpx;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .org_crr {
   font-size: 24rpx;
 }
 
+.org_crr {
+  width: 265rpx;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
 .searchBar {
   display: flex;
-  height: 88rpx;
   background-color: #f50;
   color: #fff;
-  padding: 0 0 0 30rpx;
+  padding: 6rpx 0 15rpx 30rpx;
 }
 
 .searchBar .search-scan {
@@ -56,6 +66,7 @@
   display: flex;
   margin-left: 15rpx;
   position: relative;
+  align-items: center;
 }
 
 .searchBar .search-input {
@@ -66,19 +77,19 @@
   color: #3e3a39;
 }
 
-.searchBar .search-img{
+.searchBar .search-img {
   position: absolute;
-  top: 15rpx;
+  top: 20%;
   left: 12rpx;
   width: 40rpx;
   height: 40rpx;
 }
 
-.searchBar .search-txt{
+.searchBar .search-txt {
   font-size: 32rpx;
-  margin: 10rpx 0 10rpx 12rpx;
+  margin-left: 12rpx;
 }
 
-.holderTxt{
+.holderTxt {
   font-size: 24rpx;
 }
