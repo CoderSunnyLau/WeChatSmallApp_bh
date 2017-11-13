@@ -2,6 +2,7 @@
 const http = require('../../../../utils/httpUtil.js')
 var blockId = '';
 var show = false;
+var _this = {};
 
 Page({
 	data: {
@@ -12,48 +13,48 @@ Page({
 		coupon: {}
 	},
 	onLoad: function(options){
+		_this = this;
 		blockId = options.blockId;
-		this.load(blockId);
-		show = true;
+		this.load(blockId, function(){
+			show = true;
+			_this.saveInvoice(blockId);
+		});
+		this.getCoupons(blockId);
 	},
 	onShow: function(){
 		if(show){
 			this.load(blockId);
 		}
 	},
-	load: function(bid){
-		var _this = this;
+	load: function(bid, callback){
 		this.setData({
 			loading: true
 		});
 		wx.request({
 			url: 'http://bh.ry600.com/_shop/order.shtml',
-			data: {
-				orderId: bid
-			},
+			data: {orderId: bid},
 			header: http.getHeader(),
-			success: function (res) {
-				_this.getOrderInfo(bid);
+			success: function(res){
+				http.getHttp({
+					action: 'VSShop.getShopOrderInfo',
+					withProduct: true,
+					orderId: bid
+				}, function(res2, success){
+					if(success){
+						if(res2.success){
+							_this.setData({
+								order: res2.results[0],
+								load: false,
+								loading: false
+							});
+							if(typeof(callback) == 'function'){callback();}
+						}
+					}
+				});
 			}
 		});
 	},
-	getOrderInfo: function(bid){
-		var _this = this;
-		http.getHttp({
-			action: 'VSShop.getShopOrderInfo',
-			withProduct: true,
-			orderId: bid
-		}, function(res, success){
-			if(success){
-				if(res.success){
-					_this.setData({
-						order: res.results[0],
-						load: false,
-						loading: false
-					});
-				}
-			}
-		});
+	getCoupons: function(bid){
 		http.getHttp({
 			action: 'VSShop.getCashAccount',
 			orderId: bid,
@@ -68,11 +69,17 @@ Page({
 			}
 		});
 	},
+	saveInvoice: function(bid){
+		http.postHttp({
+			action: 'VSShop.saveInvoice',
+			orderId: bid,
+			invoiceDS: JSON.stringify(Object.assign(_this.data.order.invoice, {"needInvoice":"1", "invoiceItem":"药品"}))
+		}, function(){});
+	},
 	selTransaction: function(e){
 		this.setData({
 			loading: true
 		});
-		var _this = this;
 		http.postHttp({
 			action: 'VSShop.saveTransaction',
 			orderId: _this.data.order.blocks[0].blockId,
@@ -92,7 +99,6 @@ Page({
 		this.setData({
 			loading: true
 		});
-		var _this = this;
 		var freightsTemp = _this.data.order.blocks[0].delivery.freights[e.detail.value];
 		http.postHttp({
 			action: 'VSShop.saveDelivery',

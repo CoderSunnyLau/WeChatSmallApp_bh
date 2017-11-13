@@ -44,7 +44,21 @@ page{
 	height: 35rpx;
 	background-position:0 -40rpx;
 }
-
+.remark_title .arrow_black_down{
+	position: absolute;
+	right: 26rpx;
+}
+.deli_row{
+	display: flex;
+	align-items: center;
+}
+.small{
+	display: flex;
+	font-size: 22rpx;
+	width: 370rpx;
+	overflow: hidden;
+	margin-left: 30rpx;
+}
 
 
 
@@ -104,8 +118,9 @@ page{
   position: absolute;
   width: 150rpx;
   right: 35rpx;
-  bottom: 26rpx;
+  bottom: 20rpx;
   text-align: right;
+  z-index: 9;
 }
 .row_main{
   width: 750rpx;
@@ -200,6 +215,7 @@ page{
 	width: 750rpx;
 	background-color: #FFF;
 	border-top: 1rpx solid #DDD;
+	z-index: 999;
 }
 .amount_box{
 	height: 40rpx;
@@ -222,4 +238,38 @@ page{
 	text-align: center;
 	border: none;
 	margin: 0 0 0 30rpx;
+}
+
+/***********package**********/
+
+.pkg_info{
+	position: relative;
+}
+.pkg .main_info{
+	align-items: flex-start;
+	max-height: 184rpx;
+	min-height: 92rpx;
+	overflow: hidden;
+	padding-bottom: 0;
+	margin-bottom: 18rpx;
+}
+.pkg_info{
+	border-bottom: 2rpx dashed #EEE;
+}
+.pkg_tag{
+	height: 100%;
+	width: 162rpx;
+	font-size: 24rpx;
+}
+.old_price{
+	text-decoration: line-through;
+}
+.pkg .pkg_detail{
+	height: 90rpx;
+	position: absolute;
+	bottom: 0;
+	left: 202rpx;
+}
+.pkg .count{
+  bottom: 6rpx;
 }

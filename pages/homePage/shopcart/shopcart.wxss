@@ -73,7 +73,7 @@ page{
 }
 .count{
   position: absolute;
-  right: 18rpx;
+  right: 24rpx;
   bottom: 26rpx;
   border: 2rpx solid #AAA;
   display: flex;
@@ -307,6 +307,10 @@ page{
 }
 .pkg .main_info{
 	border: none;
+	align-items: flex-start;
+	max-height: 150rpx;
+	min-height: 100rpx;
+	overflow: hidden;
 }
 .pkg .row_main .main_info{
 	padding-left: 62rpx;
@@ -316,17 +320,23 @@ page{
 	border-bottom: 2rpx dashed #EEE;
 }
 .pkg_tag{
-	display: flex;
-	height: 34rpx;
-	align-items: center;
+	height: 100%;
+	width: 162rpx;
 	font-size: 24rpx;
 }
-.pkg_name{
-	display: inline-block;
-	font-size: 22rpx;
-	color: #FFF;
-	background-color: #F50;
-	line-height: 34rpx;
-	padding: 0 14rpx;
-	margin-right: 10rpx;
+.old_price{
+	text-decoration: line-through;
+}
+.pkg .pkg_detail{
+	height: 96rpx;
+	position: absolute;
+	bottom: 18rpx;
+	left: 232rpx;
+}
+.pdt_count{
+	position: absolute;
+	right: 40rpx;
+	bottom: 20rpx;
+	z-index: 9;
+	font-size: 26rpx;
 }

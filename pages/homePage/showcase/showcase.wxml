@@ -1,16 +1,16 @@
 <import src='/component/appHeader/appHeader.wxml' />
 <template is='org_message' data='{{..._headerData_}}'/>
 <template is='search_bar'  data='{{..._headerData_}}'/>
-<view class='nav'>
-  <view class='nav-left'>
-    <view class='nav-content'>
-      <view wx:for="{{leftNavArr}}" class="nav-item {{(isSelect==index)?'curr':''}}" bindtap='selectItem' data-idx='{{index}}'>{{item}}</view>
-    </view>
-  </view>
-  <view class='nav-right'>
-    <view class='nav-title'>{{navTitle}}</view>
-    <view class='nav-content'>
-      <view wx:for="{{rightNavArr}}" class='nav-item' bindtap='selectCase'>{{item}}</view>
-    </view>
-  </view>
+<view>
+	<view class='drop_item' wx:for='{{firstArr}}' wx:for-item='first'>
+		<view class="item_title arrow {{isSelect==index&&isDrop ?'down':''}}" bindtap='dropItem' data-idx='{{index}}'>{{first.showcaseName}}</view>
+		<view class='item_children' wx:if="{{isSelect==index&&isDrop?true:false}}">
+			<view class='children_item' wx:for='{{first.children}}' wx:for-item='second'>
+				<view class='item_left orange'>{{second.showcaseName}}</view>
+				<view class='item_right'>
+					<text class='right_item' wx:for='{{second.children}}' wx:for-item='thirth'>{{thirth.showcaseName}}</text>
+				</view>
+			</view>
+		</view>
+	</view>
 </view>

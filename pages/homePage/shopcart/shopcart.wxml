@@ -43,9 +43,10 @@
 						<view class='pkg_info'>
 							<view class='main_info {{bIdx + "," + pIdx == crrPdtIdx ? "touch_active" : ""}}' bindtouchstart="touchStart" bindtouchmove="touchMove" data-pdtidx='{{bIdx}},{{pIdx}}'>
 								<view class='check_box bg {{pdt.selected ? "selected" : ""}}' bindtap='selPdt' data-selected='{{pdt.selected}}' data-pdtidx='{{bIdx}},{{pIdx}}'></view>
-								<view>
-									<view class='pkg_tag'><text class='pkg_name'>套餐</text><text>{{pdt.caption}}</text></view>
-									<text class='detail_info '>库存：{{pdt.package.stockAmount}}</text>
+								<view class='pkg_tag'><text class='tag_name'>套餐</text><text>{{pdt.caption}}</text></view>
+								<view class='pdt_info pkg_detail'>
+									<text class='detail_info'>库存：{{pdt.package.stockAmount}}</text>
+									<text class='detail_info old_price'>原价：￥{{pdt.sumMoney / pdt.amount}}</text>
 									<view><text class='detail_info '>套餐价：</text><text class='orange'>￥{{pdt.price}}</text></view>
 								</view>
 								<view class='count'>
@@ -70,6 +71,7 @@
 										<text class='orange'>￥{{pkgPdt.price}}/{{pkgPdt.units}}</text>
 									</view>
 								</view>
+								<text class='pdt_count'>×{{pkgPdt.count}}</text>
 							</view>
 						</view>
 					</view>

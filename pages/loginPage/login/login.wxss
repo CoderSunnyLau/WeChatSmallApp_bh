@@ -42,6 +42,7 @@ page{
   font-size: 28rpx;
 }
 .btn{
+	width: auto;
   height: 90rpx;
   line-height: 90rpx;
   font-size: 34rpx;

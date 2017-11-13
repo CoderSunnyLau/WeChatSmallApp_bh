@@ -1,5 +1,6 @@
 const http = require('../../../../../utils/httpUtil.js')
 var orderId = '';
+var load = false;
 
 Page({
 	data: {
@@ -9,13 +10,15 @@ Page({
 	},
 	onLoad: function(options){
 		orderId = options.orderId;
-		this.addressesLoad(orderId);
+		this.addressesLoad(orderId, function(){
+			load = true;
+		});
 	},
 	onShow: function(){
-		if(orderId)
+		if(load && orderId)
 			this.addressesLoad(orderId);
 	},
-	addressesLoad: function(oid){
+	addressesLoad: function(oid, callback){
 		var _this = this;
 		http.getHttp({
 			action: 'VSShop.getAddressOption',
@@ -27,7 +30,9 @@ Page({
 						ads: res.results,
 						loading: false
 					});
-					console.log(res.results[0])
+					if(typeof(callback) == 'function'){
+						callback();
+					}
 				}
 			}
 		});
