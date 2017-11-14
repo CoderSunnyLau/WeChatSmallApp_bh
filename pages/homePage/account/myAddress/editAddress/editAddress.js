@@ -319,8 +319,6 @@ Page({
 			duration: 200
 		});
 		up.bottom(0).step();
-		this.setData({
-		});
 		//淡入
 		var fadeIn = wx.createAnimation({
 			duration: 200

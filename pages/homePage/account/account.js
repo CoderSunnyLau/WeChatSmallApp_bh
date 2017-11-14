@@ -1,5 +1,7 @@
 // pages/account/account.js
 const http = require('../../../utils/httpUtil.js')
+let load = false;
+let _this = {};
 
 Page({
   data: {
@@ -10,23 +12,23 @@ Page({
     fullName: ''
   },
   onLoad: function(){
+	_this = this;
 	this.load();
   },
   onShow: function(){
-	  this.load();
+	if(load){this.load();}
   },
   load: function(){
-    const _this = this;
     http.getHttp({action: 'VSUser.getBasicInfo'},function(res, success){
       if(success){
         if(res.success){
-          console.log(res)
           let user = res.results[0];
           _this.setData({
             userName: user.userName,
             fullName: user.fullName,
             userIcon: 'http://www.ry600.com' + user.photoUrl
           });
+		  load = true;
         }else{
           wx.reLaunch({
             url: '/pages/loginPage/login/login',

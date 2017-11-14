@@ -142,8 +142,6 @@ page{
 }
 .logout_btn{
   width: 345rpx;
-  height: 75rpx;
-  line-height: 75rpx;
   margin-top: 25rpx;
   font-size: 26rpx;
   text-indent: 56rpx;

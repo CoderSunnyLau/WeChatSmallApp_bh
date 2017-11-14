@@ -79,7 +79,7 @@
 			<picker range='{{order.transaction.pays}}' range-key='payModeName' bindchange='selTransaction'>
 				<view class='row_top arrow arrow_black_right'><text>支付方式</text><text class='red'>{{order.transaction.payModeName}}</text></view>
 			</picker>
-			<picker range='{{order.blocks[0].delivery.freights}}' range-key='freightName' bindchange='selDelivery'>
+			<picker range='{{order.blocks[0].delivery.freights}}' range-key='freightName' bindchange='deliveryChange'>
 				<view class='row_top arrow arrow_black_right'>
 					<view class='deli_row'>
 						<text>配送方式</text>
@@ -88,13 +88,37 @@
 					<text class='grey'>{{order.blocks[0].delivery.deliveryName}}</text>
 				</view>
 			</picker>
+			<view class='pk_dlv {{showDlvDtl ? "show_dlv_dtl" : ""}}'>
+				<view class='pk_bg' animation='{{animationBg}}'></view>
+				<view class='pk_wrap' animation='{{animationBox}}'>
+					<view class='pk_top'>
+						<text class='pk_confirm orange' catchtap='selDelivery'>确定</text>
+					</view>
+					<view class='pk_ttl'>
+						<text class='pk_rcv_time'>收货时间</text>
+						<text>电话确认</text>
+						<text>付款方式</text>
+					</view>
+					<picker-view indicator-class='pk_col' class='pk' bindchange="dlvDtlChange" value='{{dlvDtlIdx}}'>
+						<picker-view-column class='col1'>
+							<view class='pk_item' wx:for='{{delivery[0]}}' wx:key=''>{{item}}</view>
+						</picker-view-column>
+						<picker-view-column class='col2'>
+							<view class='pk_item' wx:for='{{delivery[1]}}' wx:key=''>{{item}}</view>
+						</picker-view-column>
+						<picker-view-column class='col3'>
+							<view class='pk_item' wx:for='{{delivery[2]}}' wx:key=''>{{item}}</view>
+						</picker-view-column>
+					</picker-view>
+				</view>
+			</view>
 			<view class='row_top'><text>发票信息</text><text class='grey'>开发票（以线下ERP为准）</text></view>
 			<picker range='{{coupon.coupons}}' range-key='caption' bindchange='selCoupon' disabled='{{coupon.coupons.length == 0 ? true: false}}'>
 				<view class='row_top {{coupon.coupons.length ? "arrow arrow_black_right" : ""}}'><text>优惠券</text><text class='grey'>{{coupon.coupons.length ? coupon.coupons.length + "张可用" : "无可用"}}</text></view>
 			</picker>
 			<view class='row_top remark_box {{editRemarkTemp ? "remark_edit" : ""}}' bindtap='editRemark'>
 				<view class='remark_title'><text>留言</text><view class='arrow arrow_black_down'></view></view>
-				<input class='remark'></input>
+				<textarea class='remark' placeholder='请在此处填写您的备注信息。' placeholder-class='placeholder'></textarea>
 			</view>
 		</view>
 		<view class='order_account'>
