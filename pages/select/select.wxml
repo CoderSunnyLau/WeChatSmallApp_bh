@@ -35,7 +35,7 @@
   <view class='noCooperate'>
     <view class='tip-title'>如果您是本站的合作单位，您可以在本站的PC站点成为本站商友</view>
     <view class='tip-content'>
-      <image src='/images/tip_rabbit.png' class='tip-img'></image>
+      <image src='/images/tip_rabbit.png' class='tip-img' mode='aspectFit'></image>
       <view class='tip-up'>
         <view>抱歉，您所在的机构还不是本站商友</view>
         <view>当前页面只对商友会员用户开放</view>

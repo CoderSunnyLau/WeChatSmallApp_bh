@@ -1,4 +1,4 @@
-{
+	{
     "pages": [
         "pages/loginPage/login/login",
         "pages/select/select",
@@ -20,6 +20,7 @@
         "pages/homePage/account/myAddress/editAddress/editAddress",
         "pages/homePage/account/myFavorite/myFavorite",
         "pages/homePage/showcase/search/search",
+				"pages/homePage/showcase/search/productDetail/productDetail",
         "pages/homePage/account/myCoupon/myCoupon",
         "pages/homePage/shopcart/orderCheckout/selectAddress/selectAddress",
         "pages/homePage/account/fixInfo/fixInfo",

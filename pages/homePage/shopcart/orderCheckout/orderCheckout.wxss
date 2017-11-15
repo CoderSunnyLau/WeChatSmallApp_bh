@@ -46,7 +46,12 @@ page{
 }
 .remark_title .arrow_black_down{
 	position: absolute;
-	right: 26rpx;
+	transition: all 0.3s;
+	top: 18rpx;
+	right: -34rpx;
+}
+.arrow_trans{
+	transform: rotate(-180deg);
 }
 .deli_row{
 	display: flex;
@@ -199,6 +204,7 @@ page{
 	display: flex;
 	flex-direction: row;
 	align-items: center;
+	position: relative;
 }
 .remark{
 	display: none;

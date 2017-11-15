@@ -1,0 +1,71 @@
+<view>
+  <swiper circular='true' indicator-dots='true' indicator-color='{{dotColor}}' indicator-active-color='{{activeDotColor}}' class='img_content'>
+    <block wx:for='{{imgUrl}}'>
+      <swiper-item class='img_area'>
+        <image src='{{item}}' mode='aspectFit' class='product_img' />
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class="favorite bg {{isAdd?'hasAdd':''}}"></view>
+  <view class='product_msg_area'>
+    <view class='area up'>
+      <text class='product_caption'>小柴胡颗粒 10g*6袋 广州白云光华制药股份有限公司</text>
+      <text>原价 ¥7</text>
+      <view class='product_price orange'>现价
+        <text>¥7.00/盒</text>
+      </view>
+    </view>
+    <view class='area buyAction'>
+      <view class='action_box'>
+        <view class='reduce'>-</view>
+        <input type='number' />
+        <view class='add'>+</view>
+      </view>
+      <button>加入购物车</button>
+    </view>
+    <view class='area down'>
+      <text>编号：SPH00018703</text>
+      <text>零售价：7</text>
+      <text>包装：盒</text>
+    </view>
+    <view class='area tip'>
+      <view>
+        <text>满赠</text>全场购满1500元换购圆仔退热贴5盒</view>
+      <view>
+        <text>满赠</text>全场购满2800元换购王老吉金银花露1件（24瓶/件）</view>
+      <view>
+        <text>满赠</text>购买联盟品种满500元换购香雪夏桑菊颗粒5包</view>
+    </view>
+    <view class='area groups'>
+      <view class='groups_title'>
+        <text>商品套餐</text>
+        <text>共1个套餐</text>
+      </view>
+      <view class='groups_content'>
+        <view class='groups_img'>
+        </view>
+        <view class='groups_price'>
+          <text>套餐价</text>
+          <text>¥ 12.70</text>
+        </view>
+      </view>
+    </view>
+    <view class='area detail'>
+      <view class='detail_title'>商品详情</view>
+      <view class='detail_content'>
+        <text>剂型：</text>
+        <text>品名：海王 小儿氨酚黄那敏颗粒</text>
+        <text>通用名：小儿氨酚黄那敏颗粒</text>
+        <text>作用类别：</text>
+        <text>规格：9袋</text>
+        <text>单位：盒</text>
+        <text>生产厂商：深圳海王药业有限公司</text>
+        <text>批准文号：国药准字H44024977</text>
+        <text>品牌名称：海王</text>
+        <text>产地：</text>
+        <text>指导零售价：</text>
+        <text>特殊管理药品：</text>
+      </view>
+    </view>
+  </view>
+</view>

@@ -7,22 +7,24 @@
   </view>
   <block wx:if='{{hasProduct}}'>
     <view class='product-content'>
-      <view class='product-item'>
-        <view class='item up'>
-          <text class='saleTag'>促销</text>
-          <text class='sale-content'>全场3折起</text>
-        </view>
+      <view class='product-item' wx:for='{{productArr}}'>
+        <block wx:if='{{item.addSaleTagName}}'>
+          <view class='item up'>
+            <text class='saleTag'>{{item.addSaleTagName}}</text>
+            <text class='sale-content'>{{item.saleTag}}</text>
+          </view>
+        </block>
 
         <view class='item down'>
           <view>
-            <image class='product-img' src='/images/tip_rabbit.png'/>
+            <image class='product-img' src='{{item.photo.smallUrl}}' mode='aspectFit' />
           </view>
           <view class='product-msg'>
-            <text class='product-caption'>小柴胡颗粒 10g*6袋 广州白云山光华制药股份有限公司</text>
-            <text>货号：X2029</text>
+            <text class='product-caption'>{{item.productCaption}}</text>
+            <text>货号：{{item.skus}}</text>
             <text>库存：有货</text>
-            <text>原价：¥7</text>
-            <text class='product-price'>¥ 3.50/盒</text>
+            <text>原价：¥{{item.skus.oldPrice}}</text>
+            <text class='product-price'>¥ {{item.skus.price}}/{{item.skus.packUnits}}</text>
           </view>
         </view>
 
@@ -30,7 +32,7 @@
           <view class='shopcart'></view>
           <view class='action-box'>
             <text class='reduce'>-</text>
-            <input type='number'/>
+            <input type='number' />
             <text class='add'>+</text>
           </view>
         </view>
@@ -39,7 +41,7 @@
   </block>
   <block wx:else>
     <view class='noProduct_tip' style='height:{{tipHeight-305}}rpx'>
-      <image src='/images/tip_rabbit.png' class='tip_img'></image>
+      <image src='/images/tip_rabbit.png' class='tip_img' mode='aspectFit'></image>
       <view class='tip_up'>抱歉，没找到相关的商品信息</view>
       <view class='tip_down'>建议您查看输入是否有误或者调整关键字</view>
     </view>

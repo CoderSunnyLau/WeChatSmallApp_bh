@@ -76,3 +76,7 @@ button{
 	width: 100rpx;
 	height: 100rpx;
 }
+.btn_disabled{
+	background-color: #BBB !important;
+	color: #FFF !important;
+}

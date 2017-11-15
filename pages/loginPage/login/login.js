@@ -24,6 +24,23 @@ Page({
         }
       },
     });
+	wx.login({
+		success: function(res){
+			console.log(res.code);
+			wx.request({
+				url: 'https://api.weixin.qq.com/sns/jscode2session',
+				data: {
+					appid: 'wx812f52591fe47137',
+					secret: 'f23d93e403dec4505ff1ef1b7e61c9f4',
+					js_code: res.code,
+					grant_type: 'authorization_code'
+				},
+				success: function(r){
+					console.log(r.data.openid)
+				}
+			});
+		}
+	})
   },
   nameInput: function (e) {
     this.setData({

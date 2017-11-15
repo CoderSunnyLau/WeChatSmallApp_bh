@@ -152,6 +152,13 @@ Page({
 			editRemarkTemp: !_this.data.editRemarkTemp
 		});
 	},
+	remarkInput: function(e){
+		var val = e.detail.value;
+		var remarkTemp = 'order.remark';
+		this.setData({
+			[remarkTemp]: e.detail.value
+		});
+	},
 	saveOrder: function(e){
 
 	},

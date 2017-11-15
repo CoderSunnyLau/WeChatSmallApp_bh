@@ -1,6 +1,5 @@
 const app = getApp()
 const httpUtil = require('../../utils/httpUtil.js')
-import { appHeader } from '../../component/appHeader/appHeader.js'
 var _msgData
 var orgArr
 var radioIdx
@@ -89,7 +88,6 @@ Page({
 			_userData.storeCode = that.data.relOrgArr[radioIdx].storeCode
 
 			wx.setStorageSync('userData', _userData)
-			new appHeader()
 			wx.switchTab({
 				url: '/pages/homePage/home/home'
 			})

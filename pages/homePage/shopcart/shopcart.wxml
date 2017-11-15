@@ -27,6 +27,10 @@
 									<text class='detail_info'>库存：{{(pdt.sku.stockTag.amount > 100 || pdt.sku.stockTag.amount == 0) ? pdt.sku.stockTag.stockState : pdt.sku.stockTag.amount+pdt.sku.units}}</text>
 									<text class='orange'>￥{{pdt.sku.price}}/{{pdt.sku.units}}</text>
 								</view>
+								<view class='count_limit orange'>
+									<text>{{(pdt.sku.modCount > 1) ? ("不拆零：" + pdt.sku.modCount + pdt.sku.units) : ""}}</text>
+									<text>{{(pdt.sku.minOrder > 1) ? "起订量：" + (pdt.sku.minOrder + pdt.sku.units) : ""}}</text>
+								</view>
 								<view class='count'>
 									<text class='sub' bindtap='changeCount' data-changemethod='sub' data-pdtidx='{{bIdx}},{{pIdx}}'>-</text>
 									<input value='{{pdt.amount}}' type='number' data-changemethod='input' bindblur='changeCount' data-pdtidx='{{bIdx}},{{pIdx}}' bindinput='countInput' bindfocus='countFocus'></input>

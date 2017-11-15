@@ -24,7 +24,7 @@
   color: #f50;
   padding: 0 10rpx;
   border-radius: 6rpx;
-  width: 136rpx;
+  max-width: 136rpx;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
@@ -35,7 +35,7 @@
 }
 
 .org_crr {
-  width: 265rpx;
+  max-width: 265rpx;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;

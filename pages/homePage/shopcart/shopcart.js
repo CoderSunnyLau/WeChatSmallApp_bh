@@ -216,19 +216,38 @@ Page({
 			[inputTemp]: e.detail.value
 		});
 	},
-	changeCount: function (e, method) {
+	changeCount: function (e, method){
 		var _this = this,
 			idxArr = e.currentTarget.dataset.pdtidx.split(','),
 			method = e.currentTarget.dataset.changemethod,
 			blockId = this.data.blocks[idxArr[0]].blockId,
-			cartItemId = this.data.blocks[idxArr[0]].items[idxArr[1]].cartItemId,
+			pdt = this.data.blocks[idxArr[0]].items[idxArr[1]],
+			cartItemId = pdt.cartItemId,
 			addUp, amount;
+		var count = pdt.amount;
+		var minOrder = pdt.sku.minOrder;
+		var modCount = pdt.sku.modCount;
 		switch(method){
-			case 'input': addUp = false; amount = e.detail.value; break;
-			case 'sub': addUp = true; amount = -1; break;
-			case 'add': addUp = true; amount = 1; break;
+			case 'input': addUp = false; amount = e.detail.value; count = amount; break;
+			case 'sub': addUp = true; amount = -1; count = count + amount; break;
+			case 'add': addUp = true; amount = 1; count = count + amount; break;
 		}
-		if (!addUp && (amount == this.data.countFocusTemp)){
+		if(count < minOrder){
+			wx.showModal({
+				title: '提示',
+				content: '当前商品起订量为' + minOrder + pdt.sku.units,
+				showCancel: false
+			});
+			return;
+		}else if(count % modCount != 0){
+			wx.showModal({
+				title: '提示',
+				content: '当前商品不拆零销售，不拆零数量为' + modCount + pdt.sku.units,
+				showCancel: false
+			});
+			return;
+		}
+		if(!addUp && (amount == this.data.countFocusTemp)){
 			return;
 		}else{
 			_this.setData({

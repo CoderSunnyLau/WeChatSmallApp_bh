@@ -12,7 +12,7 @@ page{
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 50rpx auto 100rpx;
+  margin: 50rpx auto 70rpx;
 }
 .logo{
   width: 320rpx;
@@ -26,8 +26,9 @@ page{
   background-position-x: 5rpx;
 }
 .tip{
-	font-size: 24rpx;
+  font-size: 24rpx;
   text-align: center;
+  height: 30rpx;
 }
 .pwd{
   background-position: 8rpx -72rpx;

@@ -71,6 +71,15 @@ page{
   height: 162rpx;
   width: 470rpx;
 }
+.count_limit{
+	position: absolute;
+	right: 22rpx;
+ 	bottom: 70rpx;
+	font-size: 22rpx;
+	width: 170rpx;
+	display: flex;
+	flex-direction: column;
+}
 .count{
   position: absolute;
   right: 24rpx;
@@ -265,10 +274,6 @@ page{
   width: 188rpx;
   text-align: center;
   border: none;
-}
-.btn_disabled{
-	background-color: #BBB !important;
-	color: #FFF !important;
 }
 .bottom_wrap{
 	position: relative;
