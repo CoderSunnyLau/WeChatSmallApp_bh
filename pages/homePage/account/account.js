@@ -1,17 +1,17 @@
 // pages/account/account.js
 const http = require('../../../utils/httpUtil.js')
+import { appHeader } from '../../../component/appHeader/appHeader.js'
 let load = false;
 let _this = {};
 
 Page({
 	data: {
-		storeCrr: '万邦药业',
-		orgCrr: '同和药店',
 		userIcon: 'http://file.ry600.com/snapshot//files/af/afvnal1p3sa59q79/2017-02-08/79l897i7bao7gd3o.gif',
 		userName: '',
 		fullName: ''
 	},
 	onLoad: function(){
+		new appHeader();
 		_this = this;
 		this.load();
 	},

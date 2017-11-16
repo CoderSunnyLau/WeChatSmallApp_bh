@@ -2,6 +2,7 @@
 const http = require('../../../utils/httpUtil.js');
 const user = wx.getStorageSync('userData');
 let load = false;
+var _this = {};
 
 Page({
 	data: {
@@ -10,7 +11,6 @@ Page({
 		crrPdtIdx: '',
 		startX: 0, //开始坐标
 		startY: 0,
-		storeName: '样板展示平台',
 		blocks: [],
 		selCount: 0,
 		count: 1,
@@ -21,7 +21,7 @@ Page({
 		giftsTemp: []
 	},
 	onLoad: function(){
-		var _this = this;
+		_this = this;
 		this.loadShopcart(function(){
 			load = true;
 			_this.setData({loading:false});
@@ -38,7 +38,6 @@ Page({
 		});
 	},
 	loadShopcart: function(callback){
-		const _this = this;
 		const _data = this.data;
 		http.getHttp({
 			action: 'VSShop.getShopCart',
@@ -70,7 +69,7 @@ Page({
 						if(res.confirm){
 							wx.redirectTo({
 								url: '../../loginPage/login/login',
-							})
+							});
 						}
 					}
 				});
@@ -78,31 +77,34 @@ Page({
 		});
 	},
   	touchStart: function(e){
-      	this.setData({
-			startX: e.changedTouches[0].clientX,
-			startY: e.changedTouches[0].clientY,
-			isTouchMove: false,
-			crrPdtIdx: ''
-		});
+		if(e.changedTouches[0]){
+			this.setData({
+				startX: e.changedTouches[0].clientX,
+				startY: e.changedTouches[0].clientY,
+				isTouchMove: false,
+				crrPdtIdx: ''
+			});
+		}
   	},
- 	touchMove: function (e) {
-    	var _this = this,
-			startX = _this.data.startX,//起始X
-			startY = _this.data.startY,//起始Y
-     		touchMoveX = e.changedTouches[0].clientX,//滑動變化坐標
-			touchMoveY = e.changedTouches[0].clientY,//滑動變化坐標
-      	//滑動角度
-		angle = _this.angle({ X: startX, Y: startY }, { X: touchMoveX, Y: touchMoveY });
-		if (Math.abs(angle) > 30) return;
-		if (touchMoveX > startX) { //右滑
-			this.setData({
-				isTouchMove: false
-			});
-		} else { //左滑
-			this.setData({
-				isTouchMove: true,
-				crrPdtIdx: e.currentTarget.dataset.pdtidx
-			});
+ 	touchMove: function(e){
+		if(e.changedTouches[0]){
+			var startX = _this.data.startX,//起始X
+				startY = _this.data.startY,//起始Y
+				touchMoveX = e.changedTouches[0].clientX,//滑動變化坐標
+				touchMoveY = e.changedTouches[0].clientY,//滑動變化坐標
+			//滑動角度
+			angle = _this.angle({ X: startX, Y: startY }, { X: touchMoveX, Y: touchMoveY });
+			if(Math.abs(angle) > 30) return;
+			if(touchMoveX > startX){ //右滑
+				this.setData({
+					isTouchMove: false
+				});
+			}else{ //左滑
+				this.setData({
+					isTouchMove: true,
+					crrPdtIdx: e.currentTarget.dataset.pdtidx
+				});
+			}
 		}
 	},
 	/**
@@ -110,18 +112,17 @@ Page({
 	 * @param {Object} start 起点坐标
 	 * @param {Object} end 终点坐标
    	*/
-	angle: function (start, end) {
+	angle: function(start, end){
 		var _X = end.X - start.X,
 			_Y = end.Y - start.Y;
 		return 360 * Math.atan(_Y / _X) / (2 * Math.PI);
 	},
-	fixShopcart: function (e, params, callback) {
+	fixShopcart: function(e, params, callback){
 		this.setData({
 			crrPdtIdx: '',
 			loading: true
 		});
-		var _this = this,
-			pdtidx = e.currentTarget.dataset.pdtidx,
+		var pdtidx = e.currentTarget.dataset.pdtidx,
 			blockidx = e.currentTarget.dataset.blockidx,
 			cartItem = {},
 			blockId,
@@ -136,9 +137,7 @@ Page({
 			blockId = blockidx;
 		}
 		if(cartItemId){
-			cartItem = {
-				cartItemId: cartItemId
-			}
+			cartItem = {cartItemId: cartItemId}
 		}
 		var postData = Object.assign({
 			widthReward: true,
@@ -174,8 +173,7 @@ Page({
 		});
   	},
 	collectPdt: function(e){
-		var _this = this,
-			pdtidx = e.currentTarget.dataset.pdtidx,
+		var pdtidx = e.currentTarget.dataset.pdtidx,
 			shopProductId = _this.data.blocks[pdtidx.split(',')[0]].items[pdtidx.split(',')[1]].sku.shopProductId,
 			pdtTitle = _this.data.blocks[pdtidx.split(',')[0]].items[pdtidx.split(',')[1]].sku.productCaption;
 		this.setData({
@@ -204,21 +202,19 @@ Page({
 		});
 	},
 	countFocus: function(e){
-		var _this = this;
 		this.setData({
 			countFocusTemp: e.detail.value
 		});
 	},
-	countInput: function (e) {
+	countInput: function(e){
 		var idxArr = e.currentTarget.dataset.pdtidx.split(',');
 		var inputTemp = 'blocks[' + idxArr[0] + '].items[' + idxArr[1] + '].amount';
 		this.setData({
-			[inputTemp]: e.detail.value
+			[inputTemp]: parseInt(e.detail.value)
 		});
 	},
-	changeCount: function (e, method){
-		var _this = this,
-			idxArr = e.currentTarget.dataset.pdtidx.split(','),
+	changeCount: function(e, method){
+		var idxArr = e.currentTarget.dataset.pdtidx.split(','),
 			method = e.currentTarget.dataset.changemethod,
 			blockId = this.data.blocks[idxArr[0]].blockId,
 			pdt = this.data.blocks[idxArr[0]].items[idxArr[1]],
@@ -227,27 +223,41 @@ Page({
 		var count = pdt.amount;
 		var minOrder = pdt.sku.minOrder;
 		var modCount = pdt.sku.modCount;
+		var stock = pdt.sku.stockTag.amount;
 		switch(method){
 			case 'input': addUp = false; amount = e.detail.value; count = amount; break;
 			case 'sub': addUp = true; amount = -1; count = count + amount; break;
 			case 'add': addUp = true; amount = 1; count = count + amount; break;
 		}
-		if(count < minOrder){
+		if(count > stock){
 			wx.showModal({
 				title: '提示',
-				content: '当前商品起订量为' + minOrder + pdt.sku.units,
+				content: '库存不足，仅剩' + stock + pdt.sku.units,
 				showCancel: false
 			});
-			return;
+			if(addUp){
+				return;
+			}else{
+				addUp = false;
+				amount = stock;
+				if(stock){
+					var amountTemp = 'blocks[' + idxArr[0] + '].items[' + idxArr[1] + '].amount';
+					this.setData({
+						[amountTemp]: stock
+					});
+				}
+			}
+		}else if(count < minOrder){
+			_this.setData({
+				min: true
+			});
 		}else if(count % modCount != 0){
-			wx.showModal({
-				title: '提示',
-				content: '当前商品不拆零销售，不拆零数量为' + modCount + pdt.sku.units,
-				showCancel: false
+			_this.setData({
+				mod: true
 			});
-			return;
 		}
 		if(!addUp && (amount == this.data.countFocusTemp)){
+			console.log(amount, this.data.countFocusTemp)
 			return;
 		}else{
 			_this.setData({
@@ -273,7 +283,6 @@ Page({
 		}
 	},
 	clearShopcart: function(){
-		var _this = this;
 		wx.showModal({
 			title: '提示',
 			content: '你确定要清空购物车吗？（此操作不可逆）',
@@ -310,8 +319,7 @@ Page({
 			edit: !this.data.edit
 		});
 	},
-	editGift: function (e) {
-		var _this = this;
+	editGift: function(e){
 		var idxArr = e.currentTarget.dataset.pdtidx.split(',');
 		if(this.data.giftEditIdx == e.currentTarget.dataset.pdtidx){
 			var thisGifts = 'blocks[' + idxArr[0] + '].items[' + idxArr[1] + '].rewards[0].gifts';
@@ -351,7 +359,6 @@ Page({
 		});
 	},
 	changeGift: function(e){
-		var _this = this;
 		var idxArr = e.currentTarget.dataset.pdtidx.split(',');
 		var giftCount = 0;
 		var selGifts = [];
@@ -397,8 +404,52 @@ Page({
 		}
 	},
 	buy: function(e){
-		wx.navigateTo({
-			url: 'orderCheckout/orderCheckout?blockId=' + e.currentTarget.dataset.blockid,
-		});
+		var blk = _this.data.blocks[e.currentTarget.dataset.bid];
+		var msg, msg2;
+		for(var i = 0; i < blk.items.length; i++){
+			var pdt = blk.items[i];
+			var amt = pdt.amount;
+			if(pdt.selected){
+				if(amt > pdt.sku.stockTag.amount){
+					msg = "部分商品库存不足，请您仔细核对商品数量。";
+					break;
+				}else if(amt % pdt.sku.modCount != 0){
+					msg = "部分商品不拆零销售，请您仔细核对商品数量。";
+					break;
+				}
+				// else if(amt < pdt.sku.minOrder){
+				// 	msg = "部分商品数量未达到起订量，请您仔细核对商品数量。";
+				// 	break;
+				// }
+			}else{
+				msg2 = "有部分商品未勾选，是否继续提交订单？";
+			}
+		}
+		if(msg){
+			wx.showModal({
+				title: '提示',
+				content: msg,
+				showCancel: false
+			});
+			return;
+		}else if(msg2){
+			wx.showModal({
+				title: '提示',
+				content: msg2,
+				success: function(res){
+					if(res.cancel){
+						return false;
+					}else{
+						wx.navigateTo({
+							url: 'orderCheckout/orderCheckout?blockId=' + e.currentTarget.dataset.blockid,
+						});
+					}
+				}
+			})
+		}else{
+			wx.navigateTo({
+				url: 'orderCheckout/orderCheckout?blockId=' + e.currentTarget.dataset.blockid,
+			});
+		}
 	}
 })

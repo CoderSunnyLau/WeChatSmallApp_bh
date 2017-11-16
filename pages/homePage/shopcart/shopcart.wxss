@@ -65,6 +65,8 @@ page{
 .pdt_title{
   line-height: 34rpx;
   font-size: 26rpx;
+  height: 68rpx;
+  overflow: hidden;
 }
 .pdt_info{
   justify-content: space-between;
@@ -90,6 +92,7 @@ page{
   height: 38rpx;
   justify-content: space-between;
   align-items: center;
+  background-color: #FFF;
 }
 .count input{
   height: 60rpx;
@@ -298,6 +301,7 @@ page{
 	width: 200rpx;
 	text-align: center;
 	line-height: 106rpx;
+	color: #FFF;
 }
 .sel_all_bottom{
 	margin-left: 20rpx;
@@ -344,4 +348,7 @@ page{
 	bottom: 20rpx;
 	z-index: 9;
 	font-size: 26rpx;
+}
+.un_sel, .un_sel .main_info{
+	background-color: #FDEBEB;
 }

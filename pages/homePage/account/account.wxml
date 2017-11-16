@@ -1,9 +1,12 @@
+<import src='/component/appHeader/appHeader.wxml' />
+
 <view class="account">
-  <view class='account_header'>
+  <!-- <view class='account_header'>
     <image class='logo_ry' src='/images/logo_ry.png'></image>
     <text class='store_crr'>{{storeCrr}}</text>
     <text class='org_crr'>当前机构：{{orgCrr}}</text>
-  </view>
+  </view> -->
+  <template is='org_message' data='{{..._headerData_}}'/>
   <view class='info_block'>
     <view class='panel_box info_box'>
       <image class='user_icon' src="{{userIcon}}"></image>
