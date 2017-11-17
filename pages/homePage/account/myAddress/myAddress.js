@@ -1,5 +1,7 @@
 // pages/homePage/account/myAdress/myAddress.js
-const http = require('../../../../utils/httpUtil.js')
+const http = require('../../../../utils/httpUtil.js');
+const ry = require('../../../../utils/util.js');
+var load = false;
 
 Page({
 	data: {
@@ -9,10 +11,10 @@ Page({
 	onLoad: function(){
 		this.addressesLoad();
 	},
-	onShow: function () {
-		this.addressesLoad();
+	onShow: function(){
+		if(load){this.addressesLoad();}
 	},
-	addressesLoad: function(){
+	addressesLoad: function(callback){
 		var _this = this;
 		http.getHttp({
 			action: 'VSShop.getAddresses'
@@ -23,9 +25,11 @@ Page({
 						ads: res.results,
 						loading: false
 					});
-					console.log(res.results[0])
+				}else{
+					ry.alert(res.message);
 				}
 			}
+			load = true;
 		});
 	}
 })

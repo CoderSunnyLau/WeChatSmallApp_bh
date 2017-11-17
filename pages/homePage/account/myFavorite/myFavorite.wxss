@@ -53,3 +53,7 @@ page{
 	background-size: 100rpx;
 	background-position: 0 -1020rpx;
 }
+.no_res{
+	text-align: center;
+	line-height: 120rpx;
+}

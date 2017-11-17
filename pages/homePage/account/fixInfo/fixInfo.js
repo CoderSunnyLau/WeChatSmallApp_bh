@@ -1,22 +1,17 @@
 // pages/account/account.js
-const http = require('../../../../utils/httpUtil.js')
+const http = require('../../../../utils/httpUtil.js');
+const ry = require('../../../../utils/util.js');
+var _this = {};
 
 Page({
 	data: {
 		user: {},
 		gender: ["男", "女", "不公开"]
 	},
-	onLoad: function(){
-		const _this = this;
-		http.getHttp({action: 'VSUser.getBasicInfo'},function(res, success){
-			if(success){
-				if(res.success){
-					_this.setData({
-						user: res.results[0]
-					});
-					console.log(res.results[0])
-				}
-			}
+	onLoad: function(options){
+		_this = this;
+		this.setData({
+			user: options
 		});
 	},
 	inputFn: function(e){
@@ -35,7 +30,6 @@ Page({
 		});
 	},
 	saveInfo: function(){
-		var _this = this;
 		http.postHttp({
 			action: 'VSUser.saveBasicInfo',
 			masterDS: JSON.stringify(_this.data.user)
@@ -51,6 +45,8 @@ Page({
 							}, 800);
 						}
 					});
+				}else{
+					ry.alert(res.message);
 				}
 			}
 		});

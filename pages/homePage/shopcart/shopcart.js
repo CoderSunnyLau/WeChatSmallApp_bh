@@ -1,7 +1,8 @@
 // pages/shopcart/shopcart.js
 const http = require('../../../utils/httpUtil.js');
+const ry = require('../../../utils/util.js');
 const user = wx.getStorageSync('userData');
-let load = false;
+var load = false;
 var _this = {};
 
 Page({
@@ -30,7 +31,6 @@ Page({
 	},
 	onShow: function(){
 		if(load){this.loadShopcart()}
-		console.log(load)
 	},
 	onPullDownRefresh: function(){
 		this.loadShopcart(function(){
@@ -38,7 +38,7 @@ Page({
 		});
 	},
 	loadShopcart: function(callback){
-		const _data = this.data;
+		var _data = this.data;
 		http.getHttp({
 			action: 'VSShop.getShopCart',
 			widthReward: true,
@@ -46,33 +46,23 @@ Page({
 			bizCenterId: '',
 			onlyAmount: false
 		}, function(res, success){
-			if(success && res.success){
-				let blocksTemp = [];
-				for(let i = 0; i < res.results[0].blocks.length; i++){
-					blocksTemp.push(res.results[0].blocks[i]);
-				}
-				_this.setData({
-					blocks: blocksTemp,
-					selCount: res.results[0].selCount,
-					count: res.results[0].count
-				});
-				if(callback){
-					callback();
-				}
-			}else{
-				var msg = success ? res.message : '网络错误';
-				wx.showModal({
-					title: '提示',
-					content: msg,
-					showCancel: false,
-					success: function(res){
-						if(res.confirm){
-							wx.redirectTo({
-								url: '../../loginPage/login/login',
-							});
-						}
+			if(success){
+				if(res.success){
+					let blocksTemp = [];
+					for(let i = 0; i < res.results[0].blocks.length; i++){
+						blocksTemp.push(res.results[0].blocks[i]);
 					}
-				});
+					_this.setData({
+						blocks: blocksTemp,
+						selCount: res.results[0].selCount,
+						count: res.results[0].count
+					});
+					if(callback){
+						callback();
+					}
+				}else{
+					ry.alert(res.message);
+				}
 			}
 		});
 	},
@@ -107,10 +97,10 @@ Page({
 			}
 		}
 	},
-	/**
-	 * 计算滑动角度
-	 * @param {Object} start 起点坐标
-	 * @param {Object} end 终点坐标
+	/*
+	 滑动角度
+	 start 起点坐标
+	 end 终点坐标
    	*/
 	angle: function(start, end){
 		var _X = end.X - start.X,
@@ -156,6 +146,8 @@ Page({
 					if(callback){
 						callback();
 					}
+				}else{
+					ry.alert(res.message);
 				}
 			}
 		});
@@ -197,6 +189,8 @@ Page({
 						icon: 'success',
 						duration: 800
 					});
+				}else{
+					ry.alert(res.message);
 				}
 			}
 		});
@@ -230,11 +224,7 @@ Page({
 			case 'add': addUp = true; amount = 1; count = count + amount; break;
 		}
 		if(count > stock){
-			wx.showModal({
-				title: '提示',
-				content: '库存不足，仅剩' + stock + pdt.sku.units,
-				showCancel: false
-			});
+			ry.alert('库存不足，仅剩' + stock + pdt.sku.units);
 			if(addUp){
 				return;
 			}else{
@@ -247,17 +237,8 @@ Page({
 					});
 				}
 			}
-		}else if(count < minOrder){
-			_this.setData({
-				min: true
-			});
-		}else if(count % modCount != 0){
-			_this.setData({
-				mod: true
-			});
 		}
 		if(!addUp && (amount == this.data.countFocusTemp)){
-			console.log(amount, this.data.countFocusTemp)
 			return;
 		}else{
 			_this.setData({
@@ -277,40 +258,40 @@ Page({
 							loading: false,
 							blocks: res.results[0].blocks
 						});
+					}else{
+						ry.alert(res.message);
 					}
 				}
 			});
 		}
 	},
 	clearShopcart: function(){
-		wx.showModal({
-			title: '提示',
-			content: '你确定要清空购物车吗？（此操作不可逆）',
-			success: function(res){
-				if(res.confirm){
-					_this.setData({
-						loading: true
-					});
-					http.postHttp({
-						action: 'VSShop.removeAll',
-						widthReward: false,
-						orgId: '',
-						bizCenterId: ''
-					}, function(res, success){
-						if(success){
-							if(res.success){
-								_this.setData({
-									loading: false,
-									blocks: res.results[0].blocks,
-									edit: false
-								});
-								console.log(res);
-							}
+		ry.confirm('你确定要清空购物车吗？（此操作不可逆）', function(res){
+			if(res.confirm){
+				_this.setData({
+					loading: true
+				});
+				http.postHttp({
+					action: 'VSShop.removeAll',
+					widthReward: false,
+					orgId: '',
+					bizCenterId: ''
+				}, function(res, success){
+					if(success){
+						if(res.success){
+							_this.setData({
+								loading: false,
+								blocks: res.results[0].blocks,
+								edit: false
+							});
+							console.log(res);
+						}else{
+							ry.alert(res.message);
 						}
-					});
-				}else{
-					return;
-				}
+					}
+				});
+			}else{
+				return;
 			}
 		});
 	},
@@ -373,11 +354,7 @@ Page({
 			}
 		}
 		if(giftCount > maxGiftCount){
-			wx.showModal({
-				title: '提示',
-				content: '最多可以选择' + maxGiftCount + '件商品',
-				showCancel: false
-			});
+			ry.alert('最多可以选择' + maxGiftCount + '件商品');
 		}else{
 			_this.setData({
 				loading: true
@@ -398,6 +375,8 @@ Page({
 							[thisRewards]: res.results[0].blocks[idxArr[0]].items[idxArr[1]].rewards,
 							loading: false
 						});
+					}else{
+						ry.alert(res.message);
 					}
 				}
 			});
@@ -417,6 +396,7 @@ Page({
 					msg = "部分商品不拆零销售，请您仔细核对商品数量。";
 					break;
 				}
+				// 商品未達起訂量應該不可選擇。
 				// else if(amt < pdt.sku.minOrder){
 				// 	msg = "部分商品数量未达到起订量，请您仔细核对商品数量。";
 				// 	break;
@@ -426,26 +406,18 @@ Page({
 			}
 		}
 		if(msg){
-			wx.showModal({
-				title: '提示',
-				content: msg,
-				showCancel: false
-			});
+			ry.alert(msg);
 			return;
 		}else if(msg2){
-			wx.showModal({
-				title: '提示',
-				content: msg2,
-				success: function(res){
-					if(res.cancel){
-						return false;
-					}else{
-						wx.navigateTo({
-							url: 'orderCheckout/orderCheckout?blockId=' + e.currentTarget.dataset.blockid,
-						});
-					}
+			ry.confirm(msg2, function(res){
+				if(res.cancel){
+					return false;
+				}else{
+					wx.navigateTo({
+						url: 'orderCheckout/orderCheckout?blockId=' + e.currentTarget.dataset.blockid,
+					});
 				}
-			})
+			});
 		}else{
 			wx.navigateTo({
 				url: 'orderCheckout/orderCheckout?blockId=' + e.currentTarget.dataset.blockid,

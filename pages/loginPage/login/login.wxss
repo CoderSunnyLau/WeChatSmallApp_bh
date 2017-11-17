@@ -40,12 +40,12 @@ page{
   border: none;
   height: 70rpx;
   line-height: 20rpx;
-  font-size: 28rpx;
+  font-size: 34rpx;
 }
 .btn{
-	width: auto;
-  height: 90rpx;
-  line-height: 90rpx;
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
   font-size: 34rpx;
   margin: 36rpx 0;
 }
@@ -54,7 +54,6 @@ page{
 }
 .forget{
   color: #333;
-  font-size: 24rpx;
 }
 .version_box{
   position: fixed;

@@ -16,7 +16,7 @@ Page({
 		
 		httpUtil.getHttp({
 			action: 'VSPubSelect.getShowcases',
-			orgId: _userData.orgId,
+			orgId: _userData.storeOrgId,
 			bizCenterId: _userData.bizCenterId
 		},
 		function(callback,success){
@@ -24,7 +24,7 @@ Page({
 				//console.log(callback)
 				if(callback.success){
 					var callbackArr = callback.results[0].children
-					console.log(callbackArr)
+					//console.log(callbackArr)
 					that.setData({
 						firstArr: callbackArr
 					})

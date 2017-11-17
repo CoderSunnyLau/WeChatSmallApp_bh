@@ -8,6 +8,7 @@
 	<view class='blank'></view>
 	<view class='pages'>
 		<view class='page'>
+		<block wx:if='{{items.length}}'>
 			<view class='item' wx:for='{{items}}'>
 				<view class='item_left'>
 					<text class='item_title'>{{item.resName}}</text>
@@ -18,6 +19,10 @@
 				</view>
 				<view class='item_right bg' data-resid='{{item.resId}}' bindtap='delItem'></view>
 			</view>
+		</block>
+		<block wx:else>
+			<view class='no_res orange'><text>您还未收藏任何商品。</text></view>
+		</block>
 		</view>
 	</view>
 </view>

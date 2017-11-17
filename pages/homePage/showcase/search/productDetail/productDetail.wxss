@@ -1,6 +1,11 @@
+page {
+  background-color: #efefef;
+}
+
 .img_content {
   height: 400rpx;
-  border-bottom: 1px solid #b7b7b7;
+  border-bottom: 1px solid #ddd;
+  background-color: #fff;
 }
 
 .img_area {
@@ -28,19 +33,17 @@
   display: flex;
   flex-direction: column;
   padding: 20rpx 35rpx;
+  border-bottom: 1px solid #ddd;
+  background-color: #fff;
 }
 
-.product_msg_area .up {
+.product_msg_area .msg {
   line-height: 48rpx;
   color: #717171;
 }
 
-.product_msg_area .up .product_caption {
+.product_msg_area .msg .product_caption {
   color: #444;
-}
-
-.product_msg_area .up .product_price text {
-  font-size: 36rpx;
 }
 
 .product_msg_area .buyAction .action_box {
@@ -74,11 +77,6 @@
   width: 100%;
 }
 
-.product_msg_area .tip {
-  line-height: 50rpx;
-  background-color: #efefef;
-}
-
 .product_msg_area .tip text {
   padding: 4rpx 12rpx;
   background-color: #fe2e46;
@@ -88,29 +86,53 @@
   font-size: 24rpx;
 }
 
-.product_msg_area .groups,.product_msg_area .detail{
+.product_msg_area .price {
+  line-height: 48rpx;
+}
+
+.product_msg_area .price .product_price text:last-child {
+  font-size: 36rpx;
+}
+
+.product_msg_area .skus{
+	flex-direction: row;
+	align-items: center;
+}
+
+.product_msg_area .skus .sku{
+	padding: 2rpx 14rpx;
+	border: 1px solid #ccc;
+	margin-left: 10rpx;
+}
+
+.product_msg_area .store{
+	margin-top: 20rpx;
+}
+
+.product_msg_area .groups, .product_msg_area .detail {
   padding: 0;
+  margin-top: 20rpx;
 }
 
 .product_msg_area .groups .groups_title {
   display: flex;
   justify-content: space-between;
-  padding: 10rpx 35rpx;
+  padding: 14rpx 35rpx;
   border-bottom: 1px solid #b7b7b7;
 }
 
-.product_msg_area .groups .groups_content{
-	padding: 10rpx 35rpx
+.product_msg_area .groups .groups_content {
+  padding: 10rpx 35rpx;
 }
 
-.product_msg_area .detail .detail_title
-{
-	background-color: #efefef;
-	padding: 20rpx 35rpx;
+.product_msg_area .detail .detail_title {
+  padding: 14rpx 35rpx;
+  border-bottom: 1px solid #b7b7b7;
 }
-.product_msg_area .detail .detail_content{
-	padding: 10rpx 35rpx;
-	display: flex;
-	flex-direction: column;
-	line-height: 45rpx;
+
+.product_msg_area .detail .detail_content {
+  padding: 10rpx 35rpx;
+  display: flex;
+  flex-direction: column;
+  line-height: 45rpx;
 }

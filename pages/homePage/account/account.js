@@ -1,5 +1,6 @@
 // pages/account/account.js
 const http = require('../../../utils/httpUtil.js')
+const ry = require('../../../utils/util.js')
 import { appHeader } from '../../../component/appHeader/appHeader.js'
 let load = false;
 let _this = {};
@@ -7,31 +8,36 @@ let _this = {};
 Page({
 	data: {
 		userIcon: 'http://file.ry600.com/snapshot//files/af/afvnal1p3sa59q79/2017-02-08/79l897i7bao7gd3o.gif',
-		userName: '',
-		fullName: ''
+		user: {}
 	},
 	onLoad: function(){
+		wx.showLoading();
 		new appHeader();
 		_this = this;
-		this.load();
+		this.load(function(){
+			load = true;
+			wx.hideLoading();
+		});
 	},
 	onShow: function(){
 		if(load){this.load();}
 	},
-	load: function(){
+	load: function(callback){
 		http.getHttp({action: 'VSUser.getBasicInfo'},function(res, success){
 			if(success){
 				if(res.success){
 					let user = res.results[0];
 					_this.setData({
-						userName: user.userName,
-						fullName: user.fullName,
+						user: res.results[0],
 						userIcon: 'http://www.ry600.com' + user.photoUrl
 					});
-					load = true;
+					if(typeof(callback) == 'function'){callback();}
 				}else{
-					wx.reLaunch({
-						url: '/pages/loginPage/login/login',
+					wx.hideLoading();
+					ry.alert(res.message, function(){
+						wx.reLaunch({
+							url: '/pages/loginPage/login/login'
+						});
 					});
 				}
 			}

@@ -1,0 +1,4 @@
+<view>
+	<text>{{someTxt}}</text>
+	<button bindtap='click'>Change</button>
+</view>

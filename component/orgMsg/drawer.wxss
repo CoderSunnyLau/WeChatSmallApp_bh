@@ -1,0 +1,70 @@
+.drawer_bg {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  background: #000;
+  opacity: 0.5;
+  overflow: hidden;
+}
+
+.drawer_box {
+  width: 650rpx;
+  overflow: hidden;
+  position: fixed;
+  top: 40%;
+  left: 0;
+  z-index: 1001;
+  background-color: rgba(250, 250, 250, 0.9); 
+  /* background-color: #fff; */
+  margin: -150px 50rpx 0 50rpx;
+  border-radius: 12rpx;
+}
+
+.drawer_title{
+  display: flex;
+  justify-content: space-between;
+  padding: 20rpx 30rpx;
+  color: #fff;
+  font-size: 36rpx;
+  letter-spacing: 5rpx;
+  font-weight: 200;
+	background-color: #f50;
+}
+
+.drawer_content{
+  height: 480rpx;
+  padding: 10rpx 20rpx;
+  overflow-y: scroll;
+}
+
+.drawer_item{
+  display: flex;
+  justify-content: space-between;
+  padding: 10rpx;
+  font-size: 32rpx;
+  color: #3d3834;
+  border-bottom: 1px solid #ccc;
+}
+
+.drawer_item:last-child{
+  border-bottom: none;
+}
+
+.radio_style{
+  /* background-color: #f0f0f0; */
+  transform: scale(0.7);
+}
+
+.drawer_btn{
+  padding: 26rpx 0;
+}
+.drawer_btn button{
+  width: 155rpx;
+  height: 56rpx;
+  line-height: 56rpx;
+  font-size: 32rpx;
+  color: #fff;
+}

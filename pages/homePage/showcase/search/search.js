@@ -11,7 +11,6 @@ Page({
 	onLoad: function (options) {
 		var that = this
 		_userData = wx.getStorageSync('userData')
-		console.log(_userData)
 
 		if (options.searchContent == 'undefined') {
 			options.searchContent = ''
@@ -66,17 +65,23 @@ Page({
 			limit: 5
 		},function(callback,success){
 			if(success){
-				console.log(callback)
+				//console.log(callback)
 				if(callback.success && callback.results.length>0){
-					that.setData({
-						hasProduct:  true,
-						productArr: callback.results
-					})
-					let _callbackArr = callback.results
+					
+					let _callbackArr = JSON.parse(JSON.stringify(callback.results))
 					let _productArr = []
-					for(let i=0;i<_callbackArr.length;i++){
-						if(_callbackArr[i].skuCount){}
+					for(let i=0;i<_callbackArr.length;i++){						
+						let skus = _callbackArr[i].skus
+						for(let sku in skus){
+							let _productItem = JSON.parse(JSON.stringify(_callbackArr[i]))
+							_productItem.productMsg = JSON.parse(JSON.stringify(skus[sku]))
+							_productArr.push(_productItem)
+						}
 					}
+					that.setData({
+						hasProduct: true,
+						productArr: _productArr
+					})
 				}
 				else{
 					that.setData({
@@ -91,6 +96,12 @@ Page({
 					showCancel: false
 				})
 			}
+		})
+	},
+	toDetail: function(e){
+		let _productId = e.currentTarget.dataset.productid
+		wx.navigateTo({
+			url: 'productDetail/productDetail?productId=' + _productId,
 		})
 	}
 })

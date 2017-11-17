@@ -11,9 +11,9 @@
     <view class='panel_box info_box'>
       <image class='user_icon' src="{{userIcon}}"></image>
       <view class='info_detail'>
-        <text>{{userName}}</text>
-        <text class='full_name'>{{fullName}}</text>
-		<navigator url='fixInfo/fixInfo'><text class='fix_info grey'>修改资料></text></navigator>
+        <text>{{user.userName}}</text>
+        <text class='full_name'>{{user.fullName}}</text>
+		<navigator url='fixInfo/fixInfo?fullName={{user.fullName}}&gender={{user.gender}}&birthday={{user.birthday}}'><text class='fix_info grey'>修改资料></text></navigator>
       </view>
     </view>
   </view>

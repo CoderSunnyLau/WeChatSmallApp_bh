@@ -1,8 +1,9 @@
 .quickEnter {
-  padding: 10rpx 25rpx;
+  padding: 10rpx 0;
   display: flex;
   color: #fff;
   font-size: 35rpx;
+	justify-content: center;
 }
 
 .enterArea .iconBg {

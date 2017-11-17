@@ -1,5 +1,6 @@
 // pages/homePage/shopcart/orderCheckout/orderCheckout.js
-const http = require('../../../../utils/httpUtil.js')
+const http = require('../../../../utils/httpUtil.js');
+const ry = require('../../../../utils/util.js');
 var blockId = '';
 var show = false;
 var _this = {};
@@ -61,9 +62,14 @@ Page({
 								loading: false
 							});
 							if(typeof(callback) == 'function'){callback();}
+						}else{
+							ry.alert(res2.message);
 						}
 					}
 				});
+			},
+			fail: function(){
+				ry.alert('网络错误。');
 			}
 		});
 	},
@@ -104,6 +110,8 @@ Page({
 						order: res.results[0],
 						loading: false
 					});
+				}else{
+					ry.alert(res.message);
 				}
 			}
 		});
@@ -133,6 +141,8 @@ Page({
 						order: res.results[0],
 						loading: false
 					});
+				}else{
+					ry.alert(res.message);
 				}
 			}
 		});

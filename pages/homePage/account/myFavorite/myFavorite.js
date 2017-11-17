@@ -1,5 +1,8 @@
 // pages/homePage/account/orderList/orderList.js
-const http = require('../../../../utils/httpUtil.js')
+const http = require('../../../../utils/httpUtil.js');
+const ry = require('../../../../utils/util.js');
+var _this = {};
+
 Page({
 	data: {
 		tabs: ['收藏商品', '全部收藏'],
@@ -7,10 +10,11 @@ Page({
 		items: []
 	},
 	onLoad: function(){
+		_this = this;
 		this.load();
 	},
 	load: function(){
-		var _this = this;
+		wx.showLoading();
 		http.getHttp({
 			action: 'VSCommon.getUserFavorites',
 			url: '/_user/favorite.shtml',
@@ -23,8 +27,11 @@ Page({
 					_this.setData({
 						items: res.results[0].results
 					});
+				}else{
+					ry.alert(res.message);
 				}
 			}
+			wx.hideLoading();
 		});
 	},
 	delItem: function(e){
@@ -49,7 +56,9 @@ Page({
 											_this.load();
 										}, 800);
 									}
-								})
+								});
+							}else{
+								ry.alert(res.message);
 							}
 						}
 					});

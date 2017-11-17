@@ -1,34 +1,10 @@
-<view>
-	<view class='drop_item'>
-		<view class="item_title arrow {{isSelect==a&&isDrop?'down':''}}" bindtap='dropClick' data-idx='0'>日常用药</view>
-		<view class='item_children' animation='{{animationData}}' wx:if='{{isSelect==a&&isDrop?true:false}}'>
-			<view class='children_item'>
-				<view class='item_left orange'>居家常备</view>
-				<view class='item_right'>
-					<text class='right_item'>减肥塑身</text>
-					<text class='right_item'>戒烟戒酒</text>
-					<text class='right_item'>紧急避孕</text>
-					<text class='right_item'>长效避孕</text>
-					<text class='right_item'>旅游出行</text>
-					<text class='right_item'>防暑降温</text>
-				</view>
-			</view>
-		</view>
+<msg></msg>
+<block wx:for='{{arr}}'>
+	<view>
+		<view>{{item.bb}}</view>
+		<block wx:for='{{mArr}}' wx:for-item='mItem'>	
+			<view>{{item.aa}}</view>
+			<view>{{mItem.cc}}</view>
+		</block>
 	</view>
-	<view class='drop_item'>
-		<view class="item_title arrow {{isSelect==b&&isDrop?'down':''}}" bindtap='dropClick' data-idx='1'>日常用药</view>
-		<view class='item_children' animation='{{animationData}}' wx:if='{{isSelect==b&&isDrop?true:false}}'>
-			<view class='children_item'>
-				<view class='item_left orange'>居家常备</view>
-				<view class='item_right'>
-					<text class='right_item'>减肥塑身</text>
-					<text class='right_item'>戒烟戒酒</text>
-					<text class='right_item'>紧急避孕</text>
-					<text class='right_item'>长效避孕</text>
-					<text class='right_item'>旅游出行</text>
-					<text class='right_item'>防暑降温</text>
-				</view>
-			</view>
-		</view>
-	</view>
-</view>
+</block>

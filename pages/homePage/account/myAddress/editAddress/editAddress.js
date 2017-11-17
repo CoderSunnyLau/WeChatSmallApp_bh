@@ -1,5 +1,6 @@
 // pages/homePage/account/myAddress/editAddress/editAddress.js
 const http = require('../../../../../utils/httpUtil.js');
+const ry = require('../../../../../utils/util.js');
 var indexTemp = [0,0,0];
 var zoneAllTemp = [];
 var tTemp = null;
@@ -36,6 +37,8 @@ Page({
 							loading: false
 						});
 						_this.initZones();
+					}else{
+						ry.alert(res.message);
 					}
 				}
 			});
@@ -105,15 +108,19 @@ Page({
 									var p = 'ad.canton';
 									var c = 'ad.city';
 									var d = 'ad.county';
-									_this.setData({
-										[all2]: res.results,
-										[p]: _this.data.zoneAllArr[0][val[0]].zoneName,
-										[c]: _this.data.zoneAllArr[1][val[1]].zoneName,
-										[d]: res.results[val[2]].zoneName
-									});
-									_this.setData({
-										zoneIndex: val
-									});
+									try{
+										_this.setData({
+											[all2]: res.results,
+											[p]: _this.data.zoneAllArr[0][val[0]].zoneName,
+											[c]: _this.data.zoneAllArr[1][val[1]].zoneName,
+											[d]: res.results[val[2]].zoneName
+										});
+										_this.setData({
+											zoneIndex: val
+										});
+									}catch(e){
+										console.log(e);
+									}
 								}
 							}
 						});
@@ -183,8 +190,7 @@ Page({
 		}, function(res, success){
 			if(success){
 				if(res.success){
-					if(typeof (callback) == 'function')
-						callback(res, success);
+					if(typeof (callback) == 'function'){callback(res, success);}
 				}
 			}
 		});
@@ -209,11 +215,7 @@ Page({
 			msg = '请输入详细地址';
 		}
 		if(msg){
-			wx.showModal({
-				title: '提示',
-				content: msg,
-				showCancel: false
-			});
+			ry.alert(msg);
 			return false;
 		}
 		_this.setData({
@@ -239,46 +241,46 @@ Page({
 							}, 800);
 						}
 					});
+				}else{
+					ry.alert(res.message);
 				}
 			}
 		});
 	},
 	delAddress: function(){
 		var _this = this;
-		wx.showModal({
-			title: '提示',
-			content: '您确定要删除此收货地址吗？',
-			success: function(res){
-				if(res.confirm){
-					_this.setData({
-						loading: true
-					});
-					http.postHttp({
-						action: 'VSShop.delAddress',
-						addressId: _this.data.addressId
-					}, function(res, success){
-						if(success){
-							if(res.success){
-								_this.setData({
-									loading: false
-								});
-								wx.showToast({
-									title: '删除成功',
-									duration: 800,
-									complete: function(){
-										setTimeout(function(){
-											wx.navigateBack({
-												url: '../myAddress',
-											});
-										}, 800);
-									}
-								});
-							}
+		ry.confirm('您确定要删除此收货地址吗？', function(res){
+			if(res.confirm){
+				_this.setData({
+					loading: true
+				});
+				http.postHttp({
+					action: 'VSShop.delAddress',
+					addressId: _this.data.addressId
+				}, function(res, success){
+					if(success){
+						if(res.success){
+							_this.setData({
+								loading: false
+							});
+							wx.showToast({
+								title: '删除成功',
+								duration: 800,
+								complete: function(){
+									setTimeout(function(){
+										wx.navigateBack({
+											url: '../myAddress',
+										});
+									}, 800);
+								}
+							});
+						}else{
+							ry.alert(res.message);
 						}
-					});
-				}else{
-					return false;
-				}
+					}
+				});
+			}else{
+				return false;
 			}
 		});
 	},

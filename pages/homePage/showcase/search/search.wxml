@@ -7,7 +7,7 @@
   </view>
   <block wx:if='{{hasProduct}}'>
     <view class='product-content'>
-      <view class='product-item' wx:for='{{productArr}}'>
+      <view class='product-item' wx:for='{{productArr}}' data-productId='{{item.shopProductId}}' bindtap='toDetail'>
         <block wx:if='{{item.addSaleTagName}}'>
           <view class='item up'>
             <text class='saleTag'>{{item.addSaleTagName}}</text>
@@ -21,10 +21,17 @@
           </view>
           <view class='product-msg'>
             <text class='product-caption'>{{item.productCaption}}</text>
-            <text>货号：{{item.skus}}</text>
-            <text>库存：有货</text>
-            <text>原价：¥{{item.skus.oldPrice}}</text>
-            <text class='product-price'>¥ {{item.skus.price}}/{{item.skus.packUnits}}</text>
+            <text>货号：{{item.productMsg.skuCode}}</text>
+            <block wx:if='{{item.productMsg.stockTag.amount>0&&item.productMsg.stockTag.amount<=100}}'>
+              <text>库存：{{item.productMsg.stockTag.amount}}</text>
+            </block>
+            <block wx:else>
+              <text>库存：{{item.productMsg.stockTag.stockState}}</text>
+            </block>
+            <block wx:if='{{item.productMsg.oldPrice>0}}'>
+              <text>原价：¥{{item.productMsg.oldPrice}}</text>
+            </block>
+            <text class='product-price'>¥ {{item.productMsg.price}}/{{item.productMsg.packUnits}}</text>
           </view>
         </view>
 

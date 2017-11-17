@@ -51,6 +51,7 @@
 .product-item .product-img {
   width: 200rpx;
   height: 200rpx;
+	margin-right:8rpx;
 }
 
 .product-item .product-msg {
@@ -74,7 +75,7 @@
 
 .product-item .buy-action {
   position: absolute;
-  bottom: 30rpx;
+  bottom: 20rpx;
   right: 30rpx;
   display: flex;
   flex-direction: column;

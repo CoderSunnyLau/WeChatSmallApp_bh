@@ -1,4 +1,5 @@
-const http = require('../../../../../utils/httpUtil.js')
+const http = require('../../../../../utils/httpUtil.js');
+const ry = require('../../../../../utils/util.js');
 var orderId = '';
 var load = false;
 
@@ -33,6 +34,8 @@ Page({
 					if(typeof(callback) == 'function'){
 						callback();
 					}
+				}else{
+					ry.alert(res.message);
 				}
 			}
 		});
@@ -65,9 +68,13 @@ Page({
 								wx.navigateBack({
 									url: '../orderCheckout',
 								});
+							}else{
+								ry.alert(res.message);
 							}
 						}
 					});
+				}else{
+					ry.alert(res.message);
 				}
 			}
 		});

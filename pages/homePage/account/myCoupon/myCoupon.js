@@ -1,5 +1,6 @@
 // pages/homePage/account/orderList/orderList.js
 const http = require('../../../../utils/httpUtil.js')
+const ry = require('../../../../utils/util.js')
 
 Page({
 	data: {
@@ -32,6 +33,7 @@ Page({
 		}
 	},
 	getCoupons: function(state, page, callback){
+		wx.showLoading();
 		http.getHttp({
 			action: 'VSShop.getMyCoupons',
 			state: state,
@@ -43,41 +45,42 @@ Page({
 					if(typeof(callback) == 'function'){
 						callback(res);
 					}
+				}else{
+					ry.alert(res.msg);
 				}
+				wx.hideLoading();
 			}
 		});
 	},
 	delItem: function(e){
 		var _this = this;
-		wx.showModal({
-			title: '提示',
-			content: '你确定要将此商品从收藏夹中删除吗？',
-			success: function(res){
-				if(res.confirm){
-					http.postHttp({
-						action: 'VSCommon.delFavorite',
-						resType: 'ProductOfShop',
-						resId: e.currentTarget.dataset.resid
-					}, function(res, success){
-						if(success){
-							if(res.success){
-								wx.showToast({
-									title: '已删除',
-									duration: 800,
-									success: function(){
-										setTimeout(function(){
-											_this.load();
-										}, 800);
-									}
-								});
-							}
+		ry.confirm('你确定要将此商品从收藏夹中删除吗？', function(res){
+			if(res.confirm){
+				http.postHttp({
+					action: 'VSCommon.delFavorite',
+					resType: 'ProductOfShop',
+					resId: e.currentTarget.dataset.resid
+				}, function(res, success){
+					if(success){
+						if(res.success){
+							wx.showToast({
+								title: '已删除',
+								duration: 800,
+								success: function(){
+									setTimeout(function(){
+										_this.load();
+									}, 800);
+								}
+							});
+						}else{
+							ry.alert(res.message);
 						}
-					});
-				}else{
-					return false;
-				}
+					}
+				});
+			}else{
+				return false;
 			}
-		})
+		});
 	},
 	changeTab: function(e){
 		var curr = e.currentTarget.dataset.index;
