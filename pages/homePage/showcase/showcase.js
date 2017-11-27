@@ -5,7 +5,7 @@ var _showcaseArr
 
 Page({
   data: {
-    isDrop: -1,
+    isDrop: false,
 		showItem: false
   },
   onLoad: function (options) {
@@ -24,7 +24,7 @@ Page({
 				//console.log(callback)
 				if(callback.success){
 					var callbackArr = callback.results[0].children
-					//console.log(callbackArr)
+					console.log(callbackArr)
 					that.setData({
 						firstArr: callbackArr
 					})

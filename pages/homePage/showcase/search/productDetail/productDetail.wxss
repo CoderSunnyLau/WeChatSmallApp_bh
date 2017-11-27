@@ -105,6 +105,10 @@ page {
 	margin-left: 10rpx;
 }
 
+.product_msg_area .skus .curr{
+	border: 4rpx solid #ff5501;
+}
+
 .product_msg_area .store{
 	margin-top: 20rpx;
 }

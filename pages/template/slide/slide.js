@@ -13,5 +13,8 @@ Page({
 			}]
 		})
 		console.log(typeof(this.data.arr))
+	},
+	addToShopcart: function(e){
+		console.log(e)
 	}
 })

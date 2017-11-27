@@ -7,7 +7,7 @@
   </view>
   <block wx:if='{{hasProduct}}'>
     <view class='product-content'>
-      <view class='product-item' wx:for='{{productArr}}' data-productId='{{item.shopProductId}}' bindtap='toDetail'>
+      <view class='product-item' wx:for='{{productArr}}'>
         <block wx:if='{{item.addSaleTagName}}'>
           <view class='item up'>
             <text class='saleTag'>{{item.addSaleTagName}}</text>
@@ -16,33 +16,35 @@
         </block>
 
         <view class='item down'>
-          <view>
+          <view class='img-content'>
             <image class='product-img' src='{{item.photo.smallUrl}}' mode='aspectFit' />
           </view>
           <view class='product-msg'>
-            <text class='product-caption'>{{item.productCaption}}</text>
-            <text>货号：{{item.productMsg.skuCode}}</text>
+            <text class='product-caption' catchtap='toDetail' data-productId='{{item.shopProductId}}'>{{item.productCaption}}</text>
             <block wx:if='{{item.productMsg.stockTag.amount>0&&item.productMsg.stockTag.amount<=100}}'>
               <text>库存：{{item.productMsg.stockTag.amount}}</text>
             </block>
             <block wx:else>
               <text>库存：{{item.productMsg.stockTag.stockState}}</text>
             </block>
-            <block wx:if='{{item.productMsg.oldPrice>0}}'>
-              <text>原价：¥{{item.productMsg.oldPrice}}</text>
-            </block>
-            <text class='product-price'>¥ {{item.productMsg.price}}/{{item.productMsg.packUnits}}</text>
+            <view class='price-area'>
+              <text class='product-price'>¥ {{item.productMsg.price}}/{{item.productMsg.packUnits}}</text>
+							<block wx:if='{{item.productMsg.price <= 0}}'>
+								<text>商品尚未定价</text>
+							</block>
+            </view>
           </view>
         </view>
-
-        <view class='buy-action'>
-          <view class='shopcart'></view>
-          <view class='action-box'>
-            <text class='reduce'>-</text>
-            <input type='number' />
-            <text class='add'>+</text>
+        <block wx:if='{{item.productMsg.hasStock  && item.productMsg.price > 0}}'>
+          <view class='buy-action'>
+            <view class='shopcart' bindtap='addToShopcart' data-skuId='{{item.productMsg.skuId}}' data-index='{{index}}' data-productId='{{item.orgProductId}}'></view>
+            <view class='action-box'>
+              <text class='reduce' bindtap='changeAmount' data-status='reduce' data-index='{{index}}'>-</text>
+              <input type='number' bindinput='amountSave' data-index='{{index}}' value='{{item.shopcartAmount}}'/>
+              <text class='add' bindtap='changeAmount' data-status='add' data-index='{{index}}'>+</text>
+            </view>
           </view>
-        </view>
+        </block>
       </view>
     </view>
   </block>

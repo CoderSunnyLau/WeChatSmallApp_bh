@@ -1,6 +1,6 @@
- page {
+page {
   background-color: #efefef;
-} 
+}
 
 .pageTab {
   display: flex;
@@ -22,7 +22,7 @@
 
 .product-item {
   background-color: #fff;
-  margin-top: 15rpx; 
+  margin-top: 15rpx;
   padding: 15rpx 30rpx;
   position: relative;
 }
@@ -48,10 +48,14 @@
   display: flex;
 }
 
+.product-item .img-content{
+	padding: 5rpx;
+}
+
 .product-item .product-img {
-  width: 200rpx;
-  height: 200rpx;
-	margin-right:8rpx;
+  width: 160rpx;
+  height: 160rpx;
+  margin-right: 8rpx;
 }
 
 .product-item .product-msg {
@@ -65,12 +69,21 @@
 .product-item .product-msg .product-caption {
   font-size: 28rpx;
   color: #3e3a39;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
 }
 
 .product-item .product-msg .product-price {
   font-size: 32rpx;
   font-weight: 500;
   color: #ff5001;
+}
+
+.product-item .product-msg .price-area{
+	display: flex;
+	justify-content: space-between;
 }
 
 .product-item .buy-action {
@@ -84,7 +97,7 @@
 .product-item .buy-action .shopcart {
   width: 50rpx;
   height: 50rpx;
-  background: #f50 url('http://file.ry600.com/snapshot/vms/site/di/di70684438lrfavs/82ojywir5vqogktm/image//shopcart_icon.png') no-repeat 12rpx 10rpx;
+  background: #f50 url('http://file.ry600.com/snapshot/vms/site/di/di70684438lrfavs/82ojywir5vqogktm/image//shopcart_icon.png') no-repeat 10rpx 10rpx;
   background-size: 32rpx auto;
   border-radius: 50%;
   align-self: flex-end;
@@ -125,7 +138,7 @@
   line-height: 60rpx;
   margin-top: 15rpx;
   padding-top: 60rpx;
-	background-color: #fff;
+  background-color: #fff;
 }
 
 .noProduct_tip .tip_img {
