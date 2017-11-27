@@ -1,10 +1,9 @@
-<import src='/component/appHeader/appHeader.wxml' />
-<template is='org_message' data='{{..._headerData_}}'/>
-<template is='search_bar'  data='{{..._headerData_}}'/>
+<msg></msg>
+<bar bindmyevent='toSearch'></bar>
 <view class='quickEnter'>
   <view class='enterArea left'>
     <view class='icon quickBill'>
-      <view class='bg iconBg'></view>快速采购
+      <view class='bg iconBg'></view>快速下单
     </view>
     <view class='icon showcase' bindtap="toShopcase">
       <view class='bg iconBg'></view>商品分类

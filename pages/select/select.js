@@ -14,11 +14,13 @@ Page({
 	onLoad: function (options) {
 		var that = this
 		orgArr = []
-		_msgData = app.globalData.msgData
+		if(options.orgData){
+			_msgData = JSON.parse(options.orgData)
+		}
 
 		if (options.isOrg == 'true') {
-			for (let i = 0; i < _msgData.orgArr.length; i++) {
-				orgArr.push(_msgData.orgArr[i].orgName)
+			for (let i = 0; i < _msgData.orgs.length; i++) {
+				orgArr.push(_msgData.orgs[i].orgName)
 			}
 			that.setData({
 				isOrg: true,
@@ -35,13 +37,23 @@ Page({
 			httpUtil.getHttp({
 				action: 'VSShop.getRelStores',
 			}, function (callback, success) {
+				//console.log(callback)
 				if (success) {
 					if (callback.success) {
+						_userData.orgsArr = _msgData.orgs
 						_userData.storesArr = callback.results
 						wx.setStorageSync('userData', _userData)
-						that.setData({
-							relOrgArr: callback.results
-						})
+						if(callback.results.length > 0){
+							that.setData({
+								isCooperate: true,
+								relOrgArr: callback.results
+							})
+						}
+						else{
+							that.setData({
+								isCooperate: false
+							})
+						}
 					}
 					else {
 						that.setData({
@@ -62,12 +74,12 @@ Page({
 			let httpPromise = new Promise(function (resolve, reject) {
 				httpUtil.getHttp({
 					action: 'VSUser.changeRelOrg',
-					orgId: _msgData.orgArr[radioIdx].orgId
+					orgId: _msgData.orgs[radioIdx].orgId
 				}, function (callback, success) {
 					if (success) {
 						let _userData = wx.getStorageSync('userData')
-						_userData.orgName = _msgData.orgArr[radioIdx].orgName
-						_userData.orgId = _msgData.orgArr[radioIdx].orgId
+						_userData.orgName = _msgData.orgs[radioIdx].orgName
+						_userData.orgId = _msgData.orgs[radioIdx].orgId
 
 						wx.setStorageSync('userData', _userData)
 						resolve()
@@ -128,7 +140,6 @@ Page({
 		});
 	},
 	onShow: function(){
-		
 		radioIdx = 0
 		this.setData({
 			radioSelect: 0

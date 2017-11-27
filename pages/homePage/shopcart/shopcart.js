@@ -215,16 +215,16 @@ Page({
 			cartItemId = pdt.cartItemId,
 			addUp, amount;
 		var count = pdt.amount;
-		var minOrder = pdt.sku.minOrder;
-		var modCount = pdt.sku.modCount;
-		var stock = pdt.sku.stockTag.amount;
+		var minOrder = pdt.package ? 0 : pdt.sku.minOrder;
+		var modCount = pdt.package ? 0 : pdt.sku.modCount;
+		var stock = pdt.package ? pdt.package.stockAmount : pdt.sku.stockTag.amount;
 		switch(method){
 			case 'input': addUp = false; amount = e.detail.value; count = amount; break;
 			case 'sub': addUp = true; amount = -1; count = count + amount; break;
 			case 'add': addUp = true; amount = 1; count = count + amount; break;
 		}
 		if(count > stock){
-			ry.alert('库存不足，仅剩' + stock + pdt.sku.units);
+			ry.alert('库存不足，仅剩' + stock + (pdt.package ? '件' : pdt.sku.units));
 			if(addUp){
 				return;
 			}else{
@@ -388,11 +388,12 @@ Page({
 		for(var i = 0; i < blk.items.length; i++){
 			var pdt = blk.items[i];
 			var amt = pdt.amount;
+			var stock = pdt.package ? pdt.package.stockAmount : pdt.sku.stockTag.amount;
 			if(pdt.selected){
-				if(amt > pdt.sku.stockTag.amount){
+				if(amt > stock){
 					msg = "部分商品库存不足，请您仔细核对商品数量。";
 					break;
-				}else if(amt % pdt.sku.modCount != 0){
+				}else if(!pdt.package && (amt % pdt.sku.modCount != 0)){
 					msg = "部分商品不拆零销售，请您仔细核对商品数量。";
 					break;
 				}

@@ -1,1 +1,7 @@
-{}
+{
+	"navigationBarTitleText": "快速下单",
+	"usingComponents": {
+		"msg": "/component/orgMsg/orgMsg",
+		"bar": "/component/searchBar/searchBar"
+	}
+}

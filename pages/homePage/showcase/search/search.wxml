@@ -1,11 +1,10 @@
-<import src='/component/appHeader/appHeader.wxml' />
-<template is='org_message' data='{{..._headerData_}}' />
-<template is='search_bar' data='{{..._headerData_}}' />
+<msg></msg>
+<bar bindmyevent='searchPro'></bar>
 <view class='quickOrder'>
   <view class='pageTab'>
     <view class="tabItem {{isSelect==index?'curr':''}}" wx:for='{{tabArr}}' bindtap='tabSelect' data-tIdx='{{index}}'>{{item}}</view>
   </view>
-  <block wx:if='{{hasProduct}}'>
+  <block wx:if='{{hasProduct == true}}'>
     <view class='product-content'>
       <view class='product-item' wx:for='{{productArr}}'>
         <block wx:if='{{item.addSaleTagName}}'>
@@ -48,8 +47,8 @@
       </view>
     </view>
   </block>
-  <block wx:else>
-    <view class='noProduct_tip' style='height:{{tipHeight-305}}rpx'>
+  <block wx:elif='{{hasProduct == false}}'>
+    <view class='noProduct_tip'>
       <image src='/images/tip_rabbit.png' class='tip_img' mode='aspectFit'></image>
       <view class='tip_up'>抱歉，没找到相关的商品信息</view>
       <view class='tip_down'>建议您查看输入是否有误或者调整关键字</view>

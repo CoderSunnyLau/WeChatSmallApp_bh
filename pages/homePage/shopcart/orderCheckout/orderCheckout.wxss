@@ -290,6 +290,12 @@ page{
 .pkg .count{
   bottom: 6rpx;
 }
+.gift_info .red{
+	white-space: nowrap;
+}
+.caption{
+	margin-left: 25rpx;
+}
 
 /************** picker-view **************/
 

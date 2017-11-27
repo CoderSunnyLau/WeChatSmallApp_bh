@@ -1,4 +1,5 @@
 <msg></msg>
+<bar></bar>
 <block wx:for='{{arr}}'>
   <view>
     <view>{{item.bb}}</view>

@@ -3,7 +3,6 @@ const http = require('../../../utils/httpUtil.js')
 const md5 = require('../../../utils/md5.js')
 const base64 = require('../../../utils/base64.js')
 const ry = require('../../../utils/util.js')
-import { appHeader } from '../../../component/appHeader/appHeader.js'
 
 Page({
 	data: {
@@ -76,8 +75,6 @@ Page({
 							console.log(e);
 						}
 						var _orgData = base64.decode(res.data.message);
-						app.globalData.msgData = new Object();
-						app.globalData.msgData.orgArr = _orgData.orgs;
 						_this.setData({
 							tip: '登录成功'
 						});
@@ -88,7 +85,6 @@ Page({
 							http.saveHeader(_header.cookie);
 							_userData.autoLogin = 'true';
 							wx.setStorageSync('userData', _userData);
-							new appHeader();
 							wx.switchTab({
 								url: '/pages/homePage/home/home'
 							});
@@ -99,7 +95,7 @@ Page({
 							_userData.autoLogin = 'true';
 							wx.setStorageSync('userData', _userData);
 							wx.redirectTo({
-								url: '/pages/select/select?isOrg=true'
+								url: '/pages/select/select?isOrg=true&orgData=' + JSON.stringify(_orgData)
 							});
 						}
 					}else{

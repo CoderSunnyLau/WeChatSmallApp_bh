@@ -5,7 +5,7 @@
 		<view class='user_info'>
 			<text class='user_name'>{{order.address.consignee}} {{order.address.mobile}}</text>
 			<text>{{order.address.canton}}{{order.address.city}}{{order.address.county}}{{order.address.address}}</text>
-			<text>{{order.address ? "" : "您还未设置收货地址，请点击设置"}}</text>
+			<text>{{order.address ? "" : "您未设置收货地址或您选择的地址不在配送范围内"}}</text>
 		</view>
 		<view class='arrow arrow_white_right'></view>
 	</navigator>
@@ -61,25 +61,35 @@
 						</view>
 					</view>
 				</view>
-				<view class='rewards' wx:if='{{pdt.rewards.length}}'>
-					<view class='reward' wx:for='{{pdt.rewards[0].gifts}}' wx:for-item='gift' wx:for-index='giftIdx' wx:key=''>
+				<block wx:if='{{pdt.rewards.length}}' wx:for='{{pdt.rewards}}' wx:for-item='reward'>
+				<view class='rewards'>
+					<block wx:if='{{reward.ruleMode == "present"}}'>
+							<view class='reward' wx:for='{{reward.gifts}}' wx:for-item='gift' wx:for-index='giftIdx' wx:key=''>
+								<view class='gift_info'>
+									<text class='red'>赠品</text>
+									<image src='{{gift.photoUrl}}'></image>
+									<text>{{gift.caption}}</text>
+								</view>
+								<view class='gift_count'>
+									<text class='gift_count_input'>×{{gift.amount}}</text>
+								</view>
+							</view>
+					</block>
+					<view class='reward' wx:elif='{{reward.ruleMode == "reduce"}}'>
 						<view class='gift_info'>
-							<text class='red'>赠品</text>
-							<image src='{{gift.photoUrl}}'></image>
-							<text>{{gift.caption}}</text>
-						</view>
-						<view class='gift_count'>
-							<text class='gift_count_input'>×{{gift.amount}}</text>
+							<text class='red'>{{reward.ruleModeName}}</text>
+							<text class='caption'>{{reward.caption}}</text>
 						</view>
 					</view>
-				</view>
+						</view>
+				</block>
 			</view>
 		</view>
 		<view class='options'>
 			<picker range='{{order.transaction.pays}}' range-key='payModeName' bindchange='selTransaction'>
-				<view class='row_top arrow arrow_black_right'><text>支付方式</text><text class='red'>{{order.transaction.payModeName}}</text></view>
+				<view class='row_top arrow arrow_black_right'><text>支付方式</text><text class='red'>{{order.transaction.payModeName || "未选择"}}</text></view>
 			</picker>
-			<picker range='{{order.blocks[0].delivery.freights}}' range-key='freightName' bindchange='deliveryChange'>
+			<picker range='{{order.blocks[0].delivery.freights}}' range-key='freightName' bindchange='deliveryChange' value='{{dlvValue}}'>
 				<view class='row_top arrow arrow_black_right'>
 					<view class='deli_row'>
 						<text>配送方式</text>
@@ -123,9 +133,9 @@
 		</view>
 		<view class='order_account'>
 			<view class='row_default'><text>商品金额</text><text class='orange'>¥{{order.selPayment}}</text></view>
-			<view class='row_default'><text>折扣</text><text class='orange'>- ¥{{order.selDiscount}}</text></view>
+			<view class='row_default'><text>优惠</text><text class='orange'>- ¥{{order.discount}}</text></view>
 			<view class='row_default'><text>运费</text><text class='orange'>+ ¥{{order.blocks[0].delivery.fare ? order.blocks[0].delivery.fare : 0}}</text></view>
-				<view class='row_default'><text>优惠券</text><text class='orange'>- ¥{{order.discount}}</text></view>
+			<!-- <view class='row_default'><text>优惠券</text><text class='orange'>- ¥{{order.discount}}</text></view> -->
 			<view class='.row_default row_right'><text>实付金额：</text><text class='orange'>￥{{order.payAmount}}</text></view>
 		</view>
 	</view>

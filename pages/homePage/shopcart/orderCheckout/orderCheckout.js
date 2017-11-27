@@ -21,6 +21,7 @@ Page({
 			["不需要确认", "送货前确认"],
 			["现金", "POS刷卡", "支票"]
 		],
+		dlvValue: 0,
 		showDlvDtl: false,
 		animationData: {},
 		animationBg: {},
@@ -55,9 +56,21 @@ Page({
 					orderId: bid
 				}, function(res2, success){
 					if(success){
-						if(res2.success){
+						if (res2.success) {
+							var _idx;
+							if (res2.results[0].blocks[0].delivery){
+								var frs = res2.results[0].blocks[0].delivery.freights;
+								var selFr = res2.results[0].blocks[0].delivery.deliveryName;
+								for(var i = 0; i < frs.length; i++){
+									if(frs[i].freightName == selFr){
+										_idx = i;
+										break;
+									}
+								}
+							}
 							_this.setData({
 								order: res2.results[0],
+								dlvValue: _idx,
 								load: false,
 								loading: false
 							});

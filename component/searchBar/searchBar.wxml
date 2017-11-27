@@ -1,0 +1,11 @@
+  <view class='searchBar'>
+    <view class='search-scan' bindtap='scanBill'>
+      <image class='scan-img' src='/images/scan.png'></image>
+      <text>扫一扫</text>
+    </view>
+    <view class='search-area'>
+      <image class='search-img' src='/images/search.png'></image>
+      <input class='search-input' placeholder='{{searchTip}}' bindinput='saveContent' placeholder-class='holderTxt' value='{{inputContent}}'></input>
+      <text class='search-txt' bindtap='search'>搜 索</text>
+    </view>
+  </view>

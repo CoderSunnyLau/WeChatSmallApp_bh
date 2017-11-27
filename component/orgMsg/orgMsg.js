@@ -1,30 +1,24 @@
-// component/orgMsg/orgMsg.js
+var _userData
 Component({
-  /**
-   * 组件的属性列表
-   */
-	properties: {
+	properties: {},
+	data: {},
+	attached: function(){
+		_userData = wx.getStorageSync('userData')
+		this.setData({
+			storeName: _userData.storeName,
+			orgName: _userData.orgName
+		})
 	},
-
-  /**
-   * 组件的初始数据
-   */
-	data: {
-		storeName: wx.getStorageSync('userData').storeName,
-		orgName: wx.getStorageSync('userData').orgName
-	},
-
-  /**
-   * 组件的方法列表
-   */
 	methods: {
 		powerDrawer: function (e) {
+			console.log(wx.getStorageSync('userData'))
+			this.triggerEvent('customevent', {}, { composed: true })
 			let that = this
 			var currentStatus = e.currentTarget.dataset.status
 			var animation = wx.createAnimation({
 				duration: 200,
 				timingFunction: 'linear',
-				delay: 0
+				delay: 0	
 			})
 
 			that.animation = animation

@@ -1,4 +1,3 @@
-import { appHeader } from '../../../component/appHeader/appHeader.js'
 const httpUtil = require('../../../utils/httpUtil.js')
 var _userData
 var _showcaseArr
@@ -9,7 +8,6 @@ Page({
 		showItem: false
   },
   onLoad: function (options) {
-    new appHeader()
     _userData = wx.getStorageSync('userData')
 		_showcaseArr = []
     let that = this
@@ -39,9 +37,9 @@ Page({
 			isDrop: !that.data.isDrop
 		})
   },
-  search: function () {
+  toSearch: function (e) {
     wx.navigateTo({
-      url: '../showcase/search/search?searchContent=' + this.data.searchContent + '&entry=showcase'
+      url: '../showcase/search/search?searchContent=' + e.detail.value + '&entry=showcase'
     })
   }
 })

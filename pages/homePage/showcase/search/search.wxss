@@ -136,9 +136,9 @@ page {
   flex-direction: column;
   align-items: center;
   line-height: 60rpx;
-  margin-top: 15rpx;
+  /* margin-top: 15rpx; */
   padding-top: 60rpx;
-  background-color: #fff;
+  /* background-color: #fff; */
 }
 
 .noProduct_tip .tip_img {

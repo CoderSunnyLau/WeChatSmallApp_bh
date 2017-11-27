@@ -23,6 +23,7 @@ page{
   justify-content: flex-start;
   align-items: center;
   line-height: auto;
+  border: none;
 }
 .block{
   background-color: #FFF;
@@ -61,6 +62,7 @@ page{
   width: 750rpx;
   overflow: hidden;
   position: relative;
+  border-top: 2rpx solid #DDD;
 }
 .pdt_title{
   line-height: 34rpx;
@@ -144,9 +146,7 @@ page{
 }
 .main_info{
   width: 710rpx;
-  margin-left: -200rpx;
   background-color: #FFF;
-  border-bottom: 2rpx solid #DDD;
   -webkit-transform: translateX(200rpx);
   transform: translateX(200rpx);
   -webkit-transition: all 0.4s;
@@ -154,10 +154,11 @@ page{
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-top: 18rpx;
   padding: 0 20rpx 18rpx;
   position: relative;
   z-index: 9;
+  border-bottom: 1px dashed #EEE;
+  margin: 18rpx 0 -1rpx -200rpx;
 }
 .sel_gift, .gift_tip{
 	font-size: 26rpx;
@@ -169,7 +170,6 @@ page{
 	text-decoration: underline;
 }
 .rewards{
-	border-bottom: 2rpx solid #DDD;
 	padding: 10rpx 62rpx 10rpx 20rpx;
 }
 .reward{
@@ -240,6 +240,7 @@ page{
 }
 .block_bottom{
 	justify-content: flex-end;
+	border-top: 2rpx solid #DDD;
 }
 .sel_all{
   display: flex;
@@ -351,4 +352,14 @@ page{
 }
 .un_sel, .un_sel .main_info{
 	background-color: #FDEBEB;
+}
+.reward_tag{
+	display: block;
+	float: left;
+	border: 2rpx solid #FF2D46;
+	padding: 0 8rpx;
+	color: #FF2D46;
+	line-height: 26rpx;
+	margin-right: 8rpx;
+	font-size: 22rpx;
 }

@@ -21,7 +21,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 4,
 			"list": [
 				{
 					"id": 0,
@@ -93,6 +93,12 @@
 					"id": -1,
 					"name": "forgetSet",
 					"pathName": "pages/loginPage/forget/forgetSet",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "showcase",
+					"pathName": "pages/homePage/showcase/showcase",
 					"query": ""
 				}
 			]
