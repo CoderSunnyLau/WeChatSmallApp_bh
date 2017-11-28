@@ -29,7 +29,7 @@
 .man_icon{
 	width: 80rpx;
 	height: 55rpx;
-	background-position: 35rpx -885rpx;
+	background-position: 35rpx -875rpx;
 	border-left: 2rpx solid #DDD;
 }
 .detail_block{

@@ -42,9 +42,9 @@ button{
   background-size: 115rpx auto;
 }
 .bg2{
-  background-image: url('http://file.ry600.com/snapshot/vms/site/di/di70684438lrfavs/82ojywir5vqogktm/image//wx-icons2.png');
+  background-image: url('http://file.ry600.com/snapshot/vms/site/di/di70684438lrfavs/82ojywir5vqogktm/image//wx_icons2.png');
   background-repeat: no-repeat;
-  background-size: 140rpx auto;
+  background-size: 147rpx auto;
 }
 .arrow{
   background-image: url('http://file.ry600.com/snapshot/vms/site/di/di70684438lrfavs/82ojywir5vqogktm/image//wx_arrow.png');

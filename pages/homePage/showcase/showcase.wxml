@@ -2,9 +2,7 @@
 <bar bindmyevent='toSearch'></bar>
 <view>
 	<view class='drop_item' wx:for='{{firstArr}}' wx:for-item='first'>
-		<view class="item_title arrow {{isSelect==index&&isDrop ?'down':''}}" bindtap='dropItem' data-idx='{{index}}'>
-			<text>{{first.showcaseName}}</text>
-		</view>
+		<view class="item_title arrow {{isSelect==index&&isDrop ?'down':''}}" bindtap='dropItem' data-idx='{{index}}'>{{first.showcaseName}}</view>
 		<view class='item_children' wx:if="{{isSelect==index&&isDrop?true:false}}">
 			<view class='children_item' wx:for='{{first.children}}' wx:for-item='second'>
 				<view class='item_left orange'>{{second.showcaseName}}</view>
