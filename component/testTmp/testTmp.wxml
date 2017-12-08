@@ -1,4 +1,13 @@
-<view>
-	<text>{{someTxt}}</text>
-	<button bindtap='click'>Change</button>
+<view class='searchBar' id='bar'>
+  <view class='search-scan' bindtap='scanBill' bindtap='scanPro'>
+    <image class='scan-img' src='/images/scan.png'></image>
+    <text>扫一扫</text>
+  </view>
+  <form bindsubmit='formSub'>
+    <view class='search-area'>
+      <image class='search-img' src='/images/search.png'></image>
+      <input class='search-input' name='searchContent'></input>
+      <button class='search-txt' formType='submit'>搜 索</button>
+    </view>
+  </form>
 </view>

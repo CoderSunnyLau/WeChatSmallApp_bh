@@ -1,0 +1,27 @@
+ .tip-title {
+  font-size: 25rpx;
+  background-color: #efefef;
+  padding: 10rpx;
+  text-align: center;
+  color: #3f3b3a;
+}
+
+ .tip-content {
+  margin-top: 150rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+ .tip-content .tip-img {
+  width: 165rpx;
+  height: 250rpx;
+}
+
+ .tip-content .tip-up {
+  margin-top: 20rpx;
+  text-align: center;
+  line-height: 50rpx;
+  font-size: 32rpx;
+}

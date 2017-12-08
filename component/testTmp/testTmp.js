@@ -1,27 +1,31 @@
-// component/testTmp/testTmp.js
 Component({
-  /**
-   * 组件的属性列表
-   */
-  properties: {
-
-  },
-
-  /**
-   * 组件的初始数据
-   */
-  data: {
-		someTxt: 'Hello'
-  },
-
-  /**
-   * 组件的方法列表
-   */
-  methods: {
-		click: function(){
-			this.setData({
-				someTxt: 'World'
+	properties: {},
+	data: {},
+	methods: {
+		formSub: function (e) {
+			let _detail = e.detail.value
+			let _currentTarget = e.currentTarget
+			this.triggerEvent('search', _detail, _currentTarget)
+		},
+		scanPro: function (e) {
+			var that = this
+			wx.scanCode({
+				success: function (res) {
+					let _detail = res
+					that.triggerEvent('scan', _detail)
+				}
 			})
+		},
+		getHeight: function () {
+			var that = this
+			wx.createSelectorQuery().in(this).select('#bar').boundingClientRect(function (res) {
+				that.setData({
+					barHeight: res.height + 'px'
+				})
+			}).exec()
 		}
-  }
+	},
+	ready: function () {
+		this.getHeight()
+	}
 })

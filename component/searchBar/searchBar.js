@@ -5,23 +5,19 @@ Component({
 		searchTip: '输入品名(或拼音首字母) 、厂商、品牌'
   },
   methods: {
-		scanBill: function () {
+		saveScanCode: function () {
+			var that = this
 			wx.scanCode({
-				success: function () {
-					console.log('success')
+				success: function (res) {
+					let _detail = res
+					that.triggerEvent('scan', _detail)
 				}
 			})
 		},
-		saveContent: function(e){
-			_searchContent = e.detail.value
-		},
-		search: function(e){
-			//console.log(e)
-			var myEventDetail = {
-				value: _searchContent
-			}
-			var myEventOption = e.currentTarget
-			this.triggerEvent('myevent',myEventDetail,myEventOption)
+		saveSearchContent: function(e){
+			let _detail = e.detail.value
+			let _currentTarget = e.currentTarget
+			this.triggerEvent('search', _detail, _currentTarget)
 		}
   }
 })

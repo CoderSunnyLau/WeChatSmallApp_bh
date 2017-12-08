@@ -1,24 +1,39 @@
  <view class='org_message'>
   <view class='message-left'>
     <image class='logo_ry' src='/images/logo_ry.png'></image>
-    <text class='store_crr' data-status='open' bindtap='powerDrawer' data-entry='store'>{{storeName}}</text>
+    <text class='store_crr' data-status='open' bindtap='showStores'>{{storeName}}</text>
   </view>
-  <view class='org_crr' bindtap='powerDrawer' data-status='open' bindtap='powerDrawer' data-entry='org'>当前机构：{{orgName}}</view>
+  <view class='org_crr' bindtap='powerDrawer' data-status='open' bindtap='showOrg'>当前机构：{{orgName}}</view>
 
   <view class='drawer_bg' data-status='close' wx:if='{{showModalStatus}}' bindtap='powerDrawer'></view>
-  <view animation='{{animationData}}' class='drawer_box' wx:if='{{showModalStatus}}'>
+  <view class="drawer_box {{isOrg?'':'storeBox'}}" wx:if='{{showModalStatus}}'>
     <view class='drawer_title bg-color'>
       <view>{{drawerTitle}}</view>
       <view data-status='close' bindtap='powerDrawer'>></view>
     </view>
     <radio-group class='drawer_content'>
-      <view class='drawer_item' wx:for='{{orgArr}}' bindtap='selectOrg' data-idx='{{index}}'>
-        <text class='item_name'>{{item}}</text>
-        <radio color='#2a9293' class='radio_style' checked='{{radioSelect == index ? true : false}}' />
-      </view>
+      <block wx:if='{{isOrg}}'>
+          <view class='drawer_item' wx:for='{{orgArr}}' bindtap='selectOrg' data-idx='{{index}}'>
+            <text class='item_name'>{{item}}</text>
+            <radio color='#ff5001' class='radio_style' checked='{{radioSelect == index ? true : false}}' />
+          </view>
+        </block>
+        <block wx:else>
+          <view class='drawer_item' wx:for='{{storesArr}}' bindtap='selectOrg' data-idx='{{index}}'>
+            <image src='{{item.photoUrl}}' class='storeImg' mode='aspectFit'/>
+            <view class='storeMsg'>
+              <view>企业名称：{{item.storeName}}</view>
+              <view>所在区域：{{item.city}}</view>
+              <view>联系客服：{{item.telephone}}</view>
+              <view>经营品类：{{item.productCats}}</view>
+              <view>主营品牌：{{item.brands}}</view>
+            </view>
+            <radio color='#ff5001' class='radio_style' checked='{{radioSelect == index ? true : false}}' />
+          </view>
+        </block>
     </radio-group>
     <view class='drawer_btn'>
-      <button data-status='close' bindtap='powerDrawer' class='bg-color' data-btn='btn'>确定</button>
+      <button data-status='close' bindtap='changeOrg' class='btn bg-color' data-btn='btn'>确定</button>
     </view>
   </view>
 </view> 

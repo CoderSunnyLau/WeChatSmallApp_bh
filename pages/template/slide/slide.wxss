@@ -1,41 +1,21 @@
-.product-item .buy-action {
+page {
+  background-color: #efefef;
+}
+
+.pageTab {
   display: flex;
-  flex-direction: column;
+  background-color: #fff;
+  height: 65rpx;
 }
 
-.product-item .buy-action .shopcart {
-  width: 50rpx;
-  height: 50rpx;
-  background: #f50 url('http://file.ry600.com/snapshot/vms/site/di/di70684438lrfavs/82ojywir5vqogktm/image//shopcart_icon.png') no-repeat 10rpx 10rpx;
-  background-size: 32rpx auto;
-  border-radius: 50%;
-  align-self: flex-end;
-  margin-bottom: 20rpx;
-}
-
-.product-item .buy-action .action-box {
-  display: flex;
-  border: 2rpx solid #6f6b6c;
-  width: 160rpx;
-  padding: 6rpx 0;
-}
-
-.product-item .buy-action text {
-  padding: 0 10rpx;
-  line-height: 40rpx;
-}
-
-.product-item .buy-action input {
-  min-height: 0;
-  height: 40rpx;
-  line-height: 40rpx;
+.pageTab .tabItem {
+  font-size: 30rpx;
+  line-height: 65rpx;
+  flex: 1;
   text-align: center;
 }
 
-.product-item .buy-action .reduce {
-  border-right: 1px solid #cacaca;
-}
-
-.product-item .buy-action .add {
-  border-left: 1px solid #cacaca;
+.pageTab .curr {
+  color: #ff5001;
+  border-bottom: 4rpx solid #ff5001;
 }

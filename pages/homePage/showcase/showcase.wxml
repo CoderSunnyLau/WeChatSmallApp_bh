@@ -1,5 +1,5 @@
 <msg></msg>
-<bar bindmyevent='toSearch'></bar>
+<bar bind:search='searchTo' bind:scan='scanTo'></bar>
 <view>
 	<view class='drop_item' wx:for='{{firstArr}}' wx:for-item='first'>
 		<view class="item_title arrow {{isSelect==index&&isDrop ?'down':''}}" bindtap='dropItem' data-idx='{{index}}'>{{first.showcaseName}}</view>

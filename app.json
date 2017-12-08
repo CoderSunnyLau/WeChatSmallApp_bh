@@ -25,7 +25,8 @@
         "pages/homePage/shopcart/orderCheckout/selectAddress/selectAddress",
         "pages/homePage/account/fixInfo/fixInfo",
         "pages/loginPage/forget/forgetCheck",
-        "pages/loginPage/forget/forgetSet"
+        "pages/loginPage/forget/forgetSet",
+				"pages/noCooperate/noCooperate"
     ],
     "window": {
         "backgroundTextStyle": "light",

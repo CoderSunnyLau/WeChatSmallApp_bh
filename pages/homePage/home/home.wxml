@@ -1,8 +1,8 @@
 <msg></msg>
-<bar bindmyevent='toSearch'></bar>
+<bar bind:search='searchTo' bind:scan='scanTo'></bar>
 <view class='quickEnter'>
   <view class='enterArea left'>
-    <view class='icon quickBill'>
+    <view class='icon quickBill' bindtap='quickBill'>
       <view class='bg iconBg'></view>快速下单
     </view>
     <view class='icon showcase' bindtap="toShopcase">

@@ -14,7 +14,7 @@
   width: 650rpx;
   overflow: hidden;
   position: fixed;
-  top: 40%;
+  top: 33%;
   left: 0;
   z-index: 1001;
   background-color: rgba(250, 250, 250, 0.9); 
@@ -40,6 +40,10 @@
   overflow-y: scroll;
 }
 
+.storeBox .drawer_content{
+	height: 750rpx;
+}
+
 .drawer_item{
   display: flex;
   justify-content: space-between;
@@ -49,8 +53,24 @@
   border-bottom: 1px solid #ccc;
 }
 
+.storeBox .drawer_item{
+	font-size: 26rpx;
+	align-items: center;
+	line-height: 38rpx;
+}
+
 .drawer_item:last-child{
   border-bottom: none;
+}
+
+.storeBox .drawer_item .storeImg{
+	width: 150rpx;
+	height: 150rpx;
+	margin-right: 30rpx;
+}
+
+.storeBox .drawer_item .storeMsg{
+	width: 350rpx;
 }
 
 .radio_style{
@@ -61,7 +81,7 @@
 .drawer_btn{
   padding: 26rpx 0;
 }
-.drawer_btn button{
+.drawer_btn .btn{
   width: 155rpx;
   height: 56rpx;
   line-height: 56rpx;

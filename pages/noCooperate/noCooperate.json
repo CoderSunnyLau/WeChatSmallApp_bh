@@ -1,6 +1,5 @@
 {
 	"usingComponents": {
-		"test": "/component/testTmp/testTmp",
 		"msg": "/component/orgMsg/orgMsg"
 	}
 }

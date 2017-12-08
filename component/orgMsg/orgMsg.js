@@ -1,46 +1,134 @@
+const httpUtil = require('../../utils/httpUtil.js')
 var _userData
+var _page
+
 Component({
 	properties: {},
-	data: {},
-	attached: function(){
+	data: {
+		radioSelect: 0
+	},
+	attached: function () {
 		_userData = wx.getStorageSync('userData')
+		_page = getCurrentPages()[0].route
+
 		this.setData({
 			storeName: _userData.storeName,
 			orgName: _userData.orgName
 		})
 	},
 	methods: {
-		powerDrawer: function (e) {
-			console.log(wx.getStorageSync('userData'))
-			this.triggerEvent('customevent', {}, { composed: true })
+		showOrg: function (e) {
+			console.log(_userData)
 			let that = this
-			var currentStatus = e.currentTarget.dataset.status
-			var animation = wx.createAnimation({
-				duration: 200,
-				timingFunction: 'linear',
-				delay: 0	
+			let _orgArr = []
+			for (let i = 0; i < _userData.orgsArr.length; i++) {
+				_orgArr.push(_userData.orgsArr[i].orgName)
+			}
+			that.setData({
+				isOrg: true,
+				drawerTitle: '当前机构选择',
+				orgArr: _orgArr
 			})
-
-			that.animation = animation
-
-			animation.opacity(0).rotateX(-100).step()
+			that.powerDrawer(e)
+		},
+		showStores: function (e) {
+			let that = this
 
 			that.setData({
-				animationData: animation.export()
+				isOrg: false,
+				drawerTitle: '我的供应商',
+				storesArr: _userData.storesArr
 			})
-
-			setTimeout(function () {
-				animation.opacity(1).rotateX(0).step()
-				that.setData({
-					animationData: animation
+			that.powerDrawer(e)
+		},
+		selectOrg: function (e) {
+			this.setData({
+				radioSelect: e.currentTarget.dataset.idx
+			})
+		},
+		changeOrg: function (e) {
+			let idx = this.data.radioSelect
+			let that = this
+			if(that.data.isOrg){
+				_userData.orgName = _userData.orgsArr[idx].orgName
+				_userData.orgId = _userData.orgsArr[idx].orgId
+				var httpPromise = new Promise(function(resolve,reject){
+					httpUtil.getHttp({
+						action: 'VSUser.changeRelOrg',
+						orgId: _userData.orgId
+					},function(callback,success){
+						if(callback.success){
+							resolve()
+						}
+					})
 				})
+				httpPromise.then(function(val){
+					let _header = httpUtil.getHeader()
+					_header.cookie = _header.cookie + ',_relOrgId=' + _userData.orgId
+					httpUtil.saveHeader(_header.cookie)
 
-				if (currentStatus == 'close') {
-					that.setData({
-						showModalStatus: false
+					httpUtil.getHttp({
+						action: 'VSShop.getRelStores'
+					},function(callback){
+						if(callback.success){
+							console.log(callback.results)
+							_userData.storesArr = callback.results
+							that.setData({
+								orgName: _userData.orgName
+							})
+							for(var i=0;i<_userData.storesArr.length;i++){
+								if (that.data.storeName == _userData.storesArr[i].storeName){
+									break;
+								}
+							}
+							wx.setStorageSync('userData', _userData)
+							if(i >= _userData.storesArr.length){
+								wx.reLaunch({
+									url: '/pages/noCooperate/noCooperate'
+								})
+								
+							}
+							else{
+								if (i < _userData.storesArr.length && _page == 'pages/noCooperate/noCooperate') {
+									wx.switchTab({
+										url: '/pages/homePage/home/home'
+									})
+								}
+							}
+							that.powerDrawer(e)
+						}
+					})
+				})	
+			}
+			else{
+				//_userData
+				console.log(that.data.storesArr)
+				_userData.storeName = _userData.storesArr[idx].storeName
+				_userData.storeOrgId = _userData.storesArr[idx].storeOrgId
+				_userData.storeCode = _userData.storesArr[idx].storeCode
+				_userData.bizCenterId = _userData.storesArr[idx].bizCenterId
+				wx.setStorageSync('userData', _userData)
+				that.setData({
+					storeName: _userData.storeName
+				})
+				if (_page == 'pages/noCooperate/noCooperate'){
+					wx.switchTab({
+						url: '/pages/homePage/home/home'
 					})
 				}
-			}.bind(that), 200)
+				that.powerDrawer(e)
+			}
+		},
+		powerDrawer: function (e) {
+			var that = this
+			var currentStatus = e.currentTarget.dataset.status
+
+			if (currentStatus == 'close') {
+				that.setData({
+					showModalStatus: false,
+					radioSelect: 0
+				})
+			}
 
 			if (currentStatus == "open") {
 				that.setData({

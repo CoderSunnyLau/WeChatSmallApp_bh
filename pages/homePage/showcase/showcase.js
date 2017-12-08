@@ -9,6 +9,7 @@ Page({
   },
   onLoad: function (options) {
     _userData = wx.getStorageSync('userData')
+		console.log(_userData)
 		_showcaseArr = []
     let that = this
 		
@@ -36,10 +37,15 @@ Page({
 			isSelect: e.currentTarget.dataset.idx,
 			isDrop: !that.data.isDrop
 		})
-  },
-  toSearch: function (e) {
-    wx.navigateTo({
-      url: '../showcase/search/search?searchContent=' + e.detail.value + '&entry=showcase'
-    })
-  }
+	},
+	scanTo: function (e) {
+		wx.navigateTo({
+			url: '../showcase/search/search?searchContent=' + e.detail.result + '&type=shopcase'
+		})
+	},
+	searchTo: function (e) {
+		wx.navigateTo({
+			url: '../showcase/search/search?searchContent=' + e.detail.searchContent + '&type=shopcase'
+		})
+	}
 })

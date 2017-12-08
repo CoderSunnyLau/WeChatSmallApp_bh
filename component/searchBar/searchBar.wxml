@@ -1,11 +1,13 @@
-  <view class='searchBar'>
-    <view class='search-scan' bindtap='scanBill'>
-      <image class='scan-img' src='/images/scan.png'></image>
-      <text>扫一扫</text>
-    </view>
+<view class='searchBar'>
+  <view class='search-scan' bindtap='saveScanCode'>
+    <image class='scan-img' src='/images/scan.png'></image>
+    <text>扫一扫</text>
+  </view>
+  <form bindsubmit='saveSearchContent'>
     <view class='search-area'>
       <image class='search-img' src='/images/search.png'></image>
-      <input class='search-input' placeholder='{{searchTip}}' bindinput='saveContent' placeholder-class='holderTxt' value='{{inputContent}}'></input>
-      <text class='search-txt' bindtap='search'>搜 索</text>
+      <input class='search-input' placeholder='{{searchTip}}' placeholder-class='holderTxt' name='searchContent'></input>
+      <button class='search-btn' formType='submit'>搜 索</button>
     </view>
-  </view>
+  </form>
+</view>

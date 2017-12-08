@@ -1,7 +1,12 @@
-<msg></msg>
-<bar></bar>
+<msg id='msg'></msg>
+<test bind:search='searchPro' bind:scan='scanPro' id='bar'></test>
+
+<view class='pageTab' id='tab'>
+  <view class="tabItem {{isSelect==index?'curr':''}}" wx:for='{{tabArr}}' bindtap='tabSelect' data-tIdx='{{index}}'>{{item}}</view>
+	<view class='tabItem' bindtap='screen'>筛选</view>
+</view>
 <block wx:for='{{arr}}'>
-  <view>
+  <view style='height: {{bgHeight}}px;background-color:#fff;'>
     <view>{{item.bb}}</view>
     <block wx:for='{{mArr}}' wx:for-item='mItem'>
       <view>{{item.aa}}</view>
@@ -9,13 +14,3 @@
     </block>
   </view>
 </block>
-<view class='product-item'>
-  <form class='buy-action' bindsubmit='addToShopcart'>
-    <view class='shopcart' form-type='submit'></view>
-    <view class='action-box'>
-      <text class='reduce'>-</text>
-      <input type='number' bindinput='amountAdd' name='amount'/>
-      <text class='add'>+</text>
-    </view>
-  </form>
-</view>

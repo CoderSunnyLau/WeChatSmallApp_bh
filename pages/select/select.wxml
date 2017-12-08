@@ -13,7 +13,7 @@
         </block>
         <block wx:else>
           <view class='drawer_item' wx:for='{{relOrgArr}}' bindtap='selectOrg' data-idx='{{index}}'>
-            <image src='{{item.photoUrl}}' class='orgImg'></image>
+            <image src='{{item.photoUrl}}' class='orgImg' mode='aspectFit'/>
             <view class='orgMsg'>
               <view>企业名称：{{item.storeName}}</view>
               <view>所在区域：{{item.city}}</view>
