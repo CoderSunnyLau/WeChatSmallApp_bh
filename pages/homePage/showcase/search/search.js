@@ -9,7 +9,8 @@ Page({
 		isSelect: 0,
 		hasProduct: undefined,
 		productArr: [],
-		canScroll: true
+		canScroll: true,
+		isQuickBill: false
 	},
 	onLoad: function (options) {
 		console.log(options)
@@ -47,13 +48,15 @@ Page({
 		var _url = '/_shop/' + _userData.storeCode + '/search.shtml?withSkus=true&sv=' + _searchContent + '&sn=' + start
 
 		wx.showLoading();
-		httpUtil.getHttp({
+		httpUtil.postHttp({
 			action: 'VSCommon.urlRequest',
 			url: _url,
+			// withFacet: true,
 			limit: 5
 		}, function (callback, success) {
 			let _productArr = []
 			if (callback.success) {
+				console.log(JSON.parse(callback.attachData))
 				var _listArr = that.data.productArr
 				if (callback.results.length > 0) {
 					let _callbackArr = JSON.parse(JSON.stringify(callback.results))

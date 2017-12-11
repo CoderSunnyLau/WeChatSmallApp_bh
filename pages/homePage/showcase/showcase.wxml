@@ -1,15 +1,19 @@
-<msg></msg>
-<bar bind:search='searchTo' bind:scan='scanTo'></bar>
-<view>
-	<view class='drop_item' wx:for='{{firstArr}}' wx:for-item='first'>
-		<view class="item_title arrow {{isSelect==index&&isDrop ?'down':''}}" bindtap='dropItem' data-idx='{{index}}'>{{first.showcaseName}}</view>
-		<view class='item_children' wx:if="{{isSelect==index&&isDrop?true:false}}">
-			<view class='children_item' wx:for='{{first.children}}' wx:for-item='second'>
-				<view class='item_left orange'>{{second.showcaseName}}</view>
-				<view class='item_right'>
-					<text class='right_item' wx:for='{{second.children}}' wx:for-item='thirth'>{{thirth.showcaseName}}</text>
-				</view>
-			</view>
-		</view>
-	</view>
+<msg id='msg'></msg>
+<bar bind:search='searchTo' bind:scan='scanTo' id='bar'></bar>
+<view class='nav'>
+  <scroll-view class='nav-left' style='height:{{contentHeight}};' scroll-y='true'>
+    <view class='nav-content'>
+      <view wx:for="{{showcaseArr}}" wx:for-item='first' class="nav-item {{(isSelect==index)?'curr':''}}" bindtap='selectItem' data-idx='{{index}}'>
+        {{first.showcaseName}}
+      </view>
+    </view>
+  </scroll-view>
+   <scroll-view class='nav-right' style='height:{{contentHeight}};' scroll-y='true'>
+    <block wx:for='{{showcaseArr[isSelect].children}}' wx:for-item='second'>
+      <view class='nav-title'>{{second.showcaseName}}</view>
+      <view class='nav-content'>
+        <view wx:for="{{second.children}}" wx:for-item='thirth' class='nav-item'>{{thirth.showcaseName}}</view>
+      </view>
+    </block>
+  </scroll-view> 
 </view>

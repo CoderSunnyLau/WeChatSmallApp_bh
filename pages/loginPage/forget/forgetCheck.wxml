@@ -1,13 +1,26 @@
 <!--pages/loginPage/forget/forgetCheck.wxml-->
 <view class='forget'>
-	<view><text>为保障您的账户安全，系统需要先确认您的身份，请选择现有账户信息验证。</text></view>
-	<view class='check_type'><text>　通过绑定手机验证</text></view>
-	<view class='input_field'>
-		<input class='check_input' disabled='true' value='{{15555560523}}'></input>
-		<text class='send'>发送验证码</text>
-	</view>
-	<view class='input_field'>
-		<input placeholder='请输入手机验证码' placeholder-class='placeholder'></input>
-	</view>
-	<view class='btn_field'><button>重置密码</button></view>
+	<view class='toptip'><text>为保障您的账户安全，系统需要先确认您的身份，请选择现有账户信息验证。</text></view>
+	<block wx:if='{{info.bindMobile || info.bindMail}}'>
+		<radio-group bindchange='changeWay'>
+			<view class='check_type'>
+				<radio class='radio' color='#F50' value='mobile' checked='{{way == "mobile"}}'></radio>
+				<text bindtap='changeWay' data-name='mobile'>通过绑定手机验证</text>
+			</view>
+			<view class='check_type'>
+				<radio class='radio' color='#F50' value='mail' checked='{{way == "mail"}}'></radio>
+				<text bindtap='changeWay' data-name='mail'>通过绑定邮箱验证</text>
+			</view>
+		</radio-group>
+		<view>
+			<view class='input_field'>
+				<input class='check_input' disabled='true' value='{{info[way]}}'></input>
+				<text class='send' bindtap='sendValidCode'>发送验证码</text>
+			</view>
+			<view class='input_field'>
+				<input placeholder='请输入{{way == "mail" ? "邮箱" : "手机"}}验证码' placeholder-class='placeholder' bindtap='checkInput'></input>
+			</view>
+		</view>
+	</block>
+	<view class='btn_field'><button bindtap='nextStep'>重置密码</button></view>
 </view>

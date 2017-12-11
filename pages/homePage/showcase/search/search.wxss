@@ -33,6 +33,7 @@ page {
   font-size: 26rpx;
   display: flex;
   align-items: center;
+	color:#585657;
 }
 
 .product-item .up .saleTag {

@@ -26,6 +26,10 @@ input{
 .check_img{
   width: 300rpx;
   height: auto;
+  background-image: url(http://file.ry600.com/snapshot//files/di/di70684438lrfavs/2017-10-24/1b2yysllburx4q9e.gif);
+  background-size: auto 90rpx;
+  background-repeat: no-repeat;
+  background-position: center 0;
 }
 .btn_field{
 	margin-top: 35rpx;

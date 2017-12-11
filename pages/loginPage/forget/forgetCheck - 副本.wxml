@@ -1,0 +1,37 @@
+<!--pages/loginPage/forget/forgetCheck.wxml-->
+<view class='forget'>
+	<view class='toptip'><text>为保障您的账户安全，系统需要先确认您的身份，请选择现有账户信息验证。</text></view>
+	<radio-group bindchange='changeWay'>
+		<block wx:if='{{info.bindMobile}}'>
+			<view class='check_type'>
+				<radio class='radio' color='#F50' value='mobile' checked='{{way == "mobile"}}'></radio>
+				<text bindtap='changeWay' data-name='mobile'>通过绑定手机验证</text>
+			</view>
+			<block wx:if='{{way == "mobile"}}'>
+				<view class='input_field'>
+					<input class='check_input' disabled='true' value='{{info.mobile}}'></input>
+					<text class='send'>发送验证码</text>
+				</view>
+				<view class='input_field'>
+					<input placeholder='请输入手机验证码' placeholder-class='placeholder' bindtap='checkInput'></input>
+				</view>
+			</block>
+		</block>
+		<block wx:if='{{info.bindMail}}'>
+			<view class='check_type'>
+				<radio class='radio' color='#F50' value='mail' checked='{{way == "mail"}}'></radio>
+				<text bindtap='changeWay' data-name='mail'>通过绑定邮箱验证</text>
+			</view>
+			<block wx:if='{{way == "mail"}}'>
+				<view class='input_field'>
+					<input class='check_input' disabled='true' value='{{info.mail}}'></input>
+					<text class='send'>发送验证码</text>
+				</view>
+				<view class='input_field'>
+					<input placeholder='请输入邮件验证码' placeholder-class='placeholder' bindtap='checkInput'></input>
+				</view>
+			</block>
+		</block>
+	</radio-group>
+	<view class='btn_field'><button>重置密码</button></view>
+</view>

@@ -2,10 +2,17 @@
 <bar bind:search='searchPro' bind:scan='scanPro' id='bar'></bar>
 <view class='quickOrder'>
   <view class='pageTab' id='tab'>
-    <view class="tabItem {{isSelect==index?'curr':''}}" wx:for='{{tabArr}}' bindtap='tabSelect' data-tIdx='{{index}}'>{{item}}</view>
+    <!-- <block wx:if='{{isQuickBill}}'>
+      <view class="tabItem {{isSelect==index?'curr':''}}" wx:for='{{tabArr}}' bindtap='tabSelect' data-tIdx='{{index}}'>{{item}}</view>
+    </block>
+    <block wx:else>
+      <view class="tabItem {{isSelect==index?'curr':''}}" wx:for='{{tabArr}}' bindtap='tabSelect' data-tIdx='{{index}}'>{{item}}</view>
+      <view class='tabItem bg screen' bindtap='showScreen' data-status='open'>筛选</view>
+    </block> -->
+		<view class="tabItem {{isSelect==index?'curr':''}}" wx:for='{{tabArr}}' bindtap='tabSelect' data-tIdx='{{index}}'>{{item}}</view>
   </view>
   <block wx:if='{{hasProduct == true}}'>
-    <scroll-view class='product-content ' id='content' style="height: {{contentHeight}}" bindscrolltolower='moreProduct'  lower-threshold='5' enable-back-to-top='true' scroll-with-animation='true' scroll-y='{{canScroll}}'>
+    <scroll-view class='product-content ' id='content' style="height: {{contentHeight}}" bindscrolltolower='moreProduct' lower-threshold='5' enable-back-to-top='true' scroll-with-animation='true' scroll-y='{{canScroll}}'>
       <view class='product-item' wx:for='{{productArr}}'>
         <block wx:if='{{item.addSaleTagName}}'>
           <view class='item up'>
@@ -27,10 +34,10 @@
               <text>库存：{{item.productMsg.stockTag.stockState}}</text>
             </block>
             <view class='price-area'>
-              <text class='product-price'>¥ {{item.productMsg.price}}/{{item.productMsg.packUnits}}</text>
-							<block wx:if='{{item.productMsg.price <= 0}}'>
-								<text>商品尚未定价</text>
-							</block>
+              <text class='product-price'>¥{{item.productMsg.price}} /{{item.productMsg.packUnits}}</text>
+              <block wx:if='{{item.productMsg.price <= 0}}'>
+                <text>商品尚未定价</text>
+              </block>
             </view>
           </view>
         </view>
@@ -39,7 +46,7 @@
             <view class='shopcart' bindtap='addToShopcart' data-skuId='{{item.productMsg.skuId}}' data-index='{{index}}' data-productId='{{item.orgProductId}}'></view>
             <view class='action-box'>
               <text class='reduce' bindtap='changeAmount' data-status='reduce' data-index='{{index}}'>-</text>
-              <input type='number' bindinput='amountSave' data-index='{{index}}' value='{{item.shopcartAmount}}'/>
+              <input type='number' bindinput='amountSave' data-index='{{index}}' value='{{item.shopcartAmount}}' />
               <text class='add' bindtap='changeAmount' data-status='add' data-index='{{index}}'>+</text>
             </view>
           </view>
