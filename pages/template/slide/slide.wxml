@@ -1,48 +1,11 @@
 <msg id='msg'></msg>
 <test bind:search='searchPro' bind:scan='scanPro' id='bar'></test>
 
-<!-- <view class='pageTab' id='tab'>
+<view class='pageTab' id='tab'>
   <view class="tabItem {{isSelect==index?'curr':''}}" wx:for='{{tabArr}}' bindtap='tabSelect' data-tIdx='{{index}}'>{{item}}</view>
-	<view class='tabItem bg screen' bindtap='showScreen' data-status='open'>筛选</view>
+  <view class='tabItem bg screen' bindtap='showScreen' data-status='open'>筛选</view>
 </view>
 
-<view class='screen_bg' wx:if='{{openScreen}}' bindtap='showScreen' data-status='close'></view>
-<view class='facets_content' wx:if='{{openScreen}}' animation='{{animationData}}'>
-	<view class='select_box item'>
-		<text class='select_title title'>已选条件</text>
-		<text class='select_content'>感冒发烧</text>
-	</view>
-	<view class='facets_item item'>
-		<view>
-			<text class='title'>剂型</text>
-		</view>
-		<view class='facets_list'>
-			<view class='facets_child'>口服液</view>
-			<view class='facets_child'>注射剂</view>
-			<view class='facets_child'>悬凝剂</view>
-			<view class='facets_child'>溶液剂</view>
-			<view class='facets_child'>煎膏剂</view>
-		</view>
-	</view>
-</view> -->
-
-<!-- <view class='nav'>
-  <view class='nav-left'>
-    <view class='nav-content'>
-      <view wx:for="{{leftNavArr}}" class="nav-item {{(isSelect==index)?'curr':''}}" bindtap='selectItem' data-idx='{{index}}'>{{item}}</view>
-    </view>
-  </view>
-  <view class='nav-right'>
-    <view class='nav-title'>西药分类</view>
-    <view class='nav-content'>
-      <view wx:for="{{rightNavArr}}" class='nav-item' bindtap='selectCase'>{{item}}</view>
-    </view>
-  </view>
-</view> -->
-
-<view wx:for='{{mArr}}'>
-	<view>{{item.title}}</view>
-	<view wx:for='{{mArr[idx].child}}' wx:for-item='second'>
-		{{second}}
-	</view>
-</view>
+<scroll-view style='height:{{contentHeight}};' scroll-y='true'>
+	<view wx:for='{{mArr}}'>{{item}}</view>
+</scroll-view>

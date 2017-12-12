@@ -8,7 +8,7 @@ Page({
 		title: '找回密码',
 		checkImg: '',
 		userName: '',
-		checkCode: ''
+		checkValid: ''
 	},
 	onLoad: function(){
 		_this = this;
@@ -21,7 +21,7 @@ Page({
 	},
 	checkInput: function(e){
 		this.setData({
-			checkCode: e.detail.value
+			checkValid: e.detail.value
 		});
 	},
 	refreshImg: function(){
@@ -43,15 +43,15 @@ Page({
 		var _data = this.data;
 		if(!_data.userName){
 			ry.alert('请输入用户名');
-		}else if(!_data.checkCode){
+		}else if(!_data.checkValid){
 			ry.alert('请输入验证码');
 		}else{
 			http.getHttp({
 				action: 'VSAccount.getUserPwdInfo',
-				_captcha: _this.data.checkCode,
+				_captcha: _this.data.checkValid,
 				masterDS: JSON.stringify({
 					"userName": _this.data.userName,
-					"coughs": _this.data.checkCode
+					"coughs": _this.data.checkValid
 				})
 			}, function(res, success){
 				if(success){

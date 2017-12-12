@@ -23,7 +23,7 @@ page {
 
 .product-item {
   background-color: #fff;
-  margin-top: 8px;
+  margin-top: 8rpx;
   padding: 15rpx 30rpx;
   position: relative;
 }

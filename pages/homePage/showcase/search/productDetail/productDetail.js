@@ -16,27 +16,48 @@ Page({
 		shopcartAmount = 1
 		_userData = wx.getStorageSync('userData')
 
-		httpUtil.getHttp({
-			action: 'VSShop.getProduct',
-			productId: options.productId
-		}, function (callback, success) {
-			if (success) {
-				if (callback.success) {
-					console.log(callback.results[0])
-					let skus = callback.results[0].skus
-					let skuArr = new Array()
-					for (let sku in skus) {
-						skuArr.push(skus[sku])
-					}
+		var httpPromise = new Promise(function(resolve,reject){
+			httpUtil.getHttp({
+				action: 'VSShop.getProduct',
+				productId: options.productId
+			}, function (callback, success) {
+				if (success) {
+					if (callback.success) {
+						console.log(callback.results[0])
+						let skus = callback.results[0].skus
+						let skuArr = new Array()
+						for (let sku in skus) {
+							skuArr.push(skus[sku])
+						}
 
-					that.setData({
-						msgArr: [skuArr[0]],
-						skuArr: skuArr,
-						productArr: callback.results
-					})
+						that.setData({
+							msgArr: [skuArr[0]],
+							skuArr: skuArr,
+							productArr: callback.results
+						})
+						resolve()
+					}
 				}
-			}
+			})
 		})
+
+		httpPromise.then(function(val){
+			httpUtil.getHttp({
+				action: 'VSCommon.getFavorite',
+				resType: 'ProductOfShop',
+				resId: options.productId
+			},function(callback){
+				console.log(callback)
+				if(callback.success){
+					if(callback.results[0] != null){
+						that.setData({
+							isAdd: true
+						})
+					}
+				}
+			})
+		})
+		
 	},
 	skuChange: function(e){
 		var that = this
@@ -100,6 +121,26 @@ Page({
 				title: '提示',
 				content: '您所选购的商品当前库存量小于订购数量，如需订购请联系客服',
 				showCancel: false
+			})
+		}
+	},
+	addFavorite: function(){
+		let that = this
+		if(!that.data.isAdd){
+			httpUtil.postHttp({
+				action: 'VSCommon.addFavorite',
+				resType: 'ProductOfShop',
+				resId: that.data.productArr[0].shopProductId,
+				resName: that.data.productArr[0].productCaption
+			},function(callback){
+				if(callback.success){
+					wx.showToast({
+						title: '加入收藏夹成功 ！'
+					})
+					that.setData({
+						isAdd: true
+					})
+				}
 			})
 		}
 	}

@@ -50,10 +50,11 @@ page{
   margin: 36rpx 0;
 }
 .forget_box{
-  text-align: right;
+  color: #333;
+  overflow: hidden;
 }
 .forget{
-  color: #333;
+	float: right;
 }
 .version_box{
   position: fixed;
@@ -65,4 +66,16 @@ page{
 .version{
   font-size: 22rpx;
   color: #BBB;
+}
+.clear{
+	display: none; 
+	font-size: 40rpx;
+	color: #AAA;
+	position: absolute;
+	padding: 10rpx;
+	right: 0;
+	bottom: 10rpx;
+}
+.show{
+	display: block;
 }

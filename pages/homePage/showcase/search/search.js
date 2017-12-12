@@ -56,7 +56,7 @@ Page({
 		}, function (callback, success) {
 			let _productArr = []
 			if (callback.success) {
-				console.log(JSON.parse(callback.attachData))
+				//console.log(JSON.parse(callback.attachData))
 				var _listArr = that.data.productArr
 				if (callback.results.length > 0) {
 					let _callbackArr = JSON.parse(JSON.stringify(callback.results))

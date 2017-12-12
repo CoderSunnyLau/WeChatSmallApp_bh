@@ -6,25 +6,17 @@ Page({
 		animationData: {},
 		leftNavArr: ['西药', '食品', '中成药', '医疗器械', '生物制药', '化妆品', '重要饮品', '日用品'],
 		rightNavArr: ['感冒发热', '咳嗽痰喘', '抗生素', '心脑血管', '糖尿病', '消化道', '妇科', '泌尿生殖', '抗过敏',
-			'抗病毒', '耳鼻口腔', '肝胆', '维生素矿物质', '眼科', '皮肤组织', '抗肿瘤', '中枢神经', '内分泌', '其他'],
-		mArr: [
-			{
-				title: '111',
-				child: ['aa','bb','cc']
-			},
-			{
-				title: '222',
-				child: ['dd', 'ee', 'ff']
-			},
-			{
-				title: '333',
-				child: ['gg', 'hh', 'ii']
-			},
-		],
-		idx: 2
+			'抗病毒', '耳鼻口腔', '肝胆', '维生素矿物质', '眼科', '皮肤组织', '抗肿瘤', '中枢神经', '内分泌', '其他']
 	},
 	onLoad: function (options) {
-
+		var _mArr = []
+		for(let i=0;i<100;i++){
+			_mArr.push(i)
+		}
+		this.setData({
+			mArr: _mArr
+		})
+		this.getHeight()
 	},
 	selectItem: function (e) {
 		//console.log(e.currentTarget.dataset.idx)
@@ -70,5 +62,22 @@ Page({
 				openScreen: true
 			})
 		}
+	},
+	getHeight: function () {
+		var that = this
+		wx.createSelectorQuery().selectAll('#msg,#bar,#tab').boundingClientRect(function (res) {
+			var _tipHeight = 0
+			for (let i = 0; i < res.length; i++) {
+				_tipHeight = _tipHeight + res[i].height
+			}
+			wx.getSystemInfo({
+				success: function (res) {
+					_tipHeight = res.windowHeight - _tipHeight
+					that.setData({
+						contentHeight: _tipHeight + 'px'
+					})
+				}
+			})
+		}).exec()
 	}
 })

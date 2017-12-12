@@ -6,7 +6,7 @@
       </swiper-item>
     </block>
   </swiper>
-  <view class="favorite bg {{isAdd?'hasAdd':''}}"></view>
+  <view class="favorite bg {{isAdd?'hasAdd':''}}" bindtap='addFavorite'></view>
   <block wx:for='{{msgArr}}' wx:for-item='msgItem'>
     <view class='product_msg_area'>
       <view class='area msg'>

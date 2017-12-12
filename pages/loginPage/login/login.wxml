@@ -1,22 +1,37 @@
 <!--login.wxml-->
 <view class='login'>
-  <view class="logo_box">
-    <image class="logo" mode="widthFix" src="http://file.ry600.com/snapshot/vms/site/di/di70684438lrfavs/82ojywir5vqogktm/image//wx_rylogo.png"></image>
-  </view>
-  <view class='tip orange'><text>{{tip}}</text></view>
-  <view class="input_box">
-    <view class='input_field bg'>
-      <input class='input' type='text' placeholder='用户名 / 手机号' placeholder-class='placeholder' bindinput='nameInput' value='{{userName}}'></input>
-    </view>
-    <view class='input_field pwd bg'>
-      <input class='input' type='password' placeholder='密码' placeholder-style='color:#AAA' bindinput='passwordInput' value='{{password}}'></input>
-    </view>
-    <view class='forget_box'><text class='forget' bindtap='toForget'>忘记密码</text></view>
-    <view class='btn_field'>
-      <button class="btn" bindtap='doLogin'>登录</button>
-    </view>
-    <view class='version_box'>
-      <text class='version'>版本号：{{vs}}</text>
-    </view>
-  </view>
+	<view class="logo_box">
+		<image class="logo" mode="widthFix" src="http://file.ry600.com/snapshot/vms/site/di/di70684438lrfavs/82ojywir5vqogktm/image//wx_rylogo.png"></image>
+	</view>
+	<view class='tip orange'><text>{{tip}}</text></view>
+	<view class="input_box">
+		<view class='input_field bg {{item ? "pwd" : ""}}' wx:for='{{[0, 1]}}'>
+			<input class='input' type='{{item ? "password" : "text"}}' placeholder='{{item ? "密码" : "用户名 / 手机号"}}' placeholder-class='placeholder' bindinput='inputFn' bindfocus='inputFocus(e,"0")' bindblur='inputBlur' focus='{{focusIdx == index ? true : false}}' value='{{inputArr[index]}}' data-index='{{index}}'></input>
+			<text class='clear {{((focusIdx == index) && (inputArr[index])) ? "show" : ""}}' bindtap='clear' data-index='{{index}}'>×</text>
+		</view>
+		<view class='forget_box'><navigator url='../forget/forget' class='forget'>忘记密码</navigator></view>
+		<view class='btn_field'>
+			<button class="btn" bindtap='doLogin'>登录</button>
+		</view>
+		<view class='version_box'>
+			<text class='version'>版本号：{{vs}}</text>
+		</view>
+	</view>
+	<!-- <view class="input_box">
+		<view class='input_field bg'>
+			<input class='input' type='text' placeholder='用户名 / 手机号' placeholder-class='placeholder' bindinput='nameInput' bindfocus='inputFocus' bindblur='inputBlur' value='{{userName}}' data-index='1'></input>
+			<text class='clear {{focusIdx == 1 ? "show" : ""}}' bindtap='clear' data-index='1'>×</text>
+		</view>
+		<view class='input_field pwd bg'>
+			<input class='input' type='password' placeholder='密码' placeholder-style='color:#AAA' bindinput='passwordInput' bindfocus='inputFocus' bindblur='inputBlur' value='{{password}}' data-index='2'></input>
+			<text class='clear {{focusIdx == 2 ? "show" : ""}}' bindtap='clear' data-index='2'>×</text>
+		</view>
+		<view class='forget_box'><navigator url='../forget/forget' class='forget'>忘记密码</navigator></view>
+		<view class='btn_field'>
+			<button class="btn" bindtap='doLogin'>登录</button>
+		</view>
+		<view class='version_box'>
+			<text class='version'>版本号：{{vs}}</text>
+		</view>
+	</view> -->
 </view>

@@ -11,7 +11,7 @@ Page({
 			mobile:"155*****0523",
 			userName: "ryliuwf"
 		},
-		checkCode: '',
+		validCode: '',
 		way: 'mobile'
 	},
 	onLoad: function (options) {
@@ -20,12 +20,17 @@ Page({
 			this.setData({
 				info: JSON.parse(options.info)
 			});
-			info = this.data.info;
+		}
+		info = this.data.info;
+		if(!info.bindMobile){
+			this.setData({
+				way: 'mail'
+			});
 		}
 	},
 	checkInput: function(e){
 		this.setData({
-			checkCode: e.detail.value
+			validCode: e.detail.value
 		});
 	},
 	changeWay: function(e){
@@ -46,15 +51,22 @@ Page({
 		});
 	},
 	nextStep: function(){
+		if(!_this.data.validCode){
+			ry.alert('请输入验证码');
+			return false;
+		}
 		http.getHttp({
 			action: 'VSAccount.confirmPwdInfo',
 			userName: info.userName,
-			confirmType: way,
-			validCode: _this.data.checkCode
+			confirmType: _this.data.way,
+			validCode: _this.data.validCode
 		}, function(res, success){
 			if(success){
 				if(res.success){
 					console.log(res);
+					wx.navigateTo({
+						url: 'forgetSet?activateCode=' + res.activateCode + '&userName=' + info.userName
+					});
 				}else{
 					ry.alert(res.message);
 				}
