@@ -1,7 +1,7 @@
 <!--pages/loginPage/forget/forgetSet.wxml-->
 <view class='forget'>
   <view class='input_field' wx:for='{{[0,1]}}'>
-    <input placeholder='{{index ? "请再次输入密码" : "请输入新密码"}}' placeholder-class='placeholder' bindinput='pwdInput' data-index='{{index}}'></input>
+    <input type='password' placeholder='{{index ? "请再次输入密码" : "请输入新密码"}}' placeholder-class='placeholder' bindinput='pwdInput' data-index='{{index}}'></input>
   </view>
   <view class='btn_field'><button bindtap='resetPwd'>重置密码</button></view>
 </view>

@@ -1,8 +1,9 @@
 // pages/loginPage/forget/forget.js
 const ry = require('../../../utils/util.js');
 const http = require('../../../utils/httpUtil.js');
-var _this;
-var imgSrc = 'http://m.ry600.com/jcaptcha.action';
+var _this,
+	imgSrc = 'http://m.ry600.com/jcaptcha.action',
+	countTemp = 0;
 Page({
 	data: {
 		title: '找回密码',
@@ -33,9 +34,15 @@ Page({
 			url: img,
 			header: http.getHeader(),
 			success: function(res){
-				_this.setData({
-					checkImg: img
-				});
+				if(countTemp){
+					_this.setData({
+						checkImg: img
+					});
+				}else{
+					countTemp++;
+					http.saveHeader(res.header['Set-Cookie']);
+					_this.getImg();
+				}
 			}
 		});
 	},
@@ -46,6 +53,7 @@ Page({
 		}else if(!_data.checkValid){
 			ry.alert('请输入验证码');
 		}else{
+			wx.showLoading();
 			http.getHttp({
 				action: 'VSAccount.getUserPwdInfo',
 				_captcha: _this.data.checkValid,
@@ -60,6 +68,7 @@ Page({
 						wx.navigateTo({
 							url: 'forgetCheck?info=info',
 						});
+						wx.hideLoading();
 					}else{
 						ry.alert(res.message);
 					}

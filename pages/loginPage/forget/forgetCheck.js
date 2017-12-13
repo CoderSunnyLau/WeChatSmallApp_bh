@@ -55,18 +55,22 @@ Page({
 			ry.alert('请输入验证码');
 			return false;
 		}
+		wx.showLoading();
 		http.getHttp({
 			action: 'VSAccount.confirmPwdInfo',
-			userName: info.userName,
-			confirmType: _this.data.way,
-			validCode: _this.data.validCode
+			masterDS: JSON.stringify({
+				"userName": info.userName,
+				"confirmType": _this.data.way,
+				"validCode": _this.data.validCode
+			}),
 		}, function(res, success){
 			if(success){
 				if(res.success){
 					console.log(res);
 					wx.navigateTo({
-						url: 'forgetSet?activateCode=' + res.activateCode + '&userName=' + info.userName
+						url: 'forgetSet?activateCode=' + res.results[0] + '&userName=' + info.userName
 					});
+					wx.hideLoading();
 				}else{
 					ry.alert(res.message);
 				}

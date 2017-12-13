@@ -1,5 +1,5 @@
 var httpUrl = getApp().globalData.domainName + '/jsonaction/websiteaction.action'
-var mHeader = {}
+var mHeader = { Cookie: "_clientId=b2a344f4de154dfa90e57076bcc98125; Domain=ry600.com; Expires=Sat, 11-Dec-2027 06:32:52 GMT; Path=/"}
 
 function loginHttp(options, callback) {
   wx.request({

@@ -5,7 +5,7 @@
   </view>
   <view class='input_field'>
     <input class='check_input' placeholder='输入验证码' placeholder-class='placeholder' bindinput='checkInput'></input>
-    <image src='{{checkImg}}' class='check_img' bindtap='refreshImg'></image>
+    <image src='{{checkImg}}' mode='widthFix' class='check_img' bindtap='refreshImg'></image>
   </view>
   <view class='btn_field'><button bindtap='doCheck'>下一步</button></view>
 </view>

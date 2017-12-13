@@ -11,6 +11,8 @@ page{
   display: flex;
   flex-direction: row;
   margin: 22rpx 0;
+  height: 76rpx;
+  overflow: hidden;
   justify-content: space-between;
 }
 input{
@@ -21,11 +23,10 @@ input{
   border-radius: 15rpx;
 }
 .check_input{
-  width: 306rpx;
+  width: 356rpx;
 }
 .check_img{
-  width: 300rpx;
-  height: auto;
+  width: 250rpx;
   background-image: url(http://file.ry600.com/snapshot//files/di/di70684438lrfavs/2017-10-24/1b2yysllburx4q9e.gif);
   background-size: auto 90rpx;
   background-repeat: no-repeat;

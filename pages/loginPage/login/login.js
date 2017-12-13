@@ -105,8 +105,7 @@ Page({
 			});
 		}
 	},
-	inputFocus: function(e,j){
-		console.log(j)
+	inputFocus: function(e){
 		var idx = e.currentTarget.dataset.index * 1;
 		this.setData({
 			focusIdx: idx

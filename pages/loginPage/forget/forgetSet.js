@@ -7,16 +7,18 @@ var pwds = ['', ''],
 	_this = {};
 Page({
 	data: {
-		activateCode: '',
-		userName: 'ryliuwf'
+		activateCode: 'c1184242-1c69-421a-8dfb-2e790802bdb9',
+		userName: 'ryliuwf99'
 	},
 	onLoad: function(options){
 		_this = this;
 		if(options.activateCode && options.userName){
+			console.log(options)
 			this.setData({
-				activateCode: options.acitvateCode,
+				activateCode: options.activateCode,
 				userName: options.userName
 			});
+			console.log(this.data)
 		}
 	},
 	pwdInput: function(e){
@@ -39,6 +41,7 @@ Page({
 			ry.alert(msg);
 			return false;
 		}else{
+			wx.showLoading();
 			http.postHttp({
 				action: 'VSAccount.setPassword',
 				masterDS: JSON.stringify({
@@ -50,8 +53,8 @@ Page({
 			}, function(res, success){
 				if(success){
 					if(res.success){
-						console.log(res);
-						ry.alert(res.message, function(r){
+						wx.hideLoading();
+						ry.alert('密码重置成功！即将跳转到登录页，请您用新密码登录。', function(r){
 							if(r.confirm){
 								wx.redirectTo({
 									url: '../login/login',
