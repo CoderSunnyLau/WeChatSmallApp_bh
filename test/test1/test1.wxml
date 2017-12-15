@@ -1,0 +1,11 @@
+<!--test/test1/test1.wxml-->
+<view>
+	<view class='menu'>
+		<view class='sort' wx:for='{{sortData}}' wx:for-item='sort'><text>{{sort.name}}</text></view>
+	</view>
+	<view class='pdts'>
+		<view class='sort_pdt' wx:for='{{sortData}}' wx:for-item='sort'>
+			<view class='pdt' wx:for='{{sort.product}}' wx:for-item='pdt'></view>
+		</view>
+	</view>
+</view>

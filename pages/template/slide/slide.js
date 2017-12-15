@@ -2,11 +2,13 @@ Page({
 	data: {
 		tabArr: ['默认', '销量', '人气'],
 		isSelect: 0,
+		headerShow: true,
 		openScreen: false,
 		animationData: {},
-		leftNavArr: ['西药', '食品', '中成药', '医疗器械', '生物制药', '化妆品', '重要饮品', '日用品'],
-		rightNavArr: ['感冒发热', '咳嗽痰喘', '抗生素', '心脑血管', '糖尿病', '消化道', '妇科', '泌尿生殖', '抗过敏',
-			'抗病毒', '耳鼻口腔', '肝胆', '维生素矿物质', '眼科', '皮肤组织', '抗肿瘤', '中枢神经', '内分泌', '其他']
+		headerHeight: 0,
+		tabHeight: 0,
+		pageHeight: 0,
+		backTop: true
 	},
 	onLoad: function (options) {
 		var _mArr = []
@@ -56,28 +58,79 @@ Page({
 				})
 			}
 		}.bind(this),100)
-
-		if (_status == 'close') {
-			this.setData({
-				openScreen: true
-			})
-		}
 	},
 	getHeight: function () {
 		var that = this
 		wx.createSelectorQuery().selectAll('#msg,#bar,#tab').boundingClientRect(function (res) {
 			var _tipHeight = 0
+			// var _res = JSON.parse(JSON.stringify(res))
 			for (let i = 0; i < res.length; i++) {
+				console.log(res[i])
 				_tipHeight = _tipHeight + res[i].height
 			}
+			that.setData({
+				headerHeight: res[0].height + res[1].height,
+				barHeight: res[2].height
+			})
 			wx.getSystemInfo({
 				success: function (res) {
+					console.log(res.windowHeight)
 					_tipHeight = res.windowHeight - _tipHeight
 					that.setData({
-						contentHeight: _tipHeight + 'px'
+						contentHeight: _tipHeight + 'px',
+						pageHeight: res.windowHeight
 					})
 				}
 			})
 		}).exec()
+	},
+	// scrollEvent: function(e){
+	// 	let that = this
+	// 	let animation = wx.createAnimation({
+	// 		duration: 200,
+	// 		timingFunction: 'linear',
+	// 		delay: 0
+	// 	})
+	// 	this.animation = animation
+	// 	if(e.detail.scrollTop > 350){
+	// 		that.setData({
+	// 			headerShow: false,
+	// 			backTop: true,
+	// 			contentHeight: (that.data.pageHeight - that.data.barHeight) + 'px'
+	// 		})
+			
+	// 		// animation.opacity(1).translateY(0).step()
+	// 		// that.setData({
+	// 		// 	headerAnimation: animation.export()
+	// 		// })
+	// 		// setTimeout(function () {
+	// 		// 	animation.opacity(0).translateY(-83).step()
+	// 		// 	that.setData({
+	// 		// 		headerAnimation: animation
+	// 		// 	})
+	// 		// }.bind(this), 200)
+	// 	}
+	// 	else{
+	// 		// animation.opacity(0).translateY(83).step()
+	// 		// that.setData({
+	// 		// 	headerAnimation: animation.export()
+	// 		// })
+	// 		// setTimeout(function () {
+	// 		// 	animation.opacity(1).translateY(0).step()
+	// 		// 	that.setData({
+	// 		// 		headerAnimation: animation
+	// 		// 	})
+	// 		// }.bind(this), 200)
+	// 		that.setData({
+	// 			headerShow: true,
+	// 			backTop: false,
+	// 			contentHeight: (that.data.pageHeight - that.data.headerHeight - that.data.barHeight) + 'px'
+	// 		})
+	// 	}
+	// },
+	backTop: function(){
+		this.setData({
+			scrollTop: 0
+		})
 	}
 })

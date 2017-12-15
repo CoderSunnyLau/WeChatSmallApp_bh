@@ -5,17 +5,18 @@ var _this, info;
 Page({
 	data: {
 		info: {
-			bindMail:true,
-			bindMobile:true,
-			mail:"3*******1@qq.com",
-			mobile:"155*****0523",
-			userName: "ryliuwf"
+			// bindMail:true,
+			// bindMobile:true,
+			// mail:"3*******1@qq.com",
+			// mobile:"155*****0523",
+			// userName: "ryliuwf"
 		},
 		validCode: '',
 		way: 'mobile'
 	},
 	onLoad: function (options) {
 		_this = this;
+		console.log(options);
 		if(options.info){
 			this.setData({
 				info: JSON.parse(options.info)

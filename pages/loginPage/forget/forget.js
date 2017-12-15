@@ -53,7 +53,7 @@ Page({
 		}else if(!_data.checkValid){
 			ry.alert('请输入验证码');
 		}else{
-			wx.showLoading();
+			ry.loading();
 			http.getHttp({
 				action: 'VSAccount.getUserPwdInfo',
 				_captcha: _this.data.checkValid,
@@ -62,13 +62,13 @@ Page({
 					"coughs": _this.data.checkValid
 				})
 			}, function(res, success){
+				wx.hideLoading();
 				if(success){
 					if(res.success){
 						var info = JSON.stringify(res.results[0]);
 						wx.navigateTo({
-							url: 'forgetCheck?info=info',
+							url: 'forgetCheck?info=' + info,
 						});
-						wx.hideLoading();
 					}else{
 						ry.alert(res.message);
 					}

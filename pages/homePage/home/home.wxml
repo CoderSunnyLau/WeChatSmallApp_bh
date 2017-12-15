@@ -31,3 +31,6 @@
     </view>
   </view>
 </view>
+<view style='text-align:center;background-color:#efefef;'>
+	<image src='/images/ad_img.png' mode='aspectFit' style='height: 100px;width:355px;'/>
+</view>

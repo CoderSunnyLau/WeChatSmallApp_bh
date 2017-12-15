@@ -10,7 +10,8 @@ Page({
 		hasProduct: undefined,
 		productArr: [],
 		canScroll: true,
-		isQuickBill: false
+		scrollTop: 0,
+		showTop: false
 	},
 	onLoad: function (options) {
 		console.log(options)
@@ -25,15 +26,17 @@ Page({
 
 		if (options.type == 'quickBill') {
 			that.setData({
+				isQuickBill: true,
 				tabArr: ['所有商品', '订货历史']
 			})
 			wx.setNavigationBarTitle({
-				title: '快速下单'
+				title: '快速采购'
 			})
 		}
 		else {
 			that.setData({
-				tabArr: ['默认', '销量', '人气', '筛选']
+				isQuickBill: false,
+				tabArr: ['默认', '销量', '人气']
 			})
 			wx.setNavigationBarTitle({
 				title: '商品分类'
@@ -60,6 +63,7 @@ Page({
 				var _listArr = that.data.productArr
 				if (callback.results.length > 0) {
 					let _callbackArr = JSON.parse(JSON.stringify(callback.results))
+					//console.log(_callbackArr)
 					for (let i = 0; i < _callbackArr.length; i++) {
 						let skus = _callbackArr[i].skus
 						for (let sku in skus) {
@@ -205,5 +209,57 @@ Page({
 	moreProduct: function () {
 		itemIdx = itemIdx + 5
 		this.getProduct(itemIdx, _searchContent)
+	},
+	showScreen: function (e) {
+		var _status = e.currentTarget.dataset.status
+
+		var animation = wx.createAnimation({
+			duration: 200,
+			timingFunction: 'ease',
+			delay: 0
+		})
+		this.animation = animation
+
+		animation.opacity(0).translateX(329).step()
+
+		this.setData({
+			animationData: animation.export(),
+			openScreen: true
+		})
+		setTimeout(function () {
+			animation.opacity(1).translateX(0).step()
+			this.setData({
+				animationData: animation
+			})
+			if (_status == 'close') {
+				this.setData({
+					openScreen: false
+				})
+			}
+		}.bind(this), 100)
+
+		if (_status == 'close') {
+			this.setData({
+				openScreen: true
+			})
+		}
+	},
+	scrollEvent: function(e){
+		let that = this
+		if(e.detail.scrollTop > 1000){
+			that.setData({
+				showTop: true
+			})
+		}
+		else{
+			that.setData({
+				showTop: false
+			})
+		}
+	},
+	backTop: function(){
+		this.setData({
+			scrollTop: 0
+		})
 	}
 })

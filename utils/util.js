@@ -34,9 +34,15 @@ var confirm = function(msg, callback){
 		}
 	});
 }
+var loading = function(){
+	wx.showLoading({
+		mask: true
+	});
+}
 
 module.exports = {
   formatTime: formatTime,
   alert: alert,
   confirm: confirm,
+  loading: loading
 }

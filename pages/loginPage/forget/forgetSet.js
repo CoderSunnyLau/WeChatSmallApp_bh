@@ -56,7 +56,7 @@ Page({
 						wx.hideLoading();
 						ry.alert('密码重置成功！即将跳转到登录页，请您用新密码登录。', function(r){
 							if(r.confirm){
-								wx.redirectTo({
+								wx.reLaunch({
 									url: '../login/login',
 								});
 							}

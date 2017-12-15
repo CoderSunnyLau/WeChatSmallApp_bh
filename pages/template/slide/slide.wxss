@@ -16,7 +16,7 @@ page {
 }
 
 .pageTab .screen {
-  background-position: 138rpx -2112rpx;
+  background-position: 182% 99.3%;
 }
 
 .pageTab .curr {
@@ -123,22 +123,49 @@ page {
 
 .nav-right .nav-content {
   display: flex;
-  flex-wrap: wrap;	
-	background-color: #fff;
+  flex-wrap: wrap;
+  background-color: #fff;
 }
 
 .nav-right .nav-item {
   width: 33.3%;
   height: 150rpx;
   display: flex;
-	justify-content: center;
-	text-align: center;
-	align-items: center;
-	flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  flex-wrap: wrap;
   font-size: 28rpx;
   color: #727272;
   box-sizing: border-box;
   border-right: 1px solid #f3f5f7;
-	border-bottom: 1px solid #f3f5f7;
-	padding: 0 10rpx;
+  border-bottom: 1px solid #f3f5f7;
+  padding: 0 10rpx;
+}
+
+.top {
+  position: fixed;
+  right: 30rpx;
+  bottom: 100rpx;
+  background-color: #fff;
+  width: 80rpx;
+  height: 80rpx;
+  color: #444;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+	box-shadow: -2px 2px 9px 1px #eee;
+}
+
+.top image {
+  width: 70%;
+  height: 70%;
+}
+
+.sku_box {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
 }
