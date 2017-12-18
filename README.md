@@ -1,2 +1,2 @@
 # WeChatSmallApp_bh
-A WeChat small app of simple ry600
+A WeChat small app of simple xxx
