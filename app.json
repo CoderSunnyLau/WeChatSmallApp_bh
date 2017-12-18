@@ -26,8 +26,7 @@
         "pages/homePage/account/fixInfo/fixInfo",
         "pages/loginPage/forget/forgetCheck",
         "pages/loginPage/forget/forgetSet",
-        "pages/noCooperate/noCooperate",
-        "test/test1/test1"
+        "pages/noCooperate/noCooperate"
     ],
     "window": {
         "backgroundTextStyle": "light",

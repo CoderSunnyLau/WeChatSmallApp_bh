@@ -2,7 +2,7 @@
 const ry = require('../../../utils/util.js');
 const http = require('../../../utils/httpUtil.js');
 var _this,
-	imgSrc = 'http://m.ry600.com/jcaptcha.action',
+	imgSrc = 'http://bh.ry600.com/jcaptcha.action',
 	countTemp = 0;
 Page({
 	data: {
@@ -30,21 +30,33 @@ Page({
 	},
 	getImg: function(){
 		var img = imgSrc + '?dc_=' + (new Date()).getTime();
-		wx.request({
-			url: img,
-			header: http.getHeader(),
-			success: function(res){
-				if(countTemp){
-					_this.setData({
-						checkImg: img
-					});
-				}else{
-					countTemp++;
+		if(!countTemp){
+			wx.request({
+				url: img,
+				success: function(res){
 					http.saveHeader(res.header['Set-Cookie']);
+					countTemp++;
 					_this.getImg();
+					console.log("success", countTemp)
+				},
+				fail: function(res){
+					console.log(res)
 				}
-			}
-		});
+			});
+			console.log(countTemp)
+		}else{
+			console.log(countTemp)
+			wx.downloadFile({
+				url: img,
+				header: http.getHeader(),
+				success: function(res){
+					console.log(res)
+					_this.setData({
+						checkImg: res.tempFilePath
+					});
+				}
+			});
+		}
 	},
 	doCheck: function(){
 		var _data = this.data;
@@ -70,6 +82,7 @@ Page({
 							url: 'forgetCheck?info=' + info,
 						});
 					}else{
+						_this.getImg();
 						ry.alert(res.message);
 					}
 				}

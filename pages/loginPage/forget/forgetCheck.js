@@ -56,7 +56,7 @@ Page({
 			ry.alert('请输入验证码');
 			return false;
 		}
-		wx.showLoading();
+		ry.loading();
 		http.getHttp({
 			action: 'VSAccount.confirmPwdInfo',
 			masterDS: JSON.stringify({
@@ -66,12 +66,11 @@ Page({
 			}),
 		}, function(res, success){
 			if(success){
+				wx.hideLoading();
 				if(res.success){
-					console.log(res);
 					wx.navigateTo({
 						url: 'forgetSet?activateCode=' + res.results[0] + '&userName=' + info.userName
 					});
-					wx.hideLoading();
 				}else{
 					ry.alert(res.message);
 				}

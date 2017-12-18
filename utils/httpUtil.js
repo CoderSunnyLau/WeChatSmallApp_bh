@@ -1,5 +1,5 @@
 var httpUrl = getApp().globalData.domainName + '/jsonaction/websiteaction.action'
-var mHeader = { Cookie: "CNZZDATA1259325603=798555891-1503891175-http%253A%252F%252Fbh.ry600.com%252F%7C1503891175; _clientId=50e9af1f3d344f6c8d8b17bd344b67b3; UM_distinctid=15e6e78dc7f139-0f417f6295b24b-e313761-1fa400-15e6e78dc80ab2; CNZZDATA1260495474=792404843-1510189870-http%253A%252F%252Fbh.ry600.com%252F%7C1510189870; _relOrgId=di70684438lrfavs; _serviceId=364639f55ff246f3b76a99ab6270c836; JSESSIONID=pascunzwmbbh1cnbbjiigcpwv; CNZZDATA1256711448=72942336-1498805325-http%253A%252F%252Fbh.ry600.com%252F%7C1513214899"}
+var mHeader = { Cookie: "_clientId=a9fc9c62ceaf44f39e1a36729408e21c; Domain=ry600.com; Expires=Thu, 16-Dec-2027 08:47:30 GMT; Path=/,_serviceId=cf21e456e0ce45499b4722ef76d0e3c7; Path=/,_relOrgId=afvnal1p3sa59q79"}
 
 function loginHttp(options, callback) {
   wx.request({
