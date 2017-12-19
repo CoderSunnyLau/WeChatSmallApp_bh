@@ -18,7 +18,7 @@
 	background-color: #FF2D48;
 	color: #FFF;
 	width: 222rpx;
-	line-height: 76rpx;
+	line-height: 80rpx;
 	text-align: center;
 	border-top-right-radius: 15rpx;
 	border-bottom-right-radius: 15rpx;
@@ -26,4 +26,7 @@
 .radio{
 	transform: scale(0.7);
 
+}
+.back_btn{
+	margin-top: 30rpx;
 }

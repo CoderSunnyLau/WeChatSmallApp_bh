@@ -63,9 +63,11 @@ Component({
 					})
 				})
 				httpPromise.then(function(val){
-					let _header = httpUtil.getHeader()
-					_header.cookie = _header.cookie + ',_relOrgId=' + _userData.orgId
-					httpUtil.saveHeader(_header.cookie)
+					let _header = httpUtil.getHeader().cookie
+					let _cookieArr = _header.split(',_rel')
+					_header = _cookieArr[0] + ',_relOrgId=' + _userData.orgId
+					//_header.cookie = _header.cookie + ',_relOrgId=' + _userData.orgId
+					httpUtil.saveHeader(_header)
 
 					httpUtil.getHttp({
 						action: 'VSShop.getRelStores'
@@ -86,14 +88,13 @@ Component({
 								wx.reLaunch({
 									url: '/pages/noCooperate/noCooperate'
 								})
-								
 							}
 							else{
-								if (i < _userData.storesArr.length && _page == 'pages/noCooperate/noCooperate') {
+								//if (i < _userData.storesArr.length && _page == 'pages/noCooperate/noCooperate') {
 									wx.switchTab({
 										url: '/pages/homePage/home/home'
 									})
-								}
+								//}
 							}
 							that.powerDrawer(e)
 						}
@@ -111,11 +112,11 @@ Component({
 				that.setData({
 					storeName: _userData.storeName
 				})
-				if (_page == 'pages/noCooperate/noCooperate'){
+				//if (_page == 'pages/noCooperate/noCooperate'){
 					wx.switchTab({
 						url: '/pages/homePage/home/home'
 					})
-				}
+				//}
 				that.powerDrawer(e)
 			}
 		},

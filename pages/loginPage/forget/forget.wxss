@@ -11,12 +11,12 @@ page{
   display: flex;
   flex-direction: row;
   margin: 22rpx 0;
-  height: 76rpx;
+  height: 80rpx;
   overflow: hidden;
   justify-content: space-between;
 }
 input{
-  height: 76rpx;
+  height: 80rpx;
   width: 626rpx;
   padding: 0 20rpx;
   background-color: #FFF;
@@ -34,4 +34,8 @@ input{
 }
 .btn_field{
 	margin-top: 35rpx;
+}
+button{
+	height: 80rpx;
+	line-height: 80rpx;
 }

@@ -11,7 +11,8 @@ Page({
 		productArr: [],
 		canScroll: true,
 		scrollTop: 0,
-		showTop: false
+		showTop: false,
+		loading: false
 	},
 	onLoad: function (options) {
 		console.log(options)
@@ -44,14 +45,14 @@ Page({
 		}
 
 		that.getHeight()
-		that.getProduct(0,_searchContent)
+		that.getProduct(0, _searchContent)
 	},
 	getProduct: function (start, _searchContent) {
 		var that = this
 		var _url = '/_shop/' + _userData.storeCode + '/search.shtml?withSkus=true&sv=' + _searchContent + '&sn=' + start
 
 		wx.showLoading();
-		httpUtil.postHttp({
+		httpUtil.getHttp({
 			action: 'VSCommon.urlRequest',
 			url: _url,
 			// withFacet: true,
@@ -79,7 +80,7 @@ Page({
 						productArr: _listArr
 					})
 				}
-				else if(_listArr.length > 0){
+				else if (_listArr.length > 0) {
 					that.setData({
 						canScroll: false
 					})
@@ -87,8 +88,8 @@ Page({
 						title: '提示',
 						content: '没有更多商品了',
 						showCancel: false,
-						success: function(res){
-							if(res.confirm){
+						success: function (res) {
+							if (res.confirm) {
 								that.setData({
 									canScroll: true
 								})
@@ -96,7 +97,7 @@ Page({
 						}
 					})
 				}
-				else{
+				else {
 					itemIdx = 0
 					that.setData({
 						hasProduct: false
@@ -140,16 +141,24 @@ Page({
 		}
 	},
 	addToShopcart: function (e) {
+		let that = this
 		var paramer = this.data.productArr[e.currentTarget.dataset.index]
+
 
 		if (paramer.productMsg.stockTag.amount >= paramer.shopcartAmount) {
 			if (paramer.shopcartAmount % paramer.productMsg.modCount == 0) {
+				that.setData({
+					loading: true
+				})
 				httpUtil.getHttp({
 					action: 'VSShop.addProduct',
 					widthReward: false,
 					orderType: 'normal',
-					cartProductDS: '{"records":[{"itemType":"product",' + '"orgId":"' + _userData.orgId + '",' + '"bizCenterId":"' + _userData.bizCenterId + '",' + '"itemId":"' + e.currentTarget.dataset.productid + '",' + '"skuId":"' + e.currentTarget.dataset.skuid + '",' + '"amount":"' + paramer.shopcartAmount + '"}]}'
+					cartProductDS: '{"records":[{"itemType":"product",' + '"orgId":"' + _userData.storeOrgId + '",' + '"bizCenterId":"' + _userData.bizCenterId + '",' + '"itemId":"' + e.currentTarget.dataset.productid + '",' + '"skuId":"' + e.currentTarget.dataset.skuid + '",' + '"amount":"' + paramer.shopcartAmount + '"}]}'
 				}, function (callback, success) {
+					that.setData({
+						loading: false
+					})
 					if (callback.success) {
 						wx.showToast({
 							title: '加入购物车成功'
@@ -244,20 +253,20 @@ Page({
 			})
 		}
 	},
-	scrollEvent: function(e){
+	scrollEvent: function (e) {
 		let that = this
-		if(e.detail.scrollTop > 1000){
+		if (e.detail.scrollTop > 1000) {
 			that.setData({
 				showTop: true
 			})
 		}
-		else{
+		else {
 			that.setData({
 				showTop: false
 			})
 		}
 	},
-	backTop: function(){
+	backTop: function () {
 		this.setData({
 			scrollTop: 0
 		})

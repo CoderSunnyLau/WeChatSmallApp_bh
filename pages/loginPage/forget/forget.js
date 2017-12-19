@@ -32,25 +32,21 @@ Page({
 		var img = imgSrc + '?dc_=' + (new Date()).getTime();
 		if(!countTemp){
 			wx.request({
-				url: img,
+				url: 'http://login.ry600.com/userCenterAuth.jsp?domain=www.ry600.com&userAppAuthUrl=%2FuserAppAuth.action&target=http%3A%2F%2Fwww.ry600.com%2Fssostate.action%3F_%3D1513652172775',
 				success: function(res){
 					http.saveHeader(res.header['Set-Cookie']);
 					countTemp++;
 					_this.getImg();
-					console.log("success", countTemp)
 				},
 				fail: function(res){
-					console.log(res)
+					console.log("fail:",res);
 				}
 			});
-			console.log(countTemp)
 		}else{
-			console.log(countTemp)
 			wx.downloadFile({
 				url: img,
 				header: http.getHeader(),
 				success: function(res){
-					console.log(res)
 					_this.setData({
 						checkImg: res.tempFilePath
 					});

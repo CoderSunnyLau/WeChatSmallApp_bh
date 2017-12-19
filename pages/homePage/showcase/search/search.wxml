@@ -1,5 +1,8 @@
 <msg id='msg'></msg>
 <bar bind:search='searchPro' bind:scan='scanPro' id='bar'></bar>
+<view wx:if='{{loading}}' class='loading_area'>
+	<image src='http://file.ry600.com/snapshot//files/di/di70684438lrfavs/2017-10-24/1b2yysllburx4q9e.gif' mode='aspectFit' class='loading_img'/>
+</view>
 <view class='quickOrder'>
   <view class='pageTab' id='tab'>
     <block wx:if='{{isQuickBill}}'>
