@@ -1,5 +1,3 @@
-@import '/component/appHeader/appHeader.wxss';
-
 page{
   font-family: "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
   font-size: 28rpx;

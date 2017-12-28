@@ -1,4 +1,4 @@
-<view class='searchBar' id='bar'>
+<!-- <view class='searchBar' id='bar'>
   <view class='search-scan' bindtap='scanBill' bindtap='scanPro'>
     <image class='scan-img' src='/images/scan.png'></image>
     <text>扫一扫</text>
@@ -10,4 +10,5 @@
       <button class='search-txt' formType='submit'>搜 索</button>
     </view>
   </form>
-</view>
+</view> -->
+<view class='test_txt' pseudo='test_txt'>测试文本</view>

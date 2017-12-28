@@ -2,11 +2,11 @@
 page{
   background-color: #EEE;
 }
-.org_message{
+.tmp{
   background-color: #F50;
-  color: #FFF;
+  /* color: #FFF; */
   height: 116rpx;
-  padding: 24rpx 30rpx 0;
+  /* padding: 24rpx 30rpx 0; */
 }
 .info_block{
   width: 750rpx;

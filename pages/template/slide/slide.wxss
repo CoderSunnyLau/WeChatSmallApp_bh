@@ -2,6 +2,10 @@ page {
   background-color: #f3f5f7;
 }
 
+#bar::test_txt{
+	color: yellow;
+}
+
 .pageTab {
   display: flex;
   background-color: #fff;

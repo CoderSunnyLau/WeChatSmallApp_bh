@@ -39,7 +39,15 @@ Component({
 				drawerTitle: '我的供应商',
 				storesArr: _userData.storesArr
 			})
-			that.powerDrawer(e)
+			if(that.data.storesArr.length > 0){
+				that.powerDrawer(e)
+			}
+			else{
+				wx.showModal({
+					title: '提示',
+					content: '当前机构没有更多的供应商选择',
+				})
+			}
 		},
 		selectOrg: function (e) {
 			this.setData({
@@ -96,6 +104,7 @@ Component({
 									})
 								//}
 							}
+							if(that.data.orgArr.length )
 							that.powerDrawer(e)
 						}
 					})

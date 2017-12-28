@@ -56,3 +56,7 @@
 .holderTxt {
   font-size: 24rpx;
 }
+
+.test_txt{
+	color: red;
+}

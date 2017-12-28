@@ -26,6 +26,6 @@ Component({
 		}
 	},
 	ready: function () {
-		this.getHeight()
+		//this.getHeight()
 	}
 })

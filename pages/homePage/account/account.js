@@ -1,7 +1,6 @@
 // pages/account/account.js
 const http = require('../../../utils/httpUtil.js')
 const ry = require('../../../utils/util.js')
-import { appHeader } from '../../../component/appHeader/appHeader.js'
 let load = false;
 let _this = {};
 
@@ -12,7 +11,6 @@ Page({
 	},
 	onLoad: function(){
 		wx.showLoading();
-		new appHeader();
 		_this = this;
 		this.load(function(){
 			load = true;
