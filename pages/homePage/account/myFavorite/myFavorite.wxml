@@ -11,7 +11,7 @@
 		<block wx:if='{{items.length}}'>
 			<view class='item' wx:for='{{items}}'>
 				<view class='item_left'>
-					<text class='item_title'>{{item.resName}}</text>
+					<navigator url='{{"../../showcase/search/productDetail/productDetail?productId=" + item.resId}}'><text class='item_title'>{{item.resName}}</text></navigator>
 					<view class='add_time'>
 						<text class='grey'>收藏时间：</text>
 						<text class='orange'>{{item.createTime}}</text>
