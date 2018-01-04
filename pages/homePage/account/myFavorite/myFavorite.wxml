@@ -5,24 +5,27 @@
 			<text>{{tab}}({{items.length}})</text>
 		</view>
 	</view>
-	<view class='blank'></view>
+	<view class='blank' id='black'></view>
 	<view class='pages'>
-		<view class='page'>
-		<block wx:if='{{items.length}}'>
-			<view class='item' wx:for='{{items}}'>
-				<view class='item_left'>
-					<navigator url='{{"../../showcase/search/productDetail/productDetail?productId=" + item.resId}}'><text class='item_title'>{{item.resName}}</text></navigator>
-					<view class='add_time'>
-						<text class='grey'>收藏时间：</text>
-						<text class='orange'>{{item.createTime}}</text>
+		<scroll-view class='page' bindscrolltolower='loadMore' scroll-y style='height:{{height}}px'>
+			<block wx:if='{{items.length}}'>
+				<view class='item' wx:for='{{items}}' wx:key>
+					<view class='item_left'>
+						<navigator url='{{"../../showcase/search/productDetail/productDetail?productId=" + item.resId}}'><text class='item_title'>{{item.resName}}</text></navigator>
+						<view class='add_time'>
+							<text class='grey'>收藏时间：</text>
+							<text class='orange'>{{item.createTime}}</text>
+						</view>
 					</view>
+					<view class='item_right bg' data-resid='{{item.resId}}' data-idx='{{index}}' bindtap='delItem'></view>
 				</view>
-				<view class='item_right bg' data-resid='{{item.resId}}' bindtap='delItem'></view>
-			</view>
-		</block>
-		<block wx:else>
-			<view class='no_res orange'><text>您还未收藏任何商品。</text></view>
-		</block>
-		</view>
+			</block>
+			<block wx:elif='{{length == 0}}'>
+				<view class='no_res orange'><text>您还未收藏任何商品。</text></view>
+			</block>
+			<block wx:if='{{all}}'>
+				<text>----- 拉到底了噢 -----</text>
+			</block>
+		</scroll-view>
 	</view>
 </view>

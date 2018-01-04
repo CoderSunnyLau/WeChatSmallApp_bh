@@ -26,6 +26,9 @@ page{
   width: 750rpx;
   height: 68rpx;
 }
+.page{
+	height: 667px;
+}
 .item{
 	background-color: #FFF;
 	margin: 10rpx 0;
