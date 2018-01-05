@@ -1,6 +1,6 @@
 <view animation='{{headerAnimation}}' wx:if='{{headerShow}}'>
   <msg id='msg'></msg>
-  <test bind:search='searchPro' bind:scan='scanPro' id='bar'></test>
+  <test bind:search='searchPro' bind:scan='scanPro' id='bar' testTxt='{{testTxt}}'></test>
 </view>
 
 <view class='pageTab' id='tab'>
@@ -29,19 +29,21 @@
 </view>
 
 <!-- <view wx:for='{{mArr}}'>{{item}}</view> -->
-<scroll-view style='height:{{contentHeight}};' scroll-y='true' bindscroll='scrollEvent' scroll-top='{{scrollTop}}'>
+<!-- <scroll-view style='height:{{contentHeight}};' scroll-y='true' bindscroll='scrollEvent' scroll-top='{{scrollTop}}'>
   <view wx:for='{{mArr}}'>{{item}}</view>
-</scroll-view>
 
-<view class='top' bindtap='backTop'>
-	<image src='/images/arrow_up.png' mode='aspectFit'/>
-</view>
-
+</scroll-view> -->
 <view>
-	<image src='http://file.ry600.com/snapshot//files/di/di70684438lrfavs/2017-10-24/1b2yysllburx4q9e.gif' mode='aspectFit'/>
+  <button bindtap='changeTxt'>购买</button>
 </view>
-
+<view class='top' bindtap='backTop'>
+  <image src='/images/arrow_up.png' mode='aspectFit' />
+</view>
+<view style='text-align:center;'>
+没有更多商品了
+</view>
 <!-- <view class='sku_box'>
-	<view class='sku_content'>
-	</view>
+  <view class='sku_content'>
+    <image src='http://file.ry600.com/files/Product/23/23y4efb24rs0xy8x/photo_l.jpg' class='pro_img' />
+  </view>
 </view> -->

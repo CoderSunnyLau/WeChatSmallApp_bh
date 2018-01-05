@@ -6,7 +6,7 @@
   <form bindsubmit='saveSearchContent'>
     <view class='search-area'>
       <image class='search-img' src='/images/search.png'></image>
-      <input class='search-input' placeholder='{{searchTip}}' placeholder-class='holderTxt' name='searchContent'></input>
+      <input class='search-input' placeholder='{{searchTip}}' placeholder-class='holderTxt' name='searchContent' value='{{searchVal}}'></input>
       <button class='search-btn' formType='submit'>搜 索</button>
     </view>
   </form>

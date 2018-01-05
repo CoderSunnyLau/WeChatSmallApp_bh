@@ -25,6 +25,10 @@ Page({
 		}
 		_searchContent = options.searchContent
 
+		that.setData({
+			searchVal: _searchContent
+		})
+
 		if (options.type == 'quickBill') {
 			that.setData({
 				isQuickBill: true,
@@ -82,20 +86,13 @@ Page({
 				}
 				else if (_listArr.length > 0) {
 					that.setData({
-						canScroll: false
+						noPro: true
 					})
-					wx.showModal({
-						title: '提示',
-						content: '没有更多商品了',
-						showCancel: false,
-						success: function (res) {
-							if (res.confirm) {
-								that.setData({
-									canScroll: true
-								})
-							}
-						}
-					})
+					// wx.showModal({
+					// 	title: '提示',
+					// 	content: '没有更多商品了',
+					// 	showCancel: false
+					// })
 				}
 				else {
 					itemIdx = 0
@@ -103,6 +100,12 @@ Page({
 						hasProduct: false
 					})
 				}
+			}
+			else{
+				itemIdx = 0
+				that.setData({
+					hasProduct: false
+				})
 			}
 			wx.hideLoading();
 		})
@@ -116,7 +119,8 @@ Page({
 		itemIdx = 0
 		_searchContent = e.detail.searchContent
 		this.setData({
-			productArr: []
+			productArr: [],
+			noPro: false
 		})
 		this.getProduct(0, _searchContent)
 	},
@@ -217,7 +221,9 @@ Page({
 	},
 	moreProduct: function () {
 		itemIdx = itemIdx + 5
-		this.getProduct(itemIdx, _searchContent)
+		if(!this.data.noPro){
+			this.getProduct(itemIdx, _searchContent)
+		}
 	},
 	showScreen: function (e) {
 		var _status = e.currentTarget.dataset.status

@@ -2,12 +2,12 @@
 <view class='my_favorite'>
 	<view class='tabs'>
 		<view class='tab {{crrIndex == index ? "tab_crr" : ""}}' wx:for="{{tabs}}" wx:for-item="tab" wx:for-index="index" data-index='{{index}}' bindtap='changeTab' wx:key=''>
-			<text>{{tab}}({{items.length}})</text>
+			<text>{{tab}}({{numFound}})</text>
 		</view>
 	</view>
 	<view class='blank' id='black'></view>
 	<view class='pages'>
-		<scroll-view class='page' bindscrolltolower='loadMore' scroll-y style='height:{{height}}px'>
+		<view class='page'>
 			<block wx:if='{{items.length}}'>
 				<view class='item' wx:for='{{items}}' wx:key>
 					<view class='item_left'>
@@ -20,12 +20,12 @@
 					<view class='item_right bg' data-resid='{{item.resId}}' data-idx='{{index}}' bindtap='delItem'></view>
 				</view>
 			</block>
-			<block wx:elif='{{length == 0}}'>
+			<block wx:elif='{{numFound == 0}}'>
 				<view class='no_res orange'><text>您还未收藏任何商品。</text></view>
 			</block>
 			<block wx:if='{{all}}'>
-				<text>----- 拉到底了噢 -----</text>
+				<view class='end grey'>----- 拉到底了噢 -----</view>
 			</block>
-		</scroll-view>
+		</view>
 	</view>
 </view>

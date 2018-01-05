@@ -103,6 +103,12 @@ page {
   flex-wrap: wrap;
 }
 
+.noPro_tip {
+  text-align: center;
+  height: 100rpx;
+  line-height: 100rpx;
+}
+
 .product-item {
   background-color: #fff;
   margin-top: 8rpx;

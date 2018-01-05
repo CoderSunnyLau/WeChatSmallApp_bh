@@ -8,9 +8,15 @@ Page({
 		headerHeight: 0,
 		tabHeight: 0,
 		pageHeight: 0,
-		backTop: true
+		backTop: true,
+		testTxt: '放在data里试试'
 	},
-	onLoad: function (options) {
+	// onReady: function(){
+	// 	console.log(this)
+	// 	console.log(this.selectComponent('#bar'))
+	// 	this.bar = this.selectComponent('#bar')
+	// },
+	onLoad: function (options) {	
 		var _mArr = []
 		for(let i=0;i<100;i++){
 			_mArr.push(i)
@@ -131,6 +137,11 @@ Page({
 	backTop: function(){
 		this.setData({
 			scrollTop: 0
+		})
+	},
+	changeTxt: function(){
+		this.setData({
+			testTxt: '改变下文字试试'
 		})
 	}
 })

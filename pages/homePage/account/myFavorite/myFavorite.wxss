@@ -26,9 +26,6 @@ page{
   width: 750rpx;
   height: 68rpx;
 }
-.page{
-	height: 667px;
-}
 .item{
 	background-color: #FFF;
 	margin: 10rpx 0;
@@ -56,7 +53,7 @@ page{
 	background-size: 100rpx;
 	background-position: 0 -1020rpx;
 }
-.no_res{
+.no_res, .end{
 	text-align: center;
 	line-height: 120rpx;
 }

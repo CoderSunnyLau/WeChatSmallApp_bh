@@ -29,6 +29,11 @@ Page({
 			})
 		}
 		else {
+			that.setData({
+				isOrg: false,
+				orgName: '选择供应商'
+			})
+
 			let _userData = wx.getStorageSync('userData')
 			let _header = httpUtil.getHeader()
 			_header.cookie = _header.cookie + ',_relOrgId=' + _userData.orgId
@@ -42,8 +47,17 @@ Page({
 					if (callback.success) {
 						_userData.orgsArr = _msgData.orgs
 						_userData.storesArr = callback.results
-						wx.setStorageSync('userData', _userData)
+						
 						if(callback.results.length > 0){
+							if(callback.results.length == 1){
+								_userData.bizCenterId = _userData.storesArr[0].bizCenterId
+								_userData.storeName = _userData.storesArr[0].storeName
+								_userData.storeOrgId = _userData.storesArr[0].storeOrgId
+								_userData.storeCode = _userData.storesArr[0].storeCode
+								wx.switchTab({
+									url: '/pages/homePage/home/home'
+								})
+							}
 							that.setData({
 								isCooperate: true,
 								relOrgArr: callback.results
@@ -54,6 +68,7 @@ Page({
 								isCooperate: false
 							})
 						}
+						wx.setStorageSync('userData', _userData)
 					}
 					else {
 						that.setData({
@@ -62,10 +77,7 @@ Page({
 					}
 				}
 			})
-			that.setData({
-				isOrg: false,
-				orgName: '选择供应商'
-			})
+			
 		}
 	},
 	submitOrg: function () {

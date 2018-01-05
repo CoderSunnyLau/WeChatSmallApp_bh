@@ -1,5 +1,5 @@
 <msg id='msg'></msg>
-<bar bind:search='searchPro' bind:scan='scanPro' id='bar'></bar>
+<bar bind:search='searchPro' bind:scan='scanPro' id='bar' searchVal='{{searchVal}}'></bar>
 <view wx:if='{{loading}}' class='loading_area'>
 	<image src='http://file.ry600.com/snapshot//files/di/di70684438lrfavs/2017-10-24/1b2yysllburx4q9e.gif' mode='aspectFit' class='loading_img'/>
 </view>
@@ -55,6 +55,7 @@
           </view>
         </block>
       </view>
+			<view class='noPro_tip' wx:if='{{noPro}}'>没有更多商品了</view>
     </scroll-view>
 
     <view class='screen_bg' wx:if='{{openScreen}}' bindtap='showScreen' data-status='close'></view>

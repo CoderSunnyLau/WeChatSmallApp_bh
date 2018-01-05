@@ -1,6 +1,6 @@
 Page({
 	data: {},
-	onLoad: function (options) { },
+	onLoad: function (options) {},
 	toShopcase: function () {
 		wx.switchTab({
 			url: '../showcase/showcase'
@@ -23,7 +23,6 @@ Page({
 	},
 	onReady: function () {
 		var _userData = wx.getStorageSync('userData')
-		console.log(_userData)
 		for (var i = 0; i < _userData.storesArr.length; i++) {
 			if (_userData.storeOrgId == _userData.storesArr[i].storeOrgId) {
 				break;
@@ -34,5 +33,14 @@ Page({
 				url: '/pages/noCooperate/noCooperate',
 			})
 		}
+	},
+	scanBill: function(){
+		wx.scanCode({
+			success: function(res){
+				wx.navigateTo({
+					url: '../showcase/search/search?searchContent=' + res.result + '&type=quickBill'
+				})
+			}
+		})
 	}
 })

@@ -11,4 +11,4 @@
     </view>
   </form>
 </view> -->
-<view class='test_txt' pseudo='test_txt'>测试文本</view>
+<view class='test_txt'>{{testTxt}}</view>
