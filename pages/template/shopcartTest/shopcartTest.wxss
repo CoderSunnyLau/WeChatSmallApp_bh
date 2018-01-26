@@ -1,5 +1,5 @@
 /* pages/shopcart/shopcart.wxss */
-@import '/pages/homePage/account/orderList/orderList.wxss';
+@import '/pages/homePage/account/myBill/myBill.wxss';
 
 .edit{
   width: 75rpx;

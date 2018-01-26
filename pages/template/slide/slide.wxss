@@ -167,24 +167,157 @@ page {
   height: 70%;
 }
 
-.sku_box {
+.buy_box {
   position: fixed;
   top: 0;
   height: 100%;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.2);
-	z-index: 1;
+  z-index: 1;
 }
 
-.sku_box .sku_content {
+.buy_box .box_bg{
+	height: 100%;
+	width: 100%;
+	background: rgba(0, 0, 0, 0.7);
+}
+
+.buy_box .buy_content {
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 400rpx;
-  background-color: #f7f7f7;
+  height: 550rpx;
+  background-color: #fff;
   z-index: 2;
+  display: flex;
+  flex-direction: column-reverse;
 }
 
-.pro_img{
-	
+.img_area {
+  position: absolute;
+  /* padding: 6rpx; */
+  top: -50rpx;
+  left: 30rpx;
+  border-radius: 10rpx;
+  background-color: #fff;
+  border: 1px solid #efefef;
+  width: 105px;
+  height: 105px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pro_img {
+  width: 200rpx;
+  height: 200rpx;
+  border: 1px solid #ccc;
+}
+
+.btn_area {
+  display: flex;
+  width: 100%;
+}
+
+.btn_area button {
+  width: 50%;
+  border-radius: 0;
+  height: 90rpx;
+  line-height: 90rpx;
+}
+
+.btn_area button::after {
+  border: 0;
+}
+
+.btn_area .cancel_btn {
+  background-color: #ff9908;
+}
+
+.amount_area {
+  justify-content: space-between;
+  height: 90rpx;
+  align-items: center;
+  padding: 0 30rpx;
+  margin-bottom: 20rpx;
+  border-bottom: 1px solid #efefef;
+}
+
+.amount_area .amount_title {
+  font-size: 30rpx;
+}
+
+.amount_area .amount_content {
+  border: 1px solid #ccc;
+}
+
+.amount_area .amount_content text {
+  width: 50rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+}
+
+.amount_area .amount_content input {
+  width: 100rpx;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  text-align: center;
+}
+
+.sku_area {
+  height: 150rpx;
+  padding: 0 30rpx;
+  border-bottom: 1px solid #efefef;
+}
+
+.sku_area .sku_title {
+  font-size: 30rpx;
+  margin-bottom: 15rpx;
+}
+
+.sku_area .sku_content text {
+  padding: 10rpx 20rpx;
+  /* border: 1px solid #949494; */
+  border-radius: 20rpx;
+  /* color: #676767; */
+  margin-right: 40rpx;
+	background-color:#efefef;
+}
+
+.msg_area {
+  position: absolute;
+  top: 10px;
+  left: 280rpx;
+  line-height: 50rpx;
+}
+
+.msg_area .msg_price {
+  font-size: 32rpx;
+  color: #f50;
+  font-weight: 600;
+}
+
+.msg_area .msg_content .msg_stock {
+  padding-right: 15rpx;
+  font-size: 30rpx;
+}
+
+.close {
+  position: absolute;
+  right: 30rpx;
+  top: 30rpx;
+}
+
+.close .close_img {
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.flex_row {
+  display: flex;
+}
+
+.flex_column {
+  display: flex;
+  flex-direction: column;
 }

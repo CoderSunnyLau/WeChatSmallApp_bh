@@ -54,16 +54,17 @@ Page({
 	getProduct: function (start, _searchContent) {
 		var that = this
 		var _url = '/_shop/' + _userData.storeCode + '/search.shtml?withSkus=true&sv=' + _searchContent + '&sn=' + start
-
+		
 		wx.showLoading();
 		httpUtil.getHttp({
 			action: 'VSCommon.urlRequest',
 			url: _url,
 			// withFacet: true,
 			limit: 5
-		}, function (callback, success) {
+		}, function (callback) {
 			let _productArr = []
 			if (callback.success) {
+				//console.log(callback)
 				//console.log(JSON.parse(callback.attachData))
 				var _listArr = that.data.productArr
 				if (callback.results.length > 0) {
@@ -73,12 +74,14 @@ Page({
 						let skus = _callbackArr[i].skus
 						for (let sku in skus) {
 							let _productItem = JSON.parse(JSON.stringify(_callbackArr[i]))
+							//console.log(_productItem)
 							_productItem.productMsg = JSON.parse(JSON.stringify(skus[sku]))
 							_productItem.shopcartAmount = 1
 							_productArr.push(_productItem)
 						}
 					}
 					_listArr.push.apply(_listArr, _productArr)
+					//console.log(_productArr)
 					that.setData({
 						hasProduct: true,
 						productArr: _listArr

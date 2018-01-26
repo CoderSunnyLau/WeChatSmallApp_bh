@@ -15,7 +15,8 @@
 }
 .pk_val{
 	padding-right: 45rpx;
-	background-position: right 6rpx;
+	/* background-position: right 6rpx; */
+	background-position: right -7%;
 }
 .confirm{
 	width: 680rpx;

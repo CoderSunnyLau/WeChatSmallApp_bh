@@ -24,6 +24,13 @@ Page({
 		this.setData({
 			mArr: _mArr
 		})
+		// wx.request({
+		// 	url: 'http://www.ry600.com/jsonaction/websiteaction.action?action=VSCommon.urlRequest&url=%2F_shop%2Fpnlf%2Fsearch.shtml%3FwithSkus%3Dtrue%26sv%3D%26sn%3D10&limit=5',
+		// 	header: { cookie: '_serviceId=99c98f88d21c493b91616a81c36ed212'},
+		// 	success: function(res){
+		// 		console.log(res.data)
+		// 	}
+		// })
 		this.getHeight()
 	},
 	selectItem: function (e) {
@@ -142,6 +149,11 @@ Page({
 	changeTxt: function(){
 		this.setData({
 			testTxt: '改变下文字试试'
+		})
+	},
+	showBox: function(){
+		this.setData({
+			boxShow: true
 		})
 	}
 })

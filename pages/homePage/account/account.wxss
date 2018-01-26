@@ -1,25 +1,30 @@
 /* pages/account/account.wxss */
-page{
-  background-color: #EEE;
+
+page {
+  background-color: #eee;
 }
-.tmp{
-  background-color: #F50;
+
+.tmp {
+  background-color: #f50;
   /* color: #FFF; */
   height: 116rpx;
   /* padding: 24rpx 30rpx 0; */
 }
-.info_block{
+
+.info_block {
   width: 750rpx;
   height: 230rpx;
   position: relative;
 }
-.panel_box{
-  background-color: rgba(255,255,255,0.9);
+
+.panel_box {
+  background-color: rgba(255, 255, 255, 0.9);
   width: 645rpx;
   margin: 17rpx auto;
-  box-shadow: 0 20rpx 20rpx -20rpx #CCC;
+  box-shadow: 0 20rpx 20rpx -20rpx #ccc;
 }
-.info_box{
+
+.info_box {
   position: absolute;
   top: -20rpx;
   left: 50%;
@@ -28,49 +33,59 @@ page{
   flex-direction: row;
   padding: 30rpx 0;
 }
-.user_icon{
+
+.user_icon {
   width: 160rpx;
   height: 160rpx;
   border-radius: 50%;
-  border: 4rpx solid #CCC;
+  border: 4rpx solid #ccc;
   margin: 0 40rpx 0 66rpx;
 }
-.info_detail{
+
+.info_detail {
   line-height: 40rpx;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-.info_detail text{
+
+.info_detail text {
   display: block;
 }
-.full_name{
+
+.full_name {
   font-size: 30rpx;
 }
-.fix_info{
-	font-size: 24rpx;
-	line-height: 34rpx;
-	margin: 8rpx 0;
+
+.fix_info {
+  font-size: 24rpx;
+  line-height: 34rpx;
+  margin: 8rpx 0;
 }
-.panel_title{
+
+.panel_title {
   height: 66rpx;
-  border-bottom: 2rpx solid #CCC;
+  border-bottom: 2rpx solid #ccc;
   line-height: 66rpx;
   padding: 0 35rpx;
   font-size: 26rpx;
   display: flex;
   justify-content: space-between;
 }
-.all_orders{
+
+.all_orders {
   padding-right: 25rpx;
-  background-position: 112rpx 21rpx;
+  /* background-position: 112rpx 21rpx; */
+	background-position:109% -37%;
 }
-.panel_body{
+
+.panel_body {
   display: flex;
   flex-direction: row;
   padding: 32rpx 0 28rpx;
 }
-.order_nav{
+
+.order_nav {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -79,49 +94,68 @@ page{
   justify-content: flex-end;
   font-size: 24rpx;
 }
-.order_nav .bg{
+
+.order_nav .bg {
   height: 58rpx;
 }
-.pending_pay{
-  background-position: 50rpx -952rpx;
+
+.pending_pay {
+  /* background-position: 50rpx -952rpx; */
+  background-position: 115% 44.6%;
 }
-.pending_recieve{
-  background-position: 50rpx -1023rpx;
+
+.pending_recieve {
+  /* background-position: 50rpx -1023rpx; */
+  background-position: 110% 47.8%;
 }
-.recieved{
-  background-position: 54rpx -1095rpx;
+
+.recieved {
+  /* background-position: 54rpx -1095rpx; */
+  background-position: 111% 51.2%;
 }
-.canceled{
-  background-position: 58rpx -1170rpx;
+
+.canceled {
+  /* background-position: 58rpx -1170rpx; */
+  background-position: 115% 54.8%;
 }
-.panel_row{
+
+.panel_row {
   height: 105rpx;
   display: flex;
   align-items: center;
 }
-.panel_middle{
-  border-top: 2rpx solid #CCC;
-  border-bottom: 2rpx solid #CCC;
+
+.panel_middle {
+  border-top: 2rpx solid #ccc;
+  border-bottom: 2rpx solid #ccc;
 }
-.panel_row text{
+
+.panel_row text {
   display: inline-block;
   padding-left: 55rpx;
   line-height: 60rpx;
   margin-left: 26rpx;
 }
-.favorite{
-  background-position: 0 -1240rpx;
+
+.favorite {
+  /* background-position: 0 -1240rpx; */
+  background-position: 0 58.1%;
 }
-.coupon{
-  background-position: 0 -1380rpx;
+
+.coupon {
+  /* background-position: 0 -1380rpx; */
+  background-position: 0 64.7%;
 }
-.address{
-  background-position: 8rpx -1306rpx;
+
+.address {
+  /* background-position: 8rpx -1306rpx; */
+  background-position: 6% 61.2%;
 }
-.logout_btn{
+
+.logout_btn {
   width: 345rpx;
   margin-top: 25rpx;
   font-size: 26rpx;
   text-indent: 56rpx;
-  background-position: 90rpx -2037rpx;
+  background-position: 38% 96.4%;
 }

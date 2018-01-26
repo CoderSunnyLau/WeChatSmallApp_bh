@@ -1,0 +1,32 @@
+<!--pages/homePage/account/orderList/orderList.wxml-->
+<view class='order_list'>
+	<view class='tabs'>
+		<view class='tab' wx:for="{{bills}}" wx:for-item="tab" wx:for-index="index" data-index='{{index}}' wx:key bindtap='changeTab'>
+			<text class='{{crrIndex == index ? "tab_crr" : ""}}'>{{tab.state}}</text>
+		</view>
+	</view>
+	<view class='blank'></view>
+	<view class='page'>
+		<view class='orders orders_all' wx:for="{{bills[crrIndex].list}}" wx:for-item="bill" wx:for-index="bid" wx:key>
+			<view class='order'>
+				<view class='row_top'>
+					<text>订单号：{{bill.billId}}</text>
+					<text class='orange'>{{bill.stateName}}</text>
+				</view>
+				<view class='row_top'>
+					<text>{{bill.sellerName || "店铺名称"}}</text>
+					<text>{{bill.createTime}}</text>
+				</view>
+				<view class='row_middle'>
+					<view class='pdt_imgs' wx:for='{{bill.products}}' wx:for-item="pdt" wx:for-index="pid" wx:key>
+						<image class='pdt_img' src='{{pdt.photoUrl}}'></image>
+					</view>
+				</view>
+				<view class='row_bottom'>
+					<text class='red'>{{bill.payModeName}}</text>
+					<view><text>合计：</text><text class='orange order_amount'>￥{{bill.payment}}</text></view>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>

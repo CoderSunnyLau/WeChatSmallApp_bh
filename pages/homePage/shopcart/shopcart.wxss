@@ -1,5 +1,5 @@
 /* pages/shopcart/shopcart.wxss */
-@import '../account/orderList/orderList.wxss';
+@import '../account/myBill/myBill.wxss';
 page{
   height: 100%;
 }

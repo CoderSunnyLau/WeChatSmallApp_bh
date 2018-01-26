@@ -26,9 +26,6 @@ page{
   width: 750rpx;
   height: 68rpx;
 }
-.page{
-  display: none;
-}
 .page_crr{
   display: block;
 }

@@ -1,9 +1,10 @@
 var httpUrl = getApp().globalData.domainName + '/jsonaction/websiteaction.action'
-var mHeader = { Cookie: "_clientId=81fc31aeb3684b2bb9c94a2cb9dba07b; Domain=ry600.com; Expires=Mon, 03-Jan-2028 07:37:23 GMT; Path=/,_serviceId=78db367974194474a52fcbe3d2fb2979; Path=/,_relOrgId=afvnal1p3sa59q79"}
+var mHeader = { Cookie: "_clientId=86f67491791e49b29bdd36fe24413d14; _relOrgId=7pa1kzpfc8dz4afh; jiathis_rdc=%7B%22http%3A//bh.eheres.org/_shop/product-b04d235bbf00a303.shtml%22%3A%220%7C1516949430395%22%7D; _serviceId=1c5326d637cd4083b277ba33115a4314; storeCode=wbyy"}
 
 function loginHttp(options, callback) {
   wx.request({
     url: 'http://login.ry600.com/userCenterLogin.jsp',
+    // url: 'http://bh.eheres.org/userCenterLogin.jsp',
     data: options,
     method: 'POST',
     header: {"content-type": "application/x-www-form-urlencoded; charset=UTF-8"},
@@ -34,6 +35,7 @@ function getHttp(options, callback) {
       callback(res.data, true);
     },
     fail: function(res){
+	  wx.hideLoading();
       wx.showModal({
 		title: '提示',
 		content: '网络错误',
@@ -53,6 +55,7 @@ function postHttp(options, callback) {
       callback(res.data, true);
     },
     fail: function(res){
+	  wx.hideLoading();
       wx.showModal({
 		title: '提示',
 		content: '网络错误',

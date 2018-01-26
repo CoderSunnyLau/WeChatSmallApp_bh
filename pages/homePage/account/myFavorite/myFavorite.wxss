@@ -51,7 +51,8 @@ page{
 	width: 45rpx;
 	height: 50rpx;
 	background-size: 100rpx;
-	background-position: 0 -1020rpx;
+	/* background-position: 0 -1020rpx; */
+	background-position:0 54.5%;
 }
 .no_res, .end{
 	text-align: center;

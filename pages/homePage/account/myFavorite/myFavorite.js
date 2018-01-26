@@ -9,7 +9,7 @@ Page({
 		tabs: ['收藏商品', '全部收藏'],
 		crrIndex: 0,
 		items: [],
-		numFound: -1,
+		numFound: "--",
 		all: false
 	},
 	onLoad: function(){
