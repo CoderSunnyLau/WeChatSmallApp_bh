@@ -1,0 +1,24 @@
+<!--pages/homePage/shopcart/orderCheckout/orderSubmitSuccess/orderSubmitSuccess.wxml-->
+<view>
+	<view class='header'>
+		<text>订单信息</text>
+		<navigator class='tobuy' open-type='redirect' url='/pages/homePage/showcase/search/search?searchContent=&type=quickBill'>继续购物</navigator>
+	</view>
+	<view class='tip'>您的订单已经提交成功！</view>
+	<view>
+		<view class='text_box'>
+			<view>订单号：{{billId}}</view>
+			<view>商家：{{bill.sellerName}}</view>
+		</view>
+		<view class='text_box box_border'>
+			<view>支付方式：<text class='grey'>{{bill.payModeName}}</text></view>
+			<view>金额：<text class='orange'>￥{{bill.payableAmount || "--"}}</text></view>
+		</view>
+		<navigator class='text_box orange to_detail' url='{{"/pages/homePage/account/myBill/billInfo/billInfo?billId=" + billId}}'>订单详情 ></navigator>
+	</view>
+	<view class='text_box payment'>
+		<text class='grey'>实付金额：</text>
+		<text class='orange total'>￥{{bill.payableAmount || "--"}}</text>
+	</view>
+	<button class='btn pay_btn' wx:if='{{order.pay != ""}}'>微信支付</button>
+</view>

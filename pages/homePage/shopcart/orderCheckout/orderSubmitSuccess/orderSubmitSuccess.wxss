@@ -1,0 +1,45 @@
+/* pages/homePage/shopcart/orderCheckout/orderSubmitSuccess/orderSubmitSuccess.wxss */
+.header{
+	background-color: #F50;
+	color: #FFF;
+	text-align: center;
+	height: 95rpx;
+	line-height: 95rpx;
+	font-size: 32rpx;
+}
+.tobuy{
+	font-size: 28rpx;
+	position: absolute;
+	right: 34rpx;
+	top: 0;
+}
+.tip{
+	background-color: #EEE;
+	height: 95rpx;
+	line-height: 95rpx;
+	text-align: center;
+}
+.text_box{
+	padding: 24rpx 34rpx;
+	line-height: 38rpx;
+}
+.box_border{
+	border-top: 2rpx solid #DDD;
+	border-bottom: 2rpx solid #DDD;
+	display: flex;
+	justify-content: space-between;
+}
+.to_detail{
+	font-size: 24rpx;
+	text-align: center;
+	border-bottom: 10rpx solid #EEE;
+}
+.payment{
+	text-align: center;
+}
+.total{
+	font-size: 36rpx;
+}
+.pay_btn{
+	background-color: #1aac19;
+}

@@ -1,5 +1,5 @@
 .dialog {
-	background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.3);
   position: fixed;
   height: 100%;
   width: 100%;
@@ -20,12 +20,14 @@
 .dialog_title {
   height: 35px;
   text-align: center;
-  padding: 10px 0;
+  font-size: 32rpx;
+  line-height: 35px;
   box-sizing: border-box;
   background-color: #f50;
   color: #fff;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
+  font-size: 32rpx;
 }
 
 .dialog_content {

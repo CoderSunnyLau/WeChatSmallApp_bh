@@ -9,7 +9,8 @@ Page({
 		tabHeight: 0,
 		pageHeight: 0,
 		backTop: true,
-		testTxt: '放在data里试试'
+		testTxt: '放在data里试试',
+		showDialog: false
 	},
 	// onReady: function(){
 	// 	console.log(this)
@@ -24,14 +25,7 @@ Page({
 		this.setData({
 			mArr: _mArr
 		})
-		// wx.request({
-		// 	url: 'http://www.ry600.com/jsonaction/websiteaction.action?action=VSCommon.urlRequest&url=%2F_shop%2Fpnlf%2Fsearch.shtml%3FwithSkus%3Dtrue%26sv%3D%26sn%3D10&limit=5',
-		// 	header: { cookie: '_serviceId=99c98f88d21c493b91616a81c36ed212'},
-		// 	success: function(res){
-		// 		console.log(res.data)
-		// 	}
-		// })
-		this.getHeight()
+		//this.getHeight()
 	},
 	selectItem: function (e) {
 		//console.log(e.currentTarget.dataset.idx)
@@ -97,50 +91,6 @@ Page({
 			})
 		}).exec()
 	},
-	// scrollEvent: function(e){
-	// 	let that = this
-	// 	let animation = wx.createAnimation({
-	// 		duration: 200,
-	// 		timingFunction: 'linear',
-	// 		delay: 0
-	// 	})
-	// 	this.animation = animation
-	// 	if(e.detail.scrollTop > 350){
-	// 		that.setData({
-	// 			headerShow: false,
-	// 			backTop: true,
-	// 			contentHeight: (that.data.pageHeight - that.data.barHeight) + 'px'
-	// 		})
-			
-	// 		// animation.opacity(1).translateY(0).step()
-	// 		// that.setData({
-	// 		// 	headerAnimation: animation.export()
-	// 		// })
-	// 		// setTimeout(function () {
-	// 		// 	animation.opacity(0).translateY(-83).step()
-	// 		// 	that.setData({
-	// 		// 		headerAnimation: animation
-	// 		// 	})
-	// 		// }.bind(this), 200)
-	// 	}
-	// 	else{
-	// 		// animation.opacity(0).translateY(83).step()
-	// 		// that.setData({
-	// 		// 	headerAnimation: animation.export()
-	// 		// })
-	// 		// setTimeout(function () {
-	// 		// 	animation.opacity(1).translateY(0).step()
-	// 		// 	that.setData({
-	// 		// 		headerAnimation: animation
-	// 		// 	})
-	// 		// }.bind(this), 200)
-	// 		that.setData({
-	// 			headerShow: true,
-	// 			backTop: false,
-	// 			contentHeight: (that.data.pageHeight - that.data.headerHeight - that.data.barHeight) + 'px'
-	// 		})
-	// 	}
-	// },
 	backTop: function(){
 		this.setData({
 			scrollTop: 0
@@ -154,6 +104,12 @@ Page({
 	showBox: function(){
 		this.setData({
 			boxShow: true
+		})
+	},
+	showDialog: function(){
+		this.setData({
+			showDialog: true,
+			dialogTxt: '自定义弹窗内容'
 		})
 	}
 })

@@ -41,11 +41,6 @@ Page({
 			}
 		});
 	},
-	orderList: function(){
-		wx.navigateTo({
-			url: 'orderList/orderList',
-		});
-	},
 	logout: function(){
 		wx.showLoading({
 			title: '正在退出',

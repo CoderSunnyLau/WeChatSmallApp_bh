@@ -25,7 +25,7 @@
   <view class='panel_box'>
     <view class='panel_title'>
       <text>我的订单</text>
-      <text class='all_orders arrow' bindtap='orderList'>全部订单</text>
+      <navigator class='all_orders arrow' url='myBill/myBill'>全部订单</navigator>
     </view>
     <view class='panel_body'>
       <view class='order_nav'>

@@ -151,7 +151,7 @@
 		<view class='nothing'>
 			<view class='cart_icon bg2'></view>
 			<text class='grey'>购物车内暂时没有商品，请先挑选商品</text>
-			<navigator url='../showcase/search/search'><button>继续购物</button></navigator>
+			<navigator url='/pages/homePage/showcase/search/search?searchContent=&type=quickBill'><button>继续购物</button></navigator>
 		</view>
 	</block>
 </view>

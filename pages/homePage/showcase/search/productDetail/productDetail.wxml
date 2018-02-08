@@ -1,3 +1,4 @@
+<dialog showDialog='{{showDialog}}' dialogTxt='{{dialogTxt}}'></dialog>
 <view wx:for='{{productArr}}'>
   <swiper circular='true' indicator-dots='true' indicator-color='{{dotColor}}' indicator-active-color='{{activeDotColor}}' class='img_content'>
     <block wx:for='{{item.photos}}' wx:for-item='imgItem'>

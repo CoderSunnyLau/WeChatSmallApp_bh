@@ -39,6 +39,9 @@ Page({
 			})
 		}
 		else {
+			// if(options.showcaseId){
+			// 	that.showcasePro(options.showcaseId)
+			// }
 			that.setData({
 				isQuickBill: false,
 				tabArr: ['默认', '销量', '人气']
@@ -280,4 +283,20 @@ Page({
 			scrollTop: 0
 		})
 	}
+	// showcasePro(e){
+	// 	wx.request({
+	// 		url: 'http://bh.eheres.org/jsonaction/websiteaction.action',
+	// 		data: {
+	// 			action: 'VSShop.getPrductsShowcase',
+	// 			pgNum: 0,
+	// 			limit: 5,
+	// 			showcaseId: e,
+	// 			orgId: _userData.storeOrgId,
+	// 			bizCenterId: _userData.bizCenterId
+	// 		},
+	// 		success(res){
+	// 			console.log(res)
+	// 		}
+	// 	})
+	// }
 })

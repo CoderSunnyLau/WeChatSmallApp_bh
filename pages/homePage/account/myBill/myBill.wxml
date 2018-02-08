@@ -14,13 +14,19 @@
 					<text class='orange'>{{bill.stateName}}</text>
 				</view>
 				<view class='row_top'>
-					<text>{{bill.sellerName || "店铺名称"}}</text>
-					<text>{{bill.createTime}}</text>
+					<text class='seller_name'>{{bill.sellerName || "店铺名称"}}</text>
+					<text class='time'>{{bill.createTime}}</text>
 				</view>
-				<view class='row_middle'>
-					<view class='pdt_imgs' wx:for='{{bill.products}}' wx:for-item="pdt" wx:for-index="pid" wx:key>
-						<image class='pdt_img' src='{{pdt.photoUrl}}'></image>
-					</view>
+				<view class='row_middle pdt_imgs'>
+					<block>
+						<image class='pdt_img' src='{{pdt.photoUrl}}' wx:for='{{bill.products}}' wx:for-item="pdt" wx:for-index="pid" wx:if='{{pid < 3}}' wx:key></image>
+					</block>
+					<block wx:if='{{bill.products.length >= 4}}'>
+						<view class='pdt_img pdt_amount'>
+							<view>...</view>
+							<view>共{{bill.products.length}}种</view>
+						</view>
+					</block>
 				</view>
 				<view class='row_bottom'>
 					<text class='red'>{{bill.payModeName}}</text>

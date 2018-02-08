@@ -25,7 +25,8 @@ Page({
 		showDlvDtl: false,
 		animationData: {},
 		animationBg: {},
-		animationBox: {}
+		animationBox: {},
+		canSubmit: true
 	},
 	onLoad: function(options){
 		_this = this;
@@ -46,7 +47,8 @@ Page({
 			loading: true
 		});
 		wx.request({
-			url: 'http://bh.ry600.com/_shop/order.shtml',
+			// url: 'http://bh.ry600.com/_shop/order.shtml',
+			url: 'http://bh.eheres.org/_shop/order.shtml',
 			data: {orderId: bid},
 			header: http.getHeader(),
 			success: function(res){
@@ -182,8 +184,57 @@ Page({
 			[remarkTemp]: e.detail.value
 		});
 	},
-	saveOrder: function(e){
-
+	submit: function(){
+		_this.setData({
+			canSubmit: false,
+			loading: true
+		});
+		_this.getAccessToken(function(accessToken){
+			if(accessToken){
+				_this.saveOrder(accessToken);
+			}
+		});
+	},
+	saveOrder: function(accessToken){
+		var _order = _this.data.order;
+		http.getHttp({
+			action: "VSShop.saveShopBill",
+			needNegotiate: false,
+			orderId: _order.orderId,
+			accessToken: accessToken,
+			remark: _order.remark
+		}, function(res, success){
+			if(success){
+				if(res.success){
+					wx.redirectTo({
+						url: 'orderSubmitSuccess/orderSubmitSuccess?billId=' + res.results[0].bills[0].billId,
+					})
+				}else{
+					ry.alert(res.message);
+				}
+			}
+			_this.setData({
+				canSubmit: true,
+				loading: false
+			});
+		});
+	},
+	getAccessToken: function(callback){
+		http.getHttp({
+			action: "VSShop.getAccessToken"
+		},
+		function(res, success){
+			if(success){
+				if(res.success){
+					if(typeof(callback) == "function"){
+						callback(res.results[0]);
+					}
+				}else{
+					ry.alert(res.message);
+					return false;
+				}
+			}
+		});
 	},
 	animationIn: function(){
 		this.setData({

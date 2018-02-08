@@ -1,5 +1,6 @@
 // pages/homePage/account/orderList/orderList.js
 const http = require('../../../../utils/httpUtil.js')
+const ry = require('../../../../utils/util.js')
 let _this = {};
 Page({
 	data: {
@@ -22,12 +23,22 @@ Page({
 			limit: 5,
 			bbState: state || ""
 		}, function(res, success){
-			if(success && res.success){
-				var billsTemp = "bills[" + _this.data.crrIndex + "].list";
-				_this.setData({
-					[billsTemp]: res.results
-				});
-				console.log(res.results)
+			if(success){
+				if(res.success){
+					var _bills = res.results;
+					for(var i = 0; i < _bills.length; i++){
+						var _bill = _bills[i];
+						if(_bill.payModeName.indexOf("在线支付") > -1){
+							_bill.payModeName = "在线支付";
+						}
+					}
+					var billsTemp = "bills[" + _this.data.crrIndex + "].list";
+					_this.setData({
+						[billsTemp]: res.results
+					});
+				}else{
+					ry.alert(res.message);
+				}
 			}
 		});
 	}

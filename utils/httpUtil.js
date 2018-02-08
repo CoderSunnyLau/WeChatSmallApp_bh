@@ -1,5 +1,5 @@
 var httpUrl = getApp().globalData.domainName + '/jsonaction/websiteaction.action'
-var mHeader = { Cookie: "_clientId=86f67491791e49b29bdd36fe24413d14; _relOrgId=7pa1kzpfc8dz4afh; jiathis_rdc=%7B%22http%3A//bh.eheres.org/_shop/product-b04d235bbf00a303.shtml%22%3A%220%7C1516949430395%22%7D; _serviceId=1c5326d637cd4083b277ba33115a4314; storeCode=wbyy"}
+var mHeader = { Cookie: "_clientId=86f67491791e49b29bdd36fe24413d14; _relOrgId=7pa1kzpfc8dz4afh; _serviceId=c757405ca33543398bdedbe2cd2c3df6; storeCode=wbyy"}
 
 function loginHttp(options, callback) {
   wx.request({

@@ -30,8 +30,6 @@ Page({
 				if (callback.success) {
 					wx.hideLoading()
 					_showcaseArr = callback.results[0].children
-					//console.log(callbackArr)
-					console.log(_showcaseArr)
 					that.setData({
 						showcaseArr: callback.results[0].children
 					})
@@ -77,5 +75,11 @@ Page({
 				}
 			})
 		}).exec()
+	},
+	searchPro(e){
+		console.log(e)
+		// wx.navigateTo({
+		// 	url: '../showcase/search/search?searchContent=&type=shopcase&showcaseId=' + e.currentTarget.dataset.showcaseid
+		// })
 	}
 })

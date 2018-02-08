@@ -127,6 +127,9 @@ Page({
 	addFavorite: function(){
 		let that = this
 		if(!that.data.isAdd){
+			wx.showLoading({
+				title: '正在加入收藏夹中...',
+			})
 			httpUtil.postHttp({
 				action: 'VSCommon.addFavorite',
 				resType: 'ProductOfShop',
@@ -134,11 +137,27 @@ Page({
 				resName: that.data.productArr[0].productCaption
 			},function(callback){
 				if(callback.success){
+					wx.hideLoading()
+					that.setData({
+						showDialog: true,
+						dialogTxt: '成功添加 ' + that.data.productArr[0].productCaption + ' 到收藏夹',
+						isAdd: true
+					})
+				}
+			})
+		}
+		else{
+			httpUtil.postHttp({
+				action: 'VSCommon.delFavorite',
+				resType: 'ProductOfShop',
+				resId: that.data.productArr[0].shopProductId
+			},function(callback){
+				if (callback.success) {
 					wx.showToast({
-						title: '加入收藏夹成功 ！'
+						title: '取消收藏成功 ！'
 					})
 					that.setData({
-						isAdd: true
+						isAdd: false
 					})
 				}
 			})

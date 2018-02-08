@@ -18,7 +18,7 @@ Page({
 	},
 	quickBill: function () {
 		wx.navigateTo({
-			url: '../showcase/search/search?searchContent=' + '' + '&type=quickBill'
+			url: '../showcase/search/search?searchContent=&type=quickBill'
 		})
 	},
 	onReady: function () {

@@ -10,9 +10,9 @@
   </scroll-view>
    <scroll-view class='nav-right' style='height:{{contentHeight}};' scroll-y='true'>
     <block wx:for='{{showcaseArr[isSelect].children}}' wx:for-item='second'>
-      <view class='nav-title'>{{second.showcaseName}}</view>
+      <view class='nav-title' data-showcaseId='{{second.showcaseId}}' bindtap='searchPro'>{{second.showcaseName}}</view>
       <view class='nav-content'>
-        <view wx:for="{{second.children}}" wx:for-item='thirth' class='nav-item'>{{thirth.showcaseName}}</view>
+        <view wx:for="{{second.children}}" wx:for-item='thirth' class='nav-item' data-showcaseId='{{thirth.showcaseId}}' bindtap='searchPro'>{{thirth.showcaseName}}</view>
       </view>
     </block>
   </scroll-view> 

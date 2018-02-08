@@ -4,11 +4,11 @@ Component({
 		showDialog: Boolean
 	},
 	data: {
-		showDialog: true,
+		showDialog: false,
 		dialogTxt: '弹窗内容'
 	},
 	methods: {
-		closeDialog(){
+		closeDialog() {
 			this.setData({
 				showDialog: false
 			})

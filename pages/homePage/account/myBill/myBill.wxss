@@ -50,12 +50,22 @@ page{
 .row_middle{
   padding: 20rpx 38rpx;
   border-bottom: 2rpx solid #DDD;
-  display: flex;
+  /* display: flex; */
+  overflow: hidden;
 }
 .pdt_img{
-  width: 162rpx;
-  height: 162rpx;
+  float: left;
+  width: 155rpx;
+  height: 155rpx;
   border: 2rpx solid #DDD;
+  margin-right: 10rpx;
+}
+.pdt_amount{
+	text-align: center;
+	line-height: 60rpx;
+	padding-top: 30rpx;
+	height: 125rpx;
+	font-size: 26rpx;
 }
 .pdt_info{
   margin-left: 24rpx;
@@ -75,4 +85,14 @@ page{
 }
 .order_amount{
   font-size: 30rpx;
+}
+.seller_name{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	width: 400rpx;
+	white-space: nowrap;
+}
+.time{
+	font-size: 24rpx;
+	white-space: nowrap;
 }

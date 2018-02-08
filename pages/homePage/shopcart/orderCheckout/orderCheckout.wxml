@@ -45,7 +45,7 @@
 							<text class='count'>×{{pdt.amount}}</text>
 						</view>
 					</view>
-					<view wx:for='{{pdt.skus}}' wx:for-item='pkgPdt'>
+					<view wx:for='{{pdt.skus}}' wx:for-item='pkgPdt' wx:key>
 						<view class='row_main'>
 							<view class='main_info'>
 								<image class='pdt_img' src='{{pkgPdt.photo.smallUrl}}'></image>
@@ -61,7 +61,7 @@
 						</view>
 					</view>
 				</view>
-				<block wx:if='{{pdt.rewards.length}}' wx:for='{{pdt.rewards}}' wx:for-item='reward'>
+				<block wx:if='{{pdt.rewards.length}}' wx:for='{{pdt.rewards}}' wx:for-item='reward' wx:key>
 				<view class='rewards'>
 					<block wx:if='{{reward.ruleMode == "present"}}'>
 							<view class='reward' wx:for='{{reward.gifts}}' wx:for-item='gift' wx:for-index='giftIdx' wx:key=''>
@@ -136,11 +136,11 @@
 			<view class='row_default'><text>优惠</text><text class='orange'>- ¥{{order.discount}}</text></view>
 			<view class='row_default'><text>运费</text><text class='orange'>+ ¥{{order.blocks[0].delivery.fare ? order.blocks[0].delivery.fare : 0}}</text></view>
 			<!-- <view class='row_default'><text>优惠券</text><text class='orange'>- ¥{{order.discount}}</text></view> -->
-			<view class='.row_default row_right'><text>实付金额：</text><text class='orange'>￥{{order.payAmount}}</text></view>
+			<view class='.row_default row_right'><text>实付金额：</text><text class='orange'>￥{{order.sumPayment}}</text></view>
 		</view>
 	</view>
 	<view class='checkout_box'>
-		<view class='amount_box'><text class='amount_text'>实付金额：</text><text class='orange order_amount'>￥{{order.payAmount}}</text></view>
-		<button class='btn submit {{order.address ? "" : "btn_disabled"}}' bindtap='saveOrder' disabled='{{!order.address}}'>提交订单</button>
+		<view class='amount_box'><text class='amount_text'>实付金额：</text><text class='orange order_amount'>￥{{order.sumPayment}}</text></view>
+		<button class='btn submit {{order.address ? "" : "btn_disabled"}}' bindtap='submit' disabled='{{!order.address || !canSubmit}}'>{{canSubmit ? "提交订单" : "正在提交..."}}</button>
 	</view>
 </view>
