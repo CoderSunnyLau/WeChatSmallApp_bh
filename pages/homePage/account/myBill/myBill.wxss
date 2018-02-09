@@ -2,6 +2,39 @@
 page{
   background-color: #EEE;
 }
+.top_fixed{
+	/* position: fixed; */
+}
+.search_bar{
+	height: 100rpx;
+	padding: 0 34rpx;
+	background-color: #F50;
+	color: #FFF;
+	font-size: 34rpx;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.search_area{
+	background-color: #FFF;
+	flex: 1;
+	height: 68rpx;
+	border-radius: 15rpx;
+	font-size: 26rpx;
+	display: flex;
+	padding: 0 30rpx;
+	margin-right: 15rpx;
+	align-items: center;
+	color: #666;
+}
+.search_img{
+	width: 45rpx;
+	height: 45rpx;
+	margin-right: 15rpx;
+}
+.search_input{
+	flex: 1;
+}
 .tabs{
   width: 750rpx;
   height: 68rpx;
@@ -9,8 +42,8 @@ page{
   display: flex;
   flex-direction: row;
   line-height: 75rpx;
-  position: fixed;
   top: 0;
+  border-bottom: 1rpx solid #EEE;
 }
 .tab{
   flex: 1;
@@ -22,10 +55,10 @@ page{
   height: 64rpx;
   display: inline-block;
 }
-.blank{
+ .blank{
   width: 750rpx;
-  height: 68rpx;
-}
+  height: 168rpx;
+} 
 .page_crr{
   display: block;
 }
@@ -43,9 +76,6 @@ page{
   padding: 0 38rpx;
   display: flex;
   justify-content: space-between;
-}
-.red{
-  color: #F00;
 }
 .row_middle{
   padding: 20rpx 38rpx;
@@ -65,7 +95,8 @@ page{
 	line-height: 60rpx;
 	padding-top: 30rpx;
 	height: 125rpx;
-	font-size: 26rpx;
+	font-size: 24rpx;
+	letter-spacing: 5rpx;
 }
 .pdt_info{
   margin-left: 24rpx;
@@ -95,4 +126,13 @@ page{
 .time{
 	font-size: 24rpx;
 	white-space: nowrap;
+}
+.state, .paymode{
+	font-size: 24rpx;
+}
+.hide{
+    display: none;
+}
+.fixed{
+    position: fixed;
 }
