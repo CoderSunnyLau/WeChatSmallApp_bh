@@ -1,0 +1,136 @@
+/* pages/homePage/account/myBill/billInfo/billInfo.wxss */
+page{
+	background-color: #EEE;
+}
+.loading{
+	width: 100%;
+	height: 100%;
+	background-color: #EEE;
+	position: fixed;
+	z-index: 999;
+}
+.bill_box{
+	padding: 25rpx 34rpx;
+	margin: 1rpx 0;
+	background-color: #FFF;
+	border-bottom: 1rpx solid #DDD;
+}
+.between{
+	display: flex;
+	justify-content: space-between;
+}
+.dgrey{
+	color: #6F6F6F;
+}
+.pay_btn{
+	background-color: #1aac19;
+	margin-top: 20rpx;
+}
+.money{
+	font-size: 40rpx;
+	line-height: 30rpx;
+}
+.small{
+	font-size: 24rpx;
+	padding-top: 8rpx;
+}
+.state{
+	color: #F50;
+}
+.state::before{
+	content: "!";
+	border: 2rpx solid;
+	width: 24rpx;
+	height: 24rpx;
+	display: inline-block;
+	text-align: center;
+	line-height: 24rpx;
+	border-radius: 50%;
+	margin-right: 4rpx;
+	font-size: 24rpx;
+}
+.closed::before{
+	content: "×";
+}
+.closed{
+	color: #FF2D48;
+}
+.finished::before{
+	content: "√";
+}
+.finished{
+	color: #1aac19;
+}
+.pdt_detail{
+	background-color: #FFF;
+	margin-bottom: 25rpx;
+}
+.bill_row{
+	padding: 20rpx 34rpx;
+	border-bottom: 2rpx dashed #DDD;
+}
+.seller_name{
+	padding: 8rpx 34rpx;
+	border-bottom: 1rpx solid #DDD;
+	font-size: 24rpx;
+}
+.item_type{
+	color: #FFF;
+	background-color: #F50;
+	font-size: 24rpx;
+	line-height: 24rpx;
+	padding: 0 8rpx;
+	margin-right: 8rpx;
+}
+
+/************** products ***************/
+.pdt{
+  width: 750rpx;
+  overflow: hidden;
+  position: relative;
+  border-bottom: 2rpx solid #DDD;
+}
+.pdt_title{
+  line-height: 34rpx;
+  font-size: 26rpx;
+}
+.pdt_info{
+  justify-content: space-between;
+  height: 162rpx;
+  width: 490rpx;
+}
+.detail_info{
+	font-size: 24rpx;
+	color: #999;
+	line-height: 24rpx;
+}
+.count{
+  position: absolute;
+  width: 150rpx;
+  right: 35rpx;
+  bottom: 20rpx;
+  text-align: right;
+  z-index: 9;
+}
+.main_info{
+  width: 680rpx;
+  background-color: #FFF;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 18rpx;
+  padding: 0 35rpx 18rpx;
+  position: relative;
+  z-index: 9;
+}
+.pdt_img{
+  width: 162rpx;
+  height: 162rpx;
+  border: 2rpx solid #DDD;
+}
+.pdt_info{
+  margin-left: 24rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}

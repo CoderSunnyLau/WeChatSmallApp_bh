@@ -5,9 +5,9 @@ App({
     wx.setStorageSync('logs', logs)
   },
   globalData: {
-    // domainName: 'http://www.ry600.com',
-    domainName: 'http://bh.eheres.org',
+    domainName: 'http://www.ry600.com',
+    // domainName: 'http://bh.eheres.org',
     userInfo: null,
-    version: '0.0.37'
+    version: '0.0.38'
   }
 })

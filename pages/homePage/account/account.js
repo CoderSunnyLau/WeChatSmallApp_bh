@@ -24,6 +24,7 @@ Page({
 		http.getHttp({action: 'VSUser.getBasicInfo'},function(res, success){
 			if(success){
 				if(res.success){
+					console.log(res)
 					let user = res.results[0];
 					_this.setData({
 						user: res.results[0],

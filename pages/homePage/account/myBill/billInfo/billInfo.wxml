@@ -1,0 +1,68 @@
+<!--pages/homePage/account/myBill/billInfo/billInfo.wxml-->
+<view>
+	<view class='loading' wx:if='{{loading}}'></view>
+	<view class='bill_info bill_box'>
+		<view class='bill_id between'><text>订单号：{{bill.billId}}</text><text class='state {{bill.state}}'>{{bill.stateName}}</text></view>
+		<view>卖家：{{bill.sellerName}}</view>
+		<view>时间：{{bill.createTime}}</view>
+	</view>
+	<view class='bill_box'>
+		<view>收货信息</view>
+		<view class='dgrey'>
+			<view>收货人：{{bill.consignee}}，电话：{{bill.mobile}}</view>
+			<view>地址：{{bill.canton}}-{{bill.city}}-{{bill.county}} {{bill.address}}{{bill.postCode ? "，邮编：" + bill.postCode : ""}}</view>
+			<view>配送方式：{{bill.deliveryName}}</view>
+		</view>
+	</view>
+	<view class='pay_info bill_box'>
+		<view class='between'><text>支付方式</text><text class='orange'>{{bill.payModeName}}（{{bill.payState}}）</text></view>
+		<view class='between'><text class='dgrey'>信息</text><text class='orange'>------------ </text></view>
+		<view><text class='dgrey'>商品金额：</text>￥{{bill.totalPayment}}</view>
+		<view><text class='dgrey'>运费：</text>￥{{bill.freight}}</view>
+		<view class='between'>
+			<view><text class='dgrey'>优惠：</text>￥{{bill.discount}}</view>
+			<view><text class='dgrey'>应付款：</text><text class='orange money'>￥{{bill.payableAmount}}</text></view>
+		</view>
+		<button class='pay_btn'>微信支付</button>
+	</view>
+	<view class='bill_box between'>
+		<text>发票信息</text><text class='dgrey'>开发票（以线下ERP为准）</text>
+	</view>
+	<view class='bill_box' wx:if='{{bill.remark}}'>
+		<view>买家留言</view>
+		<view class='dgrey small'>{{bill.remark}}</view>
+	</view>
+	<view class='bill_box'>
+		<view>订单跟踪</view>
+		<view>
+			<view class='small dgrey' wx:for='{{bill.billTracks}}' wx:for-item='track' wx:key>
+				<text>{{track.commitTime}}　</text>
+				<text>{{bill.userId == track.userId ? "您" : track.fullName}} {{track.remark}}</text>
+			</view>
+		</view>
+	</view>
+	<view class='pdt_detail'>
+		<view class='bill_row'>商品明细</view>
+		<view class='seller_name dgrey'><text>{{bill.sellerName}}</text></view>
+		<view class='pdts'>
+			<view class='pdt' wx:for='{{bill.products}}' wx:for-item="pdt" wx:for-index="pIdx" wx:key>
+				<view class='main_info'>
+					<image class='pdt_img' src='{{pdt.photoUrl}}' binderror='imgError' data-pid='{{pIdx}}'></image>
+					<view class='pdt_info'>
+						<view class='pdt_title'>
+							<text class='item_type' wx:if='{{pdt.itemType == "bulkBuy"}}'>团购</text>
+							<text class='item_type' wx:if='{{pdt.itemType == "package"}}'>套餐</text>
+							<text class='item_type' wx:if='{{pdt.itemType == "present"}}'>赠品</text>
+							<text>{{pdt.productCaption}}</text>
+						</view>
+						<text class='detail_info'>货号：{{pdt.skuCode}}</text>
+						<view>
+							<text class='orange' wx:if='{{pdt.itemType != "present"}}'>￥{{pdt.price}}/{{pdt.packUnits}}</text>
+						</view>
+					</view>
+					<view class='count'><text>×{{pdt.amount}}</text></view>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>

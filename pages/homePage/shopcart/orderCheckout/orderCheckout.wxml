@@ -86,14 +86,14 @@
 			</view>
 		</view>
 		<view class='options'>
-			<picker range='{{order.transaction.pays}}' range-key='payModeName' bindchange='selTransaction'>
+			<picker range='{{order.transaction.pays}}' range-key='payModeName' bindchange='selTransaction' value='{{1}}'>
 				<view class='row_top arrow arrow_black_right'><text>支付方式</text><text class='red'>{{order.transaction.payModeName || "未选择"}}</text></view>
 			</picker>
 			<picker range='{{order.blocks[0].delivery.freights}}' range-key='freightName' bindchange='deliveryChange' value='{{dlvValue}}'>
 				<view class='row_top arrow arrow_black_right'>
 					<view class='deli_row'>
 						<text>配送方式</text>
-						<text class='grey small'>{{(order.blocks[0].delivery.canReceivingTime || "未选择") + "-" + (order.blocks[0].delivery.phoneConfirm == "1" ? "需电话确认" : "无需电话确认") + "-" + (order.blocks[0].delivery.payWay || "未选择") + "支付"}}</text>
+						<text class='grey small'>{{(order.blocks[0].delivery.canReceivingTime || "未选择") + "-" + (order.blocks[0].delivery.phoneConfirm == "1" ? "需电话确认" : "无需电话确认")}}{{onLinePay ? "" : ("-" + (order.blocks[0].delivery.payWay || "未选择") + "支付")}}</text>
 					</view>
 					<text class='grey'>{{order.blocks[0].delivery.deliveryName || "未选择"}}</text>
 				</view>
@@ -128,7 +128,7 @@
 			</picker>
 			<view class='row_top remark_box {{editRemarkTemp ? "remark_edit" : ""}}'>
 				<view class='remark_title' bindtap='editRemark'><text>留言</text><view class='arrow arrow_black_down {{editRemarkTemp ? "arrow_trans" : ""}}'></view></view>
-				<textarea class='remark' placeholder='请在此处填写您的备注信息。' placeholder-class='placeholder' bindinput='remarkInput'></textarea>
+				<textarea class='remark' placeholder='请在此处填写您的备注信息。' placeholder-class='placeholder' bindinput='remarkInput' value='{{remark}}'></textarea>
 			</view>
 		</view>
 		<view class='order_account'>

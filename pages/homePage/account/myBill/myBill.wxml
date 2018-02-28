@@ -1,23 +1,23 @@
 <!--pages/homePage/account/orderList/orderList.wxml-->
 <view class='order_list'>
-	<scroll-view style='height:1000rpx;' scroll-y bindscroll='scroll'>
-	<view class='top_fixed'>
-		<view class='search_bar {{showSearchBar ? "" : "hide"}}' id='search_bar'>
+	<scroll-view enable-back-to-top="true" style='height:{{scrollHeight}};' id='scroll' bindscrolltolower='loadMore' scroll-y bindscroll='scroll'>
+	<view class='top_area'>
+		<view class='search_bar {{showSearchBar ? "" : "hide_searchbar"}}' id='search_bar'>
 			<view class='search_area'>
 				<image class="search_img" src="/images/search.png"></image>
 				<input class='search_input' bindinput='searchInput' placeholder='订单号/商家名称'></input>
 			</view>
 			<text bindtap='searchBill'>搜 索</text>
 		</view>
-		<view class='tabs {{showSearchBar ? "" : "fixed"}}'>
-			<view class='tab' wx:for="{{bills}}" wx:for-item="tab" wx:for-index="index" data-index='{{index}}' wx:key bindtap='changeTab'>
-				<text class='{{crrIndex == index ? "tab_crr" : ""}}'>{{tab.state}}</text>
+		<view class='tabs' id='tabs'>
+			<view class='tab' wx:for="{{tabs}}" wx:for-item="tab" wx:for-index="index" scroll-top='{{scrollTop}}' data-index='{{index}}' wx:key bindtap='changeTab'>
+				<text class='{{crrIndex == index ? "tab_crr" : ""}}'>{{tab.stateName}}</text>
 			</view>
 		</view>
 	</view>
-	<view class='blank {{showSearchBar ? "hide" : ""}}'></view>
+	<view class='blank'></view>
 	<view class='page'>
-		<view class='orders orders_all' wx:for="{{bills[crrIndex].list}}" wx:for-item="bill" wx:for-index="bid" wx:key>
+		<view class='orders orders_all' wx:for="{{bills}}" wx:for-item="bill" wx:for-index="bid" wx:key>
 			<view class='order'>
 				<view class='row_top'>
 					<text>订单号：{{bill.billId}}</text>
@@ -27,9 +27,9 @@
 					<text class='seller_name'>{{bill.sellerName || "店铺名称"}}</text>
 					<text class='time'>{{bill.createTime}}</text>
 				</view>
-				<view class='row_middle pdt_imgs'>
-					<block>
-						<image class='pdt_img' src='{{pdt.photoUrl}}' wx:for='{{bill.products}}' wx:for-item="pdt" wx:for-index="pid" wx:if='{{pid < 3}}' wx:key></image>
+				<view class='row_middle pdt_imgs' bindtap='billDetail' data-billid='{{bill.billId}}'>
+					<block wx:for='{{bill.products}}' wx:for-item="pdt" wx:for-index="pid" wx:if='{{pid < 3}}' wx:key>
+						<image class='pdt_img' src='{{pdt.photoUrl}}' data-idx='{{bid + "," + pid}}' binderror='imgError'></image>
 					</block>
 					<block wx:if='{{bill.products.length >= 4}}'>
 						<view class='pdt_img pdt_amount'>
@@ -44,6 +44,7 @@
 				</view>
 			</view>
 		</view>
+		<view class='no_res grey'>{{noRes ? "没有更多内容啦~" : ""}}</view>
 	</view>
 	</scroll-view>
 </view>

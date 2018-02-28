@@ -27,7 +27,8 @@
         "pages/loginPage/forget/forgetCheck",
         "pages/loginPage/forget/forgetSet",
         "pages/noCooperate/noCooperate",
-        "pages/homePage/shopcart/orderCheckout/orderSubmitSuccess/orderSubmitSuccess"
+        "pages/homePage/shopcart/orderCheckout/orderSubmitSuccess/orderSubmitSuccess",
+        "pages/homePage/account/myBill/billInfo/billInfo"
     ],
     "window": {
         "backgroundTextStyle": "light",

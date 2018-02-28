@@ -2,8 +2,10 @@
 page{
   background-color: #EEE;
 }
-.top_fixed{
-	/* position: fixed; */
+.top_area{
+	top: 0;
+	position: fixed;
+	z-index: 999;
 }
 .search_bar{
 	height: 100rpx;
@@ -14,6 +16,11 @@ page{
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	overflow: hidden;
+	transition: height 0.2s;
+}
+.hide_searchbar{
+	height: 0;
 }
 .search_area{
 	background-color: #FFF;
@@ -130,9 +137,7 @@ page{
 .state, .paymode{
 	font-size: 24rpx;
 }
-.hide{
-    display: none;
-}
-.fixed{
-    position: fixed;
+.no_res{
+	text-align: center;
+	line-height: 100rpx;
 }

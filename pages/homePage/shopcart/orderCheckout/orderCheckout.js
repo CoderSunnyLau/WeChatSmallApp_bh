@@ -11,6 +11,7 @@ var dlvIdx = -1;
 Page({
 	data: {
 		editRemarkTemp: false,
+		remark: "",
 		loading: true,
 		order: {},
 		load: true,
@@ -22,11 +23,13 @@ Page({
 			["现金", "POS刷卡", "支票"]
 		],
 		dlvValue: 0,
+		transValue: 0,
 		showDlvDtl: false,
 		animationData: {},
 		animationBg: {},
 		animationBox: {},
-		canSubmit: true
+		canSubmit: true,
+		onLinePay: true
 	},
 	onLoad: function(options){
 		_this = this;
@@ -47,8 +50,8 @@ Page({
 			loading: true
 		});
 		wx.request({
-			// url: 'http://bh.ry600.com/_shop/order.shtml',
-			url: 'http://bh.eheres.org/_shop/order.shtml',
+			url: 'http://bh.ry600.com/_shop/order.shtml',
+			// url: 'http://bh.eheres.org/_shop/order.shtml',
 			data: {orderId: bid},
 			header: http.getHeader(),
 			success: function(res){
@@ -58,11 +61,12 @@ Page({
 					orderId: bid
 				}, function(res2, success){
 					if(success){
-						if (res2.success) {
-							var _idx;
-							if (res2.results[0].blocks[0].delivery){
-								var frs = res2.results[0].blocks[0].delivery.freights;
-								var selFr = res2.results[0].blocks[0].delivery.deliveryName;
+						if(res2.success){
+							var _idx, _idx2, _onLinePay;
+							var _dlvry = res2.results[0].blocks[0].delivery;
+							if(_dlvry){
+								var frs = _dlvry.freights;
+								var selFr = _dlvry.deliveryName;
 								for(var i = 0; i < frs.length; i++){
 									if(frs[i].freightName == selFr){
 										_idx = i;
@@ -70,8 +74,18 @@ Page({
 									}
 								}
 							}
+							var _trans = res2.results[0].transaction;
+							for(var i = 0; i < _trans.pays.length; i++){
+								if(_trans.payModeId == _trans.pays[i].payModeId){
+									_onLinePay = _trans.pays[i].onLinePay;
+									_idx2 = i;
+									break;
+								}
+							}
 							_this.setData({
 								order: res2.results[0],
+								onLinePay: _onLinePay,
+								transValue: _idx2,
 								dlvValue: _idx,
 								load: false,
 								loading: false
@@ -121,6 +135,15 @@ Page({
 		}, function(res, success){
 			if(success){
 				if(res.success){
+					var _trans = res.results[0].transaction;
+					for(var i = 0; i < _trans.pays.length; i++){
+						if(_trans.payModeId == _trans.pays[i].payModeId){
+							_this.setData({
+								onLinePay: _trans.pays[i].onLinePay
+							});
+							break;
+						}
+					}
 					_this.setData({
 						order: res.results[0],
 						loading: false
@@ -179,9 +202,8 @@ Page({
 	},
 	remarkInput: function(e){
 		var val = e.detail.value;
-		var remarkTemp = 'order.remark';
 		this.setData({
-			[remarkTemp]: e.detail.value
+			remark: e.detail.value
 		});
 	},
 	submit: function(){
@@ -202,7 +224,7 @@ Page({
 			needNegotiate: false,
 			orderId: _order.orderId,
 			accessToken: accessToken,
-			remark: _order.remark
+			remark: _this.data.remark
 		}, function(res, success){
 			if(success){
 				if(res.success){
