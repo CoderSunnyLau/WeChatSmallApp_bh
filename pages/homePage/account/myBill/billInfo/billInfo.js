@@ -25,8 +25,8 @@ Page({
 			if(success){
 				if(res.success){
 					let bill = res.results[0];
-					if(bill.payModeName.indexOf("在线支付") > -1){
-						bill.payModeName = "在线支付";
+					if(bill.onLinePay){
+						bill.payModeName = bill.payModeName.split("<span")[0];
 					}
 					_this.setData({
 						bill: bill,

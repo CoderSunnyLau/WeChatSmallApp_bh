@@ -1,6 +1,7 @@
 // pages/homePage/shopcart/orderCheckout/orderCheckout.js
 const http = require('../../../../utils/httpUtil.js');
 const ry = require('../../../../utils/util.js');
+const domain = getApp().globalData.domainName;
 var blockId = '';
 var show = false;
 var _this = {};
@@ -50,8 +51,7 @@ Page({
 			loading: true
 		});
 		wx.request({
-			url: 'http://bh.ry600.com/_shop/order.shtml',
-			// url: 'http://bh.eheres.org/_shop/order.shtml',
+			url: domain + '/_shop/order.shtml',
 			data: {orderId: bid},
 			header: http.getHeader(),
 			success: function(res){

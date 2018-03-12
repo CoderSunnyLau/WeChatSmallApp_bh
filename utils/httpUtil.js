@@ -1,10 +1,10 @@
 var httpUrl = getApp().globalData.domainName + '/jsonaction/websiteaction.action'
-var mHeader = { Cookie: "_serviceId=618e174dd19f47f8b0d71a676e2e4339"}
+var mHeader = {}
 
 function loginHttp(options, callback) {
   wx.request({
-    url: 'http://login.ry600.com/userCenterLogin.jsp',
-    // url: 'http://bh.eheres.org/userCenterLogin.jsp',
+    // url: 'http://login.ry600.com/userCenterLogin.jsp',
+    url: 'http://login.ry600.site/userCenterLogin.jsp',
     data: options,
     method: 'POST',
     header: {"content-type": "application/x-www-form-urlencoded; charset=UTF-8"},

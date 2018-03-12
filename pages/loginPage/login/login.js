@@ -75,6 +75,10 @@ Page({
 							tip: '登录成功'
 						});
 						let _userData = wx.getStorageSync('userData');
+						if(_userData && (_userData.userName != inputArr[0] || _userData.password != inputArr[1])){
+							_userData.userName = inputArr[0];
+							_userData.password = inputArr[1];
+						}
 						if(_userData.userName == inputArr[0] && _userData.orgName && _userData.storeName){
 							let _header = http.getHeader();
 							_header.cookie = _header.cookie + ',_relOrgId=' + _userData.orgId;

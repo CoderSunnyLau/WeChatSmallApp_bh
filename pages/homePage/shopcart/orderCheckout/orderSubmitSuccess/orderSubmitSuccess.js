@@ -22,8 +22,8 @@ Page({
 			if(success){
 				if(res.success){
 					var b = res.results[0];
-					if(b.payModeName.indexOf("在线支付") > -1){
-						b.payModeName = "在线支付";
+					if (b.onLinePay){
+						b.payModeName = b.payModeName.split("<span")[0];
 					}
 					var bill = {
 						sellerName: b.sellerName,
