@@ -9,6 +9,6 @@ App({
     domainName: 'http://bh.ry600.site',
     // domainName: 'http://bh.eheres.org',
     userInfo: null,
-    version: '0.0.39'
+    version: '0.0.40'
   }
 })

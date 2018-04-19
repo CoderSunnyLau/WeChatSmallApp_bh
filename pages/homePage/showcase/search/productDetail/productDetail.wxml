@@ -1,110 +1,108 @@
 <dialog showDialog='{{showDialog}}' dialogTxt='{{dialogTxt}}'></dialog>
 <view wx:for='{{productArr}}'>
-  <swiper circular='true' indicator-dots='true' indicator-color='{{dotColor}}' indicator-active-color='{{activeDotColor}}' class='img_content'>
-    <block wx:for='{{item.photos}}' wx:for-item='imgItem'>
-      <swiper-item class='img_area'>
-        <image src='{{imgItem.largeUrl}}' mode='aspectFit' class='product_img' />
-      </swiper-item>
-    </block>
-  </swiper>
-  <view class="favorite bg {{isAdd?'hasAdd':''}}" bindtap='addFavorite'></view>
-  <block wx:for='{{msgArr}}' wx:for-item='msgItem'>
-    <view class='product_msg_area'>
-      <view class='area msg'>
-        <text class='product_caption'>{{item.productCaption}}</text>
-        <text>编号：{{msgItem.skuCode}}</text>
-        <text>包装：{{msgItem.packUnits}}</text>
-        <block wx:if='{{msgItem.hasStock}}'>
-          <block wx:if='{{msgItem.stockTag.amount > 100}}'>
-            <text>库存：{{msgItem.stockTag.stockState}}</text>
-          </block>
-          <block wx:else>
-            <text>库存：{{msgItem.stockTag.amount}}</text>
-          </block>
-        </block>
-        <block wx:else>
-          <text>库存：{{msgItem.stockTag.stockState}}</text>
-        </block>
-      </view>
+	<swiper circular='true' indicator-dots='true' indicator-color='{{dotColor}}' indicator-active-color='{{activeDotColor}}' class='img_content'>
+		<block wx:for='{{item.photos}}' wx:for-item='imgItem'>
+			<swiper-item class='img_area'>
+				<image src='{{imgItem.largeUrl}}' mode='aspectFill' class='product_img' />
+			</swiper-item>
+		</block>
+	</swiper>
+	<view class="favorite bg {{isAdd?'hasAdd':''}}" bindtap='addFavorite'></view>
+	<block wx:for='{{msgArr}}' wx:for-item='msgItem'>
+		<view class='product_msg_area'>
+			<view class='area msg'>
+				<block wx:if='{{item.addSaleTagName || item.saleTag}}'>
+					<view class='tip'>
+						<text wx:if='{{item.addSaleTagName}}' class='sale_tag'>{{item.addSaleTagName}}</text>
+						<text wx:if='{{item.saleTag}}' class='grey'>{{item.saleTag}}</text>
+					</view>
+				</block>
+				<view class='product_caption'>{{item.productCaption}}</view>
+				<view class='pdt_spec grey'>
+					<text>编号：{{msgItem.skuCode}}</text>
+					<text>包装：{{msgItem.packUnits}}</text>
+					<view>库存：<text class='{{msgItem.hasStock ? "" : "red"}}'>{{((msgItem.hasStock && (msgItem.stockTag.amount > 100)) || !msgItem.hasStock) ? msgItem.stockTag.stockState : msgItem.stockTag.amount}}</text></view>
+				</view>
+			</view>
 
-      <block wx:if='{{item.addSaleTagName}}'>
-        <view class='area tip'>
-          <view>
-            <text>{{item.addSaleTagName}}</text>{{item.saleTag}}
-          </view>
-        </view>
-      </block>
+			<view class='area price'>
+				<view>
+					<block wx:if='{{msgItem.price>0}}'>
+						<text class='product_price orange'>¥{{msgItem.price}}/盒</text>
+						<block wx:if='{{msgItem.oldPrice > msgItem.price && item.showOldPrice}}'>
+							<text class='old_price grey'>原价：￥{{msgItem.oldPrice}}</text>
+						</block>
+					</block>
+					<block wx:else>
+						<text class='orange'>商品未定价，暂时无法购买</text>
+					</block>
+				</view>
+				<block wx:if='{{msgItem.priceTip}}'>
+					<view><text class='grey'>零售价：{{msgItem.priceTip}}</text></view>
+				</block>
+			</view>
 
-      <view class='area price'>
-        <block wx:if='{{msgItem.priceTip}}'>
-          <text>零售价：{{msgItem.priceTip}}</text>
-        </block>
-        <block wx:if='{{msgItem.oldPrice > msgItem.price && item.showOldPrice}}'>
-          <text>原价：{{msgItem.oldPrice}}</text>
-        </block>
-        <view class='product_price orange'>
-          <text>现价：</text>
-          <text>¥{{msgItem.price}}/盒</text>
-        </view>
-      </view>
+			<block wx:if='{{item.skuCount>1}}'>
+				<view class='area skus'>
+					<text>规格：</text>
+					<text class="sku {{skuSelect==skuIndex?'curr':''}}" wx:for='{{skuArr}}' wx:for-item='skuItem' wx:for-index='skuIndex' data-skuIdx='{{skuIndex}}' bindtap='skuChange'>{{skuItem.specDesc}}</text>
+				</view>
+			</block>
+			<block wx:if='{{msgItem.hasStock && msgItem.price>0}}'>
+				<view class='area amount_box'>
+					<text>数量：</text>
+					<view class='action_box'>
+						<view class='reduce act_btn' data-status='reduce' bindtap='changeAmount'>-</view>
+						<input class='amount_input' type='number' value='{{shopcartAmount}}' bindinput='saveAmount'/>
+						<view class='add act_btn' data-status='add' bindtap='changeAmount'>+</view>
+					</view>
+				</view>
+			</block>
 
-      <block wx:if='{{item.skuCount>1}}'>
-        <view class='area skus'>
-          <text>规格：</text>
-          <text class="sku {{skuSelect==skuIndex?'curr':''}}" wx:for='{{skuArr}}' wx:for-item='skuItem' wx:for-index='skuIndex' data-skuIdx='{{skuIndex}}' bindtap='skuChange'>{{skuItem.specDesc}}</text>
-        </view>
-      </block>
+			<view class='area store bg2'>{{item.storeName}}</view>
 
-      <view class='area buyAction'>
-        <block wx:if='{{msgItem.hasStock && msgItem.price>0}}'>
-          <view class='action_box'>
-            <view class='reduce' data-status='reduce' bindtap='changeAmount'>-</view>
-            <input type='number' value='{{shopcartAmount}}' bindinput='saveAmount'/>
-            <view class='add' data-status='add' bindtap='changeAmount'>+</view>
-          </view>
-          <button bindtap='addToShopcart' data-productId='{{item.orgProductId}}' data-skuId='{{msgItem.skuId}}'>加入购物车</button>
-        </block>
-        <block wx:if='{{msgItem.price<=0}}'>
-          <view>商品未定价，暂时无法购买</view>
-        </block>
-      </view>
+			<block wx:if='{{hasGroups}}'>
+				<view class='area groups'>
+					<view class='groups_title'>
+						<text>商品套餐</text>
+						<text>共1个套餐</text>
+					</view>
+					<view class='groups_content'>
+						<view class='groups_img'>
+						</view>
+						<view class='groups_price'>
+							<text>套餐价</text>
+							<text>¥ 12.70</text>
+						</view>
+					</view>
+				</view>
+			</block>
 
-      <view class='area store'>{{item.storeName}}</view>
-
-      <block wx:if='{{hasGroups}}'>
-        <view class='area groups'>
-          <view class='groups_title'>
-            <text>商品套餐</text>
-            <text>共1个套餐</text>
-          </view>
-          <view class='groups_content'>
-            <view class='groups_img'>
-            </view>
-            <view class='groups_price'>
-              <text>套餐价</text>
-              <text>¥ 12.70</text>
-            </view>
-          </view>
-        </view>
-      </block>
-
-      <view class='area detail'>
-        <view class='detail_title'>商品详情</view>
-        <view class='detail_content'>
-          <text>剂型：</text>
-          <text>品名：海王 小儿氨酚黄那敏颗粒</text>
-          <text>通用名：小儿氨酚黄那敏颗粒</text>
-          <text>作用类别：</text>
-          <text>规格：9袋</text>
-          <text>单位：盒</text>
-          <text>生产厂商：深圳海王药业有限公司</text>
-          <text>批准文号：国药准字H44024977</text>
-          <text>品牌名称：海王</text>
-          <text>产地：</text>
-          <text>指导零售价：</text>
-          <text>特殊管理药品：</text>
-        </view>
-      </view>
-    </view>
-  </block>
+			<view class='area detail'>
+				<view class='detail_title'>商品详情</view>
+				<view class='detail_content'>
+					<text>剂型：</text>
+					<text>品名：</text>
+					<text>通用名：</text>
+					<text>作用类别：</text>
+					<text>规格：</text>
+					<text>单位：</text>
+					<text>生产厂商：</text>
+					<text>批准文号：</text>
+					<text>品牌名称：</text>
+					<text>产地：</text>
+					<text>指导零售价：</text>
+					<text>特殊管理药品：</text>
+				</view>
+			</view>
+			<view class='buyAction'>
+				<view class='buy_bottom'>
+					<navigator open-type='switchTab' class='shopcart_btn b_btn' url='../../../shopcart/shopcart'><view class='shopcart_icon b_icon bg2'></view><text>购物车</text></navigator>
+					<view class='favorite_btn b_btn' bindtap='addFavorite'><view class=" b_icon favorite2 bg {{isAdd?'hasAdd':''}}"></view><text>{{isAdd?'已':''}}收藏</text></view>
+					<button disabled='{{!msgItem.hasStock || msgItem.price<=0}}' class='add_btn' bindtap='addToShopcart' data-productId='{{item.orgProductId}}' data-skuId='{{msgItem.skuId}}'>加入购物车</button>
+					
+				</view>
+			</view>
+		</view>
+	</block>
 </view>

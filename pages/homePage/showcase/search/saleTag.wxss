@@ -1,0 +1,29 @@
+/**************** 促销标签 ******************/
+.sale_tag.qingcang{background-color:#e5bf20;}
+.sale_tag.renqi{background-color:#6ad841;}
+.sale_tag.zengpin{background-color:#ed5894;}
+.sale_tag.xinpin{background-color:#23cc9c;}
+.sale_tag.tejia{background-color:#ef3c3c;}
+.sale_tag.rexiao{background-color:#f97248;}
+.sale_tag.jinkou{background-color:#29c8ff;}
+.sale_tag.jingbaojia{background-color:#e0995f;}
+.sale_tag.cuxiao{background-color:#e862d5;}
+.sale_tag.qianggou{background-color:#ed4a4a;}
+.sale_tag.wubeijifen{background-color:#f27962;}
+.sale_tag.liangbeijifen{background-color:#c986e6;}
+.sale_tag.sanbeijifen{background-color:#efb962;}
+.sale_tag.tuangou{background-color:#6896ff;}
+.sale_tag.jifen, .sale_tag.danbeijifen{background-color:#8ac959;}
+.sale_tag.no{background-color:#29bad5;}
+.sale_tag.Medicare{background-color:#4ec4b3;}
+.sale_tag.dinggouhui{background-color:#ed409b;}
+.sale_tag.risePrice{background-color:#cd668e;}
+.sale_tag.manzeng{background-color:#ff3b86;}
+.sale_tag.taocan{background-color:#489b58;}
+.sale_tag.kongxiao{background-color:#fac5c5; color: #cf1b1b;}
+.sale_tag.maizeng{background-color:#f4b6ec; color:#b118a2;}
+.sale_tag.ssy{background-color:#ed4a4a;}
+.sale_tag.sse{background-color:#f7b1cd; color: #b12358;}
+.sale_tag.zk{background-color:#99e7d1; color: #229574;}
+.sale_tag.huiyuanri{background-color:#b9ceff; color: #5d84da;}
+.sale_tag.xianguo{background-color:#f4cedd; color: #c80101;}

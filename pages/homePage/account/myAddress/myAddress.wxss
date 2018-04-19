@@ -46,3 +46,6 @@
 	font-size: 30rpx;
 	margin-top: 20rpx;
 }
+.no_res{
+	padding: 50rpx 38rpx;
+}

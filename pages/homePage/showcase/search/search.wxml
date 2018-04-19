@@ -19,7 +19,7 @@
       <view class='product-item' wx:for='{{productArr}}'>
         <block wx:if='{{item.addSaleTagName}}'>
           <view class='item up'>
-            <text class='saleTag'>{{item.addSaleTagName}}</text>
+            <text class='sale_tag {{item.addSaleTag}}'>{{item.addSaleTagName}}</text>
             <text class='sale-content'>{{item.saleTag}}</text>
           </view>
         </block>
@@ -30,16 +30,13 @@
           </view>
           <view class='product-msg'>
             <text class='product-caption' catchtap='toDetail' data-productId='{{item.shopProductId}}'>{{item.productCaption}}</text>
-            <block wx:if='{{item.productMsg.stockTag.amount>0&&item.productMsg.stockTag.amount<=100}}'>
-              <text>库存：{{item.productMsg.stockTag.amount}}</text>
-            </block>
-            <block wx:else>
-              <text>库存：{{item.productMsg.stockTag.stockState}}</text>
-            </block>
+            <view>库存：<text class='{{item.productMsg.stockTag.amount ? "" : "red"}}'>{{(item.productMsg.stockTag.amount>0&&item.productMsg.stockTag.amount<=100) ? (item.productMsg.stockTag.amount) : (item.productMsg.stockTag.stockState)}}</text></view>
             <view class='price-area'>
-              <text class='product-price'>¥{{item.productMsg.price}} /{{item.productMsg.packUnits}}</text>
-              <block wx:if='{{item.productMsg.price <= 0}}'>
-                <text>商品尚未定价</text>
+			  <block wx:if='{{item.productMsg.price > 0}}'>
+                <view class='orange'>¥<text class='product-price'>{{item.productMsg.price}}</text> /{{item.productMsg.packUnits}}</view>
+			  </block>
+              <block wx:else>
+                <text class='orange'>商品尚未定价</text>
               </block>
             </view>
           </view>

@@ -30,16 +30,25 @@ page{
   margin-bottom: 10rpx;
 }
 .check_box{
-  width: 24rpx;
-  height: 24rpx;
+  width: 30rpx;
+  height: 30rpx;
   border: 1rpx solid #999;
   border-radius: 50%;
-  margin-right: 18rpx;
+  margin:0 22rpx 0 4rpx;
+  background-position: 0 50rpx;
 }
 .selected{
-  padding: 2rpx;
+  width: 38rpx;
+  height: 38rpx;
   border: none;
-  background-position: 0 -288rpx; 
+  margin:0 22rpx 0 0;
+  background-position: 0 -284rpx;
+}
+.block_name{
+	padding-left:66rpx;
+	background-position: 10% 100.8%;
+	color: #222;
+	font-size: 28rpx;
 }
 .sale_tag{
   font-size: 22rpx;

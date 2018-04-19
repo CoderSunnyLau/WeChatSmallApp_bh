@@ -23,7 +23,7 @@ Page({
 		showSearchBar: true,
 		noRes: ""
 	},
-	onLoad: function(){
+	onLoad: function(options){
 		_this = this;
 		wx.getSystemInfo({success: function(res){
 			_this.setData({
@@ -36,10 +36,17 @@ Page({
 			}
 		}).exec();
 		
-		this.getBills();
+		if(options && options.crrIndex){
+			_this.setData({
+				crrIndex: options.crrIndex * 1
+			});
+			_this.changeTab(options.crrIndex * 1);
+		}else{
+			this.getBills();
+		}
 	},
 	changeTab: function(e){
-		let crrIdx = e.currentTarget.dataset.index
+		let crrIdx = isNaN(e) ? e.currentTarget.dataset.index : e;
 		this.setData({
 			bills: {},
 			crrIndex: crrIdx

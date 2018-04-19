@@ -57,7 +57,7 @@ page{
   line-height: 100rpx;
   background: #efefef;
   text-align: center;
-  font-size: 30rpx;
+  font-size: 28rpx;
   background-color: #fff;
   color: #444;
 }
@@ -75,7 +75,7 @@ page{
 .nav-right .nav-title {
   height: 100rpx;
   line-height: 100rpx;
-  font-size: 28rpx;
+  font-size: 26rpx;
   font-weight: 700;
   color: #3e3a39;
 }
@@ -88,16 +88,16 @@ page{
 
 .nav-right .nav-item {
   width: 33.3%;
-  height: 150rpx;
+  min-height: 70rpx;
   display: flex;
-	justify-content: center;
-	text-align: center;
-	align-items: center;
-	flex-wrap: wrap;
-  font-size: 28rpx;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 26rpx;
   color: #727272;
   box-sizing: border-box;
   border-right: 1px solid #f3f5f7;
-	border-bottom: 1px solid #f3f5f7;
-	padding: 0 10rpx;
+  border-bottom: 1px solid #f3f5f7;
+  padding: 10rpx;
 }

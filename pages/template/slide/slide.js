@@ -17,15 +17,15 @@ Page({
 	// 	console.log(this.selectComponent('#bar'))
 	// 	this.bar = this.selectComponent('#bar')
 	// },
-	onLoad: function (options) {	
+	onLoad: function (options) {
 		var _mArr = []
-		for(let i=0;i<100;i++){
+		for (let i = 0; i < 100; i++) {
 			_mArr.push(i)
 		}
 		this.setData({
 			mArr: _mArr
 		})
-		//this.getHeight()
+		this.showcasePro()
 	},
 	selectItem: function (e) {
 		//console.log(e.currentTarget.dataset.idx)
@@ -59,12 +59,12 @@ Page({
 			this.setData({
 				animationData: animation
 			})
-			if(_status == 'close'){
+			if (_status == 'close') {
 				this.setData({
 					openScreen: false
 				})
 			}
-		}.bind(this),100)
+		}.bind(this), 100)
 	},
 	getHeight: function () {
 		var that = this
@@ -91,25 +91,49 @@ Page({
 			})
 		}).exec()
 	},
-	backTop: function(){
+	backTop: function () {
 		this.setData({
 			scrollTop: 0
 		})
 	},
-	changeTxt: function(){
+	changeTxt: function () {
 		this.setData({
 			testTxt: '改变下文字试试'
 		})
 	},
-	showBox: function(){
-		this.setData({
-			boxShow: true
-		})
+	showBox: function (e) {
+		if (e.currentTarget.dataset.status == 'open') {
+			this.setData({
+				boxShow: true
+			})
+		}
+		else {
+			this.setData({
+				boxShow: false
+			})
+		}
 	},
-	showDialog: function(){
+	showDialog: function () {
 		this.setData({
 			showDialog: true,
 			dialogTxt: '自定义弹窗内容'
+		})
+	},
+	showcasePro() {
+		wx.request({
+			url: 'http://bh.eheres.org/jsonaction/websiteaction.action',
+			data: {
+				action: 'VSShop.getPrductsShowcase',
+				pgNum: 0,
+				limit: 5,
+				showcaseId: '2fa7tkipcmorbcjh',
+				orgId: 'afvnal1p3sa59q79',
+				bizCenterId: 'csjvfa5d2qsqzdsn'
+			},
+			header: {cookie:'_clientId=0f98fc1dc3a3414583458d870714bfd5; _serviceId=1968560451564d25b030679938e66a18; storeCode=wbyy; _relOrgId=7pa1kzpfc8dz4afh'},
+			success(res) {
+				console.log(res)
+			}
 		})
 	}
 })

@@ -1,3 +1,5 @@
+@import "saleTag.wxss";
+
 page {
   background-color: #efefef;
 }
@@ -111,45 +113,46 @@ page {
 
 .product-item {
   background-color: #fff;
-  margin-top: 8rpx;
+  margin-top: 2rpx;
   padding: 15rpx 30rpx;
   position: relative;
 }
 
 .product-item .up {
   padding-bottom: 12rpx;
-  font-size: 26rpx;
+  font-size: 24rpx;
   display: flex;
   align-items: center;
-  color: #585657;
+  color: #777;
 }
 
-.product-item .up .saleTag {
-  padding: 2rpx 15rpx;
+.sale_tag {
+  padding: 0 10rpx;
   background-color: #fe2c45;
   color: #fff;
-  border-radius: 20rpx;
-  font-size: 24rpx;
-  letter-spacing: 4rpx;
+  border-radius: 18rpx;
+  font-size: 22rpx;
+  line-height: 32rpx;
+  letter-spacing: 2rpx;
   margin-right: 12rpx;
 }
 
 .product-item .down {
   display: flex;
-  height: 220rpx;
+  height: 202rpx;
 }
 
 .product-item .img-content {
-  padding: 8rpx;
+  padding: 0 10rpx 0 0;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .product-item .product-img {
-  width: 160rpx;
-  height: 160rpx;
-  margin-right: 8rpx;
+  width: 210rpx;
+  height: 210rpx;
+  margin-right: 10rpx;
 }
 
 .product-item .product-msg {
@@ -170,7 +173,7 @@ page {
 }
 
 .product-item .product-msg .product-price {
-  font-size: 36rpx;
+  font-size: 34rpx;
   font-weight: 500;
   color: #ff5001;
 }
@@ -178,7 +181,7 @@ page {
 .product-item .product-msg .price-area {
   display: flex;
   justify-content: space-between;
-  margin-top: 26rpx;
+  margin-top: 16rpx;
 }
 
 .product-item .buy-action {

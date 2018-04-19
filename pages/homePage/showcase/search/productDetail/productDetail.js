@@ -1,4 +1,5 @@
 const httpUtil = require('../../../../../utils/httpUtil.js')
+const ry = require('../../../../../utils/util.js')
 var _userData
 var shopcartAmount
 
@@ -15,13 +16,14 @@ Page({
 		var that = this
 		shopcartAmount = 1
 		_userData = wx.getStorageSync('userData')
-
+		ry.loading();
 		var httpPromise = new Promise(function(resolve,reject){
 			httpUtil.getHttp({
 				action: 'VSShop.getProduct',
 				productId: options.productId
 			}, function (callback, success) {
 				if (success) {
+					wx.hideLoading();
 					if (callback.success) {
 						console.log(callback.results[0])
 						let skus = callback.results[0].skus
@@ -36,6 +38,8 @@ Page({
 							productArr: callback.results
 						})
 						resolve()
+					}else{
+						ry.alert(callback.message);
 					}
 				}
 			})
@@ -71,7 +75,7 @@ Page({
 	changeAmount: function(e){
 		var that = this
 		if(e.currentTarget.dataset.status == 'reduce'){
-			if (shopcartAmount - 1 > 1){
+			if (parseInt(shopcartAmount) - 1 >= 1){
 				shopcartAmount = parseInt(shopcartAmount) - 1
 			}
 		}
@@ -99,7 +103,7 @@ Page({
 					action: 'VSShop.addProduct',
 					widthReward: false,
 					orderType: 'normal',
-					cartProductDS: '{"records":[{"itemType":"product",' + '"orgId":"' + _userData.orgId + '",' + '"bizCenterId":"' + _userData.bizCenterId + '",' + '"itemId":"' + e.currentTarget.dataset.productid + '",' + '"skuId":"' + e.currentTarget.dataset.skuid + '",' + '"amount":"' + shopcartAmount + '"}]}'
+					cartProductDS: '{"records":[{"itemType":"product",' + '"orgId":"' + _userData.storeOrgId + '",' + '"bizCenterId":"' + _userData.bizCenterId + '",' + '"itemId":"' + e.currentTarget.dataset.productid + '",' + '"skuId":"' + e.currentTarget.dataset.skuid + '",' + '"amount":"' + shopcartAmount + '"}]}'
 				}, function (callback, success) {
 					if (callback.success) {
 						wx.showToast({

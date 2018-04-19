@@ -34,7 +34,7 @@
 
 </scroll-view> -->
 <view>
-  <button bindtap='showBox'>购买</button>
+  <button bindtap='showBox' data-status='open'>购买</button>
 </view>
 <view>
   <button bindtap='showDialog' style='margin-top:10px;'>自定义弹窗</button>
@@ -44,7 +44,7 @@
 </view>
 <view style='text-align:center;'>没有更多商品了</view>
 <view class='buy_box' wx:if='{{boxShow}}'>
-  <view class='box_bg'></view>
+  <view class='box_bg' data-status='close' bindtap='showBox'></view>
   <view class='buy_content'>
     <view class='img_area'>
       <image src='http://file.ry600.com/files/Product/23/23y4efb24rs0xy8x/photo_l.jpg' class='pro_img' mode='aspectFit' />
@@ -76,7 +76,7 @@
         <text class='msg_stockState'>20</text>
       </view>
     </view>
-    <view class='close' data-status='close'>
+    <view class='close' data-status='close' bindtap='showBox'>
       <image src='http://files.ry600.com/snapshot/vms/site/di/di70684438lrfavs/du9sks0f7yefy23z/image//close-empty.png' mode='aspectFit' class='close_img' />
     </view>
   </view>

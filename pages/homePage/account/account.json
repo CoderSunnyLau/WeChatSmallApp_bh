@@ -2,5 +2,6 @@
 	"navigationBarTitleText": "我的账户",
 	"usingComponents": {
 		"msg": "/component/orgMsg/orgMsg"
-	}
+	},
+	"backgroundColor": "#EEE"
 }

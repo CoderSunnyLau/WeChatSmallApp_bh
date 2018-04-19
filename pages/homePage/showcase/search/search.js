@@ -1,5 +1,6 @@
 const app = getApp()
 const httpUtil = require('../../../../utils/httpUtil.js')
+const ry = require('../../../../utils/util.js')
 var _userData
 var itemIdx
 var _searchContent
@@ -44,7 +45,7 @@ Page({
 			// }
 			that.setData({
 				isQuickBill: false,
-				tabArr: ['默认', '销量', '人气']
+				tabArr: ['默认', '销量', '价格']
 			})
 			wx.setNavigationBarTitle({
 				title: '商品分类'
@@ -72,13 +73,12 @@ Page({
 				var _listArr = that.data.productArr
 				if (callback.results.length > 0) {
 					let _callbackArr = JSON.parse(JSON.stringify(callback.results))
-					//console.log(_callbackArr)
 					for (let i = 0; i < _callbackArr.length; i++) {
 						let skus = _callbackArr[i].skus
 						for (let sku in skus) {
 							let _productItem = JSON.parse(JSON.stringify(_callbackArr[i]))
-							//console.log(_productItem)
 							_productItem.productMsg = JSON.parse(JSON.stringify(skus[sku]))
+							_productItem.productMsg.price = _productItem.productMsg.price.toFixed(2)
 							_productItem.shopcartAmount = 1
 							_productArr.push(_productItem)
 						}
@@ -94,11 +94,6 @@ Page({
 					that.setData({
 						noPro: true
 					})
-					// wx.showModal({
-					// 	title: '提示',
-					// 	content: '没有更多商品了',
-					// 	showCancel: false
-					// })
 				}
 				else {
 					itemIdx = 0
@@ -112,6 +107,7 @@ Page({
 				that.setData({
 					hasProduct: false
 				})
+				ry.alert(callback.message);
 			}
 			wx.hideLoading();
 		})
@@ -282,7 +278,7 @@ Page({
 		this.setData({
 			scrollTop: 0
 		})
-	}
+	},
 	// showcasePro(e){
 	// 	wx.request({
 	// 		url: 'http://bh.eheres.org/jsonaction/websiteaction.action',
@@ -299,4 +295,7 @@ Page({
 	// 		}
 	// 	})
 	// }
+	quickBillPro (){
+
+	}
 })

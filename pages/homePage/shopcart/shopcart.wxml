@@ -7,7 +7,7 @@
 			<view class='block' data-index='{{bIdx}}' wx:if='{{block.count}}'>
 				<view class='row_top'>
 					<view class='check_box bg {{block.count == block.selCount ? "selected" : ""}}' bindtap='selPdt' data-blockidx='{{bIdx}}' data-selected='{{block.count == block.selCount}}'></view>
-					<text>{{block.blockName}}</text>
+					<text class='block_name bg2'>{{block.blockName}}</text>
 				</view>
 				<view class='pdts'>
 					<view class='pdt {{(pdt.selected && (((pdt.itemType == "product") && ((!pdt.sku.stockTag.amount || (pdt.amount > pdt.sku.stockTag.amount)) || (pdt.amount % pdt.sku.modCount != 0))) || ((pdt.itemType == "product") && (pdt.package.stockAmount < pdt.amount)))) ? "un_sel" : ""}}' wx:for='{{block.items}}' wx:for-item="pdt" wx:for-index="pIdx" wx:key=''>
