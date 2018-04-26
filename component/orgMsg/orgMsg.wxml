@@ -9,7 +9,7 @@
   <view class="drawer_box {{isOrg?'':'storeBox'}}" wx:if='{{showModalStatus}}'>
     <view class='drawer_title bg-color'>
       <view>{{drawerTitle}}</view>
-      <view data-status='close' bindtap='powerDrawer'>X</view>
+      <view data-status='close' bindtap='powerDrawer'>×</view>
     </view>
     <radio-group class='drawer_content'>
       <block wx:if='{{isOrg}}'>

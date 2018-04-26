@@ -75,19 +75,31 @@ Page({
 							tip: '登录成功'
 						});
 						let _userData = wx.getStorageSync('userData');
-						if(_userData && (_userData.userName != inputArr[0] || _userData.password != inputArr[1])){
-							_userData.userName = inputArr[0];
-							_userData.password = inputArr[1];
-						}
-						if(_userData.userName == inputArr[0] && _userData.orgName && _userData.storeName){
-							let _header = http.getHeader();
-							_header.cookie = _header.cookie + ',_relOrgId=' + _userData.orgId;
-							http.saveHeader(_header.cookie);
-							_userData.autoLogin = 'true';
-							wx.setStorageSync('userData', _userData);
-							wx.switchTab({
-								url: '/pages/homePage/home/home'
-							});
+						// if(_userData && (_userData.userName != inputArr[0] || _userData.password != inputArr[1])){
+						// 	_userData.userName = inputArr[0];
+						// 	_userData.password = inputArr[1];
+						// }
+						if(_userData.userName == inputArr[0]){
+							if (_userData.orgName && _userData.storeName){
+								let _header = http.getHeader();
+								_header.cookie = _header.cookie + ',_relOrgId=' + _userData.orgId;
+								http.saveHeader(_header.cookie);
+								_userData.password = inputArr[1];
+								_userData.autoLogin = 'true';
+								wx.setStorageSync('userData', _userData);
+								wx.switchTab({
+									url: '/pages/homePage/home/home'
+								});
+							}
+							else {
+								_userData = {};
+								_userData.password = inputArr[1];
+								_userData.autoLogin = 'true';
+								wx.setStorageSync('userData', _userData);
+								wx.redirectTo({
+									url: '/pages/select/select?isOrg=true&orgData=' + JSON.stringify(_orgData)
+								});
+							}
 						}else{
 							_userData = {};
 							_userData.userName = inputArr[0];

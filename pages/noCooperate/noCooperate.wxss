@@ -25,3 +25,21 @@
   line-height: 50rpx;
   font-size: 32rpx;
 }
+
+.tip-content .tip-down {
+  margin-top: 150rpx;
+}
+
+.tip-content .logout_txt{
+  text-align: center;
+}
+
+.tip-content .logout_btn{
+  width: 320rpx;
+  height: 75rpx;
+  line-height: 75rpx;
+  margin-top: 20rpx;
+  font-size: 30rpx;
+  text-indent: 56rpx;
+  background-position: 38% 96.4%;
+}

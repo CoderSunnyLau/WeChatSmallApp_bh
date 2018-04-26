@@ -6,4 +6,8 @@
     <view>抱歉，您所在的机构还不是本站商友</view>
     <view>当前页面只对商友会员用户开放</view>
   </view>
+	<view class='tip-down'>
+        <view class='logout_txt'>如要切换用户，请先点击</view>
+        <button class='logout_btn bg btn' bindtap='logout'>安全退出</button>
+  </view>
 </view>

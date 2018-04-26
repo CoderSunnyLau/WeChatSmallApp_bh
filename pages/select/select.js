@@ -42,7 +42,7 @@ Page({
 			httpUtil.getHttp({
 				action: 'VSShop.getRelStores',
 			}, function (callback, success) {
-				//console.log(callback)
+				// console.log(callback)
 				if (success) {
 					if (callback.success) {
 						_userData.orgsArr = _msgData.orgs
@@ -127,7 +127,7 @@ Page({
 	},
 	logout: function () {
 		wx.request({
-			url: 'http://bh.ry600.com/userLogout.action',
+			url: app.globalData.domainName + '/userLogout.action',
 			method: 'GET',
 			header: httpUtil.getHeader(),
 			success: function (res) {

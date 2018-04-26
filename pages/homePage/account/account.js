@@ -1,4 +1,5 @@
 // pages/account/account.js
+const app = getApp()
 const http = require('../../../utils/httpUtil.js')
 const ry = require('../../../utils/util.js')
 let load = false;
@@ -47,7 +48,7 @@ Page({
 			mask: true
 		});
 		wx.request({
-			url: 'http://bh.ry600.com/userLogout.action',
+			url: app.globalData.domainName+'/userLogout.action',
 			method: 'GET',
 			header: http.getHeader(),
 			success: function(res){
