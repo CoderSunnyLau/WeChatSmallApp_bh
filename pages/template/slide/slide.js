@@ -18,6 +18,7 @@ Page({
 	// 	this.bar = this.selectComponent('#bar')
 	// },
 	onLoad: function (options) {
+		console.log(this.data.tabArr)
 		var _mArr = []
 		for (let i = 0; i < 100; i++) {
 			_mArr.push(i)

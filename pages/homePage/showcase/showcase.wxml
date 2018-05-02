@@ -1,7 +1,7 @@
 <msg id='msg'></msg>
 <bar bind:search='searchTo' bind:scan='scanTo' id='bar'></bar>
 <view class='nav'>
-  <scroll-view class='nav-left' style='height:{{contentHeight}};' scroll-y='true'>
+  <scroll-view class='nav-left' style='height:{{contentHeight}};' scroll-y='true' >
     <view class='nav-content'>
       <view wx:for="{{showcaseArr}}" wx:for-item='first' class="nav-item {{(isSelect==index)?'curr':''}}" bindtap='selectItem' data-idx='{{index}}'>
         {{first.showcaseName}}
@@ -10,9 +10,14 @@
   </scroll-view>
    <scroll-view class='nav-right' style='height:{{contentHeight}};' scroll-y='true'>
     <block wx:for='{{showcaseArr[isSelect].children}}' wx:for-item='second'>
-      <view class='nav-title' data-showcaseId='{{second.showcaseId}}' bindtap='searchPro'>{{second.showcaseName}}</view>
+      <view class='nav-title'>				
+				<text class='sec-title'>{{second.showcaseName}}</text>
+				<text class='sec-all' data-showcaseId='{{second.showcaseId}}' bindtap='searchPro'>查看全部 ></text>
+			</view>
       <view class='nav-content'>
-        <view wx:for="{{second.children}}" wx:for-item='thirth' class='nav-item' data-showcaseId='{{thirth.showcaseId}}' bindtap='searchPro'>{{thirth.showcaseName}}</view>
+        <view wx:for="{{second.children}}" wx:for-item='thirth' class='nav-item' data-showcaseId='{{thirth.showcaseId}}' bindtap='searchPro'>
+					{{thirth.showcaseName}}
+				</view>
       </view>
     </block>
   </scroll-view> 

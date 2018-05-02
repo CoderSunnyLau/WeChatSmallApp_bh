@@ -45,12 +45,12 @@ Page({
 	},
 	scanTo: function (e) {
 		wx.navigateTo({
-			url: '../showcase/search/search?searchContent=' + e.detail.result + '&type=shopcase'
+			url: '../showcase/search/search?searchContent=' + e.detail.result + '&type=allSearch'
 		})
 	},
 	searchTo: function (e) {
 		wx.navigateTo({
-			url: '../showcase/search/search?searchContent=' + e.detail.searchContent + '&type=shopcase'
+			url: '../showcase/search/search?searchContent=' + e.detail.searchContent + '&type=allSearch'
 		})
 	},
 	selectItem: function (e) {
@@ -77,9 +77,19 @@ Page({
 		}).exec()
 	},
 	searchPro(e){
-		console.log(e)
-		// wx.navigateTo({
-		// 	url: '../showcase/search/search?searchContent=&type=shopcase&showcaseId=' + e.currentTarget.dataset.showcaseid
+		// console.log(e.currentTarget.dataset.showcaseid)
+		// httpUtil.getHttp({
+		// 	action: 'VSShop.getPrductsShowcase',
+		// 	pgNum: 1,
+		// 	limit: 10,
+		// 	showcaseId: e.currentTarget.dataset.showcaseid,
+		// 	orgId: _userData.orgId,
+		// 	bizCenterId: _userData.bizCenterId
+		// },res => {
+		// 	console.log(res)
 		// })
+		wx.navigateTo({
+			url: '../showcase/search/search?searchContent=&type=showcase&showcaseId=' + e.currentTarget.dataset.showcaseid
+		})
 	}
 })

@@ -4,6 +4,8 @@ const ry = require('../../../../utils/util.js')
 var _userData
 var itemIdx
 var _searchContent
+var _showcaseId = ''
+var showcaseIdx = 0
 
 Page({
 	data: {
@@ -13,7 +15,8 @@ Page({
 		canScroll: true,
 		scrollTop: 0,
 		showTop: false,
-		loading: false
+		loading: false,
+		isShowcase: false
 	},
 	onLoad: function (options) {
 		console.log(options)
@@ -43,6 +46,12 @@ Page({
 			// if(options.showcaseId){
 			// 	that.showcasePro(options.showcaseId)
 			// }
+			if(options.type == 'showcase'){
+				_showcaseId = options.showcaseId
+				that.setData({
+					isShowcase: true
+				})
+			}
 			that.setData({
 				isQuickBill: false,
 				tabArr: ['默认', '销量', '价格']
@@ -53,7 +62,14 @@ Page({
 		}
 
 		that.getHeight()
-		that.getProduct(0, _searchContent)
+		console.log(that.data.isShowcase)
+		if (that.data.isShowcase){
+			that.showcasePro(0)
+		}
+		else{
+			that.getProduct(0, _searchContent)
+		}
+		
 	},
 	getProduct: function (start, _searchContent) {
 		var that = this
@@ -122,7 +138,8 @@ Page({
 		_searchContent = e.detail.searchContent
 		this.setData({
 			productArr: [],
-			noPro: false
+			noPro: false,
+			isShowcase: false
 		})
 		this.getProduct(0, _searchContent)
 	},
@@ -149,7 +166,6 @@ Page({
 	addToShopcart: function (e) {
 		let that = this
 		var paramer = this.data.productArr[e.currentTarget.dataset.index]
-
 
 		if (paramer.productMsg.stockTag.amount >= paramer.shopcartAmount) {
 			if (paramer.shopcartAmount % paramer.productMsg.modCount == 0) {
@@ -221,11 +237,17 @@ Page({
 			})
 		}).exec()
 	},
-	moreProduct: function () {
-		itemIdx = itemIdx + 5
-		if(!this.data.noPro){
-			this.getProduct(itemIdx, _searchContent)
+	moreProduct: function () {	
+		if(this.data.isShowcase){
+			showcaseIdx = showcaseIdx + 5
+			this.showcasePro(showcaseIdx)
 		}
+		else{
+			itemIdx = itemIdx + 5
+			if (!this.data.noPro) {
+				this.getProduct(itemIdx, _searchContent)
+			}
+		}		
 	},
 	showScreen: function (e) {
 		var _status = e.currentTarget.dataset.status
@@ -279,23 +301,63 @@ Page({
 			scrollTop: 0
 		})
 	},
-	// showcasePro(e){
-	// 	wx.request({
-	// 		url: 'http://bh.eheres.org/jsonaction/websiteaction.action',
-	// 		data: {
-	// 			action: 'VSShop.getPrductsShowcase',
-	// 			pgNum: 0,
-	// 			limit: 5,
-	// 			showcaseId: e,
-	// 			orgId: _userData.storeOrgId,
-	// 			bizCenterId: _userData.bizCenterId
-	// 		},
-	// 		success(res){
-	// 			console.log(res)
-	// 		}
-	// 	})
-	// }
-	quickBillPro (){
-
+	showcasePro(_start){
+		console.log(_showcaseId)
+		var that = this
+		wx.showLoading()
+		httpUtil.getHttp({
+			action: 'VSShop.getPrductsShowcase',
+			pgNum: _start,
+			limit: 10,
+			showcaseId: _showcaseId,
+			orgId: _userData.orgId,
+			bizCenterId: _userData.bizCenterId
+		},callback => {
+			let _productArr = []
+			if (callback.success) {
+				var _listArr = that.data.productArr
+				if (callback.results.length > 0) {
+					let _callbackArr = JSON.parse(JSON.stringify(callback.results))
+					for (let i = 0; i < _callbackArr.length; i++) {
+						let skus = _callbackArr[i].skus
+						for (let sku in skus) {
+							let _productItem = JSON.parse(JSON.stringify(_callbackArr[i]))
+							_productItem.photo = _productItem.productInfo.photo
+							_productItem.productMsg = JSON.parse(JSON.stringify(skus[sku]))
+							_productItem.productMsg.price = _productItem.productMsg.price.toFixed(2)
+							_productItem.shopcartAmount = 1
+							_productArr.push(_productItem)
+						}
+					}
+					_listArr.push.apply(_listArr, _productArr)
+					that.setData({
+						hasProduct: true,
+						productArr: _listArr
+					})
+				}
+				else if (_listArr.length > 0) {
+					that.setData({
+						noPro: true
+					})
+				}
+				else {
+					itemIdx = 0
+					that.setData({
+						hasProduct: false
+					})
+				}
+			}
+			else {
+				itemIdx = 0
+				that.setData({
+					hasProduct: false
+				})
+				ry.alert(callback.message);
+			}
+			wx.hideLoading();
+		})
 	}
+	// quickBillPro (){
+
+	// }
 })
