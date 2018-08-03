@@ -16,7 +16,7 @@
 	</view>
 	<view class='pay_info bill_box'>
 		<view class='between'><text>支付方式</text><text class='orange'>{{bill.payModeName}}（{{bill.payState}}）</text></view>
-		<view class='between'><text class='dgrey'>信息</text><text class='orange'>------------ </text></view>
+		<view class='between'><text class='dgrey'>信息</text><text class='orange'>{{deadline}} </text></view>
 		<view><text class='dgrey'>商品金额：</text>￥{{bill.totalPayment}}</view>
 		<view><text class='dgrey'>运费：</text>￥{{bill.freight}}</view>
 		<view class='between'>

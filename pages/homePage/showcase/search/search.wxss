@@ -135,8 +135,13 @@ page {
   line-height: 32rpx;
   letter-spacing: 2rpx;
   margin-right: 12rpx;
+  white-space: nowrap;
 }
-
+.sale-content{
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
 .product-item .down {
   display: flex;
   height: 202rpx;

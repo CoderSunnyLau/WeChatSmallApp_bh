@@ -29,6 +29,14 @@ Page({
 						let skus = callback.results[0].skus
 						let skuArr = new Array()
 						for (let sku in skus) {
+							var packDesc = skus[sku].packDesc
+							if(packDesc){
+								packDesc = packDesc.split("<i>")[1]
+								if(packDesc){
+									packDesc = packDesc.split("</i>")[0]
+									skus[sku].packDesc = packDesc;
+								}
+							}
 							skuArr.push(skus[sku])
 						}
 

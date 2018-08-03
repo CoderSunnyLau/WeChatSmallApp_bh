@@ -54,6 +54,12 @@ page {
 .pdt_spec text{
 	padding-right: 36rpx;
 }
+.pdt_spec .pack_desc{
+	background-color: #00A0A0;
+	color: #FFF;
+	border-radius: 6rpx;
+	padding: 0 6rpx;
+}
 .buy_bottom{
 	position: fixed;
 	bottom: 0;

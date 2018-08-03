@@ -20,25 +20,30 @@
 				<view class='product_caption'>{{item.productCaption}}</view>
 				<view class='pdt_spec grey'>
 					<text>编号：{{msgItem.skuCode}}</text>
-					<text>包装：{{msgItem.packUnits}}</text>
+					<text>包装：{{msgItem.packUnits}}</text><text class='pack_desc'>{{msgItem.packDesc}}</text>
 					<view>库存：<text class='{{msgItem.hasStock ? "" : "red"}}'>{{((msgItem.hasStock && (msgItem.stockTag.amount > 100)) || !msgItem.hasStock) ? msgItem.stockTag.stockState : msgItem.stockTag.amount}}</text></view>
 				</view>
 			</view>
 
 			<view class='area price'>
-				<view>
-					<block wx:if='{{msgItem.price>0}}'>
-						<text class='product_price orange'>¥{{msgItem.price}}/盒</text>
-						<block wx:if='{{msgItem.oldPrice > msgItem.price && item.showOldPrice}}'>
-							<text class='old_price grey'>原价：￥{{msgItem.oldPrice}}</text>
+				<block wx:if='{{msgItem.canSell}}'>
+					<view>
+						<block wx:if='{{msgItem.price>0}}'>
+							<text class='product_price orange'>¥{{msgItem.price}}/盒</text>
+							<block wx:if='{{msgItem.oldPrice > msgItem.price && item.showOldPrice}}'>
+								<text class='old_price grey'>原价：￥{{msgItem.oldPrice}}</text>
+							</block>
 						</block>
+						<block wx:else>
+							<text class='orange'>商品未定价，暂时无法购买</text>
+						</block>
+					</view>
+					<block wx:if='{{msgItem.priceTip}}'>
+						<view><text class='grey'>零售价：{{msgItem.priceTip}}</text></view>
 					</block>
-					<block wx:else>
-						<text class='orange'>商品未定价，暂时无法购买</text>
-					</block>
-				</view>
-				<block wx:if='{{msgItem.priceTip}}'>
-					<view><text class='grey'>零售价：{{msgItem.priceTip}}</text></view>
+				</block>
+				<block wx:else>
+					<text class='orange'>{{msgItem.sellStateTip || "商品禁售"}}</text>
 				</block>
 			</view>
 

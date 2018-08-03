@@ -75,6 +75,10 @@ Page({
 								}
 							}
 							var _trans = res2.results[0].transaction;
+							if(!_trans){
+								ry.alert("暂无匹配的支付方式。");
+								return false;
+							}
 							for(var i = 0; i < _trans.pays.length; i++){
 								if(_trans.payModeId == _trans.pays[i].payModeId){
 									_onLinePay = _trans.pays[i].onLinePay;
@@ -136,6 +140,10 @@ Page({
 			if(success){
 				if(res.success){
 					var _trans = res.results[0].transaction;
+					if (!_trans) {
+						ry.alert("暂无匹配的支付方式。");
+						return false;
+					}
 					for(var i = 0; i < _trans.pays.length; i++){
 						if(_trans.payModeId == _trans.pays[i].payModeId){
 							_this.setData({

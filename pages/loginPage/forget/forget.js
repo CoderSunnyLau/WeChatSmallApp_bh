@@ -1,9 +1,13 @@
 // pages/loginPage/forget/forget.js
 const ry = require('../../../utils/util.js');
 const http = require('../../../utils/httpUtil.js');
+const app = getApp();
 var _this,
-	imgSrc = 'http://bh.ry600.com/jcaptcha.action',
+	imgSrc = app.globalData.domainName + '/jcaptcha.action',
+	domain = app.globalData.domainName.split("//")[1],
+	lastDomain = [domain.split(".")[1],domain.split(".")[2]].join("."),
 	countTemp = 0;
+
 Page({
 	data: {
 		title: '找回密码',
@@ -32,7 +36,8 @@ Page({
 		var img = imgSrc + '?dc_=' + (new Date()).getTime();
 		if(!countTemp){
 			wx.request({
-				url: 'http://login.ry600.com/userCenterAuth.jsp?domain=www.ry600.com&userAppAuthUrl=%2FuserAppAuth.action&target=http%3A%2F%2Fwww.ry600.com%2Fssostate.action%3F_%3D1513652172775',
+				// url: 'http://login.' + lastDomain + '/userCenterAuth.jsp?domain=' + domain + '&userAppAuthUrl=%2FuserAppAuth.action&target=http%3A%2F%2F' + domain + '2Fssostate.action%3F_%3D1513652172775',
+				url: imgSrc + '?dc_=' + (new Date()).getTime(),
 				success: function(res){
 					http.saveHeader(res.header['Set-Cookie']);
 					countTemp++;
@@ -43,9 +48,10 @@ Page({
 				}
 			});
 		}else{
+			var Cookie = http.getHeader().cookie;
 			wx.downloadFile({
 				url: img,
-				header: http.getHeader(),
+				header: {Cookie: Cookie},
 				success: function(res){
 					_this.setData({
 						checkImg: res.tempFilePath
