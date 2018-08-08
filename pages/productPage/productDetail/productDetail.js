@@ -1,5 +1,5 @@
-const httpUtil = require('../../../../../utils/httpUtil.js')
-const ry = require('../../../../../utils/util.js')
+const httpUtil = require('../../../utils/httpUtil.js')
+const ry = require('../../../utils/util.js')
 var _userData
 var shopcartAmount
 

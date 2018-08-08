@@ -5,13 +5,18 @@
 		<text class='edit' bindtap='doEdit'>{{edit ? '完成' : '编辑'}}</text>
 		<view class='blocks' wx:for='{{blocks}}' wx:for-item="block" wx:for-index="bIdx" wx:key=''>
 			<view class='block' data-index='{{bIdx}}' wx:if='{{block.count}}'>
+				<!-- 店铺名称 -->
 				<view class='row_top'>
 					<view class='check_box bg {{block.count == block.selCount ? "selected" : ""}}' bindtap='selPdt' data-blockidx='{{bIdx}}' data-selected='{{block.count == block.selCount}}'></view>
 					<text class='block_name bg2'>{{block.blockName}}</text>
 				</view>
+				<!-- 店铺商品列表 -->
 				<view class='pdts'>
+					<!-- 单个商品 -->
 					<view class='pdt {{(pdt.selected && (((pdt.itemType == "product") && ((!pdt.sku.stockTag.amount || (pdt.amount > pdt.sku.stockTag.amount)) || (pdt.amount % pdt.sku.modCount != 0))) || ((pdt.itemType == "product") && (pdt.package.stockAmount < pdt.amount)))) ? "un_sel" : ""}}' wx:for='{{block.items}}' wx:for-item="pdt" wx:for-index="pIdx" wx:key=''>
-						<view wx:if='{{pdt.itemType == "product"}}'>
+						<!-- 一般商品或团购商品 -->
+						<view wx:if='{{pdt.itemType == "product" || pdt.itemType == "bulkBuy"}}'>
+							<!-- 促销标签、摘要 -->
 							<view class='sale_tag' wx:if='{{pdt.sku.addSaleTagName}}'>
 								<text class='tag_name'>{{pdt.sku.addSaleTagName}}</text>
 								<text>{{pdt.sku.saleTag}}</text>
@@ -21,32 +26,50 @@
 									<view class='check_box bg {{pdt.selected ? "selected" : ""}}' bindtap='selPdt' data-selected='{{pdt.selected}}' data-pdtidx='{{bIdx}},{{pIdx}}'></view>
 									<image class='pdt_img' src='{{pdt.sku.photo.smallUrl}}'></image>
 									<view class='pdt_info'>
+										<!-- 商品标题 -->
 										<view class='pdt_title'>
+											<text class='bulk_tag' wx:if='{{pdt.itemType == "bulkBuy"}}'>团购</text>
 											<text>{{pdt.sku.productCaption}}</text>
 										</view>
+										<!-- 提示信息 -->
+										<view wx:if='{{pdt.tip}}'>
+											<text class='tip_warnning'>!</text>
+											<text class='red tip_text'>{{pdt.tip}}</text>
+										</view>
 										<text class='detail_info'>货号：{{pdt.sku.skuCode}}</text>
+										<!-- 库存 -->
 										<view class='detail_info'>
 											<text>库存：</text>
-											<text class='{{!pdt.sku.stockTag.amount || (pdt.amount > pdt.sku.stockTag.amount) ? "red" : ""}}'>{{((pdt.amount > pdt.sku.stockTag.amount) && pdt.sku.stockTag.amount) ? (pdt.sku.stockTag.amount+pdt.sku.units) : ((pdt.sku.stockTag.amount > 100) ? pdt.sku.stockTag.stockState : (pdt.sku.stockTag.amount == 0 ? "缺货" : pdt.sku.stockTag.amount+pdt.sku.units))}}</text>
+											<block wx:if='{{pdt.itemType == "bulkBuy"}}'>
+												<text class='{{!pdt.bulkSku.amount || (pdt.amount > pdt.bulkSku.amount) ? "red" : ""}}'>{{((pdt.amount > pdt.bulkSku.amount) && pdt.bulkSku.amount) ? (pdt.bulkSku.amount + pdt.bulkSku.packUnits) : ((pdt.bulkSku.amount > 100) ? "有货" : (pdt.bulkSku.amount == 0 ? "缺货" : pdt.bulkSku.amount + pdt.bulkSku.packUnits))}}</text>
+											</block>
+											<block wx:else>
+												<text class='{{!pdt.sku.stockTag.amount || (pdt.amount > pdt.sku.stockTag.amount) ? "red" : ""}}'>{{((pdt.amount > pdt.sku.stockTag.amount) && pdt.sku.stockTag.amount) ? (pdt.sku.stockTag.amount+pdt.sku.units) : ((pdt.sku.stockTag.amount > 100) ? pdt.sku.stockTag.stockState : (pdt.sku.stockTag.amount == 0 ? "缺货" : pdt.sku.stockTag.amount+pdt.sku.units))}}</text>
+											</block>
 										</view>
+										<!-- 价格 -->
 										<text class='orange'>￥{{pdt.sku.price}}/{{pdt.sku.units}}</text>
 									</view>
+									<!-- 不拆零、起订量 -->
 									<view class='count_limit orange'>
 										<text>{{(pdt.amount % pdt.sku.modCount != 0) ? ("不拆零：" + pdt.sku.modCount + pdt.sku.units) : ""}}</text>
 										<text>{{(pdt.sku.minOrder > pdt.amount) ? "起订量：" + (pdt.sku.minOrder + pdt.sku.units) : ""}}</text>
 									</view>
+									<!-- 购买数量 -->
 									<view class='count'>
 										<text class='sub' bindtap='changeCount' data-changemethod='sub' data-pdtidx='{{bIdx}},{{pIdx}}'>-</text>
 										<input value='{{pdt.amount}}' type='number' data-changemethod='input' bindblur='changeCount' data-pdtidx='{{bIdx}},{{pIdx}}' bindinput='countInput' bindfocus='countFocus'></input>
 										<text class='add' bindtap='changeCount' data-changemethod='add' data-pdtidx='{{bIdx}},{{pIdx}}'>+</text>
 									</view>
 								</view>
+								<!-- 左滑选项：收藏、删除 -->
 								<view class='option'>
 									<view class='favorite' data-pdtidx='{{bIdx}},{{pIdx}}' catchtap='collectPdt'><text>收藏</text></view>
 									<view class='delete' data-pdtidx='{{bIdx}},{{pIdx}}' catchtap='delPdt'><text>删除</text></view>
 								</view>
 							</view>
 						</view>
+						<!-- 套餐 -->
 						<view class='pkg' wx:elif='{{pdt.itemType == "package"}}'>
 							<view class='pkg_info'>
 								<view class='main_info {{bIdx + "," + pIdx == crrPdtIdx ? "touch_active" : ""}}' bindtouchstart="touchStart" bindtouchmove="touchMove" data-pdtidx='{{bIdx}},{{pIdx}}'>
@@ -67,6 +90,7 @@
 									<view class='delete' data-pdtidx='{{bIdx}},{{pIdx}}' catchtap='delPdt'><text>删除</text></view>
 								</view>
 							</view>
+							<!-- 套餐商品 -->
 							<view wx:for='{{pdt.skus}}' wx:for-item='pkgPdt'>
 								<view class='row_main'>
 									<view class='main_info'>
@@ -83,8 +107,10 @@
 								</view>
 							</view>
 						</view>
+						<!-- 优惠信息 -->
 						<block wx:if='{{pdt.rewards.length}}'>
 							<block wx:for='{{pdt.rewards}}' wx:for-item='reward'>
+								<!-- 赠品、阶梯赠品 -->
 								<block wx:if='{{(reward.ruleMode == "present") || (reward.ruleMode == "stepPresent")}}'>
 									<view class='rewards {{giftEditIdx == (bIdx + "," + pIdx) ? "gift_edit" : ""}}'>
 										<view class='sel_gift'>
@@ -109,6 +135,7 @@
 										<button class='gift_btn' data-rewardid='{{reward.rewardId}}' data-pdtidx='{{bIdx}},{{pIdx}}' bindtap='changeGift'>确定</button>
 									</view>
 								</block>
+								<!-- 满减 -->
 								<block wx:elif='{{reward.ruleMode == "reduce"}}'>
 									<view class='rewards sel_gift'>
 										<text class='reward_tag'>{{reward.ruleModeName}}</text>
@@ -119,6 +146,154 @@
 						</block> 
 					</view>
 				</view>
+				<!-- 整单优惠 -->
+				<block wx:if='{{block.rewards && block.rewards.length}}'>
+					<view class='bill_rewards_box'>
+						<view>整单优惠</view>
+						<view class='bill_rewards'>
+							<view class='bill_reward' wx:for='{{block.rewards}}' wx:for-item='reward' wx:key>
+								<view class='bill_reward_top'>
+									<view><text class='bill_reward_name'>{{reward.ruleModeName}}</text><text class='green'>{{reward.caption}}</text></view>
+									<view wx:if='{{(reward.ruleMode == "present") || (reward.ruleMode == "stepPresent") || (reward.ruleMode == "onePresent")}}'>
+										<text wx:if='{{reward.i == 0}}' class='red'>已换完</text>
+										<text wx:elif='{{!reward.hide}}' class='red'>库存不足</text>
+									</view>
+									<view class='sel_gift_btn' wx:if='{{reward.i > 0 && ((reward.ruleMode == "buy") || (reward.ruleMode == "present") || (reward.ruleMode == "stepPresent") || (reward.ruleMode == "onePresent"))}}'>
+										选择换购
+									</view>
+								</view>
+								<!-- 可选赠品 -->
+								<view class='sel_bg' wx:if='{{(reward.ruleMode=="present")||(reward.ruleMode=="buy")||(reward.ruleMode=="stepPresent")||(reward.ruleMode=="onePresent")}}'>
+									<view style='display:none;'>
+										<view class='orange'>
+											您可以选择
+											<block wx:if='{{(reward.ruleMode == "present") || (reward.ruleMode == "buy")}}'>{{reward.giftCount}}件商品</block>
+											<block wx:elif='{{(reward.ruleMode == "stepPresent") || (reward.ruleMode == "onePresent")}}'>1组换购商品</block>
+											{{!reward.moreThanOne ? "，限选一件" : ""}}
+										</view>
+										<view wx:if='{{(reward.ruleMode == "present") || (reward.ruleMode == "buy")}}'>
+											<view wx:for='{{reward.gifts}}' wx:for-item='gift' wx:key>
+												<view wx:if='{{(gift.stockAmount > 0 || (gift.stockAmount == 0 && gift.stockState == "充足"))}}'>
+													<checkbox disabled='false' checked='{{gift.amount > 0}}'></checkbox>
+												</view>
+												<view wx:else>
+													<checkbox disabled='true'></checkbox>
+												</view>
+												<image mode='widthFix' style='width:100rpx;' src='{{gift.photoUrl}}'></image>
+												<text>{{gift.caption}}</text>
+												<view>
+													<view wx:if='{{reward.ruleMode == "buy"}}'>{{gift.price}}</view>
+													<view>
+														<block wx:if='{{(gift.stockAmount>0 || (gift.stockAmount==0&&gift.stockState=="充足"))}}'>
+															数量：<input value='{{(gift.amount<=gift.stockAmount ||(gift.stockAmount==0&&gift.stockState=="充足")) ? gift.amount : gift.stockAmount}}'></input>
+														</block>
+														<block wx:else>{{gift.stockState}}</block>
+													</view>
+												</view>
+											</view>
+										</view>
+										<view wx:if='{{reward.ruleMode == "onePresent"}}'>
+											<view wx:for='{{reward.gifts}}' wx:for-item='gift' wx:key>
+												<view wx:if='{{(gift.stockAmount > 0 || (gift.stockAmount == 0 && gift.stockState == "充足"))}}'>
+													<radio disabled='false' checked='{{gift.count > 0}}'></radio>
+												</view>
+												<view wx:else>
+													<radio disabled='true'></radio>
+												</view>
+												<image mode='widthFix' style='width:100rpx;' src='{{gift.photoUrl}}'></image>
+												<view>
+													<text>{{gift.caption}}</text>
+													<view>
+														<block wx:if='{{!(gift.count<gift.stockAmount ||(gift.stockAmount==0&&gift.stockState=="充足"))}}'>
+															<view wx:if='{{gift.stockAmount > 0}}'>
+																仅剩{{gift.stockAmount}}{{gift.units || "件"}}
+															</view>
+														</block>
+													</view>
+												</view>
+												<view>
+													<view wx:if='{{gift.stockAmount > 0 || gift.stockState == "充足"}}'>
+														数量：<input value='{{gift.count}}'></input>
+													</view>
+													<view wx:else>
+														库存不足
+													</view>
+												</view>
+											</view>
+										</view>
+										<view wx:if='{{reward.ruleMode == "stepPresent"}}'>
+											<view wx:for='{{reward.giftPackages}}' wx:for-item='gift' wx:key>
+												<view wx:if='{{(gift.stockAmount == 1 && gift.stockState == "有货")}}'>
+													<radio disabled='false' checked='{{gift.amount > 0}}'></radio>
+												</view>
+												<view wx:else>
+													<radio disabled='true'></radio>
+												</view>
+												<view>
+													<text>{{gift.caption}}</text>
+													<view>
+														<view wx:for='{{gift.gifts}}' wx:for-item='pdt' wx:key>
+															<image mode='widthFix' style='width:100rpx;' src='{{"http://file.ry600.com" + pdt.photoUrl}}'></image>
+															<text>{{pdt.giftCaption}}</text>
+															<text>{{pdt.count}}{{pdt.units}}</text>
+														</view>
+													</view>
+												</view>
+												<view>
+													<view wx:if='{{gift.stockAmount == 1 && gift.stockState == "有货"}}'>
+														<text>1</text>{{gift.stockState}}
+													</view>
+													<view wx:else>
+														库存不足
+													</view>
+												</view>
+											</view>
+										</view>
+									</view>
+									<!-- 已选赠品 -->
+									<view>
+										<view wx:if='{{(reward.ruleMode == "present") || (reward.ruleMode == "buy")}}'>
+											<block wx:for='{{reward.gifts}}' wx:for-item='gift' wx:key>
+												<view wx:if='{{gift.amount > 0}}'>
+													<image src='{{gift.photoUrl}}' mode='widthFix' style='width:100rpx;'></image>
+													<text>{{gift.caption}}</text>
+													<text wx:if='{{reward.ruleMode == "buy"}}'>￥{{gift.price}}×</text>
+													<text>{{(gift.amount<=gift.stockAmount || (gift.stockAmount==0&&gift.stockState=="充足")) ? gift.amount : gift.stockAmount}}{{gift.units}}</text>
+												</view>
+											</block>
+										</view>
+										<view wx:if='{{reward.ruleMode == "onePresent"}}'>
+											<block wx:for='{{reward.gifts}}' wx:for-item='gift' wx:key>
+												<view wx:if='{{gift.amount > 0}}'>
+													<image src='{{gift.photoUrl}}' mode='widthFix' style='width:100rpx;'></image>
+													<text>{{gift.caption}}</text>
+													<text wx:if='{{!(gift.amount<gift.stockAmount||(gift.stockAmount==0&&gift.stockState=="充足"))}}'>
+														库存仅剩{{gift.stockAmount}}{{gift.units || "件"}}
+													</text>
+													<text>{{(gift.amount<=gift.stockAmount || (gift.stockAmount==0&&gift.stockState=="充足")) ? gift.amount : gift.stockAmount}}{{gift.units || "件"}}</text>
+												</view>
+											</block>
+										</view>
+										<view wx:if='{{reward.ruleMode == "stepPresent"}}'>
+											<block wx:for='{{reward.giftPackages}}' wx:for-item='gift' wx:key>
+												<view wx:if='{{gift.amount > 0}}'>
+													<view>
+														<view wx:for='{{gift.gifts}}' wx:for-item='pdt' wx:key>
+															<image src='{{"http://file.ry600.com" + pdt.photoUrl}}' mode='widthFix' style='width:100rpx;'></image>
+															<text>{{gift.giftCaption}}</text>
+															<text>{{pdt.count}}{{pdt.units}}</text>
+														</view>
+														<view wx:if='{{gift.stockAmount == 1 && gift.stockState == "有货"}}'>1</view>
+													</view>
+												</view>
+											</block>
+										</view>
+									</view>
+								</view>
+							</view>
+						</view>
+					</view>
+				</block>
 				<view class='row_bottom block_bottom'>
 					<!-- <view class='sel_all'>
 						<view class='check_box bg {{block.count == block.selCount ? "selected" : ""}}' bindtap='selPdt' data-blockidx='{{bIdx}}' data-selected='{{block.count == block.selCount}}'></view>
@@ -151,7 +326,7 @@
 		<view class='nothing'>
 			<view class='cart_icon bg2'></view>
 			<text class='grey'>购物车内暂时没有商品，请先挑选商品</text>
-			<navigator url='/pages/homePage/showcase/search/search?searchContent=&type=quickBill'><button>继续购物</button></navigator>
+			<navigator url='/pages/productPage/search/search'><button>继续购物</button></navigator>
 		</view>
 	</block>
 </view>

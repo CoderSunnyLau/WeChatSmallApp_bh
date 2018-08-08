@@ -56,6 +56,9 @@ page{
   height: 33rpx;
   margin: 10rpx 0 -8rpx 66rpx;
   color: #777;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 } 
 .tag_name{
   display: block;
@@ -66,6 +69,27 @@ page{
   border-radius: 15rpx;
   padding: 0 12rpx;
   margin-right: 8rpx;
+}
+.bulk_tag{
+	background-color: #F50;
+	color: #FFF;
+	border-radius: 4rpx;
+	padding: 0 6rpx;
+	font-size: 24rpx;
+	margin-right: 6rpx;
+}
+.tip_warnning{
+	background-color: #FF2D48;
+	color: #FFF;
+	border-radius: 50%;
+	display: inline-block;
+	width: 26rpx;
+	height: 26rpx;
+	text-align: center;
+	line-height: 26rpx;
+}
+.tip_text{
+	font-size: 24rpx;
 }
 .pdt{
   width: 750rpx;
@@ -242,6 +266,38 @@ page{
   transform: translateX(0rpx);
   -webkit-transition: all 0.4s;
   transition: all 0.4s;
+}
+.bill_rewards_box{
+	font-size: 24rpx;
+	padding: 30rpx;
+	border-top: 2rpx solid #DDD;
+}
+.bill_reward{
+	margin: 30rpx 0;
+}
+.bill_reward_name{
+	background-color: #888;
+	color: #FFF;
+	border-radius: 10rpx;
+	padding: 0 10rpx;
+	font-size: 22rpx;
+	margin-right: 6rpx;
+}
+.bill_reward_top{
+	display: flex;
+	justify-content: space-between;
+	margin: 10rpx 0;
+}
+.sel_bg{
+	background-color: #fcf8e3;
+}
+.sel_gift_btn{
+	border: 2rpx solid #CCC;
+	border-radius: 6rpx;
+	padding: 0 10rpx;
+}
+.green{
+	color: #009900;
 }
 .row_bottom{
   height: 106rpx;

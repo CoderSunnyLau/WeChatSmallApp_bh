@@ -52,8 +52,10 @@ Page({
 					for(let i = 0; i < res.results[0].blocks.length; i++){
 						blocksTemp.push(res.results[0].blocks[i]);
 					}
+					console.log(blocksTemp)
+					_this.setBlock(blocksTemp);
 					_this.setData({
-						blocks: blocksTemp,
+						// blocks: blocksTemp,
 						selCount: res.results[0].selCount,
 						count: res.results[0].count
 					});
@@ -381,6 +383,37 @@ Page({
 				}
 			});
 		}
+	},
+	setBlock: function(blocks){
+		for(var j = 0; j < blocks.length; j++){
+			var block = blocks[j];
+			if(block.rewards && block.rewards.length){
+				for(var k = 0; k < block.rewards.length; k++){
+					var reward = block.rewards[k],
+						i = 0,
+						hide = true,
+						giftName = "";
+					if((reward.ruleMode == 'present') || (reward.ruleMode == 'buy') || (reward.ruleMode == 'onePresent')){
+						giftName = "gifts";
+					}else if(reward.ruleMode=='stepPresent'){
+						giftName = "giftPackages";
+					}
+					for(var gift in reward[giftName]){
+						i = i + reward[giftName][gift].stockAmount;
+					}
+					if(i < reward.giftCount){
+						hide = false;
+					}
+					blocks[j].rewards[k].i = i;
+					blocks[j].rewards[k].hide = hide;
+					console.log("i", reward)
+				}
+			}
+		}
+		console.log("blocks", blocks)
+		_this.setData({
+			blocks: blocks
+		});
 	},
 	buy: function(e){
 		var blk = _this.data.blocks[e.currentTarget.dataset.bid];

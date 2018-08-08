@@ -74,6 +74,7 @@ Page({
 				masterDS: JSON.stringify({
 					"userName": _this.data.userName,
 					"coughs": _this.data.checkValid
+					// "checkCode": _this.data.checkValid
 				})
 			}, function(res, success){
 				wx.hideLoading();

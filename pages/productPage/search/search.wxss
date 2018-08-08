@@ -35,7 +35,7 @@ page {
 }
 
 .pageTab .screen {
-  background-position: 182% 99.3%;
+  background-position: 40% 99.3%;
 }
 
 .pageTab .curr {
@@ -105,7 +105,7 @@ page {
   flex-wrap: wrap;
 }
 
-.noPro_tip {
+.noMore_tip {
   text-align: center;
   height: 100rpx;
   line-height: 100rpx;
@@ -142,6 +142,7 @@ page {
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
+
 .product-item .down {
   display: flex;
   height: 202rpx;
@@ -279,4 +280,10 @@ page {
 .top .top_img {
   width: 70%;
   height: 70%;
+}
+
+.sellStateTip {
+  position: absolute;
+  right: 30rpx;
+  bottom: 30rpx;
 }

@@ -15,12 +15,10 @@
         "pages/template/slide/slide",
         "pages/template/shopcartTest/shopcartTest",
         "pages/homePage/shopcart/orderCheckout/orderCheckout",
-        "pages/promotion/bulk/bulk",
+        "pages/promotion/bulk/bulk",			
         "pages/homePage/account/myAddress/myAddress",
         "pages/homePage/account/myAddress/editAddress/editAddress",
-        "pages/homePage/account/myFavorite/myFavorite",
-        "pages/homePage/showcase/search/search",
-        "pages/homePage/showcase/search/productDetail/productDetail",
+        "pages/homePage/account/myFavorite/myFavorite",     
         "pages/homePage/account/myCoupon/myCoupon",
         "pages/homePage/shopcart/orderCheckout/selectAddress/selectAddress",
         "pages/homePage/account/fixInfo/fixInfo",
@@ -28,7 +26,9 @@
         "pages/loginPage/forget/forgetSet",
         "pages/noCooperate/noCooperate",
         "pages/homePage/shopcart/orderCheckout/orderSubmitSuccess/orderSubmitSuccess",
-        "pages/homePage/account/myBill/billInfo/billInfo"
+        "pages/homePage/account/myBill/billInfo/billInfo",
+				"pages/productPage/search/search",
+				"pages/productPage/productDetail/productDetail"
     ],
     "window": {
         "backgroundTextStyle": "light",

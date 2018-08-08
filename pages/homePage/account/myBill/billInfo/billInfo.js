@@ -62,6 +62,12 @@ Page({
 		function interval(){
 			setTimeout(function(){
 				var left = parseInt(end - new Date().getTime());  //剩余支付时间（毫秒数）
+				if(left <= 0){
+					_this.setData({
+						deadline: "------支付已超时------"
+					});
+					return false;
+				}
 				var day = parseInt(left / 86400000),
 					hour = parseInt(left / 3600000) % 24,
 					min = parseInt(left / 60000) % 60,

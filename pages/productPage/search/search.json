@@ -1,5 +1,5 @@
 {
-	"navigationBarTitleText": "快速下单",
+	"navigationBarTitleText": "快速采购",
 	"usingComponents": {
 		"msg": "/component/orgMsg/orgMsg",
 		"bar": "/component/searchBar/searchBar"

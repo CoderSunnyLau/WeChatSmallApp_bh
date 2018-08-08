@@ -8,17 +8,17 @@ Page({
 	},
 	scanTo: function (e) {
 		wx.navigateTo({
-			url: '../showcase/search/search?searchContent=' + e.detail.result + '&type=quickBill'
+			url: '../../productPage/search/search?searchContent=' + e.detail.result + '&type=quickBill'
 		})
 	},
 	searchTo: function (e) {
 		wx.navigateTo({
-			url: '../showcase/search/search?searchContent=' + e.detail.searchContent + '&type=quickBill'
+			url: '../../productPage/search/search?searchContent=' + e.detail.searchContent + '&type=quickBill'
 		})
 	},
 	quickBill: function () {
 		wx.navigateTo({
-			url: '../showcase/search/search?searchContent=&type=quickBill'
+			url: '../../productPage/search/search?type=quickBill'
 		})
 	},
 	onReady: function () {
@@ -38,7 +38,7 @@ Page({
 		wx.scanCode({
 			success: function(res){
 				wx.navigateTo({
-					url: '../showcase/search/search?searchContent=' + res.result + '&type=quickBill'
+					url: '../../productPage/search/search?searchContent=' + res.result + '&type=quickBill'
 				})
 			}
 		})

@@ -1,0 +1,121 @@
+<msg id='msg'></msg>
+<bar bind:search='searchPro' bind:scan='scanPro' id='bar' searchVal='{{searchVal}}'></bar>
+<view wx:if='{{loading}}' class='loading_area'>
+  <image src='http://file.ry600.com/snapshot//files/di/di70684438lrfavs/2017-10-24/1b2yysllburx4q9e.gif' mode='aspectFit' class='loading_img' />
+</view>
+<view class='search_area'>
+  <view class='pageTab' id='tab'>
+    <block wx:if='{{isQuickBill}}'>
+      <view class="tabItem {{isSelect==index?'curr':''}}" wx:for='{{tabArr}}' bindtap='tabSelect' data-tIdx='{{index}}'>{{item}}</view>
+    </block>
+    <block wx:else>
+      <view class="tabItem {{isSelect==index?'curr':''}}" wx:for='{{tabArr}}' bindtap='tabSelect' data-sort='{{item.sort}}' data-tIdx='{{index}}'>{{item.text}}</view>
+      <view class='tabItem bg screen' bindtap='showScreen' data-status='open'>筛选</view>
+    </block>
+  </view>
+  <block wx:if='{{hasProduct}}'>
+    <scroll-view class='product-content ' id='content' style="height: {{contentHeight}}" bindscrolltolower='moreProduct' lower-threshold='5' enable-back-to-top='true' scroll-with-animation='true' scroll-y='{{canScroll}}' scroll-top='{{scrollTop}}' bindscroll='scrollEvent'>
+      <block wx:for='{{products}}' wx:for-item='product' wx:for-index='pIdx'>
+        <block wx:for='{{product.skus}}' wx:for-item='sku' wx:for-index='sIdx'>
+          <view class='product-item'>
+            <block wx:if='{{product.addSaleTagName}}'>
+              <view class='item up'>
+                <text class='sale_tag {{product.addSaleTag}}'>{{product.addSaleTagName}}</text>
+                <text class='sale-content'>{{product.saleTag}}</text>
+              </view>
+            </block>
+            <view class='item down'>
+              <view class='img-content'>
+                <image class='product-img' src='{{product.photo.smallUrl}}' mode='aspectFit' />
+              </view>
+              <view class='product-msg'>
+                <text class='product-caption' catchtap='toDetail' data-productId='{{product.shopProductId}}'>{{product.productCaption}}</text>
+                <block wx:if='{{product.sellState}}'>
+                  <view>库存：
+                    <text class='{{sku.stockTag.amount ? "" : "red"}}'>{{(sku.stockTag.amount>0&&sku.stockTag.amount<=100)?(sku.stockTag.amount):(sku.stockTag.stockState)}}</text>
+                  </view>
+                  <view class='price-area'>
+                    <block wx:if='{{sku.canSell}}'>
+                      <block wx:if='{{sku.price > 0}}'>
+                        <view class='orange'>¥
+                          <text class='product-price'>{{sku.price}}</text> /{{sku.packUnits}}</view>
+                      </block>
+                      <block wx:else>
+                        <text class='orange'>商品未定价</text>
+                      </block>
+                    </block>
+                    <block wx:else>
+                      <text class='orange'>商品禁售</text>
+                    </block>
+                  </view>
+                </block>
+              </view>
+            </view>
+            <block wx:if='{{product.sellState}}'>
+              <block wx:if='{{product.sellState.stateActions == "buy"}}'>
+                <block wx:if='{{sku.hasStock}}'>
+                  <block wx:if='{{sku.price > 0}}'>
+                    <view class='buy-action'>
+                      <view class='bg shopcart' bindtap='addToShopcart' data-skuId='{{sku.skuId}}' data-index='{{pIdx}}' data-productId='{{product.orgProductId}}'></view>
+                      <view class='action-box'>
+                        <text class='reduce' bindtap='changeAmount' data-status='reduce' data-index='{{pIdx}}' data-skuId='{{sku.skuId}}'>-</text>
+                        <input type='number' bindinput='amountSave' data-index='{{pIdx}}' data-skuId='{{sku.skuId}}' value='{{sku.shopcartAmount}}' />
+                        <text class='add' bindtap='changeAmount' data-status='add' data-index='{{pIdx}}' data-skuId='{{sku.skuId}}'>+</text>
+                      </view>
+                    </view>
+                  </block>
+                </block>
+              </block>
+              <block wx:else>
+                <block wx:if='{{product.sellState.stateActions == "demandReg"}}'>
+                  <text class='sellStateTip red'>需求更多</text>
+                </block>
+                <block wx:if='{{product.sellState.stateActions == "demandColl"}}'>
+                  <text class='sellStateTip red'>特需登记</text>
+                </block>
+                <block wx:if='{{product.sellState.stateActions == "none"}}'>
+                  <text class='orange sellStateTip'>暂不销售</text>
+                </block>
+              </block>
+            </block>
+            <block wx:else>
+              <text class='orange sellStateTip'>销售状态为空，店铺禁售</text>
+            </block>
+          </view>
+        </block>
+      </block>
+      <view class='noMore_tip' wx:if='{{noMore}}'>没有更多商品了</view>
+    </scroll-view>
+
+		<view class='screen_bg' wx:if='{{openScreen}}' bindtap='showScreen' data-status='close'></view>
+    <view class='facets_content' wx:if='{{openScreen}}' animation='{{animationData}}'>
+      <view class='select_box item'>
+        <text class='select_title title'>已选条件</text>
+        <text class='select_content'>感冒发烧</text>
+      </view>
+      <view class='facets_item item'>
+        <view>
+          <text class='title'>剂型</text>
+        </view>
+        <view class='facets_list'>
+          <view class='facets_child'>口服液</view>
+          <view class='facets_child'>注射剂</view>
+          <view class='facets_child'>悬凝剂</view>
+          <view class='facets_child'>溶液剂</view>
+          <view class='facets_child'>煎膏剂</view>
+        </view>
+      </view>
+    </view>
+
+    <view class='top' bindtap='backTop' wx:if='{{showTop}}'>
+      <image src='/images/arrow_up.png' mode='aspectFit' class='top_img' />
+    </view>
+  </block>
+  <block wx:else>
+    <view class='noProduct_tip' style='height: {{tipHeight}}'>
+      <image src='/images/tip_rabbit.png' class='tip_img' mode='aspectFit'></image>
+      <view class='tip_up'>抱歉，没找到相关的商品信息</view>
+      <view class='tip_down'>建议您查看输入是否有误或者调整关键字</view>
+    </view>
+  </block>
+</view>

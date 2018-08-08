@@ -1,5 +1,5 @@
 var httpUrl = getApp().globalData.domainName + '/jsonaction/websiteaction.action'
-var mHeader = { cookie:"_serviceId=2ff84669daf243949a8adcaea0b7d5e0"}
+var mHeader = { cookie:"_serviceId=4f5d56ef2a2c423286925dddfb02820d"}
 
 function loginHttp(options, callback) {
   wx.request({

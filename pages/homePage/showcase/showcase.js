@@ -45,12 +45,12 @@ Page({
 	},
 	scanTo: function (e) {
 		wx.navigateTo({
-			url: '../showcase/search/search?searchContent=' + e.detail.result + '&type=allSearch'
+			url: '../../productPage/search/search?searchContent=' + e.detail.result + '&type=allSearch'
 		})
 	},
 	searchTo: function (e) {
 		wx.navigateTo({
-			url: '../showcase/search/search?searchContent=' + e.detail.searchContent + '&type=allSearch'
+			url: '../../productPage/search/search?searchContent=' + e.detail.searchContent + '&type=allSearch'
 		})
 	},
 	selectItem: function (e) {
@@ -89,7 +89,7 @@ Page({
 		// 	console.log(res)
 		// })
 		wx.navigateTo({
-			url: '../showcase/search/search?searchContent=&type=showcase&showcaseId=' + e.currentTarget.dataset.showcaseid
+			url: '../../productPage/search/search?searchContent=&type=showcase&showcaseId=' + e.currentTarget.dataset.showcaseid
 		})
 	}
 })
